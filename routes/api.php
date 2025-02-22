@@ -1,0 +1,24 @@
+<?php
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Tips\TipsController;
+use App\Http\Controllers\CodeExecution\CodeExecutionController;
+
+
+Route::get('/user', function (Request $request) {
+    return $request->user();
+})->middleware('auth:sanctum');
+
+
+
+Route::post('/register', [AuthController::class, 'register']);
+
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::get('/tips/random', [TipsController::class, 'TipsFetch']); // Get a random tip
+
+
+// PHP ROUTE TO EXECUTE
+Route::post('/execute-php', [CodeExecutionController::class, 'execute']);
