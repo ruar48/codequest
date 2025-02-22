@@ -6,8 +6,16 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Http\\Controllers\\Admin\\AdminController' => $baseDir . '/app/Http/Controllers/Admin/AdminController.php',
+    'App\\Http\\Controllers\\Admin\\AuthController' => $baseDir . '/app/Http/Controllers/Admin/AuthController.php',
+    'App\\Http\\Controllers\\Admin\\EducatorController' => $baseDir . '/app/Http/Controllers/Admin/EducatorController.php',
+    'App\\Http\\Controllers\\Admin\\PlayerController' => $baseDir . '/app/Http/Controllers/Admin/PlayerController.php',
     'App\\Http\\Controllers\\Auth\\AuthController' => $baseDir . '/app/Http/Controllers/Auth/AuthController.php',
+    'App\\Http\\Controllers\\CodeExecution\\CodeExecutionController' => $baseDir . '/app/Http/Controllers/CodeExecution/CodeExecutionController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
+    'App\\Http\\Controllers\\Tips\\TipsController' => $baseDir . '/app/Http/Controllers/Tips/TipsController.php',
+    'App\\Http\\Middleware\\Admin\\AdminMiddleware' => $baseDir . '/app/Http/Middleware/Admin/AdminMiddleware.php',
+    'App\\Models\\Tips' => $baseDir . '/app/Models/Tips.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',

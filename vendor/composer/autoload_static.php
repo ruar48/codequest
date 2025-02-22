@@ -521,8 +521,16 @@ class ComposerStaticInit626b9e7ddd47fb7eff9aaa53cce0c9ad
     );
 
     public static $classMap = array (
+        'App\\Http\\Controllers\\Admin\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AdminController.php',
+        'App\\Http\\Controllers\\Admin\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AuthController.php',
+        'App\\Http\\Controllers\\Admin\\EducatorController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/EducatorController.php',
+        'App\\Http\\Controllers\\Admin\\PlayerController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/PlayerController.php',
         'App\\Http\\Controllers\\Auth\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/AuthController.php',
+        'App\\Http\\Controllers\\CodeExecution\\CodeExecutionController' => __DIR__ . '/../..' . '/app/Http/Controllers/CodeExecution/CodeExecutionController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\Tips\\TipsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Tips/TipsController.php',
+        'App\\Http\\Middleware\\Admin\\AdminMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/Admin/AdminMiddleware.php',
+        'App\\Models\\Tips' => __DIR__ . '/../..' . '/app/Models/Tips.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
