@@ -15,9 +15,9 @@
 
 <section class="content">
     <div class="container-fluid">
-        {{-- <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#playerModal">
+        <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#playerModal">
             <i class="fas fa-plus"></i> Add Player
-        </button> --}}
+        </button>
         <div class="card shadow-lg">
             <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
                 <h3 class="card-title">List of Players</h3>
