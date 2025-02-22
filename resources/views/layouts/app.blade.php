@@ -231,7 +231,7 @@
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
                         <a href="{{ route('admins.index') }}" class="nav-link {{ Request::routeIs('admins.index') ? 'active' : '' }}">
-                          <i class="fas fa-user-shield ml-3"></i>
+                          <i class="fas fa-user-shield ml-5"></i>
                           <p>Admin</p>
                         </a>
                     </li>
