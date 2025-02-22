@@ -237,13 +237,13 @@
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('educators.index') }}" class="nav-link {{ Request::routeIs('educators.index') ? 'active' : '' }}">
-                            <i class="fas fa-chalkboard-teacher ml-3"></i>
+                            <i class="fas fa-chalkboard-teacher ml-5"></i>
                             <p>Educator</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('player.index') }}" class="nav-link {{ Request::routeIs('player.index') ? 'active' : '' }}">
-                          <i class="fas fa-user ml-3"></i>
+                          <i class="fas fa-user ml-5"></i>
                           <p>Player</p>
                         </a>
                     </li>
