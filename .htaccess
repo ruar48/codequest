@@ -1,0 +1,9 @@
+# Disable LiteSpeed reCAPTCHA
+# RewriteEngine On
+# LsRecaptcha 100
+# RewriteRule .* - [E=verifycaptcha:drop]
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
