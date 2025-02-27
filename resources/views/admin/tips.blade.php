@@ -40,10 +40,10 @@
                             <td>{{ $tip->id }}</td>
                             <td>{{ $tip->description }}</td>
                             <td>
-                                <button class="btn btn-warning btn-sm edit-tip" data-id="{{ $tip->id }}" data-description="{{ $tip->description }}" data-toggle="modal" data-target="#tipModal">
+                                <button class="btn btn-warning btn-sm edit-tip" >
                                     <i class="fas fa-edit"></i> Edit
                                 </button>
-                                <button class="btn btn-danger btn-sm delete-tip" data-id="{{ $tip->id }}">
+                                <button class="btn btn-danger btn-sm delete-tip">
                                     <i class="fas fa-trash"></i> Delete
                                 </button>
                             </td>

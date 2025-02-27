@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\EducatorController;
 use App\Http\Controllers\Admin\PlayerController;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\LeaderBoard\LeaderBoardController;
+use App\Http\Controllers\Reports\EngagementController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -84,6 +86,24 @@ Route::get('/', function () {
 
             Route::post('/tips/store', 'store')
             ->name('tips.store');
+        });
+
+        Route::controller(LeaderBoardController::class)->group(function () {
+            Route::get('/leaderboards', 'leaderboards')
+            ->name('admin.leaderboard');
+
+            Route::get('/analytics-report', 'analyticsreport')
+            ->name('analytics.report');
+
+        });
+
+        Route::controller(EngagementController::class)->group(function () {
+            // Route::get('/engagement', 'engagment')
+            // ->name('reports.engagements');
+
+            Route::get('/logs', 'logs')->name('code.logs');
+            Route::get('/progress','progress')->name('user.progress');
+
         });
 
     });

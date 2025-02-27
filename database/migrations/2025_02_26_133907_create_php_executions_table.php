@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tips', function (Blueprint $table) {
+        Schema::create('php_executions', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id')->nullable(); // If tracking users
+            $table->text('code');
+            $table->text('output')->nullable();
+            $table->boolean('is_error')->default(false);
             $table->timestamps();
         });
     }
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tips');
+        Schema::dropIfExists('php_executions');
     }
 };

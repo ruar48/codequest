@@ -27,6 +27,7 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- jQuery (make sure it's included first) -->
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <link rel="stylesheet" href="{{ asset('vendor/datatables/css/dataTables.bootstrap4.min.css') }}">
 
@@ -208,142 +209,126 @@
       </div>
 
 
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-               <li class="nav-item">
-                <a href="{{ route('dashboard.index') }}" class="nav-link {{ Request::routeIs('dashboard.index') ? 'active' : '' }}">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
-                  <p>Dashboard</p>
-                </a>
-            </li>
+<!-- Sidebar Menu -->
+<nav class="mt-2">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Dashboard -->
+        <li class="nav-item">
+            <a href="{{ route('dashboard.index') }}" class="nav-link {{ Request::routeIs('dashboard.index') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>Dashboard</p>
+            </a>
+        </li>
 
-            <li class="nav-item {{ Request::routeIs('admins.index', 'educators.index', 'player.index') ? 'menu-open' : '' }}">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-users"></i>
-                  <p>
+        <!-- Users -->
+        <li class="nav-item {{ Request::routeIs('admins.index', 'educators.index', 'player.index') ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link {{ Request::routeIs('admins.index', 'educators.index', 'player.index') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-users"></i>
+                <p>
                     Users
                     <i class="right fas fa-angle-left"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="{{ route('admins.index') }}" class="nav-link {{ Request::routeIs('admins.index') ? 'active' : '' }}">
-                          <i class="fas fa-user-shield ml-5"></i>
-                          <p>Admin</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('educators.index') }}" class="nav-link {{ Request::routeIs('educators.index') ? 'active' : '' }}">
-                            <i class="fas fa-chalkboard-teacher ml-5"></i>
-                            <p>Educator</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('player.index') }}" class="nav-link {{ Request::routeIs('player.index') ? 'active' : '' }}">
-                          <i class="fas fa-user ml-5"></i>
-                          <p>Player</p>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
-
-            <li class="nav-item">
-                <a href="{{ route('admin.tips') }}" class="nav-link {{ Request::routeIs('admin.tips') ? 'active' : '' }}">
-                    <i class="nav-icon fas fa-lightbulb"></i>
-                    <p>Tips</p>
-                </a>
-            </li>
-
-          <li class="nav-item">
-            <a href="" class="nav-link">
-              <i class="nav-icon fas fa-database"></i>
-              <p>
-                Test Bank
-              </p>
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a href="" class="nav-link">
-              <i class="nav-icon fas fa-trophy"></i>
-              <p>
-                Leaderboard
-              </p>
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a href="" class="nav-link">
-              <i class="nav-icon fas fa-file-alt"></i>
-              <p>
-                Logs
-              </p>
-            </a>
-          </li>
-
-
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
-              <p>
-                Reports
-                <i class="right fas fa-angle-left"></i>
-              </p>
+                </p>
             </a>
             <ul class="nav nav-treeview">
-
-              <!-- User Progress Reports -->
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="fas fa-user-graduate nav-icon ml-3"></i>
-                    <p>User Progress</p>
-                </a>
-              </li>
-
-              <!-- Engagement Analytics -->
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="fas fa-chart-line nav-icon ml-3"></i>
-                  <p>Engagement Analytics</p>
-                </a>
-              </li>
-
-              <!-- Quiz & Test Performance -->
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="fas fa-poll nav-icon ml-3"></i>
-                  <p>Quiz Performance</p>
-                </a>
-              </li>
-
-              <!-- Leaderboard Reports -->
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="fas fa-trophy nav-icon ml-3"></i>
-                  <p>Leaderboard</p>
-                </a>
-              </li>
-
-              <!-- Export Reports -->
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="fas fa-file-export nav-icon ml-3"></i>
-                  <p>Export Reports</p>
-                </a>
-              </li>
-
+                <li class="nav-item">
+                    <a href="{{ route('admins.index') }}" class="nav-link {{ Request::routeIs('admins.index') ? 'active' : '' }}">
+                        <i class="fas fa-user-shield ml-5"></i>
+                        <p>Admin</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('educators.index') }}" class="nav-link {{ Request::routeIs('educators.index') ? 'active' : '' }}">
+                        <i class="fas fa-chalkboard-teacher ml-5"></i>
+                        <p>Educator</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('player.index') }}" class="nav-link {{ Request::routeIs('player.index') ? 'active' : '' }}">
+                        <i class="fas fa-user ml-5"></i>
+                        <p>Player</p>
+                    </a>
+                </li>
             </ul>
-          </li>
+        </li>
 
+        <!-- Tips -->
+        <li class="nav-item">
+            <a href="{{ route('admin.tips') }}" class="nav-link {{ Request::routeIs('admin.tips') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-lightbulb"></i>
+                <p>Tips</p>
+            </a>
+        </li>
 
+        <!-- Test Bank -->
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-database"></i>
+                <p>Test Bank</p>
+            </a>
+        </li>
 
+        <!-- Leaderboard -->
+        <li class="nav-item">
+            <a href="{{ route('admin.leaderboard') }}" class="nav-link {{ Request::routeIs('admin.leaderboard') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-trophy"></i>
+                <p>Leaderboard</p>
+            </a>
+        </li>
 
-        </ul>
-      </nav>
+        <!-- PHP & SQL Logs -->
+        <li class="nav-item">
+            <a href="{{ route('code.logs') }}" class="nav-link {{ Request::routeIs('code.logs') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-file-alt"></i>
+                <p>PHP & SQL Logs</p>
+            </a>
+        </li>
+
+        <!-- Reports -->
+        <li class="nav-item {{ Request::routeIs('user.progress', 'analytics.report', 'quiz.performance', 'export.reports') ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link {{ Request::routeIs('user.progress', 'analytics.report', 'quiz.performance', 'export.reports') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-chart-pie"></i>
+                <p>
+                    Reports
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <!-- User Progress Reports -->
+                <li class="nav-item">
+                    <a href="{{ route('user.progress') }}" class="nav-link {{ Request::routeIs('user.progress') ? 'active' : '' }}">
+                        <i class="fas fa-user-graduate nav-icon ml-3"></i>
+                        <p>User Progress</p>
+                    </a>
+                </li>
+
+                <!-- Engagement Analytics -->
+                <li class="nav-item">
+                    <a href="{{ route('analytics.report') }}" class="nav-link {{ Request::routeIs('analytics.report') ? 'active' : '' }}">
+                        <i class="fas fa-chart-line nav-icon ml-3"></i>
+                        <p>Engagement Analytics</p>
+                    </a>
+                </li>
+
+                <!-- Quiz & Test Performance -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link ">
+                        <i class="fas fa-poll nav-icon ml-3"></i>
+                        <p>Quiz Performance</p>
+                    </a>
+                </li>
+
+                <!-- Export Reports -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-file-export nav-icon ml-3"></i>
+                        <p>Export Reports</p>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->

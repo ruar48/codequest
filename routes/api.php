@@ -5,6 +5,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Tips\TipsController;
 use App\Http\Controllers\CodeExecution\CodeExecutionController;
+use App\Http\Controllers\Game\LevelController;
+
+
+
+Route::post('/update-level', [LevelController::class, 'updateLevel']);
 
 
 Route::get('/user', function (Request $request) {

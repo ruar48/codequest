@@ -51,4 +51,10 @@ class User extends Authenticatable
     {
         return $this->role === 'admin' || $this->role === 'superadmin';
     }
+
+    public function levels()
+{
+    return $this->hasMany(Level::class);
+}
+
 }
