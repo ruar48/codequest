@@ -49,7 +49,7 @@
 
     <div class="card p-4">
         <div class="card-header text-center bg-white border-0">
-            <h3 class="fw-bold text-primary">Login adsadasdasdsa</h3>
+            <h3 class="fw-bold text-primary">Login</h3>
         </div>
         <div class="card-body">
 
