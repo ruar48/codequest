@@ -24,7 +24,7 @@
                     <thead class="thead-light">
                         <tr>
                             <th>Rank</th>
-                            <th>Username</th>
+                            <th>Name</th>
                             <th>Points</th>
                             <th>Stars</th>
                         </tr>
@@ -33,7 +33,7 @@
                         @foreach ($leaderboardData as $index => $player)
                         <tr>
                             <td>{{ $index + 1 }}</td>
-                            <td>{{ $player->username }}</td>
+                            <td>{{ $player->full_name }}</td>
                             <td>{{ $player->total_points }}</td>
                             <td>{{ $player->total_stars }}</td>
                         </tr>

@@ -19,6 +19,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'email',
+        'full_name',
         'password',
         'role',
     ];
@@ -53,8 +54,10 @@ class User extends Authenticatable
     }
 
     public function levels()
-{
-    return $this->hasMany(Level::class);
-}
+    {
+        return $this->hasMany(Level::class);
+    }
+
+
 
 }

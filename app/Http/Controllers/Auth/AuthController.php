@@ -7,15 +7,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
-
+use App\Models\Profile;
 class AuthController extends Controller
 {
+
     public function register(Request $request)
     {
         // Validate the request data
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6',
+            'full_name' => 'nullable|string|max:255',
         ]);
 
         if ($validator->fails()) {
@@ -37,12 +39,13 @@ class AuthController extends Controller
         $user = User::create([
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'full_name' => $request->full_name ?? 'Anonymous', // Default name if empty
             'role' => 'player', // Default role assigned
         ]);
 
         return response()->json([
             'success' => true,
-            'message' => 'User registered successfully.' // Success message
+            'message' => 'User registered successfully.'
         ]);
     }
 

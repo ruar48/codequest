@@ -7,28 +7,25 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Level;
 use App\Models\ExecutedCode;
-use DB;
+use Illuminate\Support\Facades\DB;
 class LeaderBoardController extends Controller
 {
     public function leaderboards()
     {
-        // Get leaderboard data: Total points and stars per user
-        $leaderboardData = Level::select('user_id')
-            ->selectRaw('SUM(points) as total_points')
-            ->selectRaw('SUM(stars) as total_stars')
-            ->groupBy('user_id')
+        // Get leaderboard data: Total points and stars per user, including user full_name
+        $leaderboardData = Level::select('levels.user_id')
+            ->selectRaw('SUM(levels.points) as total_points')
+            ->selectRaw('SUM(levels.stars) as total_stars')
+            ->join('users', 'levels.user_id', '=', 'users.id') // Join with users table
+            ->addSelect('users.full_name') // Fetch full_name directly
+            ->groupBy('levels.user_id', 'users.full_name')
             ->orderByDesc('total_points') // Rank based on points first
             ->orderByDesc('total_stars')  // If points are the same, rank by stars
             ->get();
 
-        // Fetch user data (e.g., names)
-        foreach ($leaderboardData as $entry) {
-            $user = User::find($entry->user_id);
-            $entry->username = $user ? $user->email : 'Unknown';
-        }
-
         return view('admin.leaderboard', compact('leaderboardData'));
     }
+
 
 
     public function analyticsreport(Request $request)
@@ -81,4 +78,17 @@ class LeaderBoardController extends Controller
             'phpExecutions'
         ));
     }
+
+    public function getTopPlayers()
+    {
+        $topPlayers = User::select('users.id', 'users.full_name', DB::raw('SUM(levels.points) as total_points'))
+            ->join('levels', 'users.id', '=', 'levels.user_id')
+            ->groupBy('users.id', 'users.full_name')
+            ->orderByDesc('total_points')
+            ->limit(10)
+            ->get();
+
+        return response()->json($topPlayers);
+    }
+
 }

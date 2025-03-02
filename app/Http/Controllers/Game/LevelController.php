@@ -45,4 +45,17 @@ class LevelController extends Controller
     //         'next_level_unlocked' => $highestLevel + 1,
     //     ]);
     // }
+
+    public function getUserLevels($id)
+    {
+        $highestLevel = Level::where('user_id', $id)->max('level_number');
+
+        $levels = Level::where('user_id', $id)->get();
+
+        return response()->json([
+            'next_level_unlocked' => $highestLevel + 1,
+            'levels' => $levels
+        ]);
+    }
+
 }

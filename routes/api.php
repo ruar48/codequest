@@ -6,10 +6,13 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Tips\TipsController;
 use App\Http\Controllers\CodeExecution\CodeExecutionController;
 use App\Http\Controllers\Game\LevelController;
+use App\Http\Controllers\LeaderBoard\LeaderBoardController;
 
 
 
 Route::post('/update-level', [LevelController::class, 'updateLevel']);
+
+Route::get('/user/levels/{id}', [LevelController::class, 'getUserLevels']);
 
 
 Route::get('/user', function (Request $request) {
@@ -27,3 +30,6 @@ Route::get('/tips/random', [TipsController::class, 'TipsFetch']); // Get a rando
 
 // PHP ROUTE TO EXECUTE
 Route::post('/execute-php', [CodeExecutionController::class, 'execute']);
+
+
+Route::get('/top-players', [LeaderBoardController::class, 'getTopPlayers']);
