@@ -18,7 +18,7 @@ class LevelController extends Controller
             $validatedData = $request->validate([
                 'level_number' => 'required|integer',
                 'stars' => 'required|integer|min:0|max:3',
-                'points' => 'required|integer|min:0',
+                'points_awarded' => 'required|integer|min:0',
                 'user_id' => 'required|integer|exists:users,id',
             ]);
         } catch (\Illuminate\Validation\ValidationException $e) {
