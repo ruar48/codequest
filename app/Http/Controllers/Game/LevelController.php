@@ -20,6 +20,7 @@ class LevelController extends Controller
             'points' => 'required|integer|min:0',
             'user_id' => 'required|integer|exists:users,id', // Ensure user exists
         ]);
+        Log::error('Validation errors:', $request->all());
 
         $userId = $validatedData['user_id'];
 
