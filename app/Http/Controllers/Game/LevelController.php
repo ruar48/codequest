@@ -34,8 +34,9 @@ class LevelController extends Controller
 
         $level = Level::updateOrCreate(
             ['user_id' => $userId, 'level_number' => $validatedData['level_number']],
-            ['stars' => $validatedData['stars'], 'points' => $validatedData['points']]
+            ['stars' => $validatedData['stars'], 'points' => $validatedData['points_awarded']]
         );
+
 
         Log::info('Level updated:', ['level' => $level]);
 
