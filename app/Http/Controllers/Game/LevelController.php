@@ -14,12 +14,18 @@ class LevelController extends Controller
     {
         Log::info('Incoming request:', $request->all());
 
-        $validatedData = $request->validate([
-            'level_number' => 'required|integer',
-            'stars' => 'required|integer|min:0|max:3',
-            'points' => 'required|integer|min:0',
-            'user_id' => 'required|integer|exists:users,id', // Ensure user exists
-        ]);
+        try {
+            $validatedData = $request->validate([
+                'level_number' => 'required|integer',
+                'stars' => 'required|integer|min:0|max:3',
+                'points' => 'required|integer|min:0',
+                'user_id' => 'required|integer|exists:users,id',
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            Log::error('Validation errors:', $e->errors());
+            return response()->json(['errors' => $e->errors()], 422);
+        }
+
         Log::error('Validation errors:', $request->all());
 
         $userId = $validatedData['user_id'];
