@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('php_executions', function (Blueprint $table) {
+        Schema::create('educators', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');
-            $table->text('code');
-            $table->text('output')->nullable();
-            $table->boolean('is_error')->default(false);
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('level_assigned');
+            $table->string('specialization')->nullable();
+            $table->text('bio')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('php_executions');
+        Schema::dropIfExists('educators');
     }
 };
