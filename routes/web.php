@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\PlayerController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\LeaderBoard\LeaderBoardController;
 use App\Http\Controllers\Reports\EngagementController;
+use App\Http\Controllers\TestBank\QuestionController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -101,8 +102,32 @@ Route::get('/', function () {
             // Route::get('/engagement', 'engagment')
             // ->name('reports.engagements');
 
-            Route::get('/logs', 'logs')->name('code.logs');
-            Route::get('/progress','progress')->name('user.progress');
+            Route::get('/logs', 'logs')
+            ->name('code.logs');
+
+            Route::get('/progress','progress')
+            ->name('user.progress');
+
+        });
+
+
+
+        Route::controller(QuestionController::class)->group(function () {
+
+            Route::get('/testbank', 'index')
+            ->name('testbank.index');
+
+            Route::post('/testbank', 'store')
+            ->name('testbank.store');
+
+            Route::get('/testbank/{question}/edit', 'edit')
+            ->name('testbank.edit');
+
+            Route::put('/testbank/{question}', 'update')
+            ->name('testbank.update');
+
+            Route::delete('/testbank/{question}', 'destroy')
+            ->name('testbank.destroy');
 
         });
 

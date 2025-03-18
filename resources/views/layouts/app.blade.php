@@ -264,7 +264,7 @@
 
         <!-- Test Bank -->
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('testbank.index') }}" class="nav-link">
                 <i class="nav-icon fas fa-database"></i>
                 <p>Test Bank</p>
             </a>
