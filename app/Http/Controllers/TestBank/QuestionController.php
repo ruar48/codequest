@@ -5,6 +5,7 @@ namespace App\Http\Controllers\TestBank;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Question;
+use Illuminate\Support\Facades\Log;
 
 class QuestionController extends Controller
 {
@@ -53,4 +54,28 @@ class QuestionController extends Controller
 
         return response()->json(['success' => 'Question deleted successfully']);
     }
+
+
+
+    public function getQuestions()
+    {
+        try {
+            $questions = Question::all();
+
+            Log::info('Fetched questions:', ['questions' => $questions]); // Log the data
+
+            return response()->json([
+                'questions' => $questions
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Error fetching questions:', ['error' => $e->getMessage()]); // Log any errors
+
+            return response()->json([
+                'error' => 'Failed to fetch questions'
+            ], 500);
+        }
+    }
+
+
+
 }

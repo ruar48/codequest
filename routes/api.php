@@ -7,6 +7,7 @@ use App\Http\Controllers\Tips\TipsController;
 use App\Http\Controllers\CodeExecution\CodeExecutionController;
 use App\Http\Controllers\Game\LevelController;
 use App\Http\Controllers\LeaderBoard\LeaderBoardController;
+use App\Http\Controllers\TestBank\QuestionController;
 
 
 
@@ -30,6 +31,9 @@ Route::get('/tips/random', [TipsController::class, 'TipsFetch']); // Get a rando
 
 // PHP ROUTE TO EXECUTE
 Route::post('/execute-php', [CodeExecutionController::class, 'execute']);
+Route::post('/testbank-php', [CodeExecutionController::class, 'testbank']);
 
 
 Route::get('/top-players', [LeaderBoardController::class, 'getTopPlayers']);
+
+Route::get('/questions', [QuestionController::class, 'getQuestions']);
