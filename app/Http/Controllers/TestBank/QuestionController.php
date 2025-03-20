@@ -62,17 +62,13 @@ class QuestionController extends Controller
         try {
             $questions = Question::all();
 
-            Log::info('Fetched questions:', ['questions' => $questions]); // Log the data
+            if ($questions->isEmpty()) {
+                return response()->json(['questions' => []], 200);
+            }
 
-            return response()->json([
-                'questions' => $questions
-            ]);
+            return response()->json(['questions' => $questions], 200);
         } catch (\Exception $e) {
-            Log::error('Error fetching questions:', ['error' => $e->getMessage()]); // Log any errors
-
-            return response()->json([
-                'error' => 'Failed to fetch questions'
-            ], 500);
+            return response()->json(['error' => 'Server error: ' . $e->getMessage()], 500);
         }
     }
 
