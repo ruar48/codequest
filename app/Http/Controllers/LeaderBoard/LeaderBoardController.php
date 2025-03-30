@@ -13,18 +13,23 @@ class LeaderBoardController extends Controller
     public function leaderboards()
     {
         // Get leaderboard data: Total points and stars per user, including user full_name
-        $leaderboardData = Level::select('levels.user_id')
-            ->selectRaw('SUM(levels.points) as total_points')
-            ->selectRaw('SUM(levels.stars) as total_stars')
-            ->join('users', 'levels.user_id', '=', 'users.id') // Join with users table
-            ->addSelect('users.full_name') // Fetch full_name directly
-            ->groupBy('levels.user_id', 'users.full_name')
-            ->orderByDesc('total_points') // Rank based on points first
+        $leaderboardData = \DB::table('users')
+            ->leftJoin('levels', 'users.id', '=', 'levels.user_id')
+            ->leftJoin('test_performances', 'users.id', '=', 'test_performances.user_id')
+            ->select(
+                'users.id',
+                'users.full_name',
+                \DB::raw('COALESCE(SUM(levels.points), 0) + COALESCE(SUM(test_performances.points), 0) AS total_points'),
+                \DB::raw('COALESCE(SUM(levels.stars), 0) AS total_stars')
+            )
+            ->groupBy('users.id', 'users.full_name')
+            ->orderByDesc('total_points') // Rank based on total points first
             ->orderByDesc('total_stars')  // If points are the same, rank by stars
             ->get();
 
         return view('admin.leaderboard', compact('leaderboardData'));
     }
+
 
 
 

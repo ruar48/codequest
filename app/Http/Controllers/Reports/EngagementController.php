@@ -10,7 +10,8 @@ use App\Models\Tips;
 use Carbon\Carbon;
 use DB;
 use App\Models\ExecutedCode;
-
+use App\Models\TestPerformance;
+use App\Models\Question;
 class EngagementController extends Controller
 {
     public function engagment()
@@ -70,5 +71,14 @@ class EngagementController extends Controller
         $progress = Level::with('user')->orderBy('level_number', 'asc')->get();
 
         return view('admin.progress', compact('progress'));
+    }
+
+
+    public function testProgress()
+    {
+        // Fetch all test performance records with related user and question data
+        $testPerformances = TestPerformance::with(['user', 'question'])->get();
+
+        return view('admin.test_progress', compact('testPerformances'));
     }
 }

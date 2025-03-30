@@ -88,11 +88,10 @@
     </div>
 </div>
 
-@endsection
 
-@section('scripts')
-<!-- DataTables -->
+
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Ensure jQuery is included -->
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
 
@@ -105,6 +104,7 @@
             ordering: true,
             info: true,
             autoWidth: false,
+            deferRender: true, // Performance boost
             lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
         });
     });

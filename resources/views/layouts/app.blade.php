@@ -287,8 +287,8 @@
         </li>
 
         <!-- Reports -->
-        <li class="nav-item {{ Request::routeIs('user.progress', 'analytics.report', 'quiz.performance', 'export.reports') ? 'menu-open' : '' }}">
-            <a href="#" class="nav-link {{ Request::routeIs('user.progress', 'analytics.report', 'quiz.performance', 'export.reports') ? 'active' : '' }}">
+        <li class="nav-item {{ Request::routeIs('user.progress', 'analytics.report', 'user.test_progress', 'export.reports') ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link {{ Request::routeIs('user.progress', 'analytics.report', 'user.test_progress', 'export.reports') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-chart-pie"></i>
                 <p>
                     Reports
@@ -314,7 +314,7 @@
 
                 <!-- Quiz & Test Performance -->
                 <li class="nav-item">
-                    <a href="#" class="nav-link ">
+                    <a href="{{ route('user.test_progress') }}" class="nav-link {{ Request::routeIs('user.test_progress') ? 'active' : '' }}">
                         <i class="fas fa-poll nav-icon ml-3"></i>
                         <p>Quiz Performance</p>
                     </a>

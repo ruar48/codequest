@@ -5,6 +5,8 @@ namespace App\Http\Controllers\TestBank;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Question;
+use App\Models\TestPerformance;
+
 use Illuminate\Support\Facades\Log;
 
 class QuestionController extends Controller
@@ -57,21 +59,103 @@ class QuestionController extends Controller
 
 
 
-    public function getQuestions()
+    public function getQuestionsEasy()
     {
         try {
-            $questions = Question::all();
+
+            $userId = auth()->id(); // Get the authenticated user ID
+            Log::info("Authenticated User ID: " . $userId);
+            // Get questions that the user has NOT answered
+            $questions = Question::where('level', 'easy')
+                ->whereDoesntHave('testPerformances', function ($query) use ($userId) {
+                    $query->where('user_id', $userId);
+                })
+                ->get();
 
             if ($questions->isEmpty()) {
                 return response()->json(['questions' => []], 200);
             }
 
-            return response()->json(['questions' => $questions], 200);
+            return response()->json([
+                'questions' => $questions->map(function ($question) {
+                    return [
+                        'id' => $question->id,
+                        'question' => $question->question,
+                        'output' => $question->output,
+                        'tips' => $question->tips,
+                    ];
+                }),
+            ], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Server error: ' . $e->getMessage()], 500);
         }
     }
 
+
+    public function getQuestionsMedium()
+    {
+        try {
+
+            $userId = auth()->id(); // Get the authenticated user ID
+            Log::info("Authenticated User ID: " . $userId);
+            // Get questions that the user has NOT answered
+            $questions = Question::where('level', 'intermediate')
+                ->whereDoesntHave('testPerformances', function ($query) use ($userId) {
+                    $query->where('user_id', $userId);
+                })
+                ->get();
+
+            if ($questions->isEmpty()) {
+                return response()->json(['questions' => []], 200);
+            }
+
+            return response()->json([
+                'questions' => $questions->map(function ($question) {
+                    return [
+                        'id' => $question->id,
+                        'question' => $question->question,
+                        'output' => $question->output,
+                        'tips' => $question->tips,
+                    ];
+                }),
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Server error: ' . $e->getMessage()], 500);
+        }
+    }
+
+
+    public function getQuestionsHard()
+    {
+        try {
+
+            $userId = auth()->id(); // Get the authenticated user ID
+            Log::info("Authenticated User ID: " . $userId);
+            // Get questions that the user has NOT answered
+            $questions = Question::where('level', 'hard')
+                ->whereDoesntHave('testPerformances', function ($query) use ($userId) {
+                    $query->where('user_id', $userId);
+                })
+                ->get();
+
+            if ($questions->isEmpty()) {
+                return response()->json(['questions' => []], 200);
+            }
+
+            return response()->json([
+                'questions' => $questions->map(function ($question) {
+                    return [
+                        'id' => $question->id,
+                        'question' => $question->question,
+                        'output' => $question->output,
+                        'tips' => $question->tips,
+                    ];
+                }),
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Server error: ' . $e->getMessage()], 500);
+        }
+    }
 
 
 }

@@ -159,10 +159,22 @@
 <!-- DataTables and Script -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
 <script>
     $(document).ready(function () {
         let deleteAdminId = null;
         let adminData = [];
+
+            // Initialize DataTable
+    $('#adminTable').DataTable({
+        responsive: true,
+        paging: true,
+        searching: true,
+        ordering: true,
+        info: true,
+        autoWidth: false,
+        lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
+    });
 
         // Delete Admin
         $(".delete-admin").click(function () {
@@ -361,10 +373,7 @@
         overflow: hidden;
     }
 
-    .table th, .table td {
-        text-align: center;
-        vertical-align: middle;
-    }
+
 
     .btn-sm {
         font-size: 0.85rem;

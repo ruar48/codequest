@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ExecutedCode;
 use App\Models\Question;
+use Illuminate\Support\Facades\DB;
+use App\Models\TestPerformance; // Import the model
 
 use Illuminate\Support\Facades\Log;
 class CodeExecutionController extends Controller
@@ -175,6 +177,160 @@ class CodeExecutionController extends Controller
         }
     }
 
+
+
+
+    public function testbanks(Request $request)
+    {
+        \Log::info("🔹 Received Request Data: " . json_encode($request->all()));
+
+        // Get user input
+        $userId = $request->input('user_id');
+        $answer = trim($request->input('answer')); // Can be PHP or SQL
+        $questionId = $request->input('question_id');
+
+        // Validate input
+        if (!$userId || !$answer || !$questionId) {
+            return response()->json([
+                'error' => 'Bad Request',
+                'message' => 'User ID, Question ID, and answer are required.'
+            ], 400);
+        }
+
+        // Fetch the question
+        $question = DB::connection('mysql')->table('questions')->find($questionId);
+        if (!$question) {
+            return response()->json([
+                'error' => 'Question not found.',
+                'message' => 'Invalid Question ID.'
+            ], 404);
+        }
+
+        \Log::info("✅ Fetched Question: " . json_encode($question));
+
+        $expectedCode = trim($question->output);
+        $userOutput = '';
+        $expectedOutput = '';
+        $isCorrect = false;
+        $isError = false;
+
+        // Determine difficulty points
+        $difficultyPoints = match ($question->level) {
+            'easy' => 1,
+            'intermediate' => 2,
+            'hard' => 3,
+            default => 1,
+        };
+
+        // **Determine Answer Type**
+        if (preg_match('/\$(\w+)|\b(echo|print|function|if|else|foreach|while|array|return)\b/', $answer)) {
+            $answerType = 'php';
+        } elseif (preg_match('/^\s*(SELECT|INSERT|UPDATE|DELETE|CREATE|DROP|ALTER)\b/i', $answer)) {
+            $answerType = 'sql';
+        } else {
+            return response()->json([
+                'error' => 'Unable to determine answer type.',
+                'message' => 'Answer must be either PHP or SQL.'
+            ], 400);
+        }
+
+        \Log::info("🔹 Detected Answer Type: " . strtoupper($answerType));
+
+        if ($answerType === 'php') {
+            \Log::info("🔹 Processing PHP answer.");
+
+            // **Execute Expected PHP Code**
+            ob_start();
+            try {
+                eval($expectedCode);
+                $expectedOutput = ob_get_clean();
+                $expectedOutput = trim($expectedOutput);
+            } catch (\Throwable $e) {
+                ob_end_clean();
+                return response()->json([
+                    'error' => 'Runtime error in expected PHP code.',
+                    'message' => "Runtime error: " . $e->getMessage(),
+                    'line' => $e->getLine()
+                ], 500);
+            }
+
+            // **Execute User's PHP Code**
+            ob_start();
+            try {
+                eval($answer);
+                $userOutput = ob_get_clean();
+                $userOutput = trim($userOutput);
+            } catch (\Throwable $e) {
+                ob_end_clean();
+                $isError = true;
+                $userOutput = "PHP Error: " . $e->getMessage();
+            }
+
+            // Compare Outputs
+            $isCorrect = ($userOutput === $expectedOutput);
+        } elseif ($answerType === 'sql') {
+            \Log::info("🔹 Processing SQL query.");
+
+            // Prevent dangerous SQL queries
+            if (preg_match('/\b(DROP|DELETE|TRUNCATE|ALTER|UPDATE)\b/i', $answer)) {
+                return response()->json([
+                    'error' => 'Unsafe SQL query detected.',
+                    'message' => 'Your query contains restricted operations.'
+                ], 403);
+            }
+
+            try {
+                // Execute expected SQL query
+                $expectedResult = DB::connection('sql_db')->select($expectedCode);
+                $expectedOutput = json_decode(json_encode($expectedResult), true);
+
+                // Execute user's SQL query
+                $userResult = DB::connection('sql_db')->select($answer);
+                $userOutput = json_decode(json_encode($userResult), true);
+
+                // Sort results for consistent comparison
+                sort($expectedOutput);
+                sort($userOutput);
+
+                // Compare outputs
+                if ($userOutput === $expectedOutput) {
+                    $isCorrect = true;
+                    $userOutput = "Executed Successfully";
+                } else {
+                    $userOutput = "You didn't get the required data.";
+                }
+
+            } catch (\Throwable $e) {
+                $isError = true;
+                $userOutput = "SQL Error: " . $e->getMessage();
+            }
+        }
+
+        // **Save Execution in Database**
+        ExecutedCode::create([
+            'user_id' => $userId,
+            'code' => $answer,
+            'output' => $userOutput,
+            'is_error' => $isError
+        ]);
+
+        // **Save Test Performance**
+        TestPerformance::create([
+            'user_id' => $userId,
+            'question_id' => $questionId,
+            'answer' => $answer,
+            'is_correct' => $isCorrect,
+            'points' => $isCorrect ? $difficultyPoints : 0
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'user_output' => $userOutput,
+            'expected_output' => $expectedOutput,
+            'correct' => $isCorrect,
+            'points_awarded' => $isCorrect ? $difficultyPoints : 0
+        ]);
+    }
 
 
 }

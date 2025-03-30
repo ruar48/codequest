@@ -52,10 +52,10 @@
                                 <td>{{ $question->tips }}</td>
                                 <td>
                                     <button class="btn btn-warning btn-sm edit-question" data-id="{{ $question->id }}">
-                                        <i class="fas fa-edit"></i> Edit
+                                        <i class="fas fa-edit"></i>
                                     </button>
                                     <button class="btn btn-danger btn-sm delete-question" data-id="{{ $question->id }}">
-                                        <i class="fas fa-trash"></i> Delete
+                                        <i class="fas fa-trash"></i>
                                     </button>
                                 </td>
                             </tr>

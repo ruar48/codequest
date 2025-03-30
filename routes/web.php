@@ -108,6 +108,8 @@ Route::get('/', function () {
             Route::get('/progress','progress')
             ->name('user.progress');
 
+            Route::get('/quiz-performance','testProgress')
+            ->name('user.test_progress');
         });
 
 
@@ -132,3 +134,11 @@ Route::get('/', function () {
         });
 
     });
+
+    Route::get('/db-check', function () {
+        return response()->json([
+            'mysql' => DB::connection('mysql')->select("SELECT DATABASE() as db_name"),
+            'sql_db' => DB::connection('sql_db')->select("SELECT DATABASE() as db_name"),
+        ]);
+    });
+

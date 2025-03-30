@@ -31,9 +31,11 @@ Route::get('/tips/random', [TipsController::class, 'TipsFetch']); // Get a rando
 
 // PHP ROUTE TO EXECUTE
 Route::post('/execute-php', [CodeExecutionController::class, 'execute']);
-Route::post('/testbank-php', [CodeExecutionController::class, 'testbank']);
+Route::post('/testbank-php', [CodeExecutionController::class, 'testbanks']);
 
 
 Route::get('/top-players', [LeaderBoardController::class, 'getTopPlayers']);
 
-Route::get('/questions', [QuestionController::class, 'getQuestions']);
+Route::get('/questions', [QuestionController::class, 'getQuestionsEasy']);
+Route::get('/questions-medium', [QuestionController::class, 'getQuestionsMedium']);
+Route::get('/questions-hard', [QuestionController::class, 'getQuestionsHard']);
