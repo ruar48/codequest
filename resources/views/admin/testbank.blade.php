@@ -160,15 +160,33 @@
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 <script>
 $(document).ready(function () {
-    // Initialize DataTable
     $('#questionTable').DataTable({
         responsive: true,
-        paging: true,
-        searching: true,
-        ordering: true,
-        info: true,
-        autoWidth: false
+        autoWidth: false,
+        dom: '<"row mb-3"' +
+                '<"col-md-4 d-flex align-items-center"l>' +    // Show entries
+                '<"col-md-4 text-center"B>' +                   // Export buttons
+                '<"col-md-4 d-flex justify-content-end"f>' +    // Search box
+             '>rtip',
+        buttons: [
+            { extend: 'copy', className: 'btn btn-sm btn-secondary me-1' },
+            { extend: 'csv', className: 'btn btn-sm btn-info me-1' },
+            { extend: 'excel', className: 'btn btn-sm btn-success me-1' },
+            { extend: 'pdf', className: 'btn btn-sm btn-danger me-1' },
+            { extend: 'print', className: 'btn btn-sm btn-primary' }
+        ]
     });
+});
+
+
+</script>
+<script>
+
+
+
+
+
+$(document).ready(function () {
 
     // Save New Question
     $('#saveQuestion').click(function () {

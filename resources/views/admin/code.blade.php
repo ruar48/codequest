@@ -60,9 +60,26 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script>
-    $(document).ready( function () {
-        $('#logsTable').DataTable();
+$(document).ready(function () {
+    $('#logsTable').DataTable({
+        responsive: true,
+        autoWidth: false,
+        dom: '<"row mb-3"' +
+                '<"col-md-4 d-flex align-items-center"l>' +    // Show entries
+                '<"col-md-4 text-center"B>' +                   // Export buttons
+                '<"col-md-4 d-flex justify-content-end"f>' +    // Search box
+             '>rtip',
+        buttons: [
+            { extend: 'copy', className: 'btn btn-sm btn-secondary me-1' },
+            { extend: 'csv', className: 'btn btn-sm btn-info me-1' },
+            { extend: 'excel', className: 'btn btn-sm btn-success me-1' },
+            { extend: 'pdf', className: 'btn btn-sm btn-danger me-1' },
+            { extend: 'print', className: 'btn btn-sm btn-primary' }
+        ]
     });
+});
+
+
 </script>
 
 <!-- Custom Styles -->
