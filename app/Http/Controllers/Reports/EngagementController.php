@@ -94,7 +94,7 @@ class EngagementController extends Controller
             return [
                 'question' => $entry->question->question ?? 'N/A',
                 'answer' => $entry->answer,
-                'result' => $entry->is_correct ? '✅ Correct' : '❌ Wrong',
+                'result' => $entry->is_correct ? 'Correct' : 'Wrong',
                 'points' => $entry->points . ' pts',
                 'created_at' => $entry->created_at->toISOString()
             ];
