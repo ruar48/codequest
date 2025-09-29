@@ -8,6 +8,7 @@ use App\Http\Controllers\CodeExecution\CodeExecutionController;
 use App\Http\Controllers\Game\LevelController;
 use App\Http\Controllers\LeaderBoard\LeaderBoardController;
 use App\Http\Controllers\TestBank\QuestionController;
+use App\Http\Controllers\Reports\EngagementController;
 
 
 
@@ -39,3 +40,5 @@ Route::get('/top-players', [LeaderBoardController::class, 'getTopPlayers']);
 Route::get('/questions', [QuestionController::class, 'getQuestionsEasy']);
 Route::get('/questions-medium', [QuestionController::class, 'getQuestionsMedium']);
 Route::get('/questions-hard', [QuestionController::class, 'getQuestionsHard']);
+
+Route::get('/history-log', [EngagementController::class, 'getUserHistory']);

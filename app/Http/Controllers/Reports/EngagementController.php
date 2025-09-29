@@ -81,4 +81,30 @@ class EngagementController extends Controller
 
         return view('admin.test_progress', compact('testPerformances'));
     }
+
+
+    public function getUserHistory(Request $request)
+{
+    $userId = $request->input('user_id'); // or use auth()->id() if token based
+
+    $history = TestPerformance::with('question')
+        ->where('user_id', $userId)
+        ->get()
+        ->map(function ($entry) {
+            return [
+                'question' => $entry->question->question ?? 'N/A',
+                'answer' => $entry->answer,
+                'result' => $entry->is_correct ? '✅ Correct' : '❌ Wrong',
+                'points' => $entry->points . ' pts',
+                'created_at' => $entry->created_at->toISOString()
+            ];
+        });
+
+    return response()->json([
+        'status' => 'success',
+        'student_id' => $userId,
+        'history' => $history
+    ]);
+}
+
 }

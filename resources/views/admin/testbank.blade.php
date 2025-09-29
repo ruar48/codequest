@@ -169,17 +169,75 @@ $(document).ready(function () {
                 '<"col-md-4 d-flex justify-content-end"f>' +    // Search box
              '>rtip',
         buttons: [
-            { extend: 'copy', className: 'btn btn-sm btn-secondary me-1' },
-            { extend: 'csv', className: 'btn btn-sm btn-info me-1' },
-            { extend: 'excel', className: 'btn btn-sm btn-success me-1' },
-            { extend: 'pdf', className: 'btn btn-sm btn-danger me-1' },
-            { extend: 'print', className: 'btn btn-sm btn-primary' }
+            {
+                extend: 'copy',
+                className: 'btn btn-sm btn-secondary me-1'
+            },
+            {
+                extend: 'csvHtml5',
+                className: 'btn btn-sm btn-info me-1',
+                exportOptions: {
+                    columns: ':visible',
+                    stripHtml: true,
+                    format: {
+                        header: function (data) {
+                            return data.trim();
+                        }
+                    }
+                }
+            },
+            {
+                extend: 'excelHtml5',
+                className: 'btn btn-sm btn-success me-1',
+                exportOptions: {
+                    columns: ':visible',
+                    stripHtml: true
+                },
+                customize: function (xlsx) {
+                    var sheet = xlsx.xl.worksheets['sheet1.xml'];
+
+                    // Make header bold
+                    $('row:first c', sheet).attr('s', '2');
+
+                    // Auto-width columns
+                    $('col', sheet).attr('width', 25);
+                }
+            },
+            {
+                extend: 'pdfHtml5',
+                className: 'btn btn-sm btn-danger me-1',
+                exportOptions: {
+                    columns: ':visible',
+                    stripHtml: true
+                },
+                customize: function (doc) {
+                    // Header style
+                    doc.styles.tableHeader.fillColor = '#007bff';
+                    doc.styles.tableHeader.color = 'white';
+                    doc.styles.tableHeader.alignment = 'center';
+                    doc.styles.tableHeader.fontSize = 12;
+
+                    // Body style
+                    doc.defaultStyle.fontSize = 10;
+
+                    // Table layout
+                    doc.content[1].table.widths = '*'.repeat(doc.content[1].table.body[0].length).split('');
+                }
+            },
+            {
+                extend: 'print',
+                className: 'btn btn-sm btn-primary',
+                exportOptions: {
+                    columns: ':visible',
+                    stripHtml: true
+                }
+            }
         ]
     });
 });
-
-
 </script>
+
+
 <script>
 
 
