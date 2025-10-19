@@ -29,9 +29,19 @@
   <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- jQuery (make sure it's included first) -->
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.bootstrap4.min.css">
+
+
+<!-- jQuery (already loaded, but ensure only once) -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<!-- Popper.js (required for Bootstrap 4 modals) -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
 <link rel="stylesheet" href="{{ asset('vendor/datatables/css/dataTables.bootstrap4.min.css') }}">
@@ -122,10 +132,13 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{ asset('dist/img/logo_1.png') }}" class="img-circle elevation-2" alt="User Image">
-        </div>
+      <div class="img-circle elevation-2 d-flex align-items-center justify-content-center bg-primary text-white"
+           style="width: 40px; height: 40px; font-weight: bold; font-size: 18px;">
+          {{ strtoupper(substr(Auth::user()->full_name ?? Auth::user()->email, 0, 1)) }}
+      </div>
+    </div>
         <div class="info">
-          <a href="#" class="d-block">Test Admin</a>
+        <a href="#" class="d-block">{{ Auth::user()->full_name ?? 'Guest' }}</a>
         </div>
       </div>
 
@@ -238,13 +251,13 @@
                     </a>
                 </li>
 
-                <!-- Export Reports -->
+                {{-- <!-- Export Reports -->
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="fas fa-file-export nav-icon ml-3"></i>
                         <p>Export Reports</p>
                     </a>
-                </li>
+                </li> --}}
             </ul>
         </li>
     </ul>
@@ -310,7 +323,6 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
 

@@ -43,7 +43,7 @@
                                 <td>{{ $admin->email }}</td>
                                 <td>{{ ucfirst($admin->role) }}</td>
                                 <td>
-                                    <button class="btn btn-warning btn-sm edit-admin" data-id="{{ $admin->id }}">
+                                    <button class="btn btn-warning btn-sm edit-admin" data-id="{{ $admin->id }}" data-target="#editAdminModal">
                                         <i class="fas fa-edit"></i> Edit
                                     </button>
                                     <button class="btn btn-danger btn-sm delete-admin" data-id="{{ $admin->id }}">

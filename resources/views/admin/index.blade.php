@@ -2,6 +2,44 @@
 
 @section('title', 'Home Page')
 @section('content')
+
+<style>
+.timeline {
+    position: relative;
+    margin-left: 20px;
+}
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background-color: #007bff33;
+}
+.timeline-item {
+    position: relative;
+    padding-left: 30px;
+}
+.timeline-point {
+    position: absolute;
+    left: -2px;
+    top: 10px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #007bff;
+}
+.timeline-content {
+    background-color: #fff;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.timeline-content:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+</style>
+
 <div class="content-header">
     <div class="container-fluid">
       <div class="row mb-2">
@@ -75,71 +113,38 @@
             </div>
         </div>
 
-        <div class="card shadow-lg position-relative" style="z-index: 10; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px);">
-            <div class="card-header bg-primary text-white">
-                <h3 class="card-title">Player Progress</h3>
-            </div>
-            <div class="card-body">
-                <canvas id="progressChart"></canvas>
+        <h3 class="mb-3"><i class="fas fa-trophy"></i> Player Progress Timeline</h3>
+
+<div class="timeline">
+    @forelse($userProgress as $progress)
+        <div class="timeline-item mb-4">
+            <div class="timeline-point bg-primary"></div>
+            <div class="timeline-content card shadow-sm border-0 rounded-3 p-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="mb-1 text-primary">
+                            <i class="fas fa-user-circle"></i> {{ $progress['user_name'] }}
+                        </h5>
+                        <p class="mb-0 text-muted small">{{ $progress['email'] }}</p>
+                    </div>
+                    <small class="text-secondary">{{ $progress['created_at'] }}</small>
+                </div>
+                <div class="mt-2">
+                    <p class="mb-0">
+                        ✅ Completed <strong>Level {{ $progress['level_number'] }}</strong><br>
+                        ⭐ Stars: <strong>{{ $progress['stars'] }}</strong> |
+                        💎 Points: <strong>{{ $progress['points'] }}</strong>
+                    </p>
+                </div>
             </div>
         </div>
+    @empty
+        <p class="text-center text-muted">No level progress yet.</p>
+    @endforelse
+</div>
 
     </div>
 </section>
 
 
-<script>
-    var ctx = document.getElementById('progressChart').getContext('2d');
-    var progressChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: @json($challengeNames),
-            datasets: [
-                {
-                    label: 'Avg Stars',
-                    data: @json($progressValues),
-                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
-                },
-                {
-                    label: '3 Stars Earned',
-                    data: @json($threeStars),
-                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
-                },
-                {
-                    label: '2 Stars Earned',
-                    data: @json($twoStars),
-                    backgroundColor: 'rgba(255, 206, 86, 0.5)',
-                    borderColor: 'rgba(255, 206, 86, 1)',
-                    borderWidth: 1
-                },
-                {
-                    label: '1 Star Earned',
-                    data: @json($oneStars),
-                    backgroundColor: 'rgba(255, 99, 132, 0.5)',
-                    borderColor: 'rgba(255, 99, 132, 1)',
-                    borderWidth: 1
-                },
-                {
-                    label: '0 Stars Earned',
-                    data: @json($zeroStars),
-                    backgroundColor: 'rgba(153, 102, 255, 0.5)',
-                    borderColor: 'rgba(153, 102, 255, 1)',
-                    borderWidth: 1
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-</script>
     @endsection

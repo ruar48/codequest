@@ -16,6 +16,7 @@ Route::post('/update-level', [LevelController::class, 'updateLevel']);
 
 Route::get('/user/levels/{id}', [LevelController::class, 'getUserLevels']);
 
+Route::get('/level-history/{id}', [LevelController::class, 'getUserLevelHistory']);
 
 Route::get('/user', function (Request $request) {
     return $request->user();

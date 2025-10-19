@@ -66,4 +66,30 @@ class LevelController extends Controller
         ]);
     }
 
+    public function getUserLevelHistory($id)
+{
+    // Fetch all levels of the user
+    $levels = Level::where('user_id', $id)
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+    // Transform to history messages
+    $history = $levels->map(function ($level) {
+        return [
+            'message' => "✅ Completed Level {$level->level_number} with {$level->stars} Stars and {$level->points} Points",
+            'level_number' => $level->level_number,
+            'stars' => $level->stars,
+            'points' => $level->points,
+            'created_at' => $level->created_at->toDateTimeString(),
+        ];
+    });
+
+    return response()->json([
+        'status' => 'success',
+        'user_id' => $id,
+        'history' => $history
+    ]);
+}
+
+
 }
