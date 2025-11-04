@@ -6,23 +6,24 @@
 
 <style>
 /* Match the dashboard/admin look */
+/* Match the dashboard/admin look */
 body, .content-wrapper {
   background: linear-gradient(135deg, #0a0f24, #1c223a);
   color: #fff;
   font-family: 'Poppins', sans-serif;
 }
 
-/* Give breathing space below header */
+/* Reduce the unnecessary top padding */
 .content {
-  padding-top: 80px !important;
+  padding-top: 40px !important;  /* was 80px — cut in half */
   padding-bottom: 40px;
 }
 
-/* Header Section */
+/* Header Section - tighter spacing below */
 .content-header {
-  padding-top: 20px;        /* slightly reduced top padding */
-  padding-bottom: 5px;      /* less space below header */
-  margin-bottom: 10px;      /* reduced from 25px to 10px */
+  padding-top: 10px;       /* slightly reduced top padding */
+  padding-bottom: 0;        /* no bottom padding */
+  margin-bottom: 0;         /* eliminate space before table */
   text-align: center;
 }
 
@@ -36,7 +37,7 @@ body, .content-wrapper {
 .content-header p {
   color: #e5e5e5;
   font-size: 0.95rem;
-  margin-bottom: 0;          /* prevent extra spacing */
+  margin-bottom: 2px;       /* small buffer */
 }
 
 /* Card Style - same as admin management */
@@ -47,6 +48,7 @@ body, .content-wrapper {
   box-shadow: 0 4px 16px rgba(250, 204, 21, 0.25);
   border-radius: 16px;
   transition: all 0.3s ease;
+  margin-top: 8px !important; /* tight space below header */
 }
 .card:hover {
   transform: translateY(-4px);
