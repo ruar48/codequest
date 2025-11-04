@@ -7,7 +7,7 @@
 <style>
 /* === General Page === */
 body, .content-wrapper {
-    background: linear-gradient(135deg, #0a0f24, #1c223a);
+    background: #0d1638ff;
     font-family: 'Poppins', sans-serif;
     color: #2f2f2f;
 }
