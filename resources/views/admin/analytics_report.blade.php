@@ -28,6 +28,64 @@ body, .content-wrapper {
   text-shadow: 0 0 12px rgba(250, 204, 21, 0.4);
   margin-bottom: 5px;
 }
+.leaderboard-container {
+  text-align: center;
+  color: #fff;
+  background: radial-gradient(circle at top left, #0b0d1a, #020312);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.15);
+}
+
+.leaderboard-title {
+  color: #ffda44;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 20px; /* reduced from 40px to 20px */
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+}
+
+.leaderboard-cards {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+.leaderboard-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 215, 0, 0.4);
+  border-radius: 15px;
+  padding: 25px 35px;
+  width: 230px;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.leaderboard-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
+}
+
+.leaderboard-card .icon {
+  font-size: 2.5rem;
+  color: #ffda44;
+  margin-top: 10px;
+  margin-bottom: 18px; /* adds space between icon and text */
+  display: block;
+}
+
+.leaderboard-card .value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffda44;
+  margin-bottom: 5px;
+}
+
+.leaderboard-card .label {
+  font-size: 1rem;
+  color: #ddd;
+}
 
 /* === Stat Boxes === */
 .small-box {
