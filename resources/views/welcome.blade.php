@@ -66,6 +66,7 @@
       width: 140px;
       filter: drop-shadow(0 0 12px rgba(250,204,21,0.8));
       animation: float 3s ease-in-out infinite;
+    height: auto;
     }
 
     @keyframes float {
