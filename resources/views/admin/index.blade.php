@@ -12,47 +12,46 @@ body, .content-wrapper {
   font-family: 'Poppins', sans-serif;
 }
 
-/* Header Section */
+/* Fix: Add breathing room below white navbar */
+.content {
+  padding-top: 80px !important;
+  padding-bottom: 40px;
+}
+
+/* Header Section (Optional – if you keep a header title) */
 .content-header {
-  padding-top: 100px !important; /* Increased spacing from navbar */
+  padding-top: 30px;
   padding-bottom: 30px;
   margin-bottom: 40px;
   text-align: center;
 }
-
 .content-header h1 {
   font-weight: 700;
   color: #facc15;
   text-shadow: 0 0 12px rgba(250, 204, 21, 0.4);
 }
 
-/* Divider Line */
-.content-header::after {
-  content: '';
-  display: block;
-  height: 2px;
-  width: 100%;
-  background: linear-gradient(90deg, transparent, #facc15, transparent);
-  margin-top: 10px;
-}
-
 /* Stat Cards */
 .small-box {
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(6px);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(8px);
   border: 1px solid rgba(250, 204, 21, 0.25);
-  box-shadow: 0 4px 14px rgba(250, 204, 21, 0.3);
-  transition: all 0.25s ease;
+  box-shadow: 0 4px 16px rgba(250, 204, 21, 0.25);
+  transition: all 0.3s ease;
+  margin-top: 30px; /* adds consistent top spacing */
   margin-bottom: 35px;
+  text-align: center;
+  padding: 20px;
 }
 .small-box:hover {
   transform: translateY(-6px);
-  box-shadow: 0 0 20px rgba(250, 204, 21, 0.6);
+  box-shadow: 0 0 20px rgba(250, 204, 21, 0.5);
 }
 .small-box .inner h3 {
   color: #facc15;
   font-weight: 700;
+  font-size: 2rem;
 }
 .small-box .inner p {
   color: #ffffff;
@@ -60,13 +59,23 @@ body, .content-wrapper {
 }
 .small-box .icon i {
   color: #facc15;
+  font-size: 45px;
+  margin-top: 10px;
 }
 
 /* Timeline Layout */
+h3.section-title {
+  color: #fff;
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(250, 204, 21, 0.3);
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
 .timeline {
   position: relative;
   margin-left: 30px;
-  margin-top: 40px; /* Adds space between cards and timeline */
+  margin-top: 40px;
 }
 .timeline::before {
   content: '';
@@ -100,6 +109,7 @@ body, .content-wrapper {
   transition: all 0.3s ease;
   backdrop-filter: blur(8px);
   margin-bottom: 25px;
+  padding: 15px;
 }
 .timeline-content:hover {
   transform: translateY(-4px);
@@ -114,16 +124,6 @@ body, .content-wrapper {
 }
 .timeline-content strong {
   color: #fff;
-}
-h3 i {
-  color: #facc15;
-}
-h3 {
-  color: #fff;
-  font-weight: 600;
-  text-shadow: 0 0 10px rgba(250, 204, 21, 0.3);
-  margin-bottom: 20px;
-  margin-top: 30px;
 }
 
 /* Sidebar Highlight */
@@ -150,8 +150,8 @@ h3 {
   <div class="container-fluid">
 
     <!-- Stat Cards -->
-    <div class="row">
-      <div class="col-lg-3 col-6">
+    <div class="row justify-content-center">
+      <div class="col-lg-3 col-md-6 col-12">
         <div class="small-box">
           <div class="inner">
             <h3>{{ $adminCount }}</h3>
@@ -161,7 +161,7 @@ h3 {
         </div>
       </div>
 
-      <div class="col-lg-3 col-6">
+      <div class="col-lg-3 col-md-6 col-12">
         <div class="small-box">
           <div class="inner">
             <h3>{{ $educatorCount }}</h3>
@@ -171,7 +171,7 @@ h3 {
         </div>
       </div>
 
-      <div class="col-lg-3 col-6">
+      <div class="col-lg-3 col-md-6 col-12">
         <div class="small-box">
           <div class="inner">
             <h3>{{ $playerCount }}</h3>
@@ -181,7 +181,7 @@ h3 {
         </div>
       </div>
 
-      <div class="col-lg-3 col-6">
+      <div class="col-lg-3 col-md-6 col-12">
         <div class="small-box">
           <div class="inner">
             <h3>{{ $totalUsers }}</h3>
