@@ -117,7 +117,7 @@ body, .content-wrapper {
         <div class="row mb-2">
             <div class="col-sm-12">
                 <h1>Leaderboards</h1>
-                <p>Top 10 players based on points and stars</p>
+                <p>Top players based on points and stars</p>
             </div>
         </div>
     </div>
@@ -140,7 +140,6 @@ body, .content-wrapper {
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- Blade loop over top 10 players --}}
                         @foreach ($leaderboardData as $index => $player)
                         <tr>
                             <td>{{ $index + 1 }}</td>
@@ -163,8 +162,8 @@ $(document).ready(function () {
         responsive: true,
         autoWidth: false,
         lengthChange: true,
-        info: true,           // show "Showing 1 to X of Y entries"
-        paging: true,         // enable pagination
+        info: true,
+        paging: true,
         pageLength: 10,
         dom: '<"row mb-3"' +
                 '<"col-md-4 d-flex align-items-center"l>' +
@@ -179,7 +178,7 @@ $(document).ready(function () {
             { extend: 'print', className: 'btn btn-sm btn-primary' }
         ],
         order: [[2, 'desc'], [3, 'desc']], // sort by points desc, then stars desc
-        pagingType: "full_numbers",         // show Previous, 1 2 3 ... Next
+        pagingType: "full_numbers",
         language: {
             info: "Showing _START_ to _END_ of _TOTAL_ entries",
             paginate: {
