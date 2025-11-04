@@ -5,21 +5,28 @@
 @section('content')
 
 <style>
-/* GENERAL THEME */
+/* General Theme */
 body, .content-wrapper {
   background: linear-gradient(135deg, #0a0f24, #1c223a);
   color: #fff;
   font-family: 'Poppins', sans-serif;
 }
 
-/* HEADER FIX */
+/* Header Section */
 .content-header {
-  padding-top: 40px; /* adds space below navbar */
-  padding-bottom: 20px;
-  margin-bottom: 25px;
+  padding-top: 100px !important; /* Increased spacing from navbar */
+  padding-bottom: 30px;
+  margin-bottom: 40px;
+  text-align: center;
 }
 
-/* OPTIONAL: Add soft gold border under header */
+.content-header h1 {
+  font-weight: 700;
+  color: #facc15;
+  text-shadow: 0 0 12px rgba(250, 204, 21, 0.4);
+}
+
+/* Divider Line */
 .content-header::after {
   content: '';
   display: block;
@@ -29,38 +36,37 @@ body, .content-wrapper {
   margin-top: 10px;
 }
 
-/* STAT CARDS */
+/* Stat Cards */
 .small-box {
   border-radius: 14px;
-  box-shadow: 0 4px 14px rgba(250, 204, 21, 0.3);
-  transition: all 0.25s ease;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(6px);
   border: 1px solid rgba(250, 204, 21, 0.25);
-  margin-bottom: 25px;
+  box-shadow: 0 4px 14px rgba(250, 204, 21, 0.3);
+  transition: all 0.25s ease;
+  margin-bottom: 35px;
 }
 .small-box:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 18px rgba(250, 204, 21, 0.5);
+  transform: translateY(-6px);
+  box-shadow: 0 0 20px rgba(250, 204, 21, 0.6);
 }
 .small-box .inner h3 {
   color: #facc15;
   font-weight: 700;
 }
 .small-box .inner p {
-  color: #fff;
+  color: #ffffff;
   font-weight: 500;
 }
 .small-box .icon i {
   color: #facc15;
-  opacity: 0.9;
 }
 
-/* TIMELINE */
+/* Timeline Layout */
 .timeline {
   position: relative;
-  margin-left: 25px;
-  margin-top: 15px;
+  margin-left: 30px;
+  margin-top: 40px; /* Adds space between cards and timeline */
 }
 .timeline::before {
   content: '';
@@ -73,7 +79,7 @@ body, .content-wrapper {
 }
 .timeline-item {
   position: relative;
-  padding-left: 35px;
+  padding-left: 40px;
 }
 .timeline-point {
   position: absolute;
@@ -93,11 +99,11 @@ body, .content-wrapper {
   border-radius: 10px;
   transition: all 0.3s ease;
   backdrop-filter: blur(8px);
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 .timeline-content:hover {
   transform: translateY(-4px);
-  box-shadow: 0 0 12px rgba(250, 204, 21, 0.4);
+  box-shadow: 0 0 14px rgba(250, 204, 21, 0.4);
 }
 .timeline-content h5 {
   color: #facc15;
@@ -117,16 +123,17 @@ h3 {
   font-weight: 600;
   text-shadow: 0 0 10px rgba(250, 204, 21, 0.3);
   margin-bottom: 20px;
+  margin-top: 30px;
 }
 
-/* SIDEBAR HIGHLIGHT */
+/* Sidebar Highlight */
 .nav-link.active, .nav-link:hover {
   background-color: rgba(250, 204, 21, 0.15);
   border-left: 3px solid #facc15;
   color: #facc15 !important;
 }
 
-/* SCROLLBAR THEME */
+/* Scrollbar Theme */
 ::-webkit-scrollbar {
   width: 8px;
 }
