@@ -46,14 +46,19 @@
             color: #d1d5db;
             font-size: 0.9rem;
         }
+        .logo-img {
+    width: 120px;
+    height: auto;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
     </style>
 </head>
 <body>
 
     <div class="welcome-card text-center">
         <div class="welcome-logo mb-3">
-            <i class="fas fa-compass"></i>
-        </div>
+    <img src="{{ asset('images/logo_1.png') }}" alt="CodeQuest Logo" class="logo-img">
+</div>
         <h1 class="fw-bold">Welcome to <span class="text-info">CodeQuest</span></h1>
         <p class="lead mt-2 mb-4">An interactive platform for learning and testing your coding skills.</p>
 
