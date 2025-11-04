@@ -5,7 +5,7 @@
 @section('content')
 
 <style>
-/* === Dashboard / Leaderboard Theme === */
+/* === Dashboard / Leaderboards Theme === */
 body, .content-wrapper {
     background: linear-gradient(135deg, #0a0f24, #1c223a);
     color: #fff;
@@ -66,6 +66,7 @@ body, .content-wrapper {
 }
 .table tbody td {
     vertical-align: middle;
+    text-align: center;
 }
 .table tbody tr:hover {
     background: rgba(250, 204, 21, 0.1);
@@ -98,16 +99,18 @@ body, .content-wrapper {
     color: #aaa;
     margin-top: 10px;
 }
-.btn-primary, .btn-secondary, .btn-success, .btn-info, .btn-warning, .btn-danger {
+.btn-primary {
+    background-color: #facc15;
+    color: #1c1c1c;
+    border: none;
     border-radius: 6px;
     font-weight: 600;
     transition: all 0.3s;
 }
-.btn-primary:hover, .btn-secondary:hover, .btn-success:hover, .btn-info:hover, .btn-warning:hover, .btn-danger:hover {
+.btn-primary:hover {
     transform: translateY(-2px);
     box-shadow: 0 0 10px rgba(250, 204, 21, 0.8);
 }
-.btn-primary { background-color: #facc15; color: #1c1c1c; border: none; }
 </style>
 
 <div class="content-header">
@@ -128,7 +131,7 @@ body, .content-wrapper {
                 <h3 class="card-title">Top Players</h3>
             </div>
             <div class="card-body table-responsive p-0">
-                <table class="table table-bordered table-hover text-center" id="LeaderBoardsTable">
+                <table class="table table-bordered table-hover table-striped" id="LeaderBoardsTable">
                     <thead>
                         <tr>
                             <th>Rank</th>
@@ -153,16 +156,15 @@ body, .content-wrapper {
     </div>
 </section>
 
-@push('scripts')
 <script>
 $(document).ready(function () {
     $('#LeaderBoardsTable').DataTable({
         responsive: true,
         autoWidth: false,
         dom: '<"row mb-3"' +
-                '<"col-md-4 d-flex align-items-center"l>' +
-                '<"col-md-4 text-center"B>' +
-                '<"col-md-4 d-flex justify-content-end"f>' +
+                '<"col-md-4 d-flex align-items-center"l>' +    // Show entries
+                '<"col-md-4 text-center"B>' +                   // Export buttons
+                '<"col-md-4 d-flex justify-content-end"f>' +    // Search box
              '>rtip',
         buttons: [
             { extend: 'copy', className: 'btn btn-sm btn-secondary me-1' },
@@ -170,21 +172,9 @@ $(document).ready(function () {
             { extend: 'excel', className: 'btn btn-sm btn-success me-1' },
             { extend: 'pdf', className: 'btn btn-sm btn-danger me-1' },
             { extend: 'print', className: 'btn btn-sm btn-primary' }
-        ],
-        order: [[2, 'desc'], [3, 'desc']], // sort by points desc, then stars desc
-        pagingType: "full_numbers",
-        language: {
-            info: "Showing _START_ to _END_ of _TOTAL_ entries",
-            paginate: {
-                previous: "Previous",
-                next: "Next",
-                first: "First",
-                last: "Last"
-            }
-        }
+        ]
     });
 });
 </script>
-@endpush
 
 @endsection
