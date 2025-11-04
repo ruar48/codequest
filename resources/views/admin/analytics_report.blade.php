@@ -3,107 +3,201 @@
 @section('title', 'Leaderboard Report')
 
 @section('content')
+
+<style>
+/* === General Theme === */
+body, .content-wrapper {
+  background: linear-gradient(135deg, #0a0f24, #1c223a);
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+}
+.content {
+  padding-top: 80px !important;
+  padding-bottom: 40px;
+}
+
+/* === Header === */
+.content-header {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+.content-header h1 {
+  font-weight: 700;
+  color: #facc15;
+  text-shadow: 0 0 12px rgba(250, 204, 21, 0.4);
+}
+
+/* === Small Boxes === */
+.small-box {
+  border-radius: 16px;
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(250,204,21,0.25);
+  box-shadow: 0 4px 16px rgba(250,204,21,0.25);
+  transition: all 0.3s ease;
+  margin-top: 30px;
+  margin-bottom: 35px;
+  text-align: center;
+  padding: 20px;
+}
+.small-box:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 20px rgba(250,204,21,0.5);
+}
+.small-box .inner h3 {
+  color: #facc15;
+  font-weight: 700;
+  font-size: 2rem;
+}
+.small-box .inner p {
+  color: #ffffff;
+  font-weight: 500;
+}
+.small-box .icon i {
+  color: #facc15;
+  font-size: 45px;
+  margin-top: 10px;
+}
+
+/* === Cards for Charts === */
+.card {
+  border-radius: 16px;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(250,204,21,0.25);
+  box-shadow: 0 4px 16px rgba(250,204,21,0.15);
+  transition: all 0.3s ease;
+  margin-bottom: 30px;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 20px rgba(250,204,21,0.35);
+}
+.card-header {
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  color: #1c1c1c;
+  text-align: center;
+  background: linear-gradient(90deg, #facc15, #ffea80);
+  box-shadow: inset 0 -2px 5px rgba(0,0,0,0.1);
+}
+.card-body {
+  padding: 20px;
+  background: rgba(255,255,255,0.02);
+}
+
+/* === Charts === */
+canvas {
+  width: 100% !important;
+  height: 300px !important;
+}
+
+/* === Sidebar Active Link === */
+.nav-link.active, .nav-link:hover {
+  background-color: rgba(250, 204, 21, 0.15);
+  border-left: 3px solid #facc15;
+  color: #facc15 !important;
+}
+
+/* === Scrollbar === */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #111827;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #facc15;
+  border-radius: 4px;
+}
+</style>
+
 <div class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1 class="m-0">Engagement Analytics</h1>
-            </div>
-        </div>
-    </div>
+  <div class="container-fluid">
+    <h1>Leaderboard Report</h1>
+  </div>
 </div>
 
 <section class="content">
-    <div class="container-fluid">
+  <div class="container-fluid">
 
-        <!-- Overall Statistics -->
-        <div class="row">
-            <div class="col-lg-3 col-6">
-                <div class="small-box bg-primary">
-                    <div class="inner">
-                        <h3>{{ $totalPlayers }}</h3>
-                        <p>Total Players</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-6">
-                <div class="small-box bg-success">
-                    <div class="inner">
-                        <h3>{{ number_format($averagePoints, 2) }}</h3>
-                        <p>Avg Points per Player</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-6">
-                <div class="small-box bg-warning">
-                    <div class="inner">
-                        <h3>{{ number_format($averageStars, 2) }}</h3>
-                        <p>Avg Stars per Player</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
-            </div>
+    <!-- Stat Boxes -->
+    <div class="row justify-content-center">
+      <div class="col-lg-3 col-md-6 col-12">
+        <div class="small-box">
+          <div class="inner">
+            <h3>{{ $totalPlayers }}</h3>
+            <p>Total Players</p>
+          </div>
+          <div class="icon"><i class="fas fa-users"></i></div>
         </div>
+      </div>
 
-        <!-- Charts in Row -->
-        <div class="row">
-
-            <!-- Leaderboard Chart -->
-            <div class="col-md-4">
-                <div class="card shadow-lg">
-                    <div class="card-header bg-primary text-white">
-                        <h5 class="card-title">Top Players</h5>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="leaderboardChart"></canvas>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Level Performance Chart -->
-            <div class="col-md-4">
-                <div class="card shadow-lg">
-                    <div class="card-header bg-success text-white">
-                        <h5 class="card-title">Level Performance</h5>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="levelPerformanceChart"></canvas>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PHP Execution Stats Chart -->
-            <div class="col-md-4">
-                <div class="card shadow-lg">
-                    <div class="card-header bg-danger text-white">
-                        <h5 class="card-title">Execution Stats</h5>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="executionChart"></canvas>
-                    </div>
-                </div>
-            </div>
-
+      <div class="col-lg-3 col-md-6 col-12">
+        <div class="small-box">
+          <div class="inner">
+            <h3>{{ number_format($averagePoints, 2) }}</h3>
+            <p>Avg Points per Player</p>
+          </div>
+          <div class="icon"><i class="fas fa-chart-line"></i></div>
         </div>
+      </div>
 
+      <div class="col-lg-3 col-md-6 col-12">
+        <div class="small-box">
+          <div class="inner">
+            <h3>{{ number_format($averageStars, 2) }}</h3>
+            <p>Avg Stars per Player</p>
+          </div>
+          <div class="icon"><i class="fas fa-star"></i></div>
+        </div>
+      </div>
     </div>
+
+    <!-- Charts Row -->
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">Top Players</div>
+          <div class="card-body">
+            <canvas id="leaderboardChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">Level Performance</div>
+          <div class="card-body">
+            <canvas id="levelPerformanceChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">Execution Stats</div>
+          <div class="card-body">
+            <canvas id="executionChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const chartTextColor = "#1f2937";
+
     // Leaderboard Chart
-    const leaderboardCtx = document.getElementById('leaderboardChart').getContext('2d');
-    new Chart(leaderboardCtx, {
+    new Chart(document.getElementById('leaderboardChart'), {
         type: 'bar',
         data: {
             labels: @json($leaderboardData->pluck('username')),
@@ -111,21 +205,31 @@
                 {
                     label: 'Total Points',
                     data: @json($leaderboardData->pluck('total_points')),
-                    backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                    backgroundColor: 'rgba(250,204,21,0.7)',
+                    borderColor: '#facc15',
+                    borderWidth: 1
                 },
                 {
                     label: 'Total Stars',
                     data: @json($leaderboardData->pluck('total_stars')),
-                    backgroundColor: 'rgba(255, 206, 86, 0.7)',
+                    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                    borderColor: '#ffea80',
+                    borderWidth: 1
                 }
             ]
         },
-        options: { responsive: true }
+        options: {
+            responsive: true,
+            plugins: { legend: { labels: { color: chartTextColor } } },
+            scales: {
+                x: { ticks: { color: chartTextColor, font: { weight: 'bold' } } },
+                y: { ticks: { color: chartTextColor, beginAtZero: true } }
+            }
+        }
     });
 
     // Level Performance Chart
-    const levelCtx = document.getElementById('levelPerformanceChart').getContext('2d');
-    new Chart(levelCtx, {
+    new Chart(document.getElementById('levelPerformanceChart'), {
         type: 'line',
         data: {
             labels: @json($levelPerformance->pluck('level_number')),
@@ -133,33 +237,48 @@
                 {
                     label: 'Avg Stars',
                     data: @json($levelPerformance->pluck('avg_stars')),
-                    borderColor: 'rgba(255, 206, 86, 1)',
-                    fill: false
+                    borderColor: '#facc15',
+                    backgroundColor: 'rgba(250,204,21,0.2)',
+                    fill: true,
+                    tension: 0.4
                 },
                 {
                     label: 'Avg Points',
                     data: @json($levelPerformance->pluck('avg_points')),
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    fill: false
+                    borderColor: '#ffea80',
+                    backgroundColor: 'rgba(255,255,255,0.15)',
+                    fill: true,
+                    tension: 0.4
                 }
             ]
         },
-        options: { responsive: true }
+        options: {
+            responsive: true,
+            plugins: { legend: { labels: { color: chartTextColor } } },
+            scales: {
+                x: { ticks: { color: chartTextColor } },
+                y: { ticks: { color: chartTextColor, beginAtZero: true } }
+            }
+        }
     });
 
     // PHP Execution Chart
-    const executionCtx = document.getElementById('executionChart').getContext('2d');
-    new Chart(executionCtx, {
+    new Chart(document.getElementById('executionChart'), {
         type: 'pie',
         data: {
             labels: ['Successful', 'Failed'],
             datasets: [{
                 data: [{{ $phpExecutions->successful }}, {{ $phpExecutions->errors }}],
-                backgroundColor: ['rgba(75, 192, 192, 0.7)', 'rgba(255, 99, 132, 0.7)']
+                backgroundColor: ['#27ae60', '#e74c3c'],
+                borderColor: ['rgba(250,204,21,0.3)', 'rgba(255,255,255,0.1)'],
+                borderWidth: 1
             }]
         },
-        options: { responsive: true }
+        options: {
+            plugins: { legend: { labels: { color: chartTextColor } } }
+        }
     });
+});
 </script>
 
 @endsection
