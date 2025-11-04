@@ -12,6 +12,7 @@ body, .content-wrapper {
     color: #fff;
 }
 
+/* Content Header */
 .content-header {
     text-align: center;
     padding-top: 20px;
@@ -22,7 +23,7 @@ body, .content-wrapper {
     font-weight: 700;
     color: #facc15;
     font-size: 2rem;
-    text-shadow: 0 0 12px rgba(250, 204, 21, 0.5);
+    text-shadow: 0 0 12px rgba(250,204,21,0.5);
 }
 
 .content-header p {
@@ -30,15 +31,15 @@ body, .content-wrapper {
     font-size: 1rem;
 }
 
-/* Overview Cards */
+/* Small Boxes (Overview Cards) */
 .small-box {
     border-radius: 16px;
     position: relative;
     display: block;
+    padding: 20px;
+    color: #fff;
     box-shadow: 0 4px 16px rgba(250,204,21,0.2);
     transition: all 0.3s ease;
-    color: #fff !important;
-    padding: 20px;
 }
 .small-box:hover {
     transform: translateY(-3px);
@@ -59,24 +60,24 @@ body, .content-wrapper {
     opacity: 0.2;
 }
 
-/* Custom Colors */
-.bg-primary { background: linear-gradient(90deg, #facc15, #ffea80) !important; color: #1c1c1c !important; }
-.bg-success { background: linear-gradient(90deg, #27ae60, #6fcf97) !important; }
-.bg-warning { background: linear-gradient(90deg, #f1c40f, #f9d463) !important; color: #1c1c1c !important; }
-.bg-danger { background: linear-gradient(90deg, #e74c3c, #f08080) !important; }
+/* Gradient Colors for Boxes */
+.box-primary { background: linear-gradient(90deg, #facc15, #ffea80); color: #1c1c1c; }
+.box-success { background: linear-gradient(90deg, #27ae60, #6fcf97); }
+.box-warning { background: linear-gradient(90deg, #f1c40f, #f9d463); color: #1c1c1c; }
+.box-danger { background: linear-gradient(90deg, #e74c3c, #f08080); }
 
 /* Cards */
 .card {
     background: rgba(255,255,255,0.05);
     backdrop-filter: blur(8px);
-    border: 1px solid rgba(250, 204, 21, 0.25);
+    border: 1px solid rgba(250,204,21,0.25);
     border-radius: 16px;
     box-shadow: 0 4px 16px rgba(250,204,21,0.25);
     transition: all 0.3s ease;
 }
 .card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 0 20px rgba(250, 204, 21, 0.5);
+    box-shadow: 0 0 20px rgba(250,204,21,0.5);
 }
 .card-header {
     font-weight: 700;
@@ -91,7 +92,7 @@ canvas {
     max-height: 300px;
 }
 
-/* Responsive adjustments */
+/* Responsive */
 @media (max-width: 767px) {
     .small-box .icon { font-size: 2.5rem; top: 5px; right: 10px; }
     .small-box .inner h3 { font-size: 1.5rem; }
@@ -115,50 +116,42 @@ canvas {
         <!-- Overview Cards -->
         <div class="row">
             <div class="col-lg-3 col-6">
-                <div class="small-box bg-primary">
+                <div class="small-box box-primary">
                     <div class="inner">
                         <h3>{{ $totalPlayers }}</h3>
                         <p>Total Players</p>
                     </div>
-                    <div class="icon">
-                        <i class="fas fa-users"></i>
-                    </div>
+                    <div class="icon"><i class="fas fa-users"></i></div>
                 </div>
             </div>
 
             <div class="col-lg-3 col-6">
-                <div class="small-box bg-success">
+                <div class="small-box box-success">
                     <div class="inner">
                         <h3>{{ $phpExecutions['total'] }}</h3>
                         <p>Total PHP Executions</p>
                     </div>
-                    <div class="icon">
-                        <i class="fas fa-terminal"></i>
-                    </div>
+                    <div class="icon"><i class="fas fa-terminal"></i></div>
                 </div>
             </div>
 
             <div class="col-lg-3 col-6">
-                <div class="small-box bg-warning">
+                <div class="small-box box-warning">
                     <div class="inner">
                         <h3>{{ number_format($averagePoints, 2) }}</h3>
                         <p>Avg Points per Player</p>
                     </div>
-                    <div class="icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
+                    <div class="icon"><i class="fas fa-chart-line"></i></div>
                 </div>
             </div>
 
             <div class="col-lg-3 col-6">
-                <div class="small-box bg-danger">
+                <div class="small-box box-danger">
                     <div class="inner">
                         <h3>{{ $totalTipsUsed }}</h3>
                         <p>Tips Used</p>
                     </div>
-                    <div class="icon">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
+                    <div class="icon"><i class="fas fa-lightbulb"></i></div>
                 </div>
             </div>
         </div>
@@ -166,8 +159,8 @@ canvas {
         <!-- Charts -->
         <div class="row mt-3">
             <div class="col-md-6">
-                <div class="card shadow-lg">
-                    <div class="card-header bg-primary text-dark">
+                <div class="card">
+                    <div class="card-header box-primary text-dark">
                         Most Completed Levels
                     </div>
                     <div class="card-body">
@@ -177,8 +170,8 @@ canvas {
             </div>
 
             <div class="col-md-6">
-                <div class="card shadow-lg">
-                    <div class="card-header bg-danger text-dark">
+                <div class="card">
+                    <div class="card-header box-danger text-dark">
                         PHP Execution Success vs Errors
                     </div>
                     <div class="card-body">
@@ -210,9 +203,7 @@ document.addEventListener("DOMContentLoaded", function () {
         options: {
             responsive: true,
             plugins: { legend: { display: false } },
-            scales: {
-                y: { beginAtZero: true }
-            }
+            scales: { y: { beginAtZero: true } }
         }
     });
 
@@ -227,10 +218,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 backgroundColor: ['rgba(75, 192, 192, 0.7)', 'rgba(255, 99, 132, 0.7)']
             }]
         },
-        options: {
-            responsive: true,
-            plugins: { legend: { position: 'bottom' } }
-        }
+        options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
     });
 });
 </script>
