@@ -66,7 +66,6 @@
       width: 140px;
       filter: drop-shadow(0 0 12px rgba(250,204,21,0.8));
       animation: float 3s ease-in-out infinite;
-    height: auto;
     }
 
     @keyframes float {
@@ -129,7 +128,7 @@
 
   <div class="welcome-card text-center">
     <div class="welcome-logo mb-4">
-      <img src="{{ asset('dist/img/codequest-logo.jpg') }}" alt="CodeQuest Logo" class="logo-img">
+      <img src="{{ asset('dist/img/codequest-logo.png') }}" alt="CodeQuest Logo" class="logo-img">
     </div>
 
     <h1 class="fw-bold">Welcome to <span>CodeQuest</span></h1>

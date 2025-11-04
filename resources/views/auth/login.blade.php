@@ -129,7 +129,7 @@
 
   <div class="login-card">
     <!-- Logo -->
-    <img src="{{ asset('dist/img/logo_1.png') }}" alt="CodeQuest Logo" class="logo">
+    <img src="{{ asset('dist/img/codequest-logo.png') }}" alt="CodeQuest Logo" class="logo">
 
     <h3 class="login-title mb-4">Welcome Back, Adventurer!</h3>
 
