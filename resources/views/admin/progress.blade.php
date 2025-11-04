@@ -185,7 +185,7 @@ body, .content-wrapper {
                         <tr>
                             <td>{{ $entry->user->email ?? 'N/A' }}</td>
                             <td>{{ $entry->level_number }}</td>
-                            <<td>
+                            <td>
     <span class="badge badge-light">{{ str_repeat('⭐', $entry->stars) }}</span>
 </td>
                             <td>
