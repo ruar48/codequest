@@ -31,20 +31,22 @@ body, .content-wrapper {
     font-size: 1rem;
 }
 
-/* Small Boxes (Overview Cards) */
+/* Small Boxes */
 .small-box {
     border-radius: 16px;
-    position: relative;
-    display: block;
     padding: 20px;
+    position: relative;
     color: #fff;
     box-shadow: 0 4px 16px rgba(250,204,21,0.2);
     transition: all 0.3s ease;
+    overflow: hidden;
 }
+
 .small-box:hover {
     transform: translateY(-3px);
     box-shadow: 0 0 20px rgba(250,204,21,0.4);
 }
+
 .small-box .inner h3 {
     font-size: 2rem;
     font-weight: 700;
@@ -60,11 +62,24 @@ body, .content-wrapper {
     opacity: 0.2;
 }
 
-/* Gradient Colors for Boxes */
-.box-primary { background: linear-gradient(90deg, #facc15, #ffea80); color: #1c1c1c; }
-.box-success { background: linear-gradient(90deg, #27ae60, #6fcf97); }
-.box-warning { background: linear-gradient(90deg, #f1c40f, #f9d463); color: #1c1c1c; }
-.box-danger { background: linear-gradient(90deg, #e74c3c, #f08080); }
+/* Force Gradient Backgrounds */
+.small-box.primary {
+    background: linear-gradient(90deg, #facc15, #ffea80) !important;
+    color: #1c1c1c !important;
+}
+
+.small-box.success {
+    background: linear-gradient(90deg, #27ae60, #6fcf97) !important;
+}
+
+.small-box.warning {
+    background: linear-gradient(90deg, #f1c40f, #f9d463) !important;
+    color: #1c1c1c !important;
+}
+
+.small-box.danger {
+    background: linear-gradient(90deg, #e74c3c, #f08080) !important;
+}
 
 /* Cards */
 .card {
@@ -116,7 +131,7 @@ canvas {
         <!-- Overview Cards -->
         <div class="row">
             <div class="col-lg-3 col-6">
-                <div class="small-box box-primary">
+                <div class="small-box primary">
                     <div class="inner">
                         <h3>{{ $totalPlayers }}</h3>
                         <p>Total Players</p>
@@ -126,7 +141,7 @@ canvas {
             </div>
 
             <div class="col-lg-3 col-6">
-                <div class="small-box box-success">
+                <div class="small-box success">
                     <div class="inner">
                         <h3>{{ $phpExecutions['total'] }}</h3>
                         <p>Total PHP Executions</p>
@@ -136,7 +151,7 @@ canvas {
             </div>
 
             <div class="col-lg-3 col-6">
-                <div class="small-box box-warning">
+                <div class="small-box warning">
                     <div class="inner">
                         <h3>{{ number_format($averagePoints, 2) }}</h3>
                         <p>Avg Points per Player</p>
@@ -146,7 +161,7 @@ canvas {
             </div>
 
             <div class="col-lg-3 col-6">
-                <div class="small-box box-danger">
+                <div class="small-box danger">
                     <div class="inner">
                         <h3>{{ $totalTipsUsed }}</h3>
                         <p>Tips Used</p>
@@ -160,7 +175,7 @@ canvas {
         <div class="row mt-3">
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header box-primary text-dark">
+                    <div class="card-header primary text-dark">
                         Most Completed Levels
                     </div>
                     <div class="card-body">
@@ -171,7 +186,7 @@ canvas {
 
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header box-danger text-dark">
+                    <div class="card-header danger text-dark">
                         PHP Execution Success vs Errors
                     </div>
                     <div class="card-body">
@@ -200,11 +215,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 borderRadius: 4
             }]
         },
-        options: {
-            responsive: true,
-            plugins: { legend: { display: false } },
-            scales: { y: { beginAtZero: true } }
-        }
+        options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
     });
 
     // PHP Execution Chart
