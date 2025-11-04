@@ -96,7 +96,7 @@ body, .content-wrapper {
     border-radius: 6px;
 }
 .dataTables_wrapper .dataTables_info {
-    color: #aaa;
+    color: #ffffffff;
     margin-top: 10px;
 }
 .btn-primary {
