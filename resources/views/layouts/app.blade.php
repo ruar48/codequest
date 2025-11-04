@@ -258,18 +258,18 @@
                         <p>Export Reports</p>
                     </a>
                 </li> --}}
-
-                <!-- Logout -->
-                <li class="nav-item">
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="nav-link btn btn-link text-left p-0 ml-3">
-                            <i class="fas fa-sign-out-alt nav-icon"></i>
-                            <p>Logout</p>
-                        </button>
-                    </form>
-                </li>
             </ul>
+        </li>
+
+        <!-- Logout (outside Reports) -->
+        <li class="nav-item mt-3">
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="nav-link btn btn-link text-left p-0">
+                    <i class="nav-icon fas fa-sign-out-alt"></i>
+                    <p>Logout</p>
+                </button>
+            </form>
         </li>
     </ul>
 </nav>
