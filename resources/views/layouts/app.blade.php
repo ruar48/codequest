@@ -64,7 +64,7 @@
   body, .content-wrapper {
     background: #f5f6fa; /* light background for less eye strain */
     font-family: 'Poppins', sans-serif;
-    color: #2f2f2f;
+    color: #ffffffff;
   }
 
   .content-wrapper {
@@ -78,7 +78,7 @@
   }
 
   .nav-link {
-    color: #4b5563;
+    color: #ffffffff;
     transition: all 0.2s ease-in-out;
   }
 
@@ -111,7 +111,7 @@
 
   .sidebar .nav-link.active, 
   .sidebar .nav-link:hover {
-    background-color: rgba(250,204,21,0.15);
+    background-color: rgba(255, 255, 255, 0.15);
     color: #facc15;
     border-left: 3px solid #facc15;
     border-radius: 0 6px 6px 0;
