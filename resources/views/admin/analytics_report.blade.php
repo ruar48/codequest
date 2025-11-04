@@ -123,7 +123,7 @@ body, .content-wrapper {
 }
 .small-box .icon i {
   color: #facc15;
-  font-size: 36px; /* smaller for balance */
+  font-size: 25px; /* smaller for balance */
   margin-top: 5px;
   margin-left: 5px; /* adds breathing space between icon and text */
 }
