@@ -5,10 +5,50 @@
 @section('content')
 
 <style>
-/* Timeline */
+/* GENERAL THEME */
+body, .content-wrapper {
+  background: linear-gradient(135deg, #0a0f24, #1c223a);
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+}
+
+.content-header h1,
+.content-header p,
+.breadcrumb a,
+.breadcrumb-item.active {
+  color: #facc15 !important; /* gold accent */
+}
+
+/* STAT CARDS */
+.small-box {
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(250, 204, 21, 0.3);
+  transition: all 0.25s ease;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(250, 204, 21, 0.25);
+}
+.small-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 18px rgba(250, 204, 21, 0.5);
+}
+.small-box .inner h3 {
+  color: #facc15;
+  font-weight: 700;
+}
+.small-box .inner p {
+  color: #fff;
+  font-weight: 500;
+}
+.small-box .icon i {
+  color: #facc15;
+  opacity: 0.9;
+}
+
+/* TIMELINE */
 .timeline {
   position: relative;
-  margin-left: 20px;
+  margin-left: 25px;
 }
 .timeline::before {
   content: '';
@@ -17,76 +57,73 @@
   top: 0;
   width: 2px;
   height: 100%;
-  background-color: rgba(0, 123, 255, 0.4);
+  background-color: rgba(250, 204, 21, 0.4);
 }
 .timeline-item {
   position: relative;
-  padding-left: 30px;
+  padding-left: 35px;
 }
 .timeline-point {
   position: absolute;
   left: -2px;
   top: 10px;
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
-  background-color: #007bff;
-  box-shadow: 0 0 8px rgba(0, 123, 255, 0.7);
+  background-color: #facc15;
+  box-shadow: 0 0 8px rgba(250, 204, 21, 0.8);
 }
 .timeline-content {
-  background: #ffffff;
-  color: #212529;
-  transition: all 0.25s ease;
-  border-left: 4px solid #007bff;
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  border: 1px solid rgba(250, 204, 21, 0.3);
+  border-left: 4px solid #facc15;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
 }
 .timeline-content:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 0 12px rgba(250, 204, 21, 0.4);
 }
-
-/* Player names and text */
 .timeline-content h5 {
-  color: #007bff;
+  color: #facc15;
   font-weight: 600;
 }
 .timeline-content p {
-  color: #333;
-  font-size: 15px;
+  color: #e4e4e4;
 }
 .timeline-content strong {
-  color: #222;
-}
-
-/* Header */
-h3 i {
-  color: #007bff;
-}
-h3 {
-  color: #222;
-  font-weight: 600;
-  text-shadow: none;
-}
-
-/* Stat Cards */
-.small-box {
-  border-radius: 12px;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-  transition: all 0.2s ease;
-}
-.small-box:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-}
-.small-box .inner h3,
-.small-box .inner p {
   color: #fff;
 }
-.bg-primary { background-color: #0056b3 !important; }
-.bg-success { background-color: #198754 !important; }
-.bg-warning { background-color: #ffb300 !important; color: #fff !important; }
-.bg-danger  { background-color: #d63384 !important; color: #fff !important; }
-</style>
+h3 i {
+  color: #facc15;
+}
+h3 {
+  color: #fff;
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(250, 204, 21, 0.3);
+}
 
+/* SCROLLBAR THEME */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #111827;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #facc15;
+  border-radius: 4px;
+}
+
+/* NAVBAR / SIDEBAR LINK MATCH */
+.nav-link.active, .nav-link:hover {
+  background-color: rgba(250, 204, 21, 0.15);
+  border-left: 3px solid #facc15;
+  color: #facc15 !important;
+}
+</style>
 
 <section class="content">
   <div class="container-fluid">
