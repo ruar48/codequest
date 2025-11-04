@@ -12,21 +12,21 @@ body, .content-wrapper {
   font-family: 'Poppins', sans-serif;
 }
 .content {
-  padding-top: 80px !important;
-  padding-bottom: 40px;
+  padding-top: 40px !important; /* reduced top padding */
+  padding-bottom: 30px;
 }
 
 /* === Header === */
 .content-header {
-  padding-top: 30px;
-  padding-bottom: 30px;
-  margin-bottom: 40px;
+  padding-top: 20px;
+  padding-bottom: 15px;
   text-align: center;
 }
 .content-header h1 {
   font-weight: 700;
   color: #facc15;
   text-shadow: 0 0 12px rgba(250, 204, 21, 0.4);
+  margin-bottom: 10px; /* reduced margin */
 }
 
 /* === Small Boxes === */
@@ -37,19 +37,19 @@ body, .content-wrapper {
   border: 1px solid rgba(250,204,21,0.25);
   box-shadow: 0 4px 16px rgba(250,204,21,0.25);
   transition: all 0.3s ease;
-  margin-top: 30px;
-  margin-bottom: 35px;
+  margin-top: 15px; /* reduced spacing */
+  margin-bottom: 20px;
   text-align: center;
   padding: 20px;
 }
 .small-box:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 0 20px rgba(250,204,21,0.5);
+  transform: translateY(-4px);
+  box-shadow: 0 0 18px rgba(250,204,21,0.4);
 }
 .small-box .inner h3 {
   color: #facc15;
   font-weight: 700;
-  font-size: 2rem;
+  font-size: 1.9rem;
 }
 .small-box .inner p {
   color: #ffffff;
@@ -57,7 +57,7 @@ body, .content-wrapper {
 }
 .small-box .icon i {
   color: #facc15;
-  font-size: 45px;
+  font-size: 40px;
   margin-top: 10px;
 }
 
@@ -69,11 +69,11 @@ body, .content-wrapper {
   border: 1px solid rgba(250,204,21,0.25);
   box-shadow: 0 4px 16px rgba(250,204,21,0.15);
   transition: all 0.3s ease;
-  margin-bottom: 30px;
+  margin-bottom: 20px; /* reduced spacing */
 }
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 0 20px rgba(250,204,21,0.35);
+  transform: translateY(-3px);
+  box-shadow: 0 0 18px rgba(250,204,21,0.35);
 }
 .card-header {
   font-weight: 700;
@@ -86,14 +86,14 @@ body, .content-wrapper {
   box-shadow: inset 0 -2px 5px rgba(0,0,0,0.1);
 }
 .card-body {
-  padding: 20px;
+  padding: 15px;
   background: rgba(255,255,255,0.02);
 }
 
 /* === Charts === */
 canvas {
   width: 100% !important;
-  height: 300px !important;
+  height: 250px !important; /* slightly smaller height for tighter fit */
 }
 
 /* === Sidebar Active Link === */
