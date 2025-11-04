@@ -7,7 +7,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Leaderboards</h1>
+                <h1 class="m-0">Leaderboards</h1>
             </div>
         </div>
     </div>
@@ -15,13 +15,13 @@
 
 <section class="content">
     <div class="container-fluid">
-        <div class="card card-primary card-outline shadow-sm">
-            <div class="card-header d-flex justify-content-between align-items-center">
+        <div class="card shadow-lg">
+            <div class="card-header bg-primary text-white">
                 <h3 class="card-title">Top Players</h3>
             </div>
-            <div class="card-body table-responsive p-0">
-                <table class="table table-hover table-striped table-bordered text-center" id="LeaderBoardsTable">
-                    <thead class="thead-dark">
+            <div class="card-body">
+                <table class="table table-bordered" id="LeaderBoardsTable">
+                    <thead class="thead-light">
                         <tr>
                             <th>Rank</th>
                             <th>Name</th>
@@ -45,18 +45,15 @@
     </div>
 </section>
 
-@push('scripts')
 <script>
 $(document).ready(function () {
     $('#LeaderBoardsTable').DataTable({
         responsive: true,
         autoWidth: false,
-        lengthChange: true,
-        pageLength: 10,
         dom: '<"row mb-3"' +
-                '<"col-md-4 d-flex align-items-center"l>' +
-                '<"col-md-4 text-center"B>' +
-                '<"col-md-4 d-flex justify-content-end"f>' +
+                '<"col-md-4 d-flex align-items-center"l>' +    // Show entries
+                '<"col-md-4 text-center"B>' +                   // Export buttons
+                '<"col-md-4 d-flex justify-content-end"f>' +    // Search box
              '>rtip',
         buttons: [
             { extend: 'copy', className: 'btn btn-sm btn-secondary me-1' },
@@ -67,6 +64,7 @@ $(document).ready(function () {
         ]
     });
 });
+
+
 </script>
-@endpush
 @endsection
