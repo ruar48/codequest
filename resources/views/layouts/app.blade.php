@@ -126,7 +126,7 @@
   .sidebar .nav-treeview .nav-link.active,
   .sidebar .nav-treeview .nav-link:hover {
     color: #facc15;
-    background-color: rgba(255, 255, 255, 1);
+    background-color: rgba(255, 255, 255, 0.24);
     border-left: 3px solid #facc15;
     border-radius: 0 6px 6px 0;
   }
