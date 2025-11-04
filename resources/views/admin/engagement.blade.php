@@ -5,84 +5,77 @@
 @section('content')
 
 <style>
-/* === Dashboard/Admin Theme === */
+/* === General Page === */
 body, .content-wrapper {
-    background: linear-gradient(135deg, #0a0f24, #1c223a);
+    background: #f5f6fa;
     font-family: 'Poppins', sans-serif;
-    color: #fff;
+    color: #2f2f2f;
 }
 
-/* Header */
+/* Content Header */
 .content-header {
+    padding: 20px 0;
     text-align: center;
-    padding-top: 30px;
-    padding-bottom: 20px;
 }
 .content-header h1 {
-    font-weight: 700;
     color: #facc15;
+    font-weight: 700;
     font-size: 2rem;
-    text-shadow: 0 0 12px rgba(250,204,21,0.5);
 }
 .content-header p {
-    color: #e5e5e5;
+    color: #6b7280;
     font-size: 1rem;
 }
 
-/* Analytics Cards */
+/* === Analytics Cards === */
 .analytics-card {
-    border-radius: 16px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(250,204,21,0.25);
-    backdrop-filter: blur(8px);
-    box-shadow: 0 0 20px rgba(250,204,21,0.15);
-    padding: 25px;
+    border-radius: 12px;
+    background: #ffffff;
+    color: #1f2937;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    padding: 20px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    transition: all 0.3s ease;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
 }
 .analytics-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 25px rgba(250,204,21,0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(250,204,21,0.15);
 }
 .analytics-card h3 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 700;
-    margin-bottom: 5px;
-    color: #facc15;
-    text-shadow: 0 0 8px rgba(250,204,21,0.6);
+    color: #f59e0b;
 }
 .analytics-card p {
-    color: #e5e5e5;
+    color: #6b7280;
 }
 .analytics-card i {
-    font-size: 3rem;
+    font-size: 2.5rem;
     color: #facc15;
     opacity: 0.8;
 }
 
-/* Chart Cards */
+/* === Chart Cards === */
 .card {
-    background: rgba(255,255,255,0.05);
-    backdrop-filter: blur(10px);
-    border-radius: 16px;
-    border: 1px solid rgba(250,204,21,0.25);
-    box-shadow: 0 0 15px rgba(250,204,21,0.2);
-    transition: all 0.3s ease;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    transition: all 0.3s ease-in-out;
 }
 .card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 0 25px rgba(250,204,21,0.4);
+    box-shadow: 0 6px 20px rgba(250,204,21,0.15);
 }
 .card-header {
-    background: linear-gradient(90deg, #facc15, #ffea80);
-    color: #1c1c1c;
+    background: #facc15;
+    color: #1f2937;
     font-weight: 700;
     font-size: 1.2rem;
     text-align: center;
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
 }
 .card-body {
     padding: 20px;
@@ -170,7 +163,7 @@ canvas {
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-    const chartTextColor = "#fff";
+    const chartTextColor = "#1f2937"; // Dark text for charts to match cards
 
     // Top Players Chart
     new Chart(document.getElementById('topPlayersChart'), {
