@@ -157,4 +157,29 @@ input.form-control:focus {
 }
 </style>
 
+@push('scripts')
+<script>
+$(document).ready(function () {
+    $('#adminTable').DataTable({
+        responsive: true,
+        autoWidth: false,
+        lengthChange: true,       // allow user to change page length
+        info: true,               // show "Showing 1 to X of Y entries"
+        paging: true,             // enable pagination
+        pageLength: 10,           // default rows per page
+        order: [[0, 'asc']],      // default sort by ID ascending
+        language: {
+            info: "Showing _START_ to _END_ of _TOTAL_ admins",
+            paginate: {
+                previous: "Previous",
+                next: "Next",
+                first: "First",
+                last: "Last"
+            }
+        }
+    });
+});
+</script>
+@endpush
+
 @endsection
