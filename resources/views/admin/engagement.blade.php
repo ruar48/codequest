@@ -12,13 +12,6 @@ body, .content-wrapper {
   font-family: 'Poppins', sans-serif;
 }
 
-/* Fix: Add breathing room below white navbar */
-.content {
-  padding-top: 80px !important;
-  padding-bottom: 40px;
-}
-
-/* Header Section */
 .content-header {
   padding-top: 30px;
   padding-bottom: 30px;
@@ -30,8 +23,12 @@ body, .content-wrapper {
   color: #facc15;
   text-shadow: 0 0 12px rgba(250, 204, 21, 0.4);
 }
+.content-header p {
+  color: #e5e5e5;
+  font-size: 1rem;
+}
 
-/* Stat Cards */
+/* Small Boxes */
 .small-box {
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.04);
@@ -63,7 +60,13 @@ body, .content-wrapper {
   margin-top: 10px;
 }
 
-/* Cards for charts */
+/* Custom Variants for Each Stat */
+.small-box-primary { background: linear-gradient(90deg, #0d6efd, #6610f2); }
+.small-box-success { background: linear-gradient(90deg, #198754, #20c997); }
+.small-box-warning { background: linear-gradient(90deg, #ffc107, #ffcd39); color: #000; }
+.small-box-danger { background: linear-gradient(90deg, #dc3545, #ff6b6b); }
+
+/* Cards */
 .card {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(8px);
@@ -86,30 +89,16 @@ body, .content-wrapper {
   background: rgba(250, 204, 21, 0.1);
 }
 
-/* Chart canvas */
+/* Chart Canvas */
 canvas {
   background: transparent;
   max-height: 300px;
 }
 
-/* Sidebar Highlight */
-.nav-link.active, .nav-link:hover {
-  background-color: rgba(250, 204, 21, 0.15);
-  border-left: 3px solid #facc15;
-  color: #facc15 !important;
-}
-
 /* Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #111827;
-}
-::-webkit-scrollbar-thumb {
-  background-color: #facc15;
-  border-radius: 4px;
-}
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #111827; }
+::-webkit-scrollbar-thumb { background-color: #facc15; border-radius: 4px; }
 </style>
 
 <div class="content-header">
@@ -125,7 +114,7 @@ canvas {
     <!-- Overview Cards -->
     <div class="row">
       <div class="col-lg-3 col-6">
-        <div class="small-box">
+        <div class="small-box small-box-primary">
           <div class="inner">
             <h3>{{ $totalPlayers }}</h3>
             <p>Total Players</p>
@@ -135,7 +124,7 @@ canvas {
       </div>
 
       <div class="col-lg-3 col-6">
-        <div class="small-box">
+        <div class="small-box small-box-success">
           <div class="inner">
             <h3>{{ $phpExecutions['total'] }}</h3>
             <p>Total PHP Executions</p>
@@ -145,7 +134,7 @@ canvas {
       </div>
 
       <div class="col-lg-3 col-6">
-        <div class="small-box">
+        <div class="small-box small-box-warning">
           <div class="inner">
             <h3>{{ number_format($averagePoints, 2) }}</h3>
             <p>Avg Points per Player</p>
@@ -155,7 +144,7 @@ canvas {
       </div>
 
       <div class="col-lg-3 col-6">
-        <div class="small-box">
+        <div class="small-box small-box-danger">
           <div class="inner">
             <h3>{{ $totalTipsUsed }}</h3>
             <p>Tips Used</p>
