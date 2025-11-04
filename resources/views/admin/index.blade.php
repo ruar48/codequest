@@ -12,11 +12,21 @@ body, .content-wrapper {
   font-family: 'Poppins', sans-serif;
 }
 
-.content-header h1,
-.content-header p,
-.breadcrumb a,
-.breadcrumb-item.active {
-  color: #facc15 !important; /* gold accent */
+/* HEADER FIX */
+.content-header {
+  padding-top: 40px; /* adds space below navbar */
+  padding-bottom: 20px;
+  margin-bottom: 25px;
+}
+
+/* OPTIONAL: Add soft gold border under header */
+.content-header::after {
+  content: '';
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, #facc15, transparent);
+  margin-top: 10px;
 }
 
 /* STAT CARDS */
@@ -27,6 +37,7 @@ body, .content-wrapper {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(6px);
   border: 1px solid rgba(250, 204, 21, 0.25);
+  margin-bottom: 25px;
 }
 .small-box:hover {
   transform: translateY(-5px);
@@ -49,6 +60,7 @@ body, .content-wrapper {
 .timeline {
   position: relative;
   margin-left: 25px;
+  margin-top: 15px;
 }
 .timeline::before {
   content: '';
@@ -81,6 +93,7 @@ body, .content-wrapper {
   border-radius: 10px;
   transition: all 0.3s ease;
   backdrop-filter: blur(8px);
+  margin-bottom: 20px;
 }
 .timeline-content:hover {
   transform: translateY(-4px);
@@ -103,6 +116,14 @@ h3 {
   color: #fff;
   font-weight: 600;
   text-shadow: 0 0 10px rgba(250, 204, 21, 0.3);
+  margin-bottom: 20px;
+}
+
+/* SIDEBAR HIGHLIGHT */
+.nav-link.active, .nav-link:hover {
+  background-color: rgba(250, 204, 21, 0.15);
+  border-left: 3px solid #facc15;
+  color: #facc15 !important;
 }
 
 /* SCROLLBAR THEME */
@@ -115,13 +136,6 @@ h3 {
 ::-webkit-scrollbar-thumb {
   background-color: #facc15;
   border-radius: 4px;
-}
-
-/* NAVBAR / SIDEBAR LINK MATCH */
-.nav-link.active, .nav-link:hover {
-  background-color: rgba(250, 204, 21, 0.15);
-  border-left: 3px solid #facc15;
-  color: #facc15 !important;
 }
 </style>
 
