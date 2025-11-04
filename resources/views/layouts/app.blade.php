@@ -91,7 +91,7 @@
 
   /* === Sidebar === */
   .main-sidebar {
-    background: #ffffffff;
+    background: #1e293b;
     color: #e5e7eb;
   }
 
