@@ -3,6 +3,7 @@
 @section('title', 'Leaderboard Report')
 
 @section('content')
+
 <style>
 /* === General Theme === */
 body, .content-wrapper {
@@ -11,7 +12,7 @@ body, .content-wrapper {
   font-family: 'Poppins', sans-serif;
 }
 .content {
-  padding-top: 15px !important; /* reduced top padding */
+  padding-top: 15px !important;
   padding-bottom: 20px;
 }
 
@@ -20,7 +21,7 @@ body, .content-wrapper {
   padding-top: 10px;
   padding-bottom: 0;
   text-align: center;
-  margin-bottom: 5px; /* tighter spacing below title */
+  margin-bottom: 5px;
 }
 .content-header h1 {
   font-weight: 700;
@@ -29,79 +30,26 @@ body, .content-wrapper {
   margin-bottom: 5px;
 }
 
-.leaderboard-container {
-  text-align: center;
-  color: #fff;
-  background: radial-gradient(circle at top left, #0b0d1a, #020312);
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 0 25px rgba(255, 215, 0, 0.15);
-}
-
-.leaderboard-title {
-  color: #ffda44;
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 15px; /* smaller gap from boxes */
-  text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
-}
-
-.leaderboard-cards {
+/* === Stat Boxes (Top Section) === */
+.row.justify-content-center {
   display: flex;
   justify-content: center;
-  gap: 40px; /* increased spacing between boxes */
-  flex-wrap: wrap; /* helps responsiveness */
+  gap: 40px; /* spacing between boxes */
 }
 
-.leaderboard-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 215, 0, 0.4);
-  border-radius: 15px;
-  padding: 30px 40px; /* more breathing room inside */
-  width: 240px;
-  text-align: center;
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.08);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.leaderboard-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
-}
-
-.leaderboard-card .icon {
-  font-size: 3rem;
-  color: #ffda44;
-  margin-top: 12px;
-  margin-bottom: 25px; /* larger space between icon and text */
-  display: block;
-}
-
-.leaderboard-card .value {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #ffda44;
-  margin-bottom: 8px;
-}
-
-.leaderboard-card .label {
-  font-size: 1rem;
-  color: #ddd;
-}
-
-/* === Stat Boxes === */
 .small-box {
-  position: relative;
+  flex: 1;
+  min-width: 250px;
+  max-width: 300px;
   border-radius: 16px;
   background: rgba(255,255,255,0.04);
   backdrop-filter: blur(8px);
   border: 1px solid rgba(250,204,21,0.25);
   box-shadow: 0 4px 16px rgba(250,204,21,0.25);
   transition: all 0.3s ease;
-  margin-top: 5px; /* reduced spacing between boxes */
-  margin-bottom: 10px;
+  margin: 10px;
   text-align: center;
-  padding: 25px 20px;
+  padding: 25px 25px;
 }
 .small-box:hover {
   transform: translateY(-3px);
@@ -110,7 +58,7 @@ body, .content-wrapper {
 .small-box .inner h3 {
   color: #facc15;
   font-weight: 700;
-  font-size: 1.9rem;
+  font-size: 2rem;
   margin-bottom: 5px;
 }
 .small-box .inner p {
@@ -123,12 +71,13 @@ body, .content-wrapper {
 }
 .small-box .icon i {
   color: #facc15;
-  font-size: 36px; /* smaller for balance */
-  margin-top: 5px;
-  margin-left: 5px; /* adds breathing space between icon and text */
+  font-size: 42px;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px; /* adds space between text and icon */
 }
 
-/* === Cards for Charts === */
+/* === Chart Cards === */
 .card {
   border-radius: 16px;
   background: rgba(255,255,255,0.05);
@@ -136,7 +85,7 @@ body, .content-wrapper {
   border: 1px solid rgba(250,204,21,0.25);
   box-shadow: 0 4px 16px rgba(250,204,21,0.15);
   transition: all 0.3s ease;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 .card:hover {
   transform: translateY(-2px);
