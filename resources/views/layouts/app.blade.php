@@ -48,109 +48,139 @@
 
 
     <style>
-    /* === Loader === */
-    #load {
-      position: fixed;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 9999;
-      background: url('{{ asset('dist/img/Dual Ring-1s-200px.png') }}') 50% 50% no-repeat rgb(245,245,245);
-      opacity: 0.95;
-    }
+  /* === Loader === */
+  #load {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('{{ asset('dist/img/Dual Ring-1s-200px.png') }}') 50% 50% no-repeat rgb(245,245,245);
+    opacity: 0.95;
+  }
 
-    /* === Body & Content === */
-    body, .content-wrapper {
-      background: #f5f6fa; /* light background for less eye strain */
-      font-family: 'Poppins', sans-serif;
-      color: #2f2f2f;
-    }
+  /* === Body & Content === */
+  body, .content-wrapper {
+    background: #f5f6fa; /* light background for less eye strain */
+    font-family: 'Poppins', sans-serif;
+    color: #2f2f2f;
+  }
 
-    .content-wrapper {
-      padding: 20px;
-    }
+  .content-wrapper {
+    padding: 20px;
+  }
 
-    /* === Navbar === */
-    .main-header.navbar {
-      background-color: #ffffff;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
-    .nav-link {
-      color: #4b5563;
-    }
-    .nav-link.active, .nav-link:hover {
-      color: #f59e0b !important;
-      background-color: rgba(245,158,11,0.1);
-      border-radius: 6px;
-      transition: all 0.2s ease-in-out;
-    }
+  /* === Navbar === */
+  .main-header.navbar {
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
 
-    /* === Sidebar === */
-    .main-sidebar {
-      background: #1e293b;
-      color: #e5e7eb;
-    }
-    .brand-link {
-      background: #0f172a;
-      color: #facc15 !important;
-    }
-    .brand-link .brand-image {
-      opacity: 0.9;
-    }
-    .sidebar .nav-link {
-      color: #cbd5e1;
-    }
-    .sidebar .nav-link.active, .sidebar .nav-link:hover {
-      background-color: rgba(250,204,21,0.2);
-      color: #facc15;
-      border-left: 3px solid #facc15;
-      border-radius: 0 6px 6px 0;
-    }
+  .nav-link {
+    color: #4b5563;
+    transition: all 0.2s ease-in-out;
+  }
 
-    /* === User Panel === */
-    .user-panel .image div {
-      background: #2563eb;
-      color: #fff;
-      font-weight: bold;
-      font-size: 18px;
-    }
+  .nav-link.active, 
+  .nav-link:hover {
+    color: #f59e0b !important;
+    background-color: rgba(245,158,11,0.1);
+    border-radius: 6px;
+  }
 
-    /* === Tables & Cards === */
-    table.dataTable tbody tr:hover {
-      background-color: rgba(250,204,21,0.1) !important;
-    }
+  /* === Sidebar === */
+  .main-sidebar {
+    background: #1e293b;
+    color: #e5e7eb;
+  }
 
-    .card {
-      border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-      transition: all 0.3s ease-in-out;
-    }
-    .card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(250,204,21,0.15);
-    }
+  .brand-link {
+    background: #0f172a;
+    color: #facc15 !important;
+  }
 
-    .card-header {
-      background: #facc15;
-      color: #1e293b;
-      font-weight: 700;
-      border-top-left-radius: 12px;
-      border-top-right-radius: 12px;
-    }
+  .brand-link .brand-image {
+    opacity: 0.9;
+  }
 
-    /* === Scrollbar Styling === */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #e5e7eb;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #f59e0b;
-      border-radius: 4px;
-    }
-  </style>
+  /* Sidebar links */
+  .sidebar .nav-link {
+    color: #e5e7eb;
+  }
+
+  .sidebar .nav-link.active, 
+  .sidebar .nav-link:hover {
+    background-color: rgba(250,204,21,0.15);
+    color: #facc15;
+    border-left: 3px solid #facc15;
+    border-radius: 0 6px 6px 0;
+  }
+
+  /* Submenu items */
+  .sidebar .nav-treeview .nav-link {
+    color: #cbd5e1;
+    padding-left: 2.5rem;
+  }
+
+  .sidebar .nav-treeview .nav-link.active,
+  .sidebar .nav-treeview .nav-link:hover {
+    color: #facc15;
+    background-color: rgba(250,204,21,0.1);
+    border-left: 3px solid #facc15;
+    border-radius: 0 6px 6px 0;
+  }
+
+  /* === User Panel === */
+  .user-panel .image div {
+    background: #2563eb;
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* === Tables & Cards === */
+  table.dataTable tbody tr:hover {
+    background-color: rgba(250,204,21,0.1) !important;
+  }
+
+  .card {
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    transition: all 0.3s ease-in-out;
+  }
+
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(250,204,21,0.15);
+  }
+
+  .card-header {
+    background: #facc15;
+    color: #1e293b;
+    font-weight: 700;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+
+  /* === Scrollbar Styling === */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #e5e7eb;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #f59e0b;
+    border-radius: 4px;
+  }
+</style>
+
 </head>
 <body class="sidebar-mini layout-fixed layout-navbar-fixed">
     <div id="load"></div>
