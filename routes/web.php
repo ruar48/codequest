@@ -11,7 +11,7 @@ use App\Http\Controllers\Reports\EngagementController;
 use App\Http\Controllers\TestBank\QuestionController;
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('welcome');
 });
 
 
