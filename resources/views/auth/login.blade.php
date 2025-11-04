@@ -149,15 +149,19 @@
       </div>
     @endif
 
-    <!-- Login Form -->
+    <!-- ✅ Updated Login Form (Credentials Section) -->
     <form action="{{ route('login.submit') }}" method="POST" class="text-start mt-3">
       @csrf
 
       <div class="mb-3">
-        <label for="email" class="form-label">Email Address</label>
-        <input type="email" name="email" id="email"
-               class="form-control @error('email') is-invalid @enderror"
-               placeholder="you@example.com" value="{{ old('email') }}" required>
+        <label for="email" class="form-label">Email</label>
+        <input 
+          type="email" 
+          name="email" 
+          id="email" 
+          value="john.doe@example.com"
+          class="form-control @error('email') is-invalid @enderror"
+          required>
         @error('email')
           <div class="invalid-feedback">{{ $message }}</div>
         @enderror
@@ -165,9 +169,13 @@
 
       <div class="mb-3">
         <label for="password" class="form-label">Password</label>
-        <input type="password" name="password" id="password"
-               class="form-control @error('password') is-invalid @enderror"
-               placeholder="••••••••" required>
+        <input 
+          type="password" 
+          name="password" 
+          id="password" 
+          value="secretpassword"
+          class="form-control @error('password') is-invalid @enderror"
+          required>
         @error('password')
           <div class="invalid-feedback">{{ $message }}</div>
         @enderror
