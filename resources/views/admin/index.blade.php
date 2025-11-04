@@ -149,6 +149,20 @@ h3.section-title {
 <section class="content">
   <div class="container-fluid">
 
+    <!-- Dashboard Title -->
+    <div class="row">
+      <div class="col-12 text-center mb-2">
+        <h2 class="fw-bold" style="
+          color: #facc15;
+          text-shadow: 0 0 10px rgba(250,204,21,0.6);
+          margin-top: -10px;
+          margin-bottom: 10px;
+        ">
+          <i class="fas fa-chart-line"></i> Dashboard
+        </h2>
+      </div>
+    </div>
+
     <!-- Stat Cards -->
     <div class="row justify-content-center">
       <div class="col-lg-3 col-md-6 col-12">
@@ -192,7 +206,8 @@ h3.section-title {
       </div>
     </div>
 
-    <h3 class="section-title"><i class="fas fa-trophy"></i> Player Progress Timeline</h3>
+    <!-- Reduced Space -->
+    <h3 class="section-title mt-2 mb-3"><i class="fas fa-trophy"></i> Player Progress Timeline</h3>
 
     <div class="timeline">
       @forelse($userProgress as $progress)
