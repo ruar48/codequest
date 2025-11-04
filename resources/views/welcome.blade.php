@@ -57,7 +57,7 @@
 
     <div class="welcome-card text-center">
         <div class="welcome-logo mb-3">
-    <img src="{{ asset('images/logo_1.png') }}" alt="CodeQuest Logo" class="logo-img">
+    <img src="{{ asset('dist/img/logo_1.png') }}" alt="CodeQuest Logo" class="logo-img">
 </div>
         <h1 class="fw-bold">Welcome to <span class="text-info">CodeQuest</span></h1>
         <p class="lead mt-2 mb-4">An interactive platform for learning and testing your coding skills.</p>
