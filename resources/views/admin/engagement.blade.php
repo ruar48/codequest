@@ -3,83 +3,11 @@
 @section('title', 'Engagement Analytics')
 
 @section('content')
-<style>
-    body, .content-wrapper {
-    background: linear-gradient(135deg, #0a0f24, #1c223a);
-    font-family: 'Poppins', sans-serif;
-    color: #fff;
-}
-
-    .content-header h1 {
-        font-weight: 600;
-        color: #2f3640;
-    }
-
-    .analytics-card {
-        border-radius: 10px;
-        color: #fff;
-        padding: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    .analytics-card h3 {
-        font-size: 2rem;
-        font-weight: bold;
-        margin-bottom: 5px;
-    }
-
-    .analytics-card p {
-        font-size: 1rem;
-        margin: 0;
-    }
-
-    .analytics-card i {
-        font-size: 3rem;
-        opacity: 0.8;
-    }
-
-    .bg-blue { background-color: #007bff; }
-    .bg-green { background-color: #28a745; }
-    .bg-yellow { background-color: #ffc107; color: #2f3640; }
-    .bg-red { background-color: #dc3545; }
-
-    .card {
-        border: none;
-        border-radius: 10px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    .card-header {
-        border-radius: 10px 10px 0 0;
-        font-weight: 600;
-        color: #fff;
-        padding: 10px 15px;
-    }
-
-    .card-body {
-        background-color: #fff;
-        border-radius: 0 0 10px 10px;
-        padding: 20px;
-    }
-
-    .bg-header-blue { background-color: #007bff; }
-    .bg-header-green { background-color: #28a745; }
-    .bg-header-red { background-color: #dc3545; }
-
-    canvas {
-        width: 100% !important;
-        height: 300px !important;
-    }
-</style>
-
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Engagement Analytics</h1>
+                <h1 class="m-0 text-white font-weight-bold">Engagement Analytics</h1>
             </div>
         </div>
     </div>
@@ -91,32 +19,32 @@
         <!-- Overview Cards -->
         <div class="row mb-4">
             <div class="col-lg-4 col-md-6 mb-3">
-                <div class="analytics-card bg-blue">
+                <div class="card bg-gradient-primary shadow-lg rounded-lg text-white p-3 d-flex justify-content-between align-items-center">
                     <div>
-                        <h3>{{ $totalPlayers }}</h3>
-                        <p>Total Players</p>
+                        <h3 class="mb-1">{{ $totalPlayers }}</h3>
+                        <p class="mb-0">Total Players</p>
                     </div>
-                    <i class="fas fa-users"></i>
+                    <i class="fas fa-users fs-2 opacity-75"></i>
                 </div>
             </div>
 
             <div class="col-lg-4 col-md-6 mb-3">
-                <div class="analytics-card bg-green">
+                <div class="card bg-gradient-success shadow-lg rounded-lg text-white p-3 d-flex justify-content-between align-items-center">
                     <div>
-                        <h3>{{ number_format($averagePoints, 2) }}</h3>
-                        <p>Avg Points per Player</p>
+                        <h3 class="mb-1">{{ number_format($averagePoints, 2) }}</h3>
+                        <p class="mb-0">Avg Points per Player</p>
                     </div>
-                    <i class="fas fa-chart-line"></i>
+                    <i class="fas fa-chart-line fs-2 opacity-75"></i>
                 </div>
             </div>
 
             <div class="col-lg-4 col-md-6 mb-3">
-                <div class="analytics-card bg-yellow">
+                <div class="card bg-gradient-warning shadow-lg rounded-lg text-white p-3 d-flex justify-content-between align-items-center">
                     <div>
-                        <h3>{{ number_format($averageStars, 2) ?? 0 }}</h3>
-                        <p>Avg Stars per Player</p>
+                        <h3 class="mb-1">{{ number_format($averageStars, 2) ?? 0 }}</h3>
+                        <p class="mb-0">Avg Stars per Player</p>
                     </div>
-                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star fs-2 opacity-75"></i>
                 </div>
             </div>
         </div>
@@ -124,8 +52,8 @@
         <!-- Charts -->
         <div class="row">
             <div class="col-md-4 mb-4">
-                <div class="card">
-                    <div class="card-header bg-header-blue">
+                <div class="card shadow-lg rounded-lg">
+                    <div class="card-header bg-gradient-primary text-white font-weight-bold">
                         Top Players
                     </div>
                     <div class="card-body">
@@ -135,8 +63,8 @@
             </div>
 
             <div class="col-md-4 mb-4">
-                <div class="card">
-                    <div class="card-header bg-header-green">
+                <div class="card shadow-lg rounded-lg">
+                    <div class="card-header bg-gradient-success text-white font-weight-bold">
                         Level Performance
                     </div>
                     <div class="card-body">
@@ -146,8 +74,8 @@
             </div>
 
             <div class="col-md-4 mb-4">
-                <div class="card">
-                    <div class="card-header bg-header-red">
+                <div class="card shadow-lg rounded-lg">
+                    <div class="card-header bg-gradient-danger text-white font-weight-bold">
                         Execution Stats
                     </div>
                     <div class="card-body">
@@ -173,18 +101,21 @@ document.addEventListener("DOMContentLoaded", function () {
                     label: 'Total Points',
                     data: @json($topPlayers->pluck('points')),
                     backgroundColor: 'rgba(0, 123, 255, 0.7)',
+                    borderRadius: 4
                 },
                 {
                     label: 'Total Stars',
                     data: @json($topPlayers->pluck('stars')),
                     backgroundColor: 'rgba(255, 193, 7, 0.7)',
+                    borderRadius: 4
                 }
             ]
         },
         options: {
             indexAxis: 'x',
-            scales: { x: { ticks: { color: '#000' } }, y: { beginAtZero: true, ticks: { color: '#000' } } },
-            plugins: { legend: { labels: { color: '#000' } } }
+            responsive: true,
+            plugins: { legend: { labels: { color: '#000' } } },
+            scales: { x: { ticks: { color: '#000' } }, y: { beginAtZero: true, ticks: { color: '#000' } } }
         }
     });
 
@@ -211,8 +142,9 @@ document.addEventListener("DOMContentLoaded", function () {
             ]
         },
         options: {
-            scales: { x: { ticks: { color: '#000' } }, y: { beginAtZero: true, ticks: { color: '#000' } } },
-            plugins: { legend: { labels: { color: '#000' } } }
+            responsive: true,
+            plugins: { legend: { labels: { color: '#000' } } },
+            scales: { x: { ticks: { color: '#000' } }, y: { beginAtZero: true, ticks: { color: '#000' } } }
         }
     });
 
@@ -226,7 +158,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 backgroundColor: ['#20c997', '#f78fb3']
             }]
         },
-        options: { plugins: { legend: { labels: { color: '#000' } } } }
+        options: {
+            responsive: true,
+            plugins: { legend: { labels: { color: '#000' } } }
+        }
     });
 });
 </script>
