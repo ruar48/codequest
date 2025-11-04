@@ -20,20 +20,23 @@ body, .content-wrapper {
 
 /* Header Section */
 .content-header {
-  padding-top: 25px;
-  padding-bottom: 15px;
-  margin-bottom: 25px;
+  padding-top: 20px;        /* slightly reduced top padding */
+  padding-bottom: 5px;      /* less space below header */
+  margin-bottom: 10px;      /* reduced from 25px to 10px */
   text-align: center;
 }
+
 .content-header h1 {
   font-weight: 700;
   color: #facc15;
   font-size: 1.8rem;
   text-shadow: 0 0 12px rgba(250, 204, 21, 0.4);
 }
+
 .content-header p {
   color: #e5e5e5;
   font-size: 0.95rem;
+  margin-bottom: 0;          /* prevent extra spacing */
 }
 
 /* Card Style - same as admin management */
