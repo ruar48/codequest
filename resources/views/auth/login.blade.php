@@ -82,7 +82,7 @@
     }
 
     .form-label {
-      color: #dbeafe;
+      color: #ffffffff;
       font-weight: 500;
     }
 
