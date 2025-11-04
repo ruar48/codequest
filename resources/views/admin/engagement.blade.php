@@ -4,11 +4,79 @@
 
 @section('content')
 
+<style>
+/* === Small Boxes (Stats) === */
+.small-box {
+    border-radius: 12px;
+    position: relative;
+    display: block;
+    box-shadow: 0 2px 10px rgba(250,204,21,0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+.small-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 25px rgba(250,204,21,0.25);
+}
+
+.small-box .inner h3, .small-box .inner p {
+    color: #fff;
+}
+
+.small-box .icon i {
+    font-size: 3rem;
+    color: rgba(255,255,255,0.8);
+}
+
+/* === Cards (Charts) === */
+.card {
+    border-radius: 16px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(250,204,21,0.25);
+    box-shadow: 0 2px 15px rgba(250,204,21,0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 25px rgba(250,204,21,0.25);
+}
+
+.card-header {
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    color: #1c1c1c;
+    text-align: center;
+    background: linear-gradient(90deg, #facc15, #ffea80);
+    box-shadow: inset 0 -2px 5px rgba(0,0,0,0.1);
+}
+
+.card-body {
+    padding: 20px;
+    background: rgba(255,255,255,0.02);
+}
+
+/* === Header === */
+.content-header h1 {
+    font-weight: 700;
+    color: #facc15;
+    text-shadow: 0 0 10px rgba(250,204,21,0.5);
+}
+
+/* === Charts === */
+canvas {
+    width: 100% !important;
+    height: 300px !important;
+}
+</style>
+
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-warning">Engagement Analytics</h1>
+                <h1 class="m-0">Engagement Analytics</h1>
             </div>
         </div>
     </div>
@@ -72,9 +140,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="card shadow">
-                    <div class="card-header bg-primary text-white">
-                        <h5 class="card-title mb-0">Most Completed Levels</h5>
-                    </div>
+                    <div class="card-header">Most Completed Levels</div>
                     <div class="card-body">
                         <canvas id="levelsChart"></canvas>
                     </div>
@@ -83,9 +149,7 @@
 
             <div class="col-md-6">
                 <div class="card shadow">
-                    <div class="card-header bg-danger text-white">
-                        <h5 class="card-title mb-0">PHP Execution Success vs Errors</h5>
-                    </div>
+                    <div class="card-header">PHP Execution Success vs Errors</div>
                     <div class="card-body">
                         <canvas id="phpExecutionChart"></canvas>
                     </div>
@@ -99,9 +163,10 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
+    const chartTextColor = "#1f2937";
+
     // Levels Chart
-    const levelsCtx = document.getElementById('levelsChart').getContext('2d');
-    new Chart(levelsCtx, {
+    new Chart(document.getElementById('levelsChart'), {
         type: 'bar',
         data: {
             labels: @json($mostCompletedLevels->pluck('level_number')),
@@ -117,30 +182,27 @@ document.addEventListener("DOMContentLoaded", function () {
             responsive: true,
             plugins: { legend: { display: false } },
             scales: {
-                x: { ticks: { color: '#1f2937', font: { weight: 'bold' } } },
-                y: { ticks: { color: '#1f2937', beginAtZero: true } }
+                x: { ticks: { color: chartTextColor, font: { weight: 'bold' } } },
+                y: { ticks: { color: chartTextColor, beginAtZero: true } }
             }
         }
     });
 
     // PHP Execution Chart
-    const phpExecCtx = document.getElementById('phpExecutionChart').getContext('2d');
-    new Chart(phpExecCtx, {
+    new Chart(document.getElementById('phpExecutionChart'), {
         type: 'doughnut',
         data: {
             labels: ['Successful', 'Errors'],
             datasets: [{
                 data: [{{ $phpExecutions['successful'] }}, {{ $phpExecutions['errors'] }}],
                 backgroundColor: ['#27ae60', '#e74c3c'],
-                borderColor: ['#1f2937', '#1f2937'],
+                borderColor: ['#facc15', '#facc15'],
                 borderWidth: 1
             }]
         },
         options: {
             responsive: true,
-            plugins: {
-                legend: { labels: { color: '#1f2937', font: { weight: 'bold' } } }
-            }
+            plugins: { legend: { labels: { color: chartTextColor, font: { weight: 'bold' } } } }
         }
     });
 });
