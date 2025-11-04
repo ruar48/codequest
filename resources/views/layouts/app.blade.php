@@ -85,7 +85,7 @@
   .nav-link.active, 
   .nav-link:hover {
     color: #f59e0b !important;
-    background-color: rgba(245,158,11,0.1);
+    background-color: rgba(255, 255, 255, 1);
     border-radius: 6px;
   }
 
@@ -111,7 +111,7 @@
 
   .sidebar .nav-link.active, 
   .sidebar .nav-link:hover {
-    background-color: rgba(255, 255, 255, 0.15);
+    background-color: rgba(255, 255, 255, 1);
     color: #facc15;
     border-left: 3px solid #facc15;
     border-radius: 0 6px 6px 0;
@@ -126,7 +126,7 @@
   .sidebar .nav-treeview .nav-link.active,
   .sidebar .nav-treeview .nav-link:hover {
     color: #facc15;
-    background-color: rgba(250,204,21,0.1);
+    background-color: rgba(255, 255, 255, 0.24);
     border-left: 3px solid #facc15;
     border-radius: 0 6px 6px 0;
   }
