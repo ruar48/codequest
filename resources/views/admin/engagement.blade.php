@@ -3,45 +3,49 @@
 @section('title', 'Engagement Analytics')
 
 @section('content')
+
 <style>
-/* === Golden Futuristic Dashboard Theme === */
+/* === Dashboard/Admin Theme === */
 body, .content-wrapper {
     background: linear-gradient(135deg, #0a0f24, #1c223a);
     font-family: 'Poppins', sans-serif;
     color: #fff;
 }
 
+/* Header */
 .content-header {
     text-align: center;
-    padding-top: 20px;
-    padding-bottom: 10px;
+    padding-top: 30px;
+    padding-bottom: 20px;
 }
-
 .content-header h1 {
     font-weight: 700;
     color: #facc15;
     font-size: 2rem;
-    text-shadow: 0 0 12px rgba(250, 204, 21, 0.5);
+    text-shadow: 0 0 12px rgba(250,204,21,0.5);
+}
+.content-header p {
+    color: #e5e5e5;
+    font-size: 1rem;
 }
 
+/* Analytics Cards */
 .analytics-card {
     border-radius: 16px;
-    color: #fff;
-    padding: 25px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     background: rgba(255,255,255,0.05);
     border: 1px solid rgba(250,204,21,0.25);
     backdrop-filter: blur(8px);
     box-shadow: 0 0 20px rgba(250,204,21,0.15);
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     transition: all 0.3s ease;
 }
 .analytics-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 0 25px rgba(250,204,21,0.4);
 }
-
 .analytics-card h3 {
     font-size: 2rem;
     font-weight: 700;
@@ -49,19 +53,16 @@ body, .content-wrapper {
     color: #facc15;
     text-shadow: 0 0 8px rgba(250,204,21,0.6);
 }
-
 .analytics-card p {
-    font-size: 1rem;
     color: #e5e5e5;
 }
-
 .analytics-card i {
     font-size: 3rem;
     color: #facc15;
     opacity: 0.8;
 }
 
-/* Card Container for Charts */
+/* Chart Cards */
 .card {
     background: rgba(255,255,255,0.05);
     backdrop-filter: blur(10px);
@@ -74,7 +75,6 @@ body, .content-wrapper {
     transform: translateY(-3px);
     box-shadow: 0 0 25px rgba(250,204,21,0.4);
 }
-
 .card-header {
     background: linear-gradient(90deg, #facc15, #ffea80);
     color: #1c1c1c;
@@ -84,21 +84,13 @@ body, .content-wrapper {
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
 }
-
 .card-body {
     padding: 20px;
 }
-
 canvas {
     width: 100% !important;
     height: 300px !important;
 }
-
-/* Chart.js Tooltip and Text Overrides */
-.chartjs-render-monitor {
-    color: #fff !important;
-}
-
 </style>
 
 <div class="content-header">
@@ -109,7 +101,7 @@ canvas {
 <section class="content">
     <div class="container-fluid">
 
-        <!-- Overview Cards -->
+        <!-- Analytics Cards -->
         <div class="row mb-4">
             <div class="col-lg-4 col-md-6 mb-3">
                 <div class="analytics-card">
@@ -146,9 +138,7 @@ canvas {
         <div class="row">
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <div class="card-header">
-                        Top Players
-                    </div>
+                    <div class="card-header">Top Players</div>
                     <div class="card-body">
                         <canvas id="topPlayersChart"></canvas>
                     </div>
@@ -157,9 +147,7 @@ canvas {
 
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <div class="card-header">
-                        Level Performance
-                    </div>
+                    <div class="card-header">Level Performance</div>
                     <div class="card-body">
                         <canvas id="levelPerformanceChart"></canvas>
                     </div>
@@ -168,9 +156,7 @@ canvas {
 
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <div class="card-header">
-                        Execution Stats
-                    </div>
+                    <div class="card-header">Execution Stats</div>
                     <div class="card-body">
                         <canvas id="executionStatsChart"></canvas>
                     </div>
@@ -186,7 +172,7 @@ canvas {
 document.addEventListener("DOMContentLoaded", function () {
     const chartTextColor = "#fff";
 
-    // === Top Players ===
+    // Top Players Chart
     new Chart(document.getElementById('topPlayersChart'), {
         type: 'bar',
         data: {
@@ -213,13 +199,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 x: { ticks: { color: chartTextColor } },
                 y: { beginAtZero: true, ticks: { color: chartTextColor } }
             },
-            plugins: {
-                legend: { labels: { color: chartTextColor } }
-            }
+            plugins: { legend: { labels: { color: chartTextColor } } }
         }
     });
 
-    // === Level Performance ===
+    // Level Performance Chart
     new Chart(document.getElementById('levelPerformanceChart'), {
         type: 'line',
         data: {
@@ -252,7 +236,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // === Execution Stats ===
+    // Execution Stats Chart
     new Chart(document.getElementById('executionStatsChart'), {
         type: 'pie',
         data: {
@@ -270,4 +254,5 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 </script>
+
 @endsection
