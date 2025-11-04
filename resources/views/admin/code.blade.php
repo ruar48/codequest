@@ -110,21 +110,41 @@ body, .content-wrapper {
     background-color: #e74c3c !important;
 }
 
-/* DataTables inputs */
-.dataTables_wrapper .dataTables_filter input,
+/* DataTables controls styling */
+.dataTables_wrapper .dataTables_filter {
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    background-color: #0a0f24;
+    border: 1px solid rgba(250, 204, 21, 0.4);
+    color: #fff;
+    border-radius: 6px;
+    padding: 4px 10px;
+    width: 100%;
+    max-width: 200px;
+}
+
+.dataTables_wrapper .dataTables_length {
+    text-align: left;
+}
+
 .dataTables_wrapper .dataTables_length select {
     background-color: #0a0f24;
     border: 1px solid rgba(250, 204, 21, 0.4);
     color: #fff;
     border-radius: 6px;
-    padding: 4px 8px;
+    padding: 4px 6px;
 }
 
-/* DataTables pagination */
+/* Pagination buttons */
 .dataTables_wrapper .dataTables_paginate .paginate_button {
     background-color: transparent;
     border: none;
     color: #facc15 !important;
+    margin: 0 2px;
+    padding: 4px 10px;
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.current {
@@ -133,23 +153,23 @@ body, .content-wrapper {
     border-radius: 6px;
 }
 
+/* Table info */
 .dataTables_wrapper .dataTables_info {
     color: #aaa;
     margin-top: 10px;
 }
 
 /* Buttons */
-.btn-primary, .btn-secondary, .btn-success, .btn-info, .btn-warning, .btn-danger {
+.dt-buttons .btn {
     border-radius: 6px;
     font-weight: 600;
     transition: all 0.3s;
 }
 
-.btn-primary:hover, .btn-secondary:hover, .btn-success:hover, .btn-info:hover, .btn-warning:hover, .btn-danger:hover {
+.dt-buttons .btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 0 10px rgba(250, 204, 21, 0.8);
 }
-
 </style>
 
 <div class="content-header">
@@ -169,7 +189,7 @@ body, .content-wrapper {
             <div class="card-header">
                 <h3 class="card-title">Executed Code Logs</h3>
             </div>
-            <div class="card-body table-responsive p-0">
+            <div class="card-body table-responsive p-3">
                 <table class="table table-bordered table-hover text-center" id="logsTable">
                     <thead>
                         <tr>
@@ -234,7 +254,8 @@ $(document).ready(function () {
                 next: "Next",
                 first: "First",
                 last: "Last"
-            }
+            },
+            search: "Search Logs:"
         }
     });
 });
