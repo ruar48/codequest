@@ -128,7 +128,7 @@
 
   <div class="welcome-card text-center">
     <div class="welcome-logo mb-4">
-      <img src="{{ asset('dist/img/logo_1.png') }}" alt="CodeQuest Logo" class="logo-img">
+      <img src="{{ asset('dist/img/codequest_logo.png') }}" alt="CodeQuest Logo" class="logo-img">
     </div>
 
     <h1 class="fw-bold">Welcome to <span>CodeQuest</span></h1>
