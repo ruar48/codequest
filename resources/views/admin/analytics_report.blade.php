@@ -3,7 +3,6 @@
 @section('title', 'Leaderboard Report')
 
 @section('content')
-
 <style>
 /* === General Theme === */
 body, .content-wrapper {
@@ -12,35 +11,37 @@ body, .content-wrapper {
   font-family: 'Poppins', sans-serif;
 }
 .content {
-  padding-top: 30px !important; /* reduced top padding */
+  padding-top: 15px !important; /* reduced top padding */
   padding-bottom: 20px;
 }
 
 /* === Header === */
 .content-header {
-  padding-top: 15px;
-  padding-bottom: 10px;
+  padding-top: 10px;
+  padding-bottom: 0;
   text-align: center;
+  margin-bottom: 5px; /* tighter spacing below title */
 }
 .content-header h1 {
   font-weight: 700;
   color: #facc15;
   text-shadow: 0 0 12px rgba(250, 204, 21, 0.4);
-  margin-bottom: 8px;
+  margin-bottom: 5px;
 }
 
-/* === Small Boxes === */
+/* === Stat Boxes === */
 .small-box {
+  position: relative;
   border-radius: 16px;
   background: rgba(255,255,255,0.04);
   backdrop-filter: blur(8px);
   border: 1px solid rgba(250,204,21,0.25);
   box-shadow: 0 4px 16px rgba(250,204,21,0.25);
   transition: all 0.3s ease;
-  margin-top: 10px; /* further reduced spacing */
-  margin-bottom: 15px;
+  margin-top: 5px; /* reduced spacing between boxes */
+  margin-bottom: 10px;
   text-align: center;
-  padding: 20px;
+  padding: 25px 20px;
 }
 .small-box:hover {
   transform: translateY(-3px);
@@ -50,15 +51,21 @@ body, .content-wrapper {
   color: #facc15;
   font-weight: 700;
   font-size: 1.9rem;
+  margin-bottom: 5px;
 }
 .small-box .inner p {
   color: #ffffff;
   font-weight: 500;
+  margin-bottom: 10px;
+}
+.small-box .icon {
+  margin-top: 10px;
 }
 .small-box .icon i {
   color: #facc15;
-  font-size: 42px; /* slightly larger for clarity */
-  margin-top: 15px; /* more space from text */
+  font-size: 36px; /* smaller for balance */
+  margin-top: 5px;
+  margin-left: 5px; /* adds breathing space between icon and text */
 }
 
 /* === Cards for Charts === */
@@ -69,7 +76,7 @@ body, .content-wrapper {
   border: 1px solid rgba(250,204,21,0.25);
   box-shadow: 0 4px 16px rgba(250,204,21,0.15);
   transition: all 0.3s ease;
-  margin-bottom: 15px; /* reduced spacing */
+  margin-bottom: 15px;
 }
 .card:hover {
   transform: translateY(-2px);
@@ -93,7 +100,7 @@ body, .content-wrapper {
 /* === Charts === */
 canvas {
   width: 100% !important;
-  height: 230px !important; /* reduced height for tighter layout */
+  height: 230px !important;
 }
 
 /* === Sidebar Active Link === */
