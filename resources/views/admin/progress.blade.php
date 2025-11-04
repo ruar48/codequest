@@ -91,13 +91,14 @@ body, .content-wrapper {
     background-color: #27ae60 !important;
     color: #fff;
 }
-/* Stars Badge */
+/* Stars Badge – No background */
 .badge-light {
-    background-color: #facc15 !important; /* bright yellow to match theme */
-    color: #1c1c1c !important;            /* dark text for contrast */
+    background-color: transparent !important; /* remove background */
+    color: #facc15 !important;               /* golden/yellow stars */
     font-weight: 600;
-    padding: 0.4em 0.6em;
-    border-radius: 12px;
+    padding: 0;
+    border-radius: 0;
+    font-size: 1rem;
 }
 
 /* DataTables controls */
@@ -184,7 +185,7 @@ body, .content-wrapper {
                         <tr>
                             <td>{{ $entry->user->email ?? 'N/A' }}</td>
                             <td>{{ $entry->level_number }}</td>
-                            <td>
+                            <<td>
     <span class="badge badge-light">{{ str_repeat('⭐', $entry->stars) }}</span>
 </td>
                             <td>
