@@ -14,9 +14,8 @@ body, .content-wrapper {
 
 .content-header {
     text-align: center;
-    padding-top: 15px;
-    padding-bottom: 0;
-    margin-bottom: 10px;
+    padding-top: 20px;
+    padding-bottom: 10px;
 }
 
 .content-header h1 {
@@ -33,7 +32,7 @@ body, .content-wrapper {
 }
 
 .content {
-    padding-top: 40px !important;
+    padding-top: 30px !important;
     padding-bottom: 40px;
 }
 
@@ -49,7 +48,7 @@ body, .content-wrapper {
 }
 
 .card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-3px);
     box-shadow: 0 0 20px rgba(250, 204, 21, 0.5);
 }
 
@@ -67,6 +66,8 @@ body, .content-wrapper {
     background: transparent;
     color: #fff;
     margin-bottom: 0;
+    table-layout: fixed;
+    word-wrap: break-word;
 }
 
 .table thead th {
@@ -78,11 +79,35 @@ body, .content-wrapper {
 
 .table tbody td {
     vertical-align: middle;
+    text-align: center;
+    overflow-wrap: break-word;
 }
 
 .table tbody tr:hover {
     background: rgba(250, 204, 21, 0.1);
     transition: 0.3s;
+}
+
+/* Code & Output boxes */
+.code-box, .output-box {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    padding: 6px 8px;
+    border-radius: 8px;
+    font-family: monospace;
+    font-size: 13px;
+    max-width: 300px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/* Status badges */
+.badge-success {
+    background-color: #27ae60 !important;
+}
+.badge-danger {
+    background-color: #e74c3c !important;
 }
 
 /* DataTables inputs */
@@ -125,25 +150,6 @@ body, .content-wrapper {
     box-shadow: 0 0 10px rgba(250, 204, 21, 0.8);
 }
 
-/* Code & Output boxes */
-.code-box, .output-box {
-    background: rgba(255, 255, 255, 0.08);
-    color: #fff;
-    padding: 8px;
-    border-radius: 8px;
-    font-family: monospace;
-    font-size: 14px;
-    max-width: 350px;
-    overflow-x: auto;
-}
-
-/* Status badges */
-.badge-success {
-    background-color: #27ae60 !important;
-}
-.badge-danger {
-    background-color: #e74c3c !important;
-}
 </style>
 
 <div class="content-header">
@@ -151,7 +157,7 @@ body, .content-wrapper {
         <div class="row mb-2">
             <div class="col-sm-12">
                 <h1>PHP & MySQL Code Logs</h1>
-                <p>View executed code logs with output and status</p>
+                <p>Executed code logs with output and status</p>
             </div>
         </div>
     </div>
@@ -219,7 +225,7 @@ $(document).ready(function () {
             { extend: 'pdf', className: 'btn btn-sm btn-danger me-1' },
             { extend: 'print', className: 'btn btn-sm btn-primary' }
         ],
-        order: [[0, 'desc']], // default sort by ID descending
+        order: [[0, 'desc']],
         pagingType: "full_numbers",
         language: {
             info: "Showing _START_ to _END_ of _TOTAL_ logs",
