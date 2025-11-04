@@ -119,7 +119,7 @@
 
   /* Submenu items */
   .sidebar .nav-treeview .nav-link {
-    color: #cbd5e1;
+    color: #ffffffff;
     padding-left: 2.5rem;
   }
 
