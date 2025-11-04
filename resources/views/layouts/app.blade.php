@@ -131,16 +131,28 @@
     border-left: 3px solid #facc15;
     border-radius: 0 6px 6px 0;
 }
-  /* === User Panel === */
-  .user-panel .image div {
-    background: #2563eb;
-    color: #fff;
+/* Sidebar User Panel */
+.user-panel .info a {
+    color: #ffffff; /* White text for user name */
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+}
+
+.user-panel .info a:hover {
+    color: #facc15; /* Golden accent on hover */
+    text-decoration: none;
+}
+
+/* User Circle */
+.user-panel .image div {
+    background: #2563eb; /* Blue background for initial */
+    color: #ffffff;       /* White initial letter */
     font-weight: bold;
     font-size: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
-  }
+}
 
   /* === Tables & Cards === */
   table.dataTable tbody tr:hover {
