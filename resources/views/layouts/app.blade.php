@@ -103,34 +103,34 @@
   .brand-link .brand-image {
     opacity: 0.9;
   }
+/* Sidebar Menu Text */
+.sidebar .nav-sidebar .nav-link {
+    color: #ffffff; /* White text for sidebar links */
+    transition: all 0.2s ease-in-out;
+}
 
-  /* Sidebar links */
-  .sidebar .nav-link {
-    color: #e5e7eb;
-  }
-
-  .sidebar .nav-link.active, 
-  .sidebar .nav-link:hover {
-    background-color: rgba(255, 255, 255, 1);
-    color: #facc15;
+/* Sidebar Hover & Active */
+.sidebar .nav-sidebar .nav-link:hover,
+.sidebar .nav-sidebar .nav-link.active {
+    color: #facc15; /* Golden accent */
+    background-color: rgba(250, 204, 21, 0.15);
     border-left: 3px solid #facc15;
     border-radius: 0 6px 6px 0;
-  }
+}
 
-  /* Submenu items */
-  .sidebar .nav-treeview .nav-link {
-    color: #ffffffff;
+/* Submenu Items (Treeview) */
+.sidebar .nav-treeview .nav-link {
+    color: #e5e7eb; /* Slightly lighter for submenu items */
     padding-left: 2.5rem;
-  }
+}
 
-  .sidebar .nav-treeview .nav-link.active,
-  .sidebar .nav-treeview .nav-link:hover {
-    color: #facc15;
-    background-color: rgba(255, 255, 255, 1);
+.sidebar .nav-treeview .nav-link:hover,
+.sidebar .nav-treeview .nav-link.active {
+    color: #facc15; /* Golden on hover/active */
+    background-color: rgba(250, 204, 21, 0.1);
     border-left: 3px solid #facc15;
     border-radius: 0 6px 6px 0;
-  }
-
+}
   /* === User Panel === */
   .user-panel .image div {
     background: #2563eb;
