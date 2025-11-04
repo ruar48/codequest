@@ -13,17 +13,18 @@
     </div>
 </div>
 
-<section class="content">
+<section class="content" style="background: #f0f2f5; min-height: calc(100vh - 120px);">
     <div class="container-fluid">
         <!-- Leaderboards Card -->
-        <div class="card shadow-sm rounded-2" style="background: #f8f9fa; border: 1px solid #dee2e6;">
-            <div class="card-header d-flex justify-content-between align-items-center" style="background: #007bff; color: #fff;">
-                <h3 class="card-title">Top Players</h3>
+        <div class="card shadow rounded-3 border-0" style="background: #ffffff;">
+            <div class="card-header d-flex justify-content-between align-items-center" 
+                 style="background: linear-gradient(90deg, #4a90e2, #007bff); color: #fff; font-weight: 500;">
+                <h3 class="card-title mb-0">Top Players</h3>
             </div>
 
-            <div class="card-body table-responsive p-0">
-                <table class="table table-hover table-striped table-bordered text-center" id="LeaderBoardsTable">
-                    <thead class="table-dark">
+            <div class="card-body table-responsive p-3">
+                <table class="table table-hover table-striped table-bordered text-center align-middle" id="LeaderBoardsTable">
+                    <thead class="table-primary">
                         <tr>
                             <th>Rank</th>
                             <th>Name</th>
