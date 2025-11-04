@@ -5,172 +5,226 @@
 @section('content')
 <style>
     body {
-        background-color: #0d0f21;
+        background-color: #f5f6fa;
+    }
+
+    .content-header h1 {
+        font-weight: 600;
+        color: #2f3640;
+    }
+
+    .analytics-card {
+        border-radius: 10px;
         color: #fff;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
-    .dashboard-header {
-        text-align: center;
-        color: #ffcc00;
+    .analytics-card h3 {
         font-size: 2rem;
-        font-weight: 700;
-        margin-bottom: 2rem;
-        text-shadow: 0 0 10px #ffcc00;
+        font-weight: bold;
+        margin-bottom: 5px;
     }
 
-    .stats-card {
-        background-color: #1a1c33;
-        border-radius: 20px;
-        padding: 1.5rem;
-        text-align: center;
-        box-shadow: 0 0 20px rgba(255, 204, 0, 0.1);
-        transition: all 0.3s ease;
-    }
-
-    .stats-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 0 30px rgba(255, 204, 0, 0.4);
-    }
-
-    .stats-icon {
-        font-size: 2.5rem;
-        color: #ffcc00;
-        margin-bottom: 0.5rem;
-        text-shadow: 0 0 10px #ffcc00;
-    }
-
-    .stats-number {
-        font-size: 2rem;
-        font-weight: 700;
-        color: #ffcc00;
-    }
-
-    .stats-label {
+    .analytics-card p {
         font-size: 1rem;
-        color: #fff;
-        opacity: 0.9;
+        margin: 0;
     }
+
+    .analytics-card i {
+        font-size: 3rem;
+        opacity: 0.8;
+    }
+
+    .bg-blue { background-color: #007bff; }
+    .bg-green { background-color: #28a745; }
+    .bg-yellow { background-color: #ffc107; color: #2f3640; }
+    .bg-red { background-color: #dc3545; }
 
     .card {
-        background-color: #1a1c33;
         border: none;
-        border-radius: 15px;
-        box-shadow: 0 0 15px rgba(255, 204, 0, 0.1);
-        color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
     .card-header {
-        background-color: transparent;
-        border-bottom: 1px solid rgba(255, 204, 0, 0.3);
+        border-radius: 10px 10px 0 0;
         font-weight: 600;
-        color: #ffcc00;
-        text-shadow: 0 0 10px #ffcc00;
+        color: #fff;
+        padding: 10px 15px;
     }
 
+    .card-body {
+        background-color: #fff;
+        border-radius: 0 0 10px 10px;
+        padding: 20px;
+    }
+
+    .bg-header-blue { background-color: #007bff; }
+    .bg-header-green { background-color: #28a745; }
+    .bg-header-red { background-color: #dc3545; }
+
     canvas {
-        background-color: transparent;
+        width: 100% !important;
+        height: 300px !important;
     }
 </style>
 
-<div class="container-fluid py-4">
-    <h2 class="dashboard-header"><i class="fas fa-chart-line"></i> Engagement Analytics</h2>
-
-    <!-- Overview Cards -->
-    <div class="row text-center mb-4">
-        <div class="col-lg-3 col-md-6 mb-4">
-            <div class="stats-card">
-                <div class="stats-icon"><i class="fas fa-users"></i></div>
-                <div class="stats-number">{{ $totalPlayers }}</div>
-                <div class="stats-label">Total Players</div>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mb-4">
-            <div class="stats-card">
-                <div class="stats-icon"><i class="fas fa-terminal"></i></div>
-                <div class="stats-number">{{ $phpExecutions['total'] }}</div>
-                <div class="stats-label">Total PHP Executions</div>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mb-4">
-            <div class="stats-card">
-                <div class="stats-icon"><i class="fas fa-chart-bar"></i></div>
-                <div class="stats-number">{{ number_format($averagePoints, 2) }}</div>
-                <div class="stats-label">Avg Points per Player</div>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mb-4">
-            <div class="stats-card">
-                <div class="stats-icon"><i class="fas fa-lightbulb"></i></div>
-                <div class="stats-number">{{ $totalTipsUsed }}</div>
-                <div class="stats-label">Tips Used</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Charts -->
-    <div class="row">
-        <div class="col-md-6 mb-4">
-            <div class="card shadow-lg">
-                <div class="card-header"><i class="fas fa-layer-group"></i> Most Completed Levels</div>
-                <div class="card-body">
-                    <canvas id="levelsChart"></canvas>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-6 mb-4">
-            <div class="card shadow-lg">
-                <div class="card-header"><i class="fas fa-code"></i> PHP Execution Success vs Errors</div>
-                <div class="card-body">
-                    <canvas id="phpExecutionChart"></canvas>
-                </div>
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Engagement Analytics</h1>
             </div>
         </div>
     </div>
 </div>
 
+<section class="content">
+    <div class="container-fluid">
+
+        <!-- Overview Cards -->
+        <div class="row mb-4">
+            <div class="col-lg-4 col-md-6 mb-3">
+                <div class="analytics-card bg-blue">
+                    <div>
+                        <h3>{{ $totalPlayers }}</h3>
+                        <p>Total Players</p>
+                    </div>
+                    <i class="fas fa-users"></i>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-3">
+                <div class="analytics-card bg-green">
+                    <div>
+                        <h3>{{ number_format($averagePoints, 2) }}</h3>
+                        <p>Avg Points per Player</p>
+                    </div>
+                    <i class="fas fa-chart-line"></i>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-3">
+                <div class="analytics-card bg-yellow">
+                    <div>
+                        <h3>{{ number_format($averageStars, 2) ?? 0 }}</h3>
+                        <p>Avg Stars per Player</p>
+                    </div>
+                    <i class="fas fa-star"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts -->
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-header bg-header-blue">
+                        Top Players
+                    </div>
+                    <div class="card-body">
+                        <canvas id="topPlayersChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-header bg-header-green">
+                        Level Performance
+                    </div>
+                    <div class="card-body">
+                        <canvas id="levelPerformanceChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-header bg-header-red">
+                        Execution Stats
+                    </div>
+                    <div class="card-body">
+                        <canvas id="executionStatsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-    // Levels Chart
-    var levelsCtx = document.getElementById('levelsChart').getContext('2d');
-    new Chart(levelsCtx, {
+    // Top Players
+    new Chart(document.getElementById('topPlayersChart'), {
         type: 'bar',
         data: {
-            labels: @json($mostCompletedLevels->pluck('level_number')),
-            datasets: [{
-                label: 'Completions',
-                data: @json($mostCompletedLevels->pluck('completion_count')),
-                backgroundColor: 'rgba(255, 204, 0, 0.7)',
-                borderColor: '#ffcc00',
-                borderWidth: 1
-            }]
+            labels: @json($topPlayers->pluck('email')),
+            datasets: [
+                {
+                    label: 'Total Points',
+                    data: @json($topPlayers->pluck('points')),
+                    backgroundColor: 'rgba(0, 123, 255, 0.7)',
+                },
+                {
+                    label: 'Total Stars',
+                    data: @json($topPlayers->pluck('stars')),
+                    backgroundColor: 'rgba(255, 193, 7, 0.7)',
+                }
+            ]
         },
         options: {
-            responsive: true,
-            scales: { y: { beginAtZero: true, ticks: { color: '#fff' } }, x: { ticks: { color: '#fff' } } },
-            plugins: { legend: { labels: { color: '#ffcc00' } } }
+            indexAxis: 'x',
+            scales: { x: { ticks: { color: '#000' } }, y: { beginAtZero: true, ticks: { color: '#000' } } },
+            plugins: { legend: { labels: { color: '#000' } } }
         }
     });
 
-    // PHP Execution Chart
-    var phpExecCtx = document.getElementById('phpExecutionChart').getContext('2d');
-    new Chart(phpExecCtx, {
-        type: 'doughnut',
+    // Level Performance
+    new Chart(document.getElementById('levelPerformanceChart'), {
+        type: 'line',
         data: {
-            labels: ['Successful', 'Errors'],
-            datasets: [{
-                data: [{{ $phpExecutions['successful'] }}, {{ $phpExecutions['errors'] }}],
-                backgroundColor: ['#ffcc00', '#ff3366']
-            }]
+            labels: @json($levels->pluck('level_number')),
+            datasets: [
+                {
+                    label: 'Avg Stars',
+                    data: @json($levels->pluck('avg_stars')),
+                    borderColor: '#ffc107',
+                    fill: false,
+                    tension: 0.4
+                },
+                {
+                    label: 'Avg Points',
+                    data: @json($levels->pluck('avg_points')),
+                    borderColor: '#007bff',
+                    fill: false,
+                    tension: 0.4
+                }
+            ]
         },
         options: {
-            responsive: true,
-            plugins: { legend: { labels: { color: '#fff' } } }
+            scales: { x: { ticks: { color: '#000' } }, y: { beginAtZero: true, ticks: { color: '#000' } } },
+            plugins: { legend: { labels: { color: '#000' } } }
         }
+    });
+
+    // Execution Stats
+    new Chart(document.getElementById('executionStatsChart'), {
+        type: 'pie',
+        data: {
+            labels: ['Successful', 'Failed'],
+            datasets: [{
+                data: [{{ $phpExecutions['successful'] }}, {{ $phpExecutions['errors'] }}],
+                backgroundColor: ['#20c997', '#f78fb3']
+            }]
+        },
+        options: { plugins: { legend: { labels: { color: '#000' } } } }
     });
 });
 </script>
