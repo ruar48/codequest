@@ -12,21 +12,21 @@ body, .content-wrapper {
   font-family: 'Poppins', sans-serif;
 }
 .content {
-  padding-top: 40px !important; /* reduced top padding */
-  padding-bottom: 30px;
+  padding-top: 30px !important; /* reduced top padding */
+  padding-bottom: 20px;
 }
 
 /* === Header === */
 .content-header {
-  padding-top: 20px;
-  padding-bottom: 15px;
+  padding-top: 15px;
+  padding-bottom: 10px;
   text-align: center;
 }
 .content-header h1 {
   font-weight: 700;
   color: #facc15;
   text-shadow: 0 0 12px rgba(250, 204, 21, 0.4);
-  margin-bottom: 10px; /* reduced margin */
+  margin-bottom: 8px;
 }
 
 /* === Small Boxes === */
@@ -37,13 +37,13 @@ body, .content-wrapper {
   border: 1px solid rgba(250,204,21,0.25);
   box-shadow: 0 4px 16px rgba(250,204,21,0.25);
   transition: all 0.3s ease;
-  margin-top: 15px; /* reduced spacing */
-  margin-bottom: 20px;
+  margin-top: 10px; /* further reduced spacing */
+  margin-bottom: 15px;
   text-align: center;
   padding: 20px;
 }
 .small-box:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   box-shadow: 0 0 18px rgba(250,204,21,0.4);
 }
 .small-box .inner h3 {
@@ -57,8 +57,8 @@ body, .content-wrapper {
 }
 .small-box .icon i {
   color: #facc15;
-  font-size: 40px;
-  margin-top: 10px;
+  font-size: 42px; /* slightly larger for clarity */
+  margin-top: 15px; /* more space from text */
 }
 
 /* === Cards for Charts === */
@@ -69,11 +69,11 @@ body, .content-wrapper {
   border: 1px solid rgba(250,204,21,0.25);
   box-shadow: 0 4px 16px rgba(250,204,21,0.15);
   transition: all 0.3s ease;
-  margin-bottom: 20px; /* reduced spacing */
+  margin-bottom: 15px; /* reduced spacing */
 }
 .card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0 18px rgba(250,204,21,0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 0 16px rgba(250,204,21,0.35);
 }
 .card-header {
   font-weight: 700;
@@ -93,7 +93,7 @@ body, .content-wrapper {
 /* === Charts === */
 canvas {
   width: 100% !important;
-  height: 250px !important; /* slightly smaller height for tighter fit */
+  height: 230px !important; /* reduced height for tighter layout */
 }
 
 /* === Sidebar Active Link === */
@@ -202,30 +202,11 @@ document.addEventListener("DOMContentLoaded", function () {
         data: {
             labels: @json($leaderboardData->pluck('username')),
             datasets: [
-                {
-                    label: 'Total Points',
-                    data: @json($leaderboardData->pluck('total_points')),
-                    backgroundColor: 'rgba(250,204,21,0.7)',
-                    borderColor: '#facc15',
-                    borderWidth: 1
-                },
-                {
-                    label: 'Total Stars',
-                    data: @json($leaderboardData->pluck('total_stars')),
-                    backgroundColor: 'rgba(255, 255, 255, 0.3)',
-                    borderColor: '#ffea80',
-                    borderWidth: 1
-                }
+                { label: 'Total Points', data: @json($leaderboardData->pluck('total_points')), backgroundColor: 'rgba(250,204,21,0.7)', borderColor: '#facc15', borderWidth: 1 },
+                { label: 'Total Stars', data: @json($leaderboardData->pluck('total_stars')), backgroundColor: 'rgba(255, 255, 255, 0.3)', borderColor: '#ffea80', borderWidth: 1 }
             ]
         },
-        options: {
-            responsive: true,
-            plugins: { legend: { labels: { color: chartTextColor } } },
-            scales: {
-                x: { ticks: { color: chartTextColor, font: { weight: 'bold' } } },
-                y: { ticks: { color: chartTextColor, beginAtZero: true } }
-            }
-        }
+        options: { responsive: true, plugins: { legend: { labels: { color: chartTextColor } } }, scales: { x: { ticks: { color: chartTextColor, font: { weight: 'bold' } } }, y: { ticks: { color: chartTextColor, beginAtZero: true } } } }
     });
 
     // Level Performance Chart
@@ -234,32 +215,11 @@ document.addEventListener("DOMContentLoaded", function () {
         data: {
             labels: @json($levelPerformance->pluck('level_number')),
             datasets: [
-                {
-                    label: 'Avg Stars',
-                    data: @json($levelPerformance->pluck('avg_stars')),
-                    borderColor: '#facc15',
-                    backgroundColor: 'rgba(250,204,21,0.2)',
-                    fill: true,
-                    tension: 0.4
-                },
-                {
-                    label: 'Avg Points',
-                    data: @json($levelPerformance->pluck('avg_points')),
-                    borderColor: '#ffea80',
-                    backgroundColor: 'rgba(255,255,255,0.15)',
-                    fill: true,
-                    tension: 0.4
-                }
+                { label: 'Avg Stars', data: @json($levelPerformance->pluck('avg_stars')), borderColor: '#facc15', backgroundColor: 'rgba(250,204,21,0.2)', fill: true, tension: 0.4 },
+                { label: 'Avg Points', data: @json($levelPerformance->pluck('avg_points')), borderColor: '#ffea80', backgroundColor: 'rgba(255,255,255,0.15)', fill: true, tension: 0.4 }
             ]
         },
-        options: {
-            responsive: true,
-            plugins: { legend: { labels: { color: chartTextColor } } },
-            scales: {
-                x: { ticks: { color: chartTextColor } },
-                y: { ticks: { color: chartTextColor, beginAtZero: true } }
-            }
-        }
+        options: { responsive: true, plugins: { legend: { labels: { color: chartTextColor } } }, scales: { x: { ticks: { color: chartTextColor } }, y: { ticks: { color: chartTextColor, beginAtZero: true } } } }
     });
 
     // PHP Execution Chart
@@ -267,16 +227,9 @@ document.addEventListener("DOMContentLoaded", function () {
         type: 'pie',
         data: {
             labels: ['Successful', 'Failed'],
-            datasets: [{
-                data: [{{ $phpExecutions->successful }}, {{ $phpExecutions->errors }}],
-                backgroundColor: ['#27ae60', '#e74c3c'],
-                borderColor: ['rgba(250,204,21,0.3)', 'rgba(255,255,255,0.1)'],
-                borderWidth: 1
-            }]
+            datasets: [{ data: [{{ $phpExecutions->successful }}, {{ $phpExecutions->errors }}], backgroundColor: ['#27ae60', '#e74c3c'], borderColor: ['rgba(250,204,21,0.3)', 'rgba(255,255,255,0.1)'], borderWidth: 1 }]
         },
-        options: {
-            plugins: { legend: { labels: { color: chartTextColor } } }
-        }
+        options: { plugins: { legend: { labels: { color: chartTextColor } } } }
     });
 });
 </script>
