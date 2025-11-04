@@ -5,20 +5,20 @@
 @section('content')
 <div class="content-header text-center py-2">
     <h1 class="fw-bold text-warning mb-1" style="font-size: 1.8rem;">PLAYER MANAGEMENT</h1>
-    <p class="text-light mb-2" style="font-size: 0.95rem;">Manage CodeQuest registered players</p>
+    <p class="text-light mb-2" style="font-size: 0.95rem;">Manage CodeQuest players efficiently</p>
 </div>
 
 <section class="content">
     <div class="container-fluid">
 
-        <!-- Player Table -->
-        <div class="card bg-dark text-light border-0 shadow-lg rounded-4">
+        <div class="card bg-dark text-light border-0 shadow-lg rounded-4 mt-2">
             <div class="card-header bg-gradient-warning text-dark fw-bold py-2 rounded-top d-flex justify-content-between align-items-center">
                 <span><i class="fas fa-users me-2"></i> List of Players</span>
             </div>
+
             <div class="card-body p-3 bg-dark">
                 <div class="table-responsive">
-                    <table class="table table-dark table-hover align-middle mb-0 rounded" id="playersTable">
+                    <table id="playersTable" class="table table-dark table-hover align-middle mb-0 rounded">
                         <thead class="table-warning text-dark">
                             <tr>
                                 <th>ID</th>
@@ -93,6 +93,7 @@
     .card {
         background-color: #101020;
         border: 1px solid rgba(255, 204, 0, 0.2);
+        margin-top: 10px;
     }
 
     .table-hover tbody tr:hover {
@@ -107,6 +108,30 @@
 
     .btn-warning:hover {
         box-shadow: 0 0 12px rgba(255, 204, 0, 0.9);
+    }
+
+    .dataTables_wrapper .dataTables_filter input {
+        background-color: #0d0d1a;
+        border: 1px solid rgba(255, 204, 0, 0.4);
+        color: #fff;
+        border-radius: 6px;
+        padding: 4px 8px;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+        background-color: transparent;
+        border: none;
+        color: #ffcc00 !important;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+        background: linear-gradient(90deg, #ffcc00, #ffdd44);
+        color: #000 !important;
+        border-radius: 6px;
+    }
+
+    .dataTables_wrapper .dataTables_info {
+        color: #aaa;
     }
 </style>
 
