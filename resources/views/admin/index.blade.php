@@ -5,128 +5,88 @@
 @section('content')
 
 <style>
-  body {
-    background: radial-gradient(circle at top, #0a1128 0%, #001845 40%, #00296b 100%) !important;
-    color: #f1f5f9;
-    font-family: 'Poppins', sans-serif;
-  }
+/* Timeline */
+.timeline {
+  position: relative;
+  margin-left: 20px;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background-color: rgba(0, 123, 255, 0.4);
+}
+.timeline-item {
+  position: relative;
+  padding-left: 30px;
+}
+.timeline-point {
+  position: absolute;
+  left: -2px;
+  top: 10px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.7);
+}
+.timeline-content {
+  background: #ffffff;
+  color: #212529;
+  transition: all 0.25s ease;
+  border-left: 4px solid #007bff;
+}
+.timeline-content:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
 
-  .content-header {
-    display: none;
-  }
+/* Player names and text */
+.timeline-content h5 {
+  color: #007bff;
+  font-weight: 600;
+}
+.timeline-content p {
+  color: #333;
+  font-size: 15px;
+}
+.timeline-content strong {
+  color: #222;
+}
 
-  h1, h3, p, small, label, .breadcrumb-item a, .breadcrumb-item.active {
-    color: #f8fafc !important;
-  }
+/* Header */
+h3 i {
+  color: #007bff;
+}
+h3 {
+  color: #222;
+  font-weight: 600;
+  text-shadow: none;
+}
 
-  /* Stat Cards */
-  .small-box {
-    border-radius: 15px;
-    position: relative;
-    overflow: hidden;
-    background: rgba(15,23,42,0.85);
-    border: 1px solid rgba(250,204,21,0.4);
-    box-shadow: 0 0 10px rgba(250,204,21,0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .small-box:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 18px rgba(250,204,21,0.5);
-  }
-
-  .small-box .icon {
-    opacity: 0.15;
-    position: absolute;
-    right: 15px;
-    top: 10px;
-    font-size: 70px;
-    color: rgba(255,255,255,0.5);
-  }
-
-  .small-box .inner h3 {
-    font-size: 2.4rem;
-    font-weight: 700;
-    color: #fff;
-  }
-
-  .small-box .inner p {
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: #facc15;
-  }
-
-  /* Timeline */
-  .timeline {
-    position: relative;
-    margin-left: 25px;
-    padding-left: 10px;
-  }
-
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 10px;
-    top: 0;
-    width: 3px;
-    height: 100%;
-    background: linear-gradient(180deg, #facc15, transparent);
-    border-radius: 3px;
-  }
-
-  .timeline-item {
-    position: relative;
-    padding-left: 40px;
-    margin-bottom: 1.5rem;
-  }
-
-  .timeline-point {
-    position: absolute;
-    left: 3px;
-    top: 15px;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: radial-gradient(circle, #facc15, #fbbf24);
-    box-shadow: 0 0 10px rgba(250,204,21,0.9);
-  }
-
-  .timeline-content {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(250,204,21,0.3);
-    border-radius: 12px;
-    padding: 1rem;
-    color: #fff;
-    backdrop-filter: blur(6px);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-
-  .timeline-content:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 0 16px rgba(250,204,21,0.4);
-  }
-
-  .timeline-content h5 {
-    color: #facc15;
-    font-weight: 600;
-  }
-
-  .timeline-content p, .timeline-content small {
-    color: #f8fafc;
-  }
-
-  .timeline-content strong {
-    color: #fde047;
-  }
-
-  /* Section Title */
-  .section-title {
-    color: #facc15;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    text-shadow: 0 0 8px rgba(250,204,21,0.6);
-  }
+/* Stat Cards */
+.small-box {
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
+}
+.small-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+.small-box .inner h3,
+.small-box .inner p {
+  color: #fff;
+}
+.bg-primary { background-color: #0056b3 !important; }
+.bg-success { background-color: #198754 !important; }
+.bg-warning { background-color: #ffb300 !important; color: #fff !important; }
+.bg-danger  { background-color: #d63384 !important; color: #fff !important; }
 </style>
+
 
 <section class="content">
   <div class="container-fluid">
