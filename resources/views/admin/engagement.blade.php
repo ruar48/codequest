@@ -4,9 +4,11 @@
 
 @section('content')
 <style>
-    body {
-        background-color: #f5f6fa;
-    }
+    body, .content-wrapper {
+    background: linear-gradient(135deg, #0a0f24, #1c223a);
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+}
 
     .content-header h1 {
         font-weight: 600;
