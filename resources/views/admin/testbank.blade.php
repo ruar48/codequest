@@ -155,8 +155,9 @@ body, .content-wrapper {
   <div class="container-fluid">
 
     <!-- Add Question Button -->
-    <div class="d-flex justify-content-end mb-2">
-      <button type="button" class="btn btn-primary text-dark fw-semibold px-3 py-1" data-toggle="modal" data-target="#questionModal">
+    <div class="d-flex justify-content-end mb-3">
+      <button type="button" class="btn btn-primary text-dark fw-semibold px-3 py-1"
+              data-bs-toggle="modal" data-bs-target="#questionModal">
         <i class="fas fa-plus me-1"></i> Add Question
       </button>
     </div>
@@ -210,7 +211,44 @@ body, .content-wrapper {
   </div>
 </section>
 
-<!-- Existing Modals (unchanged functionality) -->
-{!! $modalContent ?? '' !!}
+<!-- Add Question Modal -->
+<div class="modal fade" id="questionModal" tabindex="-1" aria-labelledby="questionModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="questionModalLabel">Add Question</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="addQuestionForm">
+          <div class="mb-3">
+            <label for="questionText" class="form-label">Question</label>
+            <textarea class="form-control" id="questionText" name="question" rows="3"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="outputText" class="form-label">Output</label>
+            <input type="text" class="form-control" id="outputText" name="output">
+          </div>
+          <div class="mb-3">
+            <label for="levelSelect" class="form-label">Level</label>
+            <select class="form-control" id="levelSelect" name="level">
+              <option value="easy">Easy</option>
+              <option value="intermediate">Intermediate</option>
+              <option value="hard">Hard</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="tipsText" class="form-label">Tips</label>
+            <input type="text" class="form-control" id="tipsText" name="tips">
+          </div>
+          <button type="submit" class="btn btn-primary">Save Question</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap 5 JS (for modal) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 @endsection
