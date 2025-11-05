@@ -37,14 +37,14 @@ body, .content-wrapper {
 .btn-primary {
   background-color: #facc15;
   color: #1c1c1c;
+  font-weight: 600;
   border: none;
   border-radius: 6px;
-  font-weight: 600;
   transition: all 0.3s;
 }
 .btn-primary:hover {
-  transform: translateY(-2px);
   box-shadow: 0 0 10px rgba(250, 204, 21, 0.8);
+  transform: translateY(-2px);
 }
 
 /* Cards */
@@ -54,12 +54,7 @@ body, .content-wrapper {
   border: 1px solid rgba(250, 204, 21, 0.25);
   box-shadow: 0 4px 16px rgba(250, 204, 21, 0.25);
   border-radius: 16px;
-  margin-top: 8px !important;
-  transition: all 0.3s ease;
-}
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 0 20px rgba(250, 204, 21, 0.5);
+  margin-top: 8px;
 }
 .card-header {
   background: linear-gradient(90deg, #facc15, #ffea80);
@@ -70,7 +65,7 @@ body, .content-wrapper {
 }
 
 /* Table */
-.table-dark, .table {
+.table-dark {
   background: transparent;
   color: #fff;
 }
@@ -83,8 +78,6 @@ body, .content-wrapper {
   background: rgba(250, 204, 21, 0.1);
   transition: 0.3s;
 }
-
-/* Badges */
 .badge-success { background-color: #27ae60; }
 .badge-warning { background-color: #f1c40f; color: #1c1c1c; }
 .badge-danger  { background-color: #e74c3c; }
@@ -110,28 +103,6 @@ body, .content-wrapper {
   box-shadow: 0 0 8px rgba(250, 204, 21, 0.6);
   border-color: #facc15;
 }
-
-/* DataTables */
-.dataTables_wrapper .dataTables_filter input {
-  background-color: #0a0f24;
-  border: 1px solid rgba(250, 204, 21, 0.4);
-  color: #fff;
-  border-radius: 6px;
-  padding: 4px 8px;
-}
-.dataTables_wrapper .dataTables_paginate .paginate_button {
-  background-color: transparent;
-  border: none;
-  color: #facc15 !important;
-}
-.dataTables_wrapper .dataTables_paginate .paginate_button.current {
-  background: linear-gradient(90deg, #facc15, #ffea80);
-  color: #000 !important;
-  border-radius: 6px;
-}
-.dataTables_wrapper .dataTables_info {
-  color: #aaa;
-}
 </style>
 
 <div class="content-header">
@@ -144,7 +115,7 @@ body, .content-wrapper {
 
     <!-- Add Question Button -->
     <div class="d-flex justify-content-end mb-2">
-      <button type="button" class="btn btn-primary text-dark fw-semibold px-3 py-1" 
+      <button type="button" class="btn btn-primary fw-semibold px-3 py-1" 
               data-bs-toggle="modal" data-bs-target="#questionModal">
         <i class="fas fa-plus me-1"></i> Add Question
       </button>
@@ -199,7 +170,7 @@ body, .content-wrapper {
   </div>
 </section>
 
-<!-- Add/Edit Question Modal -->
+<!-- Add Question Modal -->
 <div class="modal fade" id="questionModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <form id="questionForm" action="{{ route('testbank.store') }}" method="POST">
@@ -212,15 +183,15 @@ body, .content-wrapper {
         <div class="modal-body">
           <div class="mb-3">
             <label for="question" class="form-label">Question</label>
-            <textarea name="question" id="question" class="form-control" required></textarea>
+            <textarea class="form-control" id="question" name="question" rows="3" required></textarea>
           </div>
           <div class="mb-3">
-            <label for="output" class="form-label">Expected Output</label>
-            <input type="text" name="output" id="output" class="form-control" required>
+            <label for="output" class="form-label">Output</label>
+            <input type="text" class="form-control" id="output" name="output" required>
           </div>
           <div class="mb-3">
             <label for="level" class="form-label">Level</label>
-            <select name="level" id="level" class="form-control" required>
+            <select class="form-control" id="level" name="level" required>
               <option value="easy">Easy</option>
               <option value="intermediate">Intermediate</option>
               <option value="hard">Hard</option>
@@ -228,7 +199,7 @@ body, .content-wrapper {
           </div>
           <div class="mb-3">
             <label for="tips" class="form-label">Tips</label>
-            <textarea name="tips" id="tips" class="form-control"></textarea>
+            <textarea class="form-control" id="tips" name="tips" rows="2"></textarea>
           </div>
         </div>
         <div class="modal-footer">
@@ -240,39 +211,7 @@ body, .content-wrapper {
   </div>
 </div>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // Initialize DataTables
-    $('#questionTable').DataTable();
-
-    // Edit button click
-    $('.edit-question').on('click', function () {
-      const id = $(this).data('id');
-      const row = $('tr[data-id="'+id+'"]');
-      const question = row.find('td:nth-child(2)').text();
-      const output = row.find('td:nth-child(3)').text();
-      const level = row.find('td:nth-child(4) span').text().toLowerCase();
-      const tips = row.find('td:nth-child(5)').text();
-
-      $('#questionForm').attr('action', '/testbank/' + id);
-      $('#questionForm').append('<input type="hidden" name="_method" value="PUT">');
-      $('#question').val(question);
-      $('#output').val(output);
-      $('#level').val(level);
-      $('#tips').val(tips);
-      $('#questionModal .modal-title').text('Edit Question');
-      var modal = new bootstrap.Modal(document.getElementById('questionModal'));
-      modal.show();
-    });
-
-    // Clear form on modal hide
-    $('#questionModal').on('hidden.bs.modal', function () {
-      $('#questionForm').trigger("reset");
-      $('#questionForm').attr('action', "{{ route('testbank.store') }}");
-      $('#questionForm input[name="_method"]').remove();
-      $('#questionModal .modal-title').text('Add Question');
-    });
-  });
-</script>
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 @endsection
