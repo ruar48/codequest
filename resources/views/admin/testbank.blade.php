@@ -12,7 +12,7 @@ body, .content-wrapper {
   font-family: 'Poppins', sans-serif;
 }
 
-/* === Header === */
+/* Header */
 .content-header {
   text-align: center;
   padding-top: 15px;
@@ -33,31 +33,21 @@ body, .content-wrapper {
   margin-bottom: 0;
 }
 
-/* === Container === */
-.content {
-  padding-top: 40px !important;
-  padding-bottom: 40px;
-}
-
-/* === Buttons === */
-.btn-warning, .btn-primary, .btn-danger, .btn-success {
-  border-radius: 6px;
-  font-weight: 600;
-  transition: all 0.3s;
-}
-.btn-warning:hover, .btn-primary:hover, .btn-danger:hover, .btn-success:hover {
-  transform: translateY(-2px);
-}
+/* Buttons */
 .btn-primary {
   background-color: #facc15;
   color: #1c1c1c;
   border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: all 0.3s;
 }
 .btn-primary:hover {
+  transform: translateY(-2px);
   box-shadow: 0 0 10px rgba(250, 204, 21, 0.8);
 }
 
-/* === Card === */
+/* Cards */
 .card {
   background: rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(8px);
@@ -71,8 +61,6 @@ body, .content-wrapper {
   transform: translateY(-4px);
   box-shadow: 0 0 20px rgba(250, 204, 21, 0.5);
 }
-
-/* === Card Header === */
 .card-header {
   background: linear-gradient(90deg, #facc15, #ffea80);
   color: #1c1c1c;
@@ -81,7 +69,7 @@ body, .content-wrapper {
   border-top-right-radius: 16px;
 }
 
-/* === Table === */
+/* Table */
 .table-dark, .table {
   background: transparent;
   color: #fff;
@@ -96,12 +84,12 @@ body, .content-wrapper {
   transition: 0.3s;
 }
 
-/* === Badges === */
+/* Badges */
 .badge-success { background-color: #27ae60; }
 .badge-warning { background-color: #f1c40f; color: #1c1c1c; }
 .badge-danger  { background-color: #e74c3c; }
 
-/* === Modal === */
+/* Modal */
 .modal-content {
   background-color: #101020;
   color: #fff;
@@ -123,7 +111,7 @@ body, .content-wrapper {
   border-color: #facc15;
 }
 
-/* === DataTables === */
+/* DataTables */
 .dataTables_wrapper .dataTables_filter input {
   background-color: #0a0f24;
   border: 1px solid rgba(250, 204, 21, 0.4);
@@ -155,8 +143,8 @@ body, .content-wrapper {
   <div class="container-fluid">
 
     <!-- Add Question Button -->
-    <div class="d-flex justify-content-end mb-3">
-      <button type="button" class="btn btn-primary text-dark fw-semibold px-3 py-1"
+    <div class="d-flex justify-content-end mb-2">
+      <button type="button" class="btn btn-primary text-dark fw-semibold px-3 py-1" 
               data-bs-toggle="modal" data-bs-target="#questionModal">
         <i class="fas fa-plus me-1"></i> Add Question
       </button>
@@ -211,44 +199,80 @@ body, .content-wrapper {
   </div>
 </section>
 
-<!-- Add Question Modal -->
-<div class="modal fade" id="questionModal" tabindex="-1" aria-labelledby="questionModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="questionModalLabel">Add Question</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form id="addQuestionForm">
+<!-- Add/Edit Question Modal -->
+<div class="modal fade" id="questionModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <form id="questionForm" action="{{ route('testbank.store') }}" method="POST">
+      @csrf
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Question</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
           <div class="mb-3">
-            <label for="questionText" class="form-label">Question</label>
-            <textarea class="form-control" id="questionText" name="question" rows="3"></textarea>
+            <label for="question" class="form-label">Question</label>
+            <textarea name="question" id="question" class="form-control" required></textarea>
           </div>
           <div class="mb-3">
-            <label for="outputText" class="form-label">Output</label>
-            <input type="text" class="form-control" id="outputText" name="output">
+            <label for="output" class="form-label">Expected Output</label>
+            <input type="text" name="output" id="output" class="form-control" required>
           </div>
           <div class="mb-3">
-            <label for="levelSelect" class="form-label">Level</label>
-            <select class="form-control" id="levelSelect" name="level">
+            <label for="level" class="form-label">Level</label>
+            <select name="level" id="level" class="form-control" required>
               <option value="easy">Easy</option>
               <option value="intermediate">Intermediate</option>
               <option value="hard">Hard</option>
             </select>
           </div>
           <div class="mb-3">
-            <label for="tipsText" class="form-label">Tips</label>
-            <input type="text" class="form-control" id="tipsText" name="tips">
+            <label for="tips" class="form-label">Tips</label>
+            <textarea name="tips" id="tips" class="form-control"></textarea>
           </div>
+        </div>
+        <div class="modal-footer">
           <button type="submit" class="btn btn-primary">Save Question</button>
-        </form>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        </div>
       </div>
-    </div>
+    </form>
   </div>
 </div>
 
-<!-- Bootstrap 5 JS (for modal) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Initialize DataTables
+    $('#questionTable').DataTable();
+
+    // Edit button click
+    $('.edit-question').on('click', function () {
+      const id = $(this).data('id');
+      const row = $('tr[data-id="'+id+'"]');
+      const question = row.find('td:nth-child(2)').text();
+      const output = row.find('td:nth-child(3)').text();
+      const level = row.find('td:nth-child(4) span').text().toLowerCase();
+      const tips = row.find('td:nth-child(5)').text();
+
+      $('#questionForm').attr('action', '/testbank/' + id);
+      $('#questionForm').append('<input type="hidden" name="_method" value="PUT">');
+      $('#question').val(question);
+      $('#output').val(output);
+      $('#level').val(level);
+      $('#tips').val(tips);
+      $('#questionModal .modal-title').text('Edit Question');
+      var modal = new bootstrap.Modal(document.getElementById('questionModal'));
+      modal.show();
+    });
+
+    // Clear form on modal hide
+    $('#questionModal').on('hidden.bs.modal', function () {
+      $('#questionForm').trigger("reset");
+      $('#questionForm').attr('action', "{{ route('testbank.store') }}");
+      $('#questionForm input[name="_method"]').remove();
+      $('#questionModal .modal-title').text('Add Question');
+    });
+  });
+</script>
 
 @endsection
