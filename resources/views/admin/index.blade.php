@@ -36,9 +36,9 @@ body, .content-wrapper {
 /* Stat Cards */
 .small-box {
   border-radius: 16px;
-  background: #ffffff; /* white card background */
+  background: #ffffff;
   border: 1px solid rgba(212, 175, 127, 0.2);
-  box-shadow: 0 10px 30px rgba(212, 175, 127, 0.35), 0 6px 20px rgba(0,0,0,0.08); /* stronger, more visible shadow */
+  box-shadow: 0 6px 18px rgba(212, 175, 127, 0.25), 0 4px 12px rgba(0,0,0,0.06); /* lighter shadow */
   transition: all 0.3s ease;
   margin-top: 30px;
   margin-bottom: 35px;
@@ -46,8 +46,8 @@ body, .content-wrapper {
   padding: 20px;
 }
 .small-box:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 15px 40px rgba(212, 175, 127, 0.45), 0 8px 25px rgba(0,0,0,0.12); /* deeper hover shadow */
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(212, 175, 127, 0.3), 0 6px 18px rgba(0,0,0,0.08); /* lighter hover shadow */
 }
 .small-box .inner h3 {
   color: #d4af7f;
@@ -91,6 +91,7 @@ h3.section-title {
   position: relative;
   padding-left: 40px;
 }
+/* Timeline Point Glow */
 .timeline-point {
   position: absolute;
   left: -2px;
@@ -99,7 +100,7 @@ h3.section-title {
   height: 14px;
   border-radius: 50%;
   background-color: #d4af7f;
-  box-shadow: 0 0 15px rgba(212, 175, 127, 0.9); /* brighter, more glowing point */
+  box-shadow: 0 0 10px rgba(212, 175, 127, 0.7); /* slightly reduced glow */
 }
 .timeline-content {
   background: #ffffff;
@@ -108,13 +109,13 @@ h3.section-title {
   border-left: 4px solid #d4af7f;
   border-radius: 10px;
   transition: all 0.3s ease;
-  box-shadow: 0 12px 30px rgba(212, 175, 127, 0.35), 0 6px 20px rgba(0,0,0,0.08); /* stronger shadow */
+  box-shadow: 0 6px 18px rgba(212, 175, 127, 0.25), 0 4px 12px rgba(0,0,0,0.06); /* lighter shadow */
   margin-bottom: 25px;
   padding: 15px;
 }
 .timeline-content:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 18px 40px rgba(212, 175, 127, 0.45), 0 8px 25px rgba(0,0,0,0.12); /* hover effect more visible */
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(212, 175, 127, 0.3), 0 6px 18px rgba(0,0,0,0.08); /* lighter hover shadow */
 }
 .timeline-content h5 {
   color: #d4af7f;
@@ -154,13 +155,13 @@ h3.section-title {
     <div class="row">
       <div class="col-12 text-center mb-2">
         <h2 class="fw-bold" style="
-          color: #facc15;
-          text-shadow: 0 0 10px rgba(250,204,21,0.6);
-          margin-top: -10px;
-          margin-bottom: 10px;
-        ">
-          <i class="fas fa-chart-line"></i> Dashboard
-        </h2>
+  color: #0b3d91; /* dark blue */
+  text-shadow: 0 0 10px rgba(11,61,145,0.4); /* subtle matching glow */
+  margin-top: -10px;
+  margin-bottom: 10px;
+">
+  <i class="fas fa-chart-line"></i> Dashboard
+</h2>
       </div>
     </div>
 
