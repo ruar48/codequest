@@ -138,7 +138,7 @@ h3.section-title {
 .nav-link.active,
 .nav-link:hover {
   background-color: rgba(123, 45, 45, 0.1) !important; /* light transparent maroon */
-  border-left: 3px solid #7b2d2d; /* maroon indicator line */
+  border-left: 3px solid #ecbbbbff; /* maroon indicator line */
   color: #7b2d2d !important; /* maroon text */
   font-weight: 600;
   transition: all 0.2s ease;
