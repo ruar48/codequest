@@ -27,8 +27,8 @@ body, .content-wrapper {
 }
 .content-header h1 {
   font-weight: 700;
-  color: #d4af7f;
-  text-shadow: 0 0 4px rgba(212, 175, 127, 0.4);
+  color: #7b2d2d;
+  text-shadow: 0 0 4px rgba(123, 45, 45, 0.4);
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -37,8 +37,8 @@ body, .content-wrapper {
 .small-box {
   border-radius: 16px;
   background: #ffffff;
-  border: 1px solid rgba(212, 175, 127, 0.2);
-  box-shadow: 0 6px 18px rgba(212, 175, 127, 0.25), 0 4px 12px rgba(0,0,0,0.06); /* lighter shadow */
+  border: 1px solid rgba(123, 45, 45, 0.2);
+  box-shadow: 0 6px 18px rgba(123, 45, 45, 0.25), 0 4px 12px rgba(0,0,0,0.06);
   transition: all 0.3s ease;
   margin-top: 30px;
   margin-bottom: 35px;
@@ -47,10 +47,10 @@ body, .content-wrapper {
 }
 .small-box:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 28px rgba(212, 175, 127, 0.3), 0 6px 18px rgba(0,0,0,0.08); /* lighter hover shadow */
+  box-shadow: 0 10px 28px rgba(123, 45, 45, 0.3), 0 6px 18px rgba(0,0,0,0.08);
 }
 .small-box .inner h3 {
-  color: #d4af7f;
+  color: #7b2d2d;
   font-weight: 700;
   font-size: 2rem;
 }
@@ -59,7 +59,7 @@ body, .content-wrapper {
   font-weight: 500;
 }
 .small-box .icon i {
-  color: #d4af7f;
+  color: #7b2d2d;
   font-size: 45px;
   margin-top: 10px;
 }
@@ -68,7 +68,7 @@ body, .content-wrapper {
 h3.section-title {
   color: #333;
   font-weight: 600;
-  text-shadow: 0 0 6px rgba(212, 175, 127, 0.3);
+  text-shadow: 0 0 6px rgba(123, 45, 45, 0.3);
   margin-top: 50px;
   margin-bottom: 20px;
 }
@@ -85,12 +85,13 @@ h3.section-title {
   top: 0;
   width: 2px;
   height: 100%;
-  background-color: rgba(212, 175, 127, 0.4);
+  background-color: rgba(123, 45, 45, 0.4);
 }
 .timeline-item {
   position: relative;
   padding-left: 40px;
 }
+
 /* Timeline Point Glow */
 .timeline-point {
   position: absolute;
@@ -99,26 +100,26 @@ h3.section-title {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background-color: #d4af7f;
-  box-shadow: 0 0 10px rgba(212, 175, 127, 0.7); /* slightly reduced glow */
+  background-color: #7b2d2d;
+  box-shadow: 0 0 10px rgba(123, 45, 45, 0.7);
 }
 .timeline-content {
   background: #ffffff;
   color: #333;
-  border: 1px solid rgba(212, 175, 127, 0.3);
-  border-left: 4px solid #d4af7f;
+  border: 1px solid rgba(123, 45, 45, 0.3);
+  border-left: 4px solid #7b2d2d;
   border-radius: 10px;
   transition: all 0.3s ease;
-  box-shadow: 0 6px 18px rgba(212, 175, 127, 0.25), 0 4px 12px rgba(0,0,0,0.06); /* lighter shadow */
+  box-shadow: 0 6px 18px rgba(123, 45, 45, 0.25), 0 4px 12px rgba(0,0,0,0.06);
   margin-bottom: 25px;
   padding: 15px;
 }
 .timeline-content:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(212, 175, 127, 0.3), 0 6px 18px rgba(0,0,0,0.08); /* lighter hover shadow */
+  box-shadow: 0 12px 30px rgba(123, 45, 45, 0.3), 0 6px 18px rgba(0,0,0,0.08);
 }
 .timeline-content h5 {
-  color: #d4af7f;
+  color: #7b2d2d;
   font-weight: 600;
 }
 .timeline-content p {
@@ -130,9 +131,9 @@ h3.section-title {
 
 /* Sidebar Highlight */
 .nav-link.active, .nav-link:hover {
-  background-color: rgba(212, 175, 127, 0.15);
-  border-left: 3px solid #d4af7f;
-  color: #d4af7f !important;
+  background-color: rgba(123, 45, 45, 0.15);
+  border-left: 3px solid #7b2d2d;
+  color: #7b2d2d !important;
 }
 
 /* Scrollbar Theme */
@@ -140,10 +141,10 @@ h3.section-title {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #e7e3da;
+  background: #f3f3f3;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: #d4af7f;
+  background-color: #7b2d2d;
   border-radius: 4px;
 }
 </style>
@@ -155,13 +156,13 @@ h3.section-title {
     <div class="row">
       <div class="col-12 text-center mb-2">
         <h2 class="fw-bold" style="
-  color: #0b3d91; /* dark blue */
-  text-shadow: 0 0 10px rgba(11,61,145,0.4); /* subtle matching glow */
-  margin-top: -10px;
-  margin-bottom: 10px;
-">
-  <i class="fas fa-chart-line"></i> Dashboard
-</h2>
+          color: #0b3d91;
+          text-shadow: 0 0 10px rgba(11,61,145,0.4);
+          margin-top: -10px;
+          margin-bottom: 10px;
+        ">
+          <i class="fas fa-chart-line"></i> Dashboard
+        </h2>
       </div>
     </div>
 
