@@ -90,70 +90,81 @@
   }
 
   /* === Sidebar === */
-  .main-sidebar {
-    background: #1e293b;
-    color: #e5e7eb;
-  }
-
-  .brand-link {
-    background: #0f172a;
-    color: #facc15 !important;
-  }
-
-  .brand-link .brand-image {
-    opacity: 0.9;
-  }
-/* Sidebar Menu Text */
-.sidebar .nav-sidebar .nav-link {
-    color: #ffffff; /* White text for sidebar links */
-    transition: all 0.2s ease-in-out;
+.main-sidebar {
+  background: linear-gradient(180deg, #1f2937 0%, #0f172a 100%); /* Dark grey to near-black gradient */
+  color: #e5e7eb;
+  transition: all 0.3s ease-in-out;
 }
 
-/* Sidebar Hover & Active */
+/* Brand Link (Top Logo Section) */
+.brand-link {
+  background: linear-gradient(90deg, #111827, #1e293b);
+  color: #facc15 !important;
+  border-bottom: 1px solid rgba(250, 204, 21, 0.2);
+}
+
+/* Brand Image Slight Glow */
+.brand-link .brand-image {
+  opacity: 0.9;
+  filter: drop-shadow(0 0 3px rgba(250, 204, 21, 0.4));
+}
+
+/* Sidebar Links */
+.sidebar .nav-sidebar .nav-link {
+  color: #ffffff;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Hover and Active State */
 .sidebar .nav-sidebar .nav-link:hover,
 .sidebar .nav-sidebar .nav-link.active {
-    color: #facc15; /* Golden accent */
-    background-color: rgba(250, 204, 21, 0.15);
-    border-left: 3px solid #facc15;
-    border-radius: 0 6px 6px 0;
+  color: #facc15; /* Golden accent */
+  background: rgba(250, 204, 21, 0.1);
+  border-left: 3px solid #facc15;
+  border-radius: 0 8px 8px 0;
 }
 
-/* Submenu Items (Treeview) */
+/* Treeview (submenu) styling */
 .sidebar .nav-treeview .nav-link {
-    color: #e5e7eb; /* Slightly lighter for submenu items */
-    padding-left: 2.5rem;
+  color: #d1d5db;
+  padding-left: 2.5rem;
 }
 
 .sidebar .nav-treeview .nav-link:hover,
 .sidebar .nav-treeview .nav-link.active {
-    color: #facc15; /* Golden on hover/active */
-    background-color: rgba(250, 204, 21, 0.1);
-    border-left: 3px solid #facc15;
-    border-radius: 0 6px 6px 0;
+  color: #facc15;
+  background: rgba(250, 204, 21, 0.08);
+  border-left: 3px solid #facc15;
+  border-radius: 0 8px 8px 0;
 }
-/* Sidebar User Panel */
+
+/* User Panel */
+.user-panel {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 .user-panel .info a {
-    color: #ffffff; /* White text for user name */
-    font-weight: 500;
-    transition: all 0.2s ease-in-out;
+  color: #ffffff;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
 }
 
 .user-panel .info a:hover {
-    color: #facc15; /* Golden accent on hover */
-    text-decoration: none;
+  color: #facc15;
+  text-decoration: none;
 }
 
-/* User Circle */
+/* User Icon Circle */
 .user-panel .image div {
-    background: #2563eb; /* Blue background for initial */
-    color: #ffffff;       /* White initial letter */
-    font-weight: bold;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  background: linear-gradient(135deg, #2563eb, #1e3a8a);
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
   /* === Tables & Cards === */
   table.dataTable tbody tr:hover {
     background-color: rgba(250,204,21,0.1) !important;
