@@ -138,7 +138,7 @@ h3.section-title {
 .nav-link.active,
 .nav-link:hover {
   background-color: transparent !important; /* fully transparent highlight */
-  border-left: 3px solid #ffffff; /* keep white indicator line */
+  border-left: 3px solid #f4bdbdff; /* keep white indicator line */
   color: #ffffff !important; /* white text for contrast */
   font-weight: 600;
   transition: all 0.2s ease;
