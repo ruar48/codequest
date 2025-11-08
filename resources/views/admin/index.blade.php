@@ -6,22 +6,18 @@
 
 <style>
 /* --- Body & Layout --- */
+/* ==============================
+   CodeQuest Dashboard: Pastel Gold Theme
+   Background: Light Pastel
+   Accent: Pastel Gold #d4b86a
+   ============================== */
+
+/* --- Body & Layout --- */
 body, .content-wrapper {
   background: linear-gradient(135deg, #f4f2ea, #eae6db);
   color: #2a2a2a;
   font-family: 'Poppins', sans-serif;
   transition: all 0.3s ease;
-}
-
-/* Add small fixed label for testing/debug */
-body::before {
-  content: '✅ New Style Active';
-  position: fixed;
-  top: 8px;
-  left: 12px;
-  color: #d4b86a;
-  font-weight: bold;
-  z-index: 9999;
 }
 
 /* Content Spacing */
@@ -138,7 +134,7 @@ h3.section-title {
   color: #000;
 }
 
-/* --- Buttons (Optional) --- */
+/* --- Buttons --- */
 .btn-warning {
   background: #d4b86a;
   color: #2a2a2a;
@@ -177,6 +173,7 @@ h3.section-title {
 .bg-pastel-gold {
   background-color: #d4b86a !important;
 }
+
 </style>
 
 <section class="content">
