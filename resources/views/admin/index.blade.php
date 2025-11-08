@@ -7,8 +7,8 @@
 <style>
 /* General Theme */
 body, .content-wrapper {
-  background: linear-gradient(135deg, #0a0f24, #1c223a);
-  color: #fff;
+  background: #f5f4f1; /* soft light pastel background */
+  color: #333; /* darker text for contrast */
   font-family: 'Poppins', sans-serif;
 }
 
@@ -18,7 +18,7 @@ body, .content-wrapper {
   padding-bottom: 40px;
 }
 
-/* Header Section (Optional – if you keep a header title) */
+/* Header Section */
 .content-header {
   padding-top: 30px;
   padding-bottom: 30px;
@@ -27,47 +27,47 @@ body, .content-wrapper {
 }
 .content-header h1 {
   font-weight: 700;
-  color: #facc15;
-  text-shadow: 0 0 12px rgba(250, 204, 21, 0.4);
+  color: #d4af7f; /* pastel gold */
+  text-shadow: 0 0 12px rgba(212, 175, 127, 0.4);
 }
 
 /* Stat Cards */
 .small-box {
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.6); /* light, subtle */
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(250, 204, 21, 0.25);
-  box-shadow: 0 4px 16px rgba(250, 204, 21, 0.25);
+  border: 1px solid rgba(212, 175, 127, 0.25);
+  box-shadow: 0 4px 16px rgba(212, 175, 127, 0.25);
   transition: all 0.3s ease;
-  margin-top: 30px; /* adds consistent top spacing */
+  margin-top: 30px;
   margin-bottom: 35px;
   text-align: center;
   padding: 20px;
 }
 .small-box:hover {
   transform: translateY(-6px);
-  box-shadow: 0 0 20px rgba(250, 204, 21, 0.5);
+  box-shadow: 0 0 20px rgba(212, 175, 127, 0.5);
 }
 .small-box .inner h3 {
-  color: #facc15;
+  color: #d4af7f;
   font-weight: 700;
   font-size: 2rem;
 }
 .small-box .inner p {
-  color: #ffffff;
+  color: #333;
   font-weight: 500;
 }
 .small-box .icon i {
-  color: #facc15;
+  color: #d4af7f;
   font-size: 45px;
   margin-top: 10px;
 }
 
 /* Timeline Layout */
 h3.section-title {
-  color: #fff;
+  color: #333;
   font-weight: 600;
-  text-shadow: 0 0 10px rgba(250, 204, 21, 0.3);
+  text-shadow: 0 0 10px rgba(212, 175, 127, 0.3);
   margin-top: 50px;
   margin-bottom: 20px;
 }
@@ -84,7 +84,7 @@ h3.section-title {
   top: 0;
   width: 2px;
   height: 100%;
-  background-color: rgba(250, 204, 21, 0.4);
+  background-color: rgba(212, 175, 127, 0.4);
 }
 .timeline-item {
   position: relative;
@@ -97,14 +97,14 @@ h3.section-title {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background-color: #facc15;
-  box-shadow: 0 0 8px rgba(250, 204, 21, 0.8);
+  background-color: #d4af7f;
+  box-shadow: 0 0 8px rgba(212, 175, 127, 0.8);
 }
 .timeline-content {
-  background: rgba(255, 255, 255, 0.05);
-  color: #fff;
-  border: 1px solid rgba(250, 204, 21, 0.3);
-  border-left: 4px solid #facc15;
+  background: rgba(255, 255, 255, 0.6);
+  color: #333;
+  border: 1px solid rgba(212, 175, 127, 0.3);
+  border-left: 4px solid #d4af7f;
   border-radius: 10px;
   transition: all 0.3s ease;
   backdrop-filter: blur(8px);
@@ -113,24 +113,24 @@ h3.section-title {
 }
 .timeline-content:hover {
   transform: translateY(-4px);
-  box-shadow: 0 0 14px rgba(250, 204, 21, 0.4);
+  box-shadow: 0 0 14px rgba(212, 175, 127, 0.4);
 }
 .timeline-content h5 {
-  color: #facc15;
+  color: #d4af7f;
   font-weight: 600;
 }
 .timeline-content p {
-  color: #e4e4e4;
+  color: #555;
 }
 .timeline-content strong {
-  color: #fff;
+  color: #333;
 }
 
 /* Sidebar Highlight */
 .nav-link.active, .nav-link:hover {
-  background-color: rgba(250, 204, 21, 0.15);
-  border-left: 3px solid #facc15;
-  color: #facc15 !important;
+  background-color: rgba(212, 175, 127, 0.15);
+  border-left: 3px solid #d4af7f;
+  color: #d4af7f !important;
 }
 
 /* Scrollbar Theme */
@@ -138,13 +138,14 @@ h3.section-title {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #111827;
+  background: #e0e0e0;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: #facc15;
+  background-color: #d4af7f;
   border-radius: 4px;
 }
 </style>
+
 
 <section class="content">
   <div class="container-fluid">
