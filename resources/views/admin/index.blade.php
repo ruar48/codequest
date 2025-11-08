@@ -134,12 +134,11 @@ h3.section-title {
   color: #333;
 }
 
-/* Sidebar Active / Hover Links */
 .nav-link.active,
 .nav-link:hover {
-  background-color: rgba(123, 45, 45, 0.15) !important; /* transparent maroon */
-  border-left: 3px solid #7b2d2d; /* maroon indicator line */
-  color: #7b2d2d !important; /* text in maroon for better contrast */
+  background-color: rgba(123, 45, 45, 0.05) !important; /* very light transparent maroon */
+  border-left: 3px solid #7b2d2d; /* keep maroon indicator line */
+  color: #7b2d2d !important; /* maroon text */
   font-weight: 600;
   transition: all 0.2s ease;
 }
