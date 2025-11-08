@@ -37,28 +37,27 @@ body, .content-wrapper {
 .small-box {
   border-radius: 16px;
   background: #ffffff;
-  border: 1px solid rgba(123, 45, 45, 0.2);
-  box-shadow: 0 6px 18px rgba(123, 45, 45, 0.25), 0 4px 12px rgba(0,0,0,0.06);
+  border: 1px solid rgba(123, 45, 45, 0.3);
   transition: all 0.3s ease;
   margin-top: 30px;
   margin-bottom: 35px;
-  position: relative;
-  padding: 25px 25px 20px 25px;
-  overflow: hidden;
+  padding: 20px 25px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .small-box:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 28px rgba(123, 45, 45, 0.3), 0 6px 18px rgba(0,0,0,0.08);
 }
 .small-box .inner {
-  text-align: left; /* move text to the left */
-  margin-right: 60px; /* create space between text and icon */
+  text-align: left;
 }
 .small-box .inner h3 {
   color: #7b2d2d;
   font-weight: 700;
   font-size: 2rem;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
 }
 .small-box .inner p {
   color: #333;
@@ -66,16 +65,11 @@ body, .content-wrapper {
   margin: 0;
 }
 .small-box .icon {
-  position: absolute;
-  top: 30%;
-  right: 20px; /* icon positioned to the right */
   font-size: 48px;
   color: #7b2d2d;
-  opacity: 0.9;
-  transition: all 0.3s ease;
-}
-.small-box:hover .icon {
-  transform: scale(1.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Timeline Layout */
@@ -115,7 +109,6 @@ h3.section-title {
   height: 14px;
   border-radius: 50%;
   background-color: #7b2d2d;
-  box-shadow: 0 0 10px rgba(123, 45, 45, 0.7);
 }
 .timeline-content {
   background: #ffffff;
@@ -124,13 +117,11 @@ h3.section-title {
   border-left: 4px solid #7b2d2d;
   border-radius: 10px;
   transition: all 0.3s ease;
-  box-shadow: 0 6px 18px rgba(123, 45, 45, 0.25), 0 4px 12px rgba(0,0,0,0.06);
   margin-bottom: 25px;
   padding: 15px;
 }
 .timeline-content:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(123, 45, 45, 0.3), 0 6px 18px rgba(0,0,0,0.08);
 }
 .timeline-content h5 {
   color: #7b2d2d;
