@@ -62,7 +62,7 @@
 
   /* === Body & Content === */
   body, .content-wrapper {
-    background: #f5f6fa; /* light background for less eye strain */
+  background: linear-gradient(135deg, #0a0f24, #1c223a);
     font-family: 'Poppins', sans-serif;
     color: #ffffffff;
   }
