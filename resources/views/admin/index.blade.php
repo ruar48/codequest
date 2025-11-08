@@ -38,7 +38,7 @@ body, .content-wrapper {
   border-radius: 16px;
   background: #ffffff; /* white card background */
   border: 1px solid rgba(212, 175, 127, 0.2);
-  box-shadow: 0 8px 20px rgba(212, 175, 127, 0.3); /* stronger shadow for highlight */
+  box-shadow: 0 10px 30px rgba(212, 175, 127, 0.35), 0 6px 20px rgba(0,0,0,0.08); /* stronger, more visible shadow */
   transition: all 0.3s ease;
   margin-top: 30px;
   margin-bottom: 35px;
@@ -47,7 +47,7 @@ body, .content-wrapper {
 }
 .small-box:hover {
   transform: translateY(-6px);
-  box-shadow: 0 12px 30px rgba(212, 175, 127, 0.4);
+  box-shadow: 0 15px 40px rgba(212, 175, 127, 0.45), 0 8px 25px rgba(0,0,0,0.12); /* deeper hover shadow */
 }
 .small-box .inner h3 {
   color: #d4af7f;
@@ -99,22 +99,22 @@ h3.section-title {
   height: 14px;
   border-radius: 50%;
   background-color: #d4af7f;
-  box-shadow: 0 0 8px rgba(212, 175, 127, 0.8);
+  box-shadow: 0 0 15px rgba(212, 175, 127, 0.9); /* brighter, more glowing point */
 }
 .timeline-content {
-  background: #ffffff; /* white timeline cards */
+  background: #ffffff;
   color: #333;
   border: 1px solid rgba(212, 175, 127, 0.3);
   border-left: 4px solid #d4af7f;
   border-radius: 10px;
   transition: all 0.3s ease;
-  box-shadow: 0 6px 18px rgba(212, 175, 127, 0.2); /* shadow added */
+  box-shadow: 0 12px 30px rgba(212, 175, 127, 0.35), 0 6px 20px rgba(0,0,0,0.08); /* stronger shadow */
   margin-bottom: 25px;
   padding: 15px;
 }
 .timeline-content:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 22px rgba(212, 175, 127, 0.3);
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(212, 175, 127, 0.45), 0 8px 25px rgba(0,0,0,0.12); /* hover effect more visible */
 }
 .timeline-content h5 {
   color: #d4af7f;
