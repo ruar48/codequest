@@ -141,7 +141,7 @@ h3.section-title {
   color: #ffffff !important; /* keep text white for visibility */
   font-weight: 600;
   transition: all 0.2s ease;
-  box-shadow: 0 4px 8px rgba(220, 160, 160, 0.25); /* subtle shadow with light maroon */
+  box-shadow: 0 6px 12px rgba(220, 160, 160, 0.35); /* stronger, more visible shadow */
 }
 
 /* Scrollbar Theme */
