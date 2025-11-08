@@ -100,7 +100,7 @@
 <style>
 /* --- CodeQuest Dashboard Theming --- */
 body, .content-wrapper {
-  background: white;
+  background: #99dbf4ff;
   font-family: 'Poppins', sans-serif;
   color: #fff;
 }
