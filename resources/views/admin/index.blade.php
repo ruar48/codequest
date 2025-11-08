@@ -7,7 +7,7 @@
 <style>
 /* General Theme */
 body, .content-wrapper {
-  background: #ffffff; /* pure white background */
+  background: #ffffff;
   color: #333;
   font-family: 'Poppins', sans-serif;
 }
@@ -44,24 +44,35 @@ body, .content-wrapper {
   margin-bottom: 35px;
   text-align: center;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 .small-box:hover {
   transform: translateY(-4px);
   box-shadow: 0 10px 28px rgba(123, 45, 45, 0.3), 0 6px 18px rgba(0,0,0,0.08);
 }
+.small-box .inner {
+  margin-bottom: 15px; /* space between text and icon */
+}
 .small-box .inner h3 {
   color: #7b2d2d;
   font-weight: 700;
   font-size: 2rem;
+  margin-bottom: 8px;
 }
 .small-box .inner p {
   color: #333;
   font-weight: 500;
+  margin: 0;
+}
+.small-box .icon {
+  margin-top: 10px;
 }
 .small-box .icon i {
   color: #7b2d2d;
   font-size: 45px;
-  margin-top: 10px;
 }
 
 /* Timeline Layout */
@@ -132,9 +143,9 @@ h3.section-title {
 /* Sidebar Highlight */
 .nav-link.active,
 .nav-link:hover {
-  background-color: rgba(123, 45, 45, 0.8); /* solid dark maroon background */
+  background-color: rgba(123, 45, 45, 0.8);
   border-left: 3px solid #7b2d2d;
-  color: #ffffff !important; /* make the text color white */
+  color: #ffffff !important;
   font-weight: 600;
   transition: all 0.2s ease;
 }
@@ -212,7 +223,7 @@ h3.section-title {
       </div>
     </div>
 
-    <!-- Reduced Space -->
+    <!-- Player Progress Timeline -->
     <h3 class="section-title mt-2 mb-3"><i class="fas fa-trophy"></i> Player Progress Timeline</h3>
 
     <div class="timeline">
