@@ -12,25 +12,25 @@ body, .content-wrapper {
   font-family: 'Poppins', sans-serif;
 }
 
-/* Fix: Add breathing room below white navbar */
+/* Reduce space around main content */
 .content {
-  padding-top: 80px !important;
+  padding-top: 40px !important; /* reduced from 80px */
   padding-bottom: 40px;
 }
 
 /* Header Section */
 .content-header {
-  padding-top: 15px;   /* reduced from 30px */
-  padding-bottom: 15px; /* reduced from 30px */
-  margin-bottom: 30px;  /* slightly reduced from 40px */
+  padding-top: 5px;   /* reduce from 15px */
+  padding-bottom: 5px; /* reduce from 15px */
+  margin-bottom: 20px;  /* reduce from 30px */
   text-align: center;
 }
 .content-header h1 {
   font-weight: 700;
   color: #d4af7f; /* pastel gold */
-  text-shadow: 0 0 6px rgba(212, 175, 127, 0.4); /* subtle glow */
-  margin-top: 0; /* remove extra top margin */
-  margin-bottom: 0; /* remove extra bottom margin */
+  text-shadow: 0 0 4px rgba(212, 175, 127, 0.4); /* subtle glow */
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 /* Stat Cards */
