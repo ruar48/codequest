@@ -263,39 +263,209 @@
         </div>
       </div>
 
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        @yield('sidebar') <!-- You can keep sidebar links here -->
-      </nav>
+
+<!-- Sidebar Menu -->
+<nav class="mt-2">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Dashboard -->
+        <li class="nav-item">
+            <a href="{{ route('dashboard.index') }}" class="nav-link {{ Request::routeIs('dashboard.index') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>Dashboard</p>
+            </a>
+        </li>
+
+        <!-- Users -->
+        <li class="nav-item {{ Request::routeIs('admins.index', 'educators.index', 'player.index') ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link {{ Request::routeIs('admins.index', 'educators.index', 'player.index') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-users"></i>
+                <p>
+                    Users
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{ route('admins.index') }}" class="nav-link {{ Request::routeIs('admins.index') ? 'active' : '' }}">
+                        <i class="fas fa-user-shield ml-5"></i>
+                        <p>Admin</p>
+                    </a>
+                </li>
+                {{-- <li class="nav-item">
+                    <a href="{{ route('educators.index') }}" class="nav-link {{ Request::routeIs('educators.index') ? 'active' : '' }}">
+                        <i class="fas fa-chalkboard-teacher ml-5"></i>
+                        <p>Educator</p>
+                    </a>
+                </li> --}}
+                <li class="nav-item">
+                    <a href="{{ route('player.index') }}" class="nav-link {{ Request::routeIs('player.index') ? 'active' : '' }}">
+                        <i class="fas fa-user ml-5"></i>
+                        <p>Player</p>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <!-- Tips -->
+        {{-- <li class="nav-item">
+            <a href="{{ route('admin.tips') }}" class="nav-link {{ Request::routeIs('admin.tips') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-lightbulb"></i>
+                <p>Tips</p>
+            </a>
+        </li> --}}
+
+        <!-- Test Bank -->
+        <li class="nav-item">
+            <a href="{{ route('testbank.index') }}" class="nav-link">
+                <i class="nav-icon fas fa-database"></i>
+                <p>Test Bank</p>
+            </a>
+        </li>
+
+        <!-- Leaderboard -->
+        <li class="nav-item">
+            <a href="{{ route('admin.leaderboard') }}" class="nav-link {{ Request::routeIs('admin.leaderboard') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-trophy"></i>
+                <p>Leaderboard</p>
+            </a>
+        </li>
+
+        <!-- PHP & SQL Logs -->
+        <li class="nav-item">
+            <a href="{{ route('code.logs') }}" class="nav-link {{ Request::routeIs('code.logs') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-file-alt"></i>
+                <p>PHP & SQL Logs</p>
+            </a>
+        </li>
+
+        <!-- Reports -->
+        <li class="nav-item {{ Request::routeIs('user.progress', 'analytics.report', 'user.test_progress', 'export.reports') ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link {{ Request::routeIs('user.progress', 'analytics.report', 'user.test_progress', 'export.reports') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-chart-pie"></i>
+                <p>
+                    Reports
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <!-- User Progress Reports -->
+                <li class="nav-item">
+                    <a href="{{ route('user.progress') }}" class="nav-link {{ Request::routeIs('user.progress') ? 'active' : '' }}">
+                        <i class="fas fa-user-graduate nav-icon ml-3"></i>
+                        <p>User Progress</p>
+                    </a>
+                </li>
+
+                <!-- Engagement Analytics -->
+                <li class="nav-item">
+                    <a href="{{ route('analytics.report') }}" class="nav-link {{ Request::routeIs('analytics.report') ? 'active' : '' }}">
+                        <i class="fas fa-chart-line nav-icon ml-3"></i>
+                        <p>Engagement Analytics</p>
+                    </a>
+                </li>
+
+                <!-- Quiz & Test Performance -->
+                <li class="nav-item">
+                    <a href="{{ route('user.test_progress') }}" class="nav-link {{ Request::routeIs('user.test_progress') ? 'active' : '' }}">
+                        <i class="fas fa-poll nav-icon ml-3"></i>
+                        <p>Quiz Performance</p>
+                    </a>
+                </li>
+
+                {{-- <!-- Export Reports -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-file-export nav-icon ml-3"></i>
+                        <p>Export Reports</p>
+                    </a>
+                </li> --}}
+            </ul>
+        </li>
+
+        <!-- Logout (outside Reports) -->
+        <li class="nav-item mt-3">
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="nav-link btn btn-link text-left p-0">
+                    <i class="nav-icon fas fa-sign-out-alt"></i>
+                    <p>Logout</p>
+                </button>
+            </form>
+        </li>
+    </ul>
+</nav>
+
+      <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+
+
+
+
     @yield('content')
+
+
+
+
+
+
   </div>
+
+
 </div>
 <!-- ./wrapper -->
-
 <script src="{{ asset('vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('vendor/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
+
+<!-- jQuery -->
+<!-- jQuery UI 1.11.4 -->
 <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button)
 </script>
+<!-- Bootstrap 4 -->
 <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- ChartJS -->
 <script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script>
+<!-- Sparkline -->
 <script src="{{ asset('plugins/sparklines/sparkline.js') }}"></script>
+<!-- JQVMap -->
 <script src="{{ asset('plugins/jqvmap/jquery.vmap.min.js') }}"></script>
 <script src="{{ asset('plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
+<!-- jQuery Knob Chart -->
 <script src="{{ asset('plugins/jquery-knob/jquery.knob.min.js') }}"></script>
+<!-- daterangepicker -->
 <script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
 <script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
+<!-- Tempusdominus Bootstrap 4 -->
 <script src="{{ asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+<!-- Summernote -->
 <script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
+<!-- overlayScrollbars -->
 <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+<!-- AdminLTE App -->
 <script src="{{ asset('dist/js/adminlte.js') }}"></script>
+<!-- AdminLTE for demo purposes -->
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
+
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
+
+<!-- Buttons -->
+<script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.bootstrap4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
 
 <script type="text/javascript">
     $(window).on('load', function(){
@@ -303,6 +473,6 @@
             $('#load').fadeOut('slow');
         });
     });
-</script>
+  </script>
 </body>
 </html>
