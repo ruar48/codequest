@@ -137,12 +137,13 @@ h3.section-title {
 /* Sidebar Active / Hover Links */
 .nav-link.active,
 .nav-link:hover {
-  background-color: transparent !important; /* fully transparent highlight */
-  border-left: 3px solid #ffffff; /* keep white indicator line */
-  color: #ffffff !important; /* white text for contrast */
+  background-color: rgba(123, 45, 45, 0.15) !important; /* transparent maroon */
+  border-left: 3px solid #7b2d2d; /* maroon indicator line */
+  color: #7b2d2d !important; /* text in maroon for better contrast */
   font-weight: 600;
   transition: all 0.2s ease;
 }
+
 /* Scrollbar Theme */
 ::-webkit-scrollbar {
   width: 8px;
