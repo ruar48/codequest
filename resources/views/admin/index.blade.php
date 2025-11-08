@@ -7,8 +7,8 @@
 <style>
 /* General Theme */
 body, .content-wrapper {
-  background: #f5f4f1; /* soft light pastel background */
-  color: #333; /* darker text for contrast */
+  background: #f8f4ec; /* soft warm pastel background (light cream) */
+  color: #333; /* dark enough for readability */
   font-family: 'Poppins', sans-serif;
 }
 
@@ -28,13 +28,13 @@ body, .content-wrapper {
 .content-header h1 {
   font-weight: 700;
   color: #d4af7f; /* pastel gold */
-  text-shadow: 0 0 12px rgba(212, 175, 127, 0.4);
+  text-shadow: 0 0 8px rgba(212, 175, 127, 0.4); /* subtle glow for readability */
 }
 
 /* Stat Cards */
 .small-box {
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.6); /* light, subtle */
+  background: rgba(255, 250, 240, 0.6); /* soft cream with slight transparency */
   backdrop-filter: blur(8px);
   border: 1px solid rgba(212, 175, 127, 0.25);
   box-shadow: 0 4px 16px rgba(212, 175, 127, 0.25);
@@ -46,7 +46,7 @@ body, .content-wrapper {
 }
 .small-box:hover {
   transform: translateY(-6px);
-  box-shadow: 0 0 20px rgba(212, 175, 127, 0.5);
+  box-shadow: 0 0 20px rgba(212, 175, 127, 0.4);
 }
 .small-box .inner h3 {
   color: #d4af7f;
@@ -67,7 +67,7 @@ body, .content-wrapper {
 h3.section-title {
   color: #333;
   font-weight: 600;
-  text-shadow: 0 0 10px rgba(212, 175, 127, 0.3);
+  text-shadow: 0 0 6px rgba(212, 175, 127, 0.3);
   margin-top: 50px;
   margin-bottom: 20px;
 }
@@ -101,7 +101,7 @@ h3.section-title {
   box-shadow: 0 0 8px rgba(212, 175, 127, 0.8);
 }
 .timeline-content {
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 250, 240, 0.6);
   color: #333;
   border: 1px solid rgba(212, 175, 127, 0.3);
   border-left: 4px solid #d4af7f;
@@ -113,7 +113,7 @@ h3.section-title {
 }
 .timeline-content:hover {
   transform: translateY(-4px);
-  box-shadow: 0 0 14px rgba(212, 175, 127, 0.4);
+  box-shadow: 0 0 14px rgba(212, 175, 127, 0.3);
 }
 .timeline-content h5 {
   color: #d4af7f;
@@ -138,14 +138,13 @@ h3.section-title {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #e0e0e0;
+  background: #e7e3da;
 }
 ::-webkit-scrollbar-thumb {
   background-color: #d4af7f;
   border-radius: 4px;
 }
 </style>
-
 
 <section class="content">
   <div class="container-fluid">
