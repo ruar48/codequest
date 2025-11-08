@@ -7,28 +7,28 @@
 <style>
 /* General Theme */
 body, .content-wrapper {
-  background: #f8f4ec; /* soft warm pastel background (light cream) */
+  background: #ffffff; /* pure white background */
   color: #333; /* dark enough for readability */
   font-family: 'Poppins', sans-serif;
 }
 
 /* Reduce space around main content */
 .content {
-  padding-top: 40px !important; /* reduced from 80px */
+  padding-top: 40px !important;
   padding-bottom: 40px;
 }
 
 /* Header Section */
 .content-header {
-  padding-top: 5px;   /* reduce from 15px */
-  padding-bottom: 5px; /* reduce from 15px */
-  margin-bottom: 20px;  /* reduce from 30px */
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
   text-align: center;
 }
 .content-header h1 {
   font-weight: 700;
-  color: #d4af7f; /* pastel gold */
-  text-shadow: 0 0 4px rgba(212, 175, 127, 0.4); /* subtle glow */
+  color: #d4af7f;
+  text-shadow: 0 0 4px rgba(212, 175, 127, 0.4);
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -36,10 +36,9 @@ body, .content-wrapper {
 /* Stat Cards */
 .small-box {
   border-radius: 16px;
-  background: rgba(255, 250, 240, 0.6); /* soft cream with slight transparency */
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(212, 175, 127, 0.25);
-  box-shadow: 0 4px 16px rgba(212, 175, 127, 0.25);
+  background: #ffffff; /* white card background */
+  border: 1px solid rgba(212, 175, 127, 0.2);
+  box-shadow: 0 8px 20px rgba(212, 175, 127, 0.3); /* stronger shadow for highlight */
   transition: all 0.3s ease;
   margin-top: 30px;
   margin-bottom: 35px;
@@ -48,7 +47,7 @@ body, .content-wrapper {
 }
 .small-box:hover {
   transform: translateY(-6px);
-  box-shadow: 0 0 20px rgba(212, 175, 127, 0.4);
+  box-shadow: 0 12px 30px rgba(212, 175, 127, 0.4);
 }
 .small-box .inner h3 {
   color: #d4af7f;
@@ -103,19 +102,19 @@ h3.section-title {
   box-shadow: 0 0 8px rgba(212, 175, 127, 0.8);
 }
 .timeline-content {
-  background: rgba(255, 250, 240, 0.6);
+  background: #ffffff; /* white timeline cards */
   color: #333;
   border: 1px solid rgba(212, 175, 127, 0.3);
   border-left: 4px solid #d4af7f;
   border-radius: 10px;
   transition: all 0.3s ease;
-  backdrop-filter: blur(8px);
+  box-shadow: 0 6px 18px rgba(212, 175, 127, 0.2); /* shadow added */
   margin-bottom: 25px;
   padding: 15px;
 }
 .timeline-content:hover {
   transform: translateY(-4px);
-  box-shadow: 0 0 14px rgba(212, 175, 127, 0.3);
+  box-shadow: 0 10px 22px rgba(212, 175, 127, 0.3);
 }
 .timeline-content h5 {
   color: #d4af7f;
