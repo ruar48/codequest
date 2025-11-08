@@ -5,6 +5,15 @@
 @section('content')
 
 <style>
+  body::before {
+  content: '✅ New Style Active';
+  position: fixed;
+  top: 8px;
+  left: 12px;
+  color: #d4b86a;
+  font-weight: bold;
+  z-index: 9999;
+}
 /* === Light Pastel Theme === */
 body, .content-wrapper {
   background: linear-gradient(135deg, #f4f2ea, #eae6db);
