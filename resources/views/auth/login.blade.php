@@ -11,11 +11,10 @@
 
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
 <style>
   body {
     font-family: 'Poppins', sans-serif;
-    background: #ffffff; /* White background */
+    background: #ffffff; /* page background white */
     height: 100vh;
     display: flex;
     align-items: center;
@@ -29,19 +28,19 @@
     z-index: 1;
     width: 100%;
     max-width: 420px;
-    background: #1f1f1f; /* Dark card for contrast */
-    border: 2px solid #7b2d2d; /* Maroon border */
+    background: #ffffff; /* card container background white */
+    border: 2px solid #7b2d2d; /* maroon border */
     border-radius: 18px;
     padding: 2rem;
     text-align: center;
-    box-shadow: 0 10px 30px rgba(123, 45, 45, 0.3), 0 0 20px rgba(123, 45, 45, 0.2);
+    box-shadow: 0 10px 30px rgba(123, 45, 45, 0.2), 0 0 20px rgba(123, 45, 45, 0.1); /* subtle shadow */
   }
 
   /* Logo */
   .logo {
     width: 120px;
     margin-bottom: 1rem;
-    filter: drop-shadow(0 0 12px rgba(123,45,45,0.8)); /* Maroon glow */
+    filter: drop-shadow(0 0 12px rgba(123,45,45,0.5)); /* maroon glow */
     animation: float 3s ease-in-out infinite;
   }
 
@@ -51,22 +50,22 @@
   }
 
   .login-title {
-    color: #ffffff; /* White text for title */
+    color: #7b2d2d; /* maroon title text */
     font-weight: 700;
     font-size: 1.6rem;
     margin-bottom: 1.5rem;
   }
 
   .form-label {
-    color: #7b2d2d; /* Maroon labels */
+    color: #7b2d2d; /* maroon labels */
     font-weight: 500;
   }
 
   .form-control {
     border-radius: 8px;
-    background: rgba(123, 45, 45, 0.1); /* light maroon background */
+    background: rgba(123, 45, 45, 0.05); /* light transparent maroon background */
     border: 1px solid #7b2d2d; /* maroon border */
-    color: #ffffff; /* white text */
+    color: #7b2d2d; /* text inside inputs maroon */
   }
 
   .form-control::placeholder {
@@ -76,14 +75,14 @@
 
   .form-control:focus {
     border-color: #7b2d2d;
-    box-shadow: 0 0 8px rgba(123,45,45,0.4);
-    background-color: rgba(123,45,45,0.15);
-    color: #ffffff;
+    box-shadow: 0 0 8px rgba(123,45,45,0.3);
+    background-color: rgba(123,45,45,0.1);
+    color: #7b2d2d;
   }
 
   .btn-login {
-    background: #7b2d2d; /* Maroon button */
-    color: #ffffff;
+    background: #7b2d2d; /* maroon button */
+    color: #ffffff; /* white text */
     font-weight: 700;
     border-radius: 10px;
     padding: 0.6rem;
@@ -97,7 +96,7 @@
   }
 
   .footer-text {
-    color: #7b2d2d; /* Maroon footer */
+    color: #7b2d2d; /* maroon footer */
     margin-top: 1.2rem;
     font-size: 0.9rem;
   }
@@ -106,7 +105,6 @@
     text-align: left;
   }
 </style>
-
 </head>
 <body>
 
