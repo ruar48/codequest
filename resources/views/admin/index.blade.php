@@ -5,81 +5,73 @@
 @section('content')
 
 <style>
-/* --- Body & Layout --- */
-/* ==============================
-   CodeQuest Dashboard: Pastel Gold Theme
-   Background: Light Pastel
-   Accent: Pastel Gold #d4b86a
-   ============================== */
-
-/* --- Body & Layout --- */
+/* General Theme */
 body, .content-wrapper {
-  background: linear-gradient(135deg, #f4f2ea, #eae6db);
-  color: #2a2a2a;
+  background: linear-gradient(135deg, #0a0f24, #1c223a);
+  color: #fff;
   font-family: 'Poppins', sans-serif;
-  transition: all 0.3s ease;
 }
 
-/* Content Spacing */
+/* Fix: Add breathing room below white navbar */
 .content {
   padding-top: 80px !important;
   padding-bottom: 40px;
 }
 
-/* --- Header Section --- */
+/* Header Section (Optional – if you keep a header title) */
 .content-header {
-  text-align: center;
-  padding: 30px 0;
+  padding-top: 30px;
+  padding-bottom: 30px;
   margin-bottom: 40px;
+  text-align: center;
 }
 .content-header h1 {
   font-weight: 700;
-  color: #d4b86a;
-  text-shadow: 0 0 10px rgba(212, 184, 106, 0.4);
+  color: #facc15;
+  text-shadow: 0 0 12px rgba(250, 204, 21, 0.4);
 }
 
-/* --- Stat Cards --- */
+/* Stat Cards */
 .small-box {
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(212, 184, 106, 0.3);
-  box-shadow: 0 4px 10px rgba(212, 184, 106, 0.25);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(250, 204, 21, 0.25);
+  box-shadow: 0 4px 16px rgba(250, 204, 21, 0.25);
   transition: all 0.3s ease;
-  margin-top: 30px;
+  margin-top: 30px; /* adds consistent top spacing */
   margin-bottom: 35px;
   text-align: center;
   padding: 20px;
 }
 .small-box:hover {
   transform: translateY(-6px);
-  box-shadow: 0 0 18px rgba(212, 184, 106, 0.45);
+  box-shadow: 0 0 20px rgba(250, 204, 21, 0.5);
 }
 .small-box .inner h3 {
-  color: #d4b86a;
+  color: #facc15;
   font-weight: 700;
   font-size: 2rem;
 }
 .small-box .inner p {
-  color: #333;
+  color: #ffffff;
   font-weight: 500;
 }
 .small-box .icon i {
-  color: #d4b86a;
+  color: #facc15;
   font-size: 45px;
   margin-top: 10px;
 }
 
-/* --- Section Titles --- */
+/* Timeline Layout */
 h3.section-title {
-  color: #2a2a2a;
+  color: #fff;
   font-weight: 600;
-  text-shadow: 0 0 6px rgba(212, 184, 106, 0.3);
+  text-shadow: 0 0 10px rgba(250, 204, 21, 0.3);
   margin-top: 50px;
   margin-bottom: 20px;
 }
 
-/* --- Timeline --- */
 .timeline {
   position: relative;
   margin-left: 30px;
@@ -92,7 +84,7 @@ h3.section-title {
   top: 0;
   width: 2px;
   height: 100%;
-  background-color: rgba(212, 184, 106, 0.4);
+  background-color: rgba(250, 204, 21, 0.4);
 }
 .timeline-item {
   position: relative;
@@ -105,14 +97,14 @@ h3.section-title {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background-color: #d4b86a;
-  box-shadow: 0 0 8px rgba(212, 184, 106, 0.8);
+  background-color: #facc15;
+  box-shadow: 0 0 8px rgba(250, 204, 21, 0.8);
 }
 .timeline-content {
-  background: rgba(255, 255, 255, 0.9);
-  color: #333;
-  border: 1px solid rgba(212, 184, 106, 0.3);
-  border-left: 4px solid #d4b86a;
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  border: 1px solid rgba(250, 204, 21, 0.3);
+  border-left: 4px solid #facc15;
   border-radius: 10px;
   transition: all 0.3s ease;
   backdrop-filter: blur(8px);
@@ -121,59 +113,37 @@ h3.section-title {
 }
 .timeline-content:hover {
   transform: translateY(-4px);
-  box-shadow: 0 0 14px rgba(212, 184, 106, 0.3);
+  box-shadow: 0 0 14px rgba(250, 204, 21, 0.4);
 }
 .timeline-content h5 {
-  color: #d4b86a;
+  color: #facc15;
   font-weight: 600;
 }
 .timeline-content p {
-  color: #444;
+  color: #e4e4e4;
 }
 .timeline-content strong {
-  color: #000;
+  color: #fff;
 }
 
-/* --- Buttons --- */
-.btn-warning {
-  background: #d4b86a;
-  color: #2a2a2a;
-  border: none;
-  font-weight: 600;
-}
-.btn-warning:hover {
-  background: rgba(212, 184, 106, 0.85);
-  color: #222;
-  box-shadow: 0 0 12px rgba(212, 184, 106, 0.4);
-}
-
-/* --- Sidebar Highlight --- */
+/* Sidebar Highlight */
 .nav-link.active, .nav-link:hover {
-  background-color: rgba(212, 184, 106, 0.15);
-  border-left: 3px solid #d4b86a;
-  color: #d4b86a !important;
+  background-color: rgba(250, 204, 21, 0.15);
+  border-left: 3px solid #facc15;
+  color: #facc15 !important;
 }
 
-/* --- Scrollbar --- */
+/* Scrollbar Theme */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #f0ede5;
+  background: #111827;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: #d4b86a;
+  background-color: #facc15;
   border-radius: 4px;
 }
-
-/* --- Utility Classes --- */
-.text-pastel-gold {
-  color: #d4b86a !important;
-}
-.bg-pastel-gold {
-  background-color: #d4b86a !important;
-}
-
 </style>
 
 <section class="content">
@@ -183,8 +153,8 @@ h3.section-title {
     <div class="row">
       <div class="col-12 text-center mb-2">
         <h2 class="fw-bold" style="
-          color: #d4b86a;
-          text-shadow: 0 0 10px rgba(212,184,106,0.4);
+          color: #facc15;
+          text-shadow: 0 0 10px rgba(250,204,21,0.6);
           margin-top: -10px;
           margin-bottom: 10px;
         ">
@@ -236,7 +206,7 @@ h3.section-title {
       </div>
     </div>
 
-    <!-- Timeline -->
+    <!-- Reduced Space -->
     <h3 class="section-title mt-2 mb-3"><i class="fas fa-trophy"></i> Player Progress Timeline</h3>
 
     <div class="timeline">
@@ -261,7 +231,7 @@ h3.section-title {
           </div>
         </div>
       @empty
-        <p class="text-center text-secondary">No level progress yet.</p>
+        <p class="text-center text-light">No level progress yet.</p>
       @endforelse
     </div>
 
