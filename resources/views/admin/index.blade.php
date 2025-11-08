@@ -8,7 +8,7 @@
 /* General Theme */
 body, .content-wrapper {
   background: #ffffff; /* pure white background */
-  color: #333; /* dark enough for readability */
+  color: #333;
   font-family: 'Poppins', sans-serif;
 }
 
@@ -130,10 +130,13 @@ h3.section-title {
 }
 
 /* Sidebar Highlight */
-.nav-link.active, .nav-link:hover {
-  background-color: rgba(123, 45, 45, 0.15);
+.nav-link.active,
+.nav-link:hover {
+  background-color: rgba(123, 45, 45, 0.8); /* solid dark maroon background */
   border-left: 3px solid #7b2d2d;
-  color: #7b2d2d !important;
+  color: #ffffff !important; /* make the text color white */
+  font-weight: 600;
+  transition: all 0.2s ease;
 }
 
 /* Scrollbar Theme */
