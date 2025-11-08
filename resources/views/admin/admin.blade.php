@@ -100,7 +100,7 @@
 <style>
 /* --- CodeQuest Dashboard Theming --- */
 body, .content-wrapper {
-  background: linear-gradient(135deg, #0a0f24, #1c223a);
+  background: white;
   font-family: 'Poppins', sans-serif;
   color: #fff;
 }
