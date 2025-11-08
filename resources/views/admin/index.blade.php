@@ -133,17 +133,17 @@ h3.section-title {
 .timeline-content strong {
   color: #333;
 }
-
 /* Sidebar Active / Hover Links */
 .nav-link.active,
 .nav-link:hover {
-  background-color: rgba(123, 45, 45, 0.1) !important; /* light transparent maroon */
+  background-color: rgba(220, 160, 160, 0.25) !important; /* light maroon */
   border-left: 3px solid #ecbbbbff; /* maroon indicator line */
-  color: #7b2d2d !important; /* maroon text */
+  color: #ffffff !important; /* keep text white for visibility */
   font-weight: 600;
   transition: all 0.2s ease;
-  box-shadow: 0 4px 8px rgba(123, 45, 45, 0.15); /* subtle shadow for depth */
+  box-shadow: 0 4px 8px rgba(220, 160, 160, 0.25); /* subtle shadow with light maroon */
 }
+
 /* Scrollbar Theme */
 ::-webkit-scrollbar {
   width: 8px;
