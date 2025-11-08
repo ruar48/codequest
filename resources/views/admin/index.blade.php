@@ -5,10 +5,10 @@
 @section('content')
 
 <style>
-/* General Theme */
+/* === Light Pastel Theme === */
 body, .content-wrapper {
-  background: linear-gradient(135deg, #f8f6ef, #e9e4d8);
-  color: #1c1c1c;
+  background: linear-gradient(135deg, #f4f2ea, #eae6db);
+  color: #2a2a2a;
   font-family: 'Poppins', sans-serif;
 }
 
@@ -18,26 +18,25 @@ body, .content-wrapper {
   padding-bottom: 40px;
 }
 
-/* Header Section */
+/* Header */
 .content-header {
-  padding-top: 30px;
-  padding-bottom: 30px;
-  margin-bottom: 40px;
   text-align: center;
+  padding: 30px 0;
+  margin-bottom: 40px;
 }
 .content-header h1 {
   font-weight: 700;
-  color: #bfa760;
-  text-shadow: 0 0 8px rgba(191, 167, 96, 0.3);
+  color: #d4b86a;
+  text-shadow: 0 0 10px rgba(212, 184, 106, 0.4);
 }
 
 /* Stat Cards */
 .small-box {
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(191, 167, 96, 0.4);
-  box-shadow: 0 4px 10px rgba(191, 167, 96, 0.2);
+  border: 1px solid rgba(212, 184, 106, 0.3);
+  box-shadow: 0 4px 10px rgba(212, 184, 106, 0.25);
   transition: all 0.3s ease;
   margin-top: 30px;
   margin-bottom: 35px;
@@ -46,32 +45,33 @@ body, .content-wrapper {
 }
 .small-box:hover {
   transform: translateY(-6px);
-  box-shadow: 0 0 20px rgba(191, 167, 96, 0.3);
+  box-shadow: 0 0 18px rgba(212, 184, 106, 0.45);
 }
 .small-box .inner h3 {
-  color: #bfa760;
+  color: #d4b86a;
   font-weight: 700;
   font-size: 2rem;
 }
 .small-box .inner p {
-  color: #3a3a3a;
+  color: #333;
   font-weight: 500;
 }
 .small-box .icon i {
-  color: #bfa760;
+  color: #d4b86a;
   font-size: 45px;
   margin-top: 10px;
 }
 
-/* Timeline Layout */
+/* Section Titles */
 h3.section-title {
-  color: #2e2e2e;
+  color: #2a2a2a;
   font-weight: 600;
-  text-shadow: 0 0 6px rgba(191, 167, 96, 0.3);
+  text-shadow: 0 0 6px rgba(212, 184, 106, 0.3);
   margin-top: 50px;
   margin-bottom: 20px;
 }
 
+/* Timeline */
 .timeline {
   position: relative;
   margin-left: 30px;
@@ -84,7 +84,7 @@ h3.section-title {
   top: 0;
   width: 2px;
   height: 100%;
-  background-color: rgba(191, 167, 96, 0.5);
+  background-color: rgba(212, 184, 106, 0.4);
 }
 .timeline-item {
   position: relative;
@@ -97,14 +97,14 @@ h3.section-title {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background-color: #bfa760;
-  box-shadow: 0 0 8px rgba(191, 167, 96, 0.8);
+  background-color: #d4b86a;
+  box-shadow: 0 0 8px rgba(212, 184, 106, 0.8);
 }
 .timeline-content {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.9);
   color: #333;
-  border: 1px solid rgba(191, 167, 96, 0.3);
-  border-left: 4px solid #bfa760;
+  border: 1px solid rgba(212, 184, 106, 0.3);
+  border-left: 4px solid #d4b86a;
   border-radius: 10px;
   transition: all 0.3s ease;
   backdrop-filter: blur(8px);
@@ -113,10 +113,10 @@ h3.section-title {
 }
 .timeline-content:hover {
   transform: translateY(-4px);
-  box-shadow: 0 0 14px rgba(191, 167, 96, 0.3);
+  box-shadow: 0 0 14px rgba(212, 184, 106, 0.3);
 }
 .timeline-content h5 {
-  color: #bfa760;
+  color: #d4b86a;
   font-weight: 600;
 }
 .timeline-content p {
@@ -128,20 +128,20 @@ h3.section-title {
 
 /* Sidebar Highlight */
 .nav-link.active, .nav-link:hover {
-  background-color: rgba(191, 167, 96, 0.15);
-  border-left: 3px solid #bfa760;
-  color: #bfa760 !important;
+  background-color: rgba(212, 184, 106, 0.15);
+  border-left: 3px solid #d4b86a;
+  color: #d4b86a !important;
 }
 
-/* Scrollbar Theme */
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #f1ede2;
+  background: #f0ede5;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: #bfa760;
+  background-color: #d4b86a;
   border-radius: 4px;
 }
 </style>
@@ -153,8 +153,8 @@ h3.section-title {
     <div class="row">
       <div class="col-12 text-center mb-2">
         <h2 class="fw-bold" style="
-          color: #bfa760;
-          text-shadow: 0 0 10px rgba(191,167,96,0.4);
+          color: #d4b86a;
+          text-shadow: 0 0 10px rgba(212,184,106,0.4);
           margin-top: -10px;
           margin-bottom: 10px;
         ">
