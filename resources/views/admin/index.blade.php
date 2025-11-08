@@ -137,7 +137,7 @@ h3.section-title {
 /* Sidebar Active / Hover Links */
 .nav-link.active,
 .nav-link:hover {
-  background-color: #e5c4f7ff !important; /* fully transparent highlight */
+  background-color: #e8b8b8ff !important; /* fully transparent highlight */
   border-left: 3px solid #f4bdbdff; /* keep white indicator line */
   color: #ffffff !important; /* white text for contrast */
   font-weight: 600;
