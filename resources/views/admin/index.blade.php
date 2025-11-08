@@ -5,7 +5,16 @@
 @section('content')
 
 <style>
-  body::before {
+/* --- Body & Layout --- */
+body, .content-wrapper {
+  background: linear-gradient(135deg, #f4f2ea, #eae6db);
+  color: #2a2a2a;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.3s ease;
+}
+
+/* Add small fixed label for testing/debug */
+body::before {
   content: '✅ New Style Active';
   position: fixed;
   top: 8px;
@@ -14,12 +23,6 @@
   font-weight: bold;
   z-index: 9999;
 }
-/* === Light Pastel Theme === */
-body, .content-wrapper {
-  background: linear-gradient(135deg, #f4f2ea, #eae6db);
-  color: #2a2a2a;
-  font-family: 'Poppins', sans-serif;
-}
 
 /* Content Spacing */
 .content {
@@ -27,7 +30,7 @@ body, .content-wrapper {
   padding-bottom: 40px;
 }
 
-/* Header */
+/* --- Header Section --- */
 .content-header {
   text-align: center;
   padding: 30px 0;
@@ -39,7 +42,7 @@ body, .content-wrapper {
   text-shadow: 0 0 10px rgba(212, 184, 106, 0.4);
 }
 
-/* Stat Cards */
+/* --- Stat Cards --- */
 .small-box {
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.85);
@@ -71,7 +74,7 @@ body, .content-wrapper {
   margin-top: 10px;
 }
 
-/* Section Titles */
+/* --- Section Titles --- */
 h3.section-title {
   color: #2a2a2a;
   font-weight: 600;
@@ -80,7 +83,7 @@ h3.section-title {
   margin-bottom: 20px;
 }
 
-/* Timeline */
+/* --- Timeline --- */
 .timeline {
   position: relative;
   margin-left: 30px;
@@ -135,14 +138,27 @@ h3.section-title {
   color: #000;
 }
 
-/* Sidebar Highlight */
+/* --- Buttons (Optional) --- */
+.btn-warning {
+  background: #d4b86a;
+  color: #2a2a2a;
+  border: none;
+  font-weight: 600;
+}
+.btn-warning:hover {
+  background: rgba(212, 184, 106, 0.85);
+  color: #222;
+  box-shadow: 0 0 12px rgba(212, 184, 106, 0.4);
+}
+
+/* --- Sidebar Highlight --- */
 .nav-link.active, .nav-link:hover {
   background-color: rgba(212, 184, 106, 0.15);
   border-left: 3px solid #d4b86a;
   color: #d4b86a !important;
 }
 
-/* Scrollbar */
+/* --- Scrollbar --- */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -152,6 +168,14 @@ h3.section-title {
 ::-webkit-scrollbar-thumb {
   background-color: #d4b86a;
   border-radius: 4px;
+}
+
+/* --- Utility Classes --- */
+.text-pastel-gold {
+  color: #d4b86a !important;
+}
+.bg-pastel-gold {
+  background-color: #d4b86a !important;
 }
 </style>
 
