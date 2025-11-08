@@ -137,11 +137,12 @@ h3.section-title {
 /* Sidebar Active / Hover Links */
 .nav-link.active,
 .nav-link:hover {
-  background-color: #e8b8b8ff !important; /* fully transparent highlight */
-  border-left: 3px solid #f4bdbdff; /* keep white indicator line */
-  color: #ffffff !important; /* white text for contrast */
+  background-color: rgba(123, 45, 45, 0.1) !important; /* light transparent maroon */
+  border-left: 3px solid #7b2d2d; /* maroon indicator line */
+  color: #7b2d2d !important; /* maroon text */
   font-weight: 600;
   transition: all 0.2s ease;
+  box-shadow: 0 4px 8px rgba(123, 45, 45, 0.15); /* subtle shadow for depth */
 }
 /* Scrollbar Theme */
 ::-webkit-scrollbar {
