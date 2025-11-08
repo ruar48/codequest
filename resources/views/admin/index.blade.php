@@ -42,19 +42,17 @@ body, .content-wrapper {
   transition: all 0.3s ease;
   margin-top: 30px;
   margin-bottom: 35px;
-  text-align: center;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  position: relative;
+  padding: 25px 25px 20px 25px;
+  overflow: hidden;
 }
 .small-box:hover {
   transform: translateY(-4px);
   box-shadow: 0 10px 28px rgba(123, 45, 45, 0.3), 0 6px 18px rgba(0,0,0,0.08);
 }
 .small-box .inner {
-  margin-bottom: 15px; /* space between text and icon */
+  text-align: left; /* move text to the left */
+  margin-right: 60px; /* create space between text and icon */
 }
 .small-box .inner h3 {
   color: #7b2d2d;
@@ -68,11 +66,16 @@ body, .content-wrapper {
   margin: 0;
 }
 .small-box .icon {
-  margin-top: 10px;
-}
-.small-box .icon i {
+  position: absolute;
+  top: 30%;
+  right: 20px; /* icon positioned to the right */
+  font-size: 48px;
   color: #7b2d2d;
-  font-size: 45px;
+  opacity: 0.9;
+  transition: all 0.3s ease;
+}
+.small-box:hover .icon {
+  transform: scale(1.05);
 }
 
 /* Timeline Layout */
