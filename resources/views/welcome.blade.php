@@ -11,12 +11,11 @@
 
   <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
 <style>
   body {
     font-family: 'Poppins', sans-serif;
-    background: #ffffff; /* white background */
-    color: #fff;
+    background: #ffffff; /* page background white */
+    color: #333; /* default body text (outside card) */
     height: 100vh;
     display: flex;
     align-items: center;
@@ -30,24 +29,24 @@
   .welcome-card {
     position: relative;
     z-index: 1;
-    background: #1f1f1f; /* dark background for contrast with white body */
+    background: #ffffff; /* container background white */
     border: 2px solid #7b2d2d; /* maroon border */
     border-radius: 20px;
     padding: 2.5rem 3rem;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.6), 0 0 25px rgba(123,45,45,0.3);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15), 0 0 25px rgba(123,45,45,0.2); /* subtle shadow */
     max-width: 480px;
   }
 
   .welcome-card h1,
   .welcome-card p,
   .welcome-card .lead {
-    color: #ffffff; /* keep text white */
+    color: #7b2d2d; /* maroon text inside container */
   }
 
   /* Logo */
   .logo-img {
     width: 140px;
-    filter: drop-shadow(0 0 12px rgba(123,45,45,0.8)); /* subtle maroon glow */
+    filter: drop-shadow(0 0 12px rgba(123,45,45,0.5)); /* subtle maroon glow */
     animation: float 3s ease-in-out infinite;
   }
 
@@ -59,17 +58,17 @@
   /* Buttons */
   .btn-custom {
     background: #7b2d2d; /* maroon button */
-    color: #ffffff;
+    color: #ffffff; /* white text */
     border: none;
     border-radius: 2rem;
     padding: 0.6rem 1.5rem;
     font-weight: 700;
     transition: all 0.3s ease;
-    box-shadow: 0 0 12px rgba(123,45,45,0.5);
+    box-shadow: 0 0 12px rgba(123,45,45,0.4);
   }
   .btn-custom:hover {
     transform: scale(1.07);
-    box-shadow: 0 0 20px rgba(123,45,45,0.7);
+    box-shadow: 0 0 20px rgba(123,45,45,0.6);
   }
 
   .btn-outline {
@@ -83,11 +82,11 @@
   .btn-outline:hover {
     background: #7b2d2d;
     color: #ffffff;
-    box-shadow: 0 0 15px rgba(123,45,45,0.5);
+    box-shadow: 0 0 15px rgba(123,45,45,0.4);
     transform: scale(1.07);
   }
 
-  /* Input placeholders (if you have forms) */
+  /* Input placeholders */
   input::placeholder,
   textarea::placeholder {
     color: #7b2d2d; /* maroon placeholder */
@@ -102,7 +101,6 @@
     z-index: 1;
   }
 </style>
-
 </head>
 <body>
 
