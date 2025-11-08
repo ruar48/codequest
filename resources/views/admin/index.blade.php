@@ -20,15 +20,17 @@ body, .content-wrapper {
 
 /* Header Section */
 .content-header {
-  padding-top: 30px;
-  padding-bottom: 30px;
-  margin-bottom: 40px;
+  padding-top: 15px;   /* reduced from 30px */
+  padding-bottom: 15px; /* reduced from 30px */
+  margin-bottom: 30px;  /* slightly reduced from 40px */
   text-align: center;
 }
 .content-header h1 {
   font-weight: 700;
   color: #d4af7f; /* pastel gold */
-  text-shadow: 0 0 8px rgba(212, 175, 127, 0.4); /* subtle glow for readability */
+  text-shadow: 0 0 6px rgba(212, 175, 127, 0.4); /* subtle glow */
+  margin-top: 0; /* remove extra top margin */
+  margin-bottom: 0; /* remove extra bottom margin */
 }
 
 /* Stat Cards */
