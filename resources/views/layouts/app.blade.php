@@ -80,58 +80,55 @@
       border-radius: 6px;
     }
 
-    /* === Sidebar === */
-    .main-sidebar {
-      background: linear-gradient(180deg, #1f2937 0%, #0f172a 100%);
-      color: #e5e7eb;
-      transition: all 0.3s ease-in-out;
-    }
+/* === Sidebar === */
+.main-sidebar {
+  background-color: #7b2d2d; /* Match the color in your image */
+  color: #ffffff;
+  transition: all 0.3s ease-in-out;
+  box-shadow: inset -3px 0 8px rgba(0, 0, 0, 0.3);
+}
 
-    /* Brand Link (Top Logo Section) */
-    .brand-link {
-      background: linear-gradient(90deg, #111827, #1e293b);
-      color: #ffffff !important; /* updated to white */
-      text-shadow: 0 0 4px rgba(255,255,255,0.3); /* subtle glow */
-      border-bottom: 1px solid rgba(250, 204, 21, 0.2);
-    }
+/* Brand Link (Top Logo Section) */
+.brand-link {
+  background: linear-gradient(90deg, #7b2d2d, #5a1f1f);
+  color: #ffffff !important;
+  text-shadow: 0 0 5px rgba(255,255,255,0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
 
-    /* Brand Image Slight Glow */
-    .brand-link .brand-image {
-      opacity: 0.9;
-      filter: drop-shadow(0 0 3px rgba(250, 204, 21, 0.4));
-    }
+/* Sidebar Links */
+.sidebar .nav-sidebar .nav-link {
+  color: #ffffff;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
 
-    /* Sidebar Links */
-    .sidebar .nav-sidebar .nav-link {
-      color: #ffffff;
-      font-weight: 500;
-      transition: all 0.2s ease-in-out;
-    }
+.sidebar .nav-sidebar .nav-link:hover,
+.sidebar .nav-sidebar .nav-link.active {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+  border-left: 3px solid #ffd166;
+  border-radius: 0 8px 8px 0;
+}
 
-    .sidebar .nav-sidebar .nav-link:hover,
-    .sidebar .nav-sidebar .nav-link.active {
-      color: #facc15;
-      background: rgba(250, 204, 21, 0.1);
-      border-left: 3px solid #facc15;
-      border-radius: 0 8px 8px 0;
-    }
+/* Treeview (sub-menu) links */
+.sidebar .nav-treeview .nav-link {
+  color: #f3e8e8;
+  padding-left: 2.5rem;
+}
 
-    .sidebar .nav-treeview .nav-link {
-      color: #d1d5db;
-      padding-left: 2.5rem;
-    }
+.sidebar .nav-treeview .nav-link:hover,
+.sidebar .nav-treeview .nav-link.active {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  border-left: 3px solid #ffd166;
+  border-radius: 0 8px 8px 0;
+}
 
-    .sidebar .nav-treeview .nav-link:hover,
-    .sidebar .nav-treeview .nav-link.active {
-      color: #facc15;
-      background: rgba(250, 204, 21, 0.08);
-      border-left: 3px solid #facc15;
-      border-radius: 0 8px 8px 0;
-    }
-
-    .user-panel {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
+/* User panel section */
+.user-panel {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
 
     .user-panel .info a {
       color: #ffffff;
