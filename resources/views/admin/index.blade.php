@@ -159,7 +159,7 @@ h3.section-title {
     <div class="row">
       <div class="col-12 text-center mb-2">
         <h2 class="fw-bold" style="
-          color: #0b3d91;
+          color: #7b2d2d;
           text-shadow: 0 0 10px rgba(11,61,145,0.4);
           margin-top: -10px;
           margin-bottom: 10px;
