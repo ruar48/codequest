@@ -5,10 +5,10 @@
 @section('content')
 
 <style>
-/* === Global Dashboard Theme === */
+/* === Match Dashboard Style === */
 body, .content-wrapper {
-  background: linear-gradient(135deg, #0a0f24, #1c223a);
-  color: #fff;
+  background-color: #ffffff !important;
+  color: #333;
   font-family: 'Poppins', sans-serif;
 }
 
@@ -17,96 +17,116 @@ body, .content-wrapper {
   text-align: center;
   padding-top: 15px;
   padding-bottom: 0;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
 }
-
 .content-header h1 {
   font-weight: 700;
-  color: #facc15;
+  color: #6b0f1a;
   font-size: 1.8rem;
-  text-shadow: 0 0 12px rgba(250, 204, 21, 0.4);
 }
-
 .content-header p {
-  color: #e5e5e5;
+  color: #6b6b6b;
   font-size: 0.95rem;
   margin-bottom: 0;
 }
 
-/* Buttons */
+/* Add Question Button */
 .btn-primary {
-  background-color: #facc15;
-  color: #1c1c1c;
+  background-color: #6b0f1a;
+  color: #fff;
   font-weight: 600;
   border: none;
-  border-radius: 6px;
-  transition: all 0.3s;
+  border-radius: 8px;
+  transition: all 0.3s ease;
 }
 .btn-primary:hover {
-  box-shadow: 0 0 10px rgba(250, 204, 21, 0.8);
+  background-color: #8b1d26;
   transform: translateY(-2px);
 }
 
-/* Cards */
+/* Card Styling */
 .card {
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(250, 204, 21, 0.25);
-  box-shadow: 0 4px 16px rgba(250, 204, 21, 0.25);
-  border-radius: 16px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: none;
   margin-top: 8px;
 }
 .card-header {
-  background: linear-gradient(90deg, #facc15, #ffea80);
-  color: #1c1c1c;
+  background: #fff;
+  border-bottom: 2px solid #6b0f1a;
+  color: #6b0f1a;
   font-weight: 700;
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
+  font-size: 1.1rem;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  padding: 12px 15px;
 }
 
 /* Table */
-.table-dark {
-  background: transparent;
-  color: #fff;
+.table {
+  background-color: #ffffff;
+  color: #333;
+  border-radius: 8px;
+  overflow: hidden;
 }
 .table thead th {
-  color: #000;
-  background-color: #facc15;
+  background-color: #6b0f1a;
+  color: #fff;
   font-weight: 600;
+  border: none;
 }
 .table tbody tr:hover {
-  background: rgba(250, 204, 21, 0.1);
+  background-color: rgba(107, 15, 26, 0.05);
   transition: 0.3s;
 }
 .badge-success { background-color: #27ae60; }
 .badge-warning { background-color: #f1c40f; color: #1c1c1c; }
 .badge-danger  { background-color: #e74c3c; }
 
+/* Action Buttons */
+.btn-outline-warning {
+  color: #d97706;
+  border: 1px solid #d97706;
+}
+.btn-outline-warning:hover {
+  background-color: #d97706;
+  color: white;
+}
+.btn-outline-danger {
+  color: #b91c1c;
+  border: 1px solid #b91c1c;
+}
+.btn-outline-danger:hover {
+  background-color: #b91c1c;
+  color: white;
+}
+
 /* Modal */
 .modal-content {
-  background-color: #101020;
-  color: #fff;
-  border: 1px solid rgba(250, 204, 21, 0.4);
+  background-color: #fff;
+  color: #333;
   border-radius: 12px;
+  border: 1px solid #ddd;
 }
 .modal-header {
-  background: linear-gradient(90deg, #facc15, #ffea80);
-  color: #1c1c1c;
+  background-color: #6b0f1a;
+  color: #fff;
   border-bottom: none;
 }
 .form-control, textarea, select {
-  background-color: #0a0f24;
-  color: #fff;
-  border: 1px solid rgba(250, 204, 21, 0.5);
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #ccc;
 }
 .form-control:focus {
-  box-shadow: 0 0 8px rgba(250, 204, 21, 0.6);
-  border-color: #facc15;
+  border-color: #6b0f1a;
+  box-shadow: 0 0 5px rgba(107, 15, 26, 0.4);
 }
 </style>
 
 <div class="content-header">
-  <h1>TEST BANK QUESTIONS</h1>
+  <h1>Test Bank</h1>
   <p>Manage and organize your CodeQuest test questions efficiently</p>
 </div>
 
@@ -128,7 +148,7 @@ body, .content-wrapper {
       </div>
       <div class="card-body p-3">
         <div class="table-responsive">
-          <table id="questionTable" class="table table-dark table-hover align-middle mb-0 rounded">
+          <table id="questionTable" class="table table-hover align-middle mb-0 rounded">
             <thead>
               <tr>
                 <th>ID</th>
