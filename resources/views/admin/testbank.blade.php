@@ -5,33 +5,34 @@
 @section('content')
 
 <style>
-/* === GLOBAL (WHITE THEME) === */
+/* === Clean Dashboard Theme === */
 body, .content-wrapper {
-  background-color: #ffffff !important;
+  background-color: #ffffff;
+  color: #2c2c2c;
   font-family: 'Poppins', sans-serif;
-  color: #333;
 }
 
-/* === HEADER === */
+/* Header */
 .content-header {
   text-align: center;
-  padding-top: 20px;
-  margin-bottom: 10px;
+  padding-top: 15px;
+  padding-bottom: 0;
+  margin-bottom: 5px;
 }
 .content-header h1 {
   font-weight: 700;
-  color: #7a1f1f; /* Maroon */
+  color: #6b0f1a; /* maroon */
   font-size: 1.8rem;
 }
 .content-header p {
-  color: #555;
+  color: #6b6b6b;
   font-size: 0.95rem;
   margin-bottom: 0;
 }
 
-/* === BUTTONS === */
+/* Button */
 .btn-primary {
-  background-color: #7a1f1f;
+  background-color: #6b0f1a;
   color: #fff;
   font-weight: 600;
   border: none;
@@ -39,111 +40,74 @@ body, .content-wrapper {
   transition: all 0.3s ease;
 }
 .btn-primary:hover {
-  background-color: #5e1717;
+  background-color: #8b1d26;
   transform: translateY(-2px);
 }
-.btn-outline-warning, .btn-outline-danger {
-  border-radius: 8px;
-}
 
-/* === CARD === */
+/* Card */
 .card {
-  background-color: #ffffff;
-  border: 1px solid #e5e5e5;
+  background: #fff;
+  border: 1px solid #e0e0e0;
   border-radius: 14px;
-  box-shadow: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  margin-top: 8px;
 }
 .card-header {
-  background-color: #fafafa;
-  color: #7a1f1f;
-  font-weight: 600;
-  border-bottom: 1px solid #e6e6e6;
-  font-size: 1rem;
-  padding: 10px 15px;
+  background: #fff;
+  border-bottom: 2px solid #6b0f1a;
+  color: #6b0f1a;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
 }
 
-/* === TABLE === */
+/* Table */
 .table {
-  background-color: #fff;
+  background: white;
   color: #333;
-  margin-bottom: 0;
+  border-radius: 10px;
+  overflow: hidden;
 }
 .table thead th {
-  background-color: #7a1f1f;
+  background-color: #6b0f1a;
   color: #fff;
-  text-align: center;
   font-weight: 600;
+  border: none;
 }
-.table tbody td {
-  vertical-align: middle;
+.table tbody tr:hover {
+  background-color: rgba(107, 15, 26, 0.05);
+  transition: 0.3s;
 }
-.table-hover tbody tr:hover {
-  background-color: rgba(122, 31, 31, 0.08);
-  transition: 0.2s;
-}
-
-/* === BADGES === */
 .badge-success { background-color: #27ae60; }
-.badge-warning { background-color: #f1c40f; color: #000; }
-.badge-danger { background-color: #e74c3c; }
+.badge-warning { background-color: #f1c40f; color: #1c1c1c; }
+.badge-danger  { background-color: #e74c3c; }
 
-/* === MODAL === */
+/* Modal */
 .modal-content {
-  background-color: #ffffff;
+  background-color: #fff;
   color: #333;
   border-radius: 12px;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
 }
 .modal-header {
-  background-color: #7a1f1f;
+  background-color: #6b0f1a;
   color: #fff;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
+  border-bottom: none;
 }
 .form-control, textarea, select {
   background-color: #fff;
   color: #333;
   border: 1px solid #ccc;
-  border-radius: 6px;
 }
 .form-control:focus {
-  border-color: #7a1f1f;
-  box-shadow: 0 0 6px rgba(122, 31, 31, 0.3);
-}
-
-/* === DATATABLES === */
-.dataTables_wrapper .dataTables_filter input {
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  padding: 4px 8px;
-}
-.dataTables_wrapper .dataTables_length select {
-  border-radius: 6px;
-  border: 1px solid #ccc;
-}
-.dataTables_wrapper .dataTables_info,
-.dataTables_wrapper .dataTables_paginate {
-  color: #333;
-}
-.dataTables_wrapper .dataTables_paginate .paginate_button {
-  color: #7a1f1f !important;
-  border: none !important;
-  background: transparent !important;
-}
-.dataTables_wrapper .dataTables_paginate .paginate_button.current {
-  background: #7a1f1f !important;
-  color: #fff !important;
-  border-radius: 6px;
-}
-
-/* === RESPONSIVE === */
-@media (max-width: 768px) {
-  .content-header h1 { font-size: 1.5rem; }
+  border-color: #6b0f1a;
+  box-shadow: 0 0 5px rgba(107, 15, 26, 0.4);
 }
 </style>
 
 <div class="content-header">
-  <h1><i class="fas fa-database me-2"></i> Test Bank Questions</h1>
+  <h1>Test Bank</h1>
   <p>Manage and organize your CodeQuest test questions efficiently</p>
 </div>
 
@@ -151,8 +115,9 @@ body, .content-wrapper {
   <div class="container-fluid">
 
     <!-- Add Question Button -->
-    <div class="d-flex justify-content-end mb-3">
-      <button type="button" class="btn btn-primary px-3 py-2" data-bs-toggle="modal" data-bs-target="#questionModal">
+    <div class="d-flex justify-content-end mb-2">
+      <button type="button" class="btn btn-primary fw-semibold px-3 py-1" 
+              data-bs-toggle="modal" data-bs-target="#questionModal">
         <i class="fas fa-plus me-1"></i> Add Question
       </button>
     </div>
@@ -160,11 +125,11 @@ body, .content-wrapper {
     <!-- Questions Table -->
     <div class="card">
       <div class="card-header d-flex justify-content-between align-items-center">
-        <span><i class="fas fa-layer-group me-2"></i> List of Questions</span>
+        <span><i class="fas fa-database me-2"></i> List of Questions</span>
       </div>
       <div class="card-body p-3">
         <div class="table-responsive">
-          <table id="questionTable" class="table table-hover align-middle">
+          <table id="questionTable" class="table table-hover align-middle mb-0 rounded">
             <thead>
               <tr>
                 <th>ID</th>
@@ -177,17 +142,17 @@ body, .content-wrapper {
             </thead>
             <tbody>
               @foreach ($questions as $question)
-              <tr>
-                <td class="text-center">{{ $question->id }}</td>
+              <tr data-id="{{ $question->id }}">
+                <td>{{ $question->id }}</td>
                 <td>{{ $question->question }}</td>
                 <td>{{ $question->output }}</td>
-                <td class="text-center">
+                <td>
                   <span class="badge badge-{{ $question->level == 'easy' ? 'success' : ($question->level == 'intermediate' ? 'warning' : 'danger') }}">
                     {{ ucfirst($question->level) }}
                   </span>
                 </td>
                 <td>{{ $question->tips }}</td>
-                <td class="text-center">
+                <td>
                   <button class="btn btn-sm btn-outline-warning edit-question me-1" data-id="{{ $question->id }}">
                     <i class="fas fa-edit"></i>
                   </button>
@@ -206,36 +171,36 @@ body, .content-wrapper {
   </div>
 </section>
 
-<!-- Modal -->
+<!-- Add Question Modal -->
 <div class="modal fade" id="questionModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <form id="questionForm" action="{{ route('testbank.store') }}" method="POST">
       @csrf
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title"><i class="fas fa-plus-circle me-2"></i> Add Question</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          <h5 class="modal-title">Add Question</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <div class="mb-3">
-            <label class="form-label">Question</label>
-            <textarea class="form-control" name="question" rows="3" required></textarea>
+            <label for="question" class="form-label">Question</label>
+            <textarea class="form-control" id="question" name="question" rows="3" required></textarea>
           </div>
           <div class="mb-3">
-            <label class="form-label">Output</label>
-            <input type="text" class="form-control" name="output" required>
+            <label for="output" class="form-label">Output</label>
+            <input type="text" class="form-control" id="output" name="output" required>
           </div>
           <div class="mb-3">
-            <label class="form-label">Level</label>
-            <select class="form-control" name="level" required>
+            <label for="level" class="form-label">Level</label>
+            <select class="form-control" id="level" name="level" required>
               <option value="easy">Easy</option>
               <option value="intermediate">Intermediate</option>
               <option value="hard">Hard</option>
             </select>
           </div>
           <div class="mb-3">
-            <label class="form-label">Tips</label>
-            <textarea class="form-control" name="tips" rows="2"></textarea>
+            <label for="tips" class="form-label">Tips</label>
+            <textarea class="form-control" id="tips" name="tips" rows="2"></textarea>
           </div>
         </div>
         <div class="modal-footer">
@@ -247,35 +212,7 @@ body, .content-wrapper {
   </div>
 </div>
 
-<!-- Scripts -->
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
-
-<script>
-$(document).ready(function () {
-    $('#questionTable').DataTable({
-        responsive: true,
-        autoWidth: false,
-        dom: '<"row mb-3"' +
-                '<"col-md-6 d-flex align-items-center"l>' +
-                '<"col-md-6 d-flex justify-content-end"f>' +
-             '>rtip',
-        pagingType: "full_numbers",
-        language: {
-            info: "Showing _START_ to _END_ of _TOTAL_ questions",
-            paginate: {
-                previous: "Previous",
-                next: "Next",
-                first: "First",
-                last: "Last"
-            },
-            search: "Search:"
-        },
-        pageLength: 10,
-        order: [[0, 'asc']]
-    });
-});
-</script>
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 @endsection
