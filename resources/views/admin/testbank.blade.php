@@ -5,18 +5,18 @@
 @section('content')
 
 <style>
-/* === GLOBAL THEME (Maroon + White Dashboard Look) === */
+/* === GLOBAL (WHITE THEME) === */
 body, .content-wrapper {
-  background-color: #ffffff;
+  background-color: #ffffff !important;
   font-family: 'Poppins', sans-serif;
-  color: #3b3b3b;
+  color: #333;
 }
 
 /* === HEADER === */
 .content-header {
   text-align: center;
   padding-top: 20px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 .content-header h1 {
   font-weight: 700;
@@ -24,7 +24,7 @@ body, .content-wrapper {
   font-size: 1.8rem;
 }
 .content-header p {
-  color: #666;
+  color: #555;
   font-size: 0.95rem;
   margin-bottom: 0;
 }
@@ -46,10 +46,10 @@ body, .content-wrapper {
   border-radius: 8px;
 }
 
-/* === CARD STYLING === */
+/* === CARD === */
 .card {
   background-color: #ffffff;
-  border: 1px solid #e6e6e6;
+  border: 1px solid #e5e5e5;
   border-radius: 14px;
   box-shadow: none;
 }
@@ -62,16 +62,17 @@ body, .content-wrapper {
   padding: 10px 15px;
 }
 
-/* === TABLE DESIGN === */
+/* === TABLE === */
 .table {
   background-color: #fff;
   color: #333;
+  margin-bottom: 0;
 }
 .table thead th {
   background-color: #7a1f1f;
   color: #fff;
-  font-weight: 600;
   text-align: center;
+  font-weight: 600;
 }
 .table tbody td {
   vertical-align: middle;
@@ -82,35 +83,27 @@ body, .content-wrapper {
 }
 
 /* === BADGES === */
-.badge-success {
-  background-color: #2ecc71;
-}
-.badge-warning {
-  background-color: #f1c40f;
-  color: #000;
-}
-.badge-danger {
-  background-color: #e74c3c;
-}
+.badge-success { background-color: #27ae60; }
+.badge-warning { background-color: #f1c40f; color: #000; }
+.badge-danger { background-color: #e74c3c; }
 
 /* === MODAL === */
 .modal-content {
-  background-color: #fff;
+  background-color: #ffffff;
   color: #333;
-  border: 1px solid #ddd;
   border-radius: 12px;
+  border: 1px solid #ccc;
 }
 .modal-header {
   background-color: #7a1f1f;
   color: #fff;
-  border-bottom: none;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
 }
 .form-control, textarea, select {
   background-color: #fff;
-  border: 1px solid #ccc;
   color: #333;
+  border: 1px solid #ccc;
   border-radius: 6px;
 }
 .form-control:focus {
@@ -118,7 +111,7 @@ body, .content-wrapper {
   box-shadow: 0 0 6px rgba(122, 31, 31, 0.3);
 }
 
-/* === DATATABLE ORGANIZER === */
+/* === DATATABLES === */
 .dataTables_wrapper .dataTables_filter input {
   border: 1px solid #ccc;
   border-radius: 6px;
@@ -143,11 +136,9 @@ body, .content-wrapper {
   border-radius: 6px;
 }
 
-/* === RESPONSIVENESS === */
+/* === RESPONSIVE === */
 @media (max-width: 768px) {
-  .content-header h1 {
-    font-size: 1.5rem;
-  }
+  .content-header h1 { font-size: 1.5rem; }
 }
 </style>
 
@@ -173,7 +164,7 @@ body, .content-wrapper {
       </div>
       <div class="card-body p-3">
         <div class="table-responsive">
-          <table id="questionTable" class="table table-hover align-middle mb-0">
+          <table id="questionTable" class="table table-hover align-middle">
             <thead>
               <tr>
                 <th>ID</th>
@@ -186,7 +177,7 @@ body, .content-wrapper {
             </thead>
             <tbody>
               @foreach ($questions as $question)
-              <tr data-id="{{ $question->id }}">
+              <tr>
                 <td class="text-center">{{ $question->id }}</td>
                 <td>{{ $question->question }}</td>
                 <td>{{ $question->output }}</td>
@@ -215,7 +206,7 @@ body, .content-wrapper {
   </div>
 </section>
 
-<!-- Add Question Modal -->
+<!-- Modal -->
 <div class="modal fade" id="questionModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <form id="questionForm" action="{{ route('testbank.store') }}" method="POST">
@@ -223,28 +214,28 @@ body, .content-wrapper {
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title"><i class="fas fa-plus-circle me-2"></i> Add Question</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
           <div class="mb-3">
-            <label for="question" class="form-label">Question</label>
-            <textarea class="form-control" id="question" name="question" rows="3" required></textarea>
+            <label class="form-label">Question</label>
+            <textarea class="form-control" name="question" rows="3" required></textarea>
           </div>
           <div class="mb-3">
-            <label for="output" class="form-label">Output</label>
-            <input type="text" class="form-control" id="output" name="output" required>
+            <label class="form-label">Output</label>
+            <input type="text" class="form-control" name="output" required>
           </div>
           <div class="mb-3">
-            <label for="level" class="form-label">Level</label>
-            <select class="form-control" id="level" name="level" required>
+            <label class="form-label">Level</label>
+            <select class="form-control" name="level" required>
               <option value="easy">Easy</option>
               <option value="intermediate">Intermediate</option>
               <option value="hard">Hard</option>
             </select>
           </div>
           <div class="mb-3">
-            <label for="tips" class="form-label">Tips</label>
-            <textarea class="form-control" id="tips" name="tips" rows="2"></textarea>
+            <label class="form-label">Tips</label>
+            <textarea class="form-control" name="tips" rows="2"></textarea>
           </div>
         </div>
         <div class="modal-footer">
@@ -256,12 +247,11 @@ body, .content-wrapper {
   </div>
 </div>
 
-<!-- DataTables + Bootstrap -->
+<!-- Scripts -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
 
-<!-- Page Organizer Script -->
 <script>
 $(document).ready(function () {
     $('#questionTable').DataTable({
