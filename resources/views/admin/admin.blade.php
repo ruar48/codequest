@@ -165,9 +165,45 @@ input.form-control:focus {
   background-color: #7b2d2d;
   border-radius: 4px;
 }
+
+/* --- DataTables Maroon Theme --- */
+.dataTables_wrapper .dataTables_filter input {
+  border: 1px solid #7b2d2d;
+  border-radius: 20px;
+  padding: 4px 10px;
+  outline: none;
+}
+.dataTables_wrapper .dataTables_filter input:focus {
+  box-shadow: 0 0 6px rgba(123,45,45,0.4);
+  border-color: #7b2d2d;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  color: #7b2d2d !important;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  padding: 3px 8px;
+  transition: 0.2s;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background: #7b2d2d !important;
+  color: #fff !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+  background: #7b2d2d !important;
+  color: #fff !important;
+  border-radius: 20px;
+}
 </style>
 
 @push('scripts')
+<!-- ✅ DataTables Dependencies -->
+<link rel="stylesheet" 
+      href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+
+<!-- ✅ Working DataTable Setup -->
 <script>
 $(document).ready(function () {
     $('#adminTable').DataTable({
