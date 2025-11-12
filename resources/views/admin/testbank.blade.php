@@ -5,10 +5,10 @@
 @section('content')
 
 <style>
-/* === Clean Dashboard Theme === */
+/* === Global Dashboard Theme === */
 body, .content-wrapper {
-  background-color: #ffffff;
-  color: #2c2c2c;
+  background: linear-gradient(135deg, #0a0f24, #1c223a);
+  color: #fff;
   font-family: 'Poppins', sans-serif;
 }
 
@@ -19,64 +19,63 @@ body, .content-wrapper {
   padding-bottom: 0;
   margin-bottom: 5px;
 }
+
 .content-header h1 {
   font-weight: 700;
-  color: #6b0f1a; /* maroon */
+  color: #facc15;
   font-size: 1.8rem;
+  text-shadow: 0 0 12px rgba(250, 204, 21, 0.4);
 }
+
 .content-header p {
-  color: #6b6b6b;
+  color: #e5e5e5;
   font-size: 0.95rem;
   margin-bottom: 0;
 }
 
-/* Button */
+/* Buttons */
 .btn-primary {
-  background-color: #6b0f1a;
-  color: #fff;
+  background-color: #facc15;
+  color: #1c1c1c;
   font-weight: 600;
   border: none;
-  border-radius: 8px;
-  transition: all 0.3s ease;
+  border-radius: 6px;
+  transition: all 0.3s;
 }
 .btn-primary:hover {
-  background-color: #8b1d26;
+  box-shadow: 0 0 10px rgba(250, 204, 21, 0.8);
   transform: translateY(-2px);
 }
 
-/* Card */
+/* Cards */
 .card {
-  background: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 14px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(250, 204, 21, 0.25);
+  box-shadow: 0 4px 16px rgba(250, 204, 21, 0.25);
+  border-radius: 16px;
   margin-top: 8px;
 }
 .card-header {
-  background: #fff;
-  border-bottom: 2px solid #6b0f1a;
-  color: #6b0f1a;
+  background: linear-gradient(90deg, #facc15, #ffea80);
+  color: #1c1c1c;
   font-weight: 700;
-  font-size: 1.1rem;
-  border-top-left-radius: 14px;
-  border-top-right-radius: 14px;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
 }
 
 /* Table */
-.table {
-  background: white;
-  color: #333;
-  border-radius: 10px;
-  overflow: hidden;
+.table-dark {
+  background: transparent;
+  color: #fff;
 }
 .table thead th {
-  background-color: #6b0f1a;
-  color: #fff;
+  color: #000;
+  background-color: #facc15;
   font-weight: 600;
-  border: none;
 }
 .table tbody tr:hover {
-  background-color: rgba(107, 15, 26, 0.05);
+  background: rgba(250, 204, 21, 0.1);
   transition: 0.3s;
 }
 .badge-success { background-color: #27ae60; }
@@ -85,29 +84,29 @@ body, .content-wrapper {
 
 /* Modal */
 .modal-content {
-  background-color: #fff;
-  color: #333;
+  background-color: #101020;
+  color: #fff;
+  border: 1px solid rgba(250, 204, 21, 0.4);
   border-radius: 12px;
-  border: 1px solid #ddd;
 }
 .modal-header {
-  background-color: #6b0f1a;
-  color: #fff;
+  background: linear-gradient(90deg, #facc15, #ffea80);
+  color: #1c1c1c;
   border-bottom: none;
 }
 .form-control, textarea, select {
-  background-color: #fff;
-  color: #333;
-  border: 1px solid #ccc;
+  background-color: #0a0f24;
+  color: #fff;
+  border: 1px solid rgba(250, 204, 21, 0.5);
 }
 .form-control:focus {
-  border-color: #6b0f1a;
-  box-shadow: 0 0 5px rgba(107, 15, 26, 0.4);
+  box-shadow: 0 0 8px rgba(250, 204, 21, 0.6);
+  border-color: #facc15;
 }
 </style>
 
 <div class="content-header">
-  <h1>Test Bank</h1>
+  <h1>TEST BANK QUESTIONS</h1>
   <p>Manage and organize your CodeQuest test questions efficiently</p>
 </div>
 
@@ -129,7 +128,7 @@ body, .content-wrapper {
       </div>
       <div class="card-body p-3">
         <div class="table-responsive">
-          <table id="questionTable" class="table table-hover align-middle mb-0 rounded">
+          <table id="questionTable" class="table table-dark table-hover align-middle mb-0 rounded">
             <thead>
               <tr>
                 <th>ID</th>
