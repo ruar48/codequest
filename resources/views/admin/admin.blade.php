@@ -165,6 +165,34 @@ input.form-control:focus {
   background-color: #7b2d2d;
   border-radius: 4px;
 }
+/* --- DataTables Maroon Theme: Pagination Buttons --- */
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  color: #7b2d2d !important;       /* Text color */
+  border: 1px solid #7b2d2d;       /* Border color */
+  border-radius: 20px;
+  padding: 3px 8px;
+  margin: 0 2px;
+  background: transparent;          /* Default background */
+  transition: all 0.2s ease;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background: #7b2d2d !important;  /* Hover background */
+  color: #fff !important;          /* Hover text color */
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+  background: #7b2d2d !important;  /* Active page background */
+  color: #fff !important;          /* Active page text color */
+  border: 1px solid #7b2d2d;       /* Active page border */
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
+  color: rgba(123, 45, 45, 0.4) !important; /* Disabled color */
+  border-color: rgba(123, 45, 45, 0.2);
+  cursor: not-allowed;
+  background: transparent;
+}
 </style>
 
 @push('scripts')

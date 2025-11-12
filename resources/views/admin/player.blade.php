@@ -107,7 +107,7 @@
 body, .content-wrapper {
   background: #ffffff;
   font-family: 'Poppins', sans-serif;
-  color: #333;
+  color: #ffffffff;
 }
 
 /* Custom Maroon Buttons */
