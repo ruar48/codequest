@@ -165,6 +165,29 @@ input.form-control:focus {
   background-color: #7b2d2d;
   border-radius: 4px;
 }
+/* Timeline Point Glow */
+.timeline-point {
+  position: absolute;
+  left: -2px;
+  top: 10px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #7b2d2d;
+}
+.timeline-content {
+  background: #ffffff;
+  color: #333;
+  border: 1px solid rgba(123, 45, 45, 0.3);
+  border-left: 4px solid #7b2d2d;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  margin-bottom: 25px;
+  padding: 15px;
+}
+.timeline-content:hover {
+  transform: translateY(-4px);
+}
 /* --- DataTables Maroon Theme: Pagination Buttons --- */
 .dataTables_wrapper .dataTables_paginate .paginate_button {
   color: #7b2d2d !important;       /* Text color */
