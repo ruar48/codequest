@@ -19,13 +19,13 @@
     <div class="d-flex justify-content-end mb-3">
       <button type="button" 
               class="btn btn-maroon text-white fw-semibold px-3 py-1 rounded-pill"
-              data-toggle="modal" data-target="#adminModal" style="font-size: 0.9rem;">
+              data-bs-toggle="modal" data-bs-target="#adminModal" style="font-size: 0.9rem;">
         <i class="fas fa-user-plus me-1"></i> Add Admin
       </button>
     </div>
 
     <!-- Admins Table Card -->
-    <div class="card admin-card border-0 rounded-4">
+    <div class="card admin-card border-0 rounded-4 shadow-sm">
       <div class="card-header fw-bold py-2 rounded-top text-white"
            style="background: linear-gradient(90deg, #7b2d2d, #a43e3e);">
         <i class="fas fa-users-cog me-2"></i> List of Admins
@@ -73,7 +73,7 @@
       <div class="modal-header text-white py-2 rounded-top"
            style="background: linear-gradient(90deg, #7b2d2d, #a43e3e);">
         <h5 class="modal-title fw-bold mb-0" id="adminModalLabel">Add Admin</h5>
-        <button type="button" class="btn-close" data-dismiss="modal"></button>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
       </div>
       <form id="adminForm">
         @csrf
@@ -90,7 +90,7 @@
           </div>
         </div>
         <div class="modal-footer border-0 py-2">
-          <button type="button" class="btn btn-secondary btn-sm rounded-pill" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-secondary btn-sm rounded-pill" data-bs-dismiss="modal">Cancel</button>
           <button type="button" class="btn btn-maroon text-white fw-bold btn-sm rounded-pill"
                   id="saveAdmin">Save</button>
         </div>
@@ -99,6 +99,7 @@
   </div>
 </div>
 
+@push('styles')
 <style>
 /* --- Dashboard-Style Maroon Theme for Admins Page --- */
 body, .content-wrapper {
@@ -194,6 +195,7 @@ input.form-control:focus {
   border-radius: 20px;
 }
 </style>
+@endpush
 
 @push('scripts')
 <!-- ✅ DataTables Dependencies -->
