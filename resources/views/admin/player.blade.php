@@ -105,7 +105,16 @@ body, .content-wrapper {
   background-color: #a43e3e;
   color: #fff;
 }
-
+/* Sidebar Active / Hover Links */
+.nav-link.active,
+.nav-link:hover {
+  background-color: rgba(220, 160, 160, 0.25) !important; /* light maroon */
+  border-left: 3px solid #ecbbbbff; /* maroon indicator line */
+  color: #ffffff !important; /* keep text white for visibility */
+  font-weight: 600;
+  transition: all 0.2s ease;
+  box-shadow: 0 6px 12px rgba(220, 160, 160, 0.35); /* stronger, more visible shadow */
+}
 /* DataTables */
 .dataTables_wrapper .dataTables_filter input {
   border: 1px solid #7b2d2d;
