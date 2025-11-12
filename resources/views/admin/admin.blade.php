@@ -195,32 +195,23 @@ input.form-control:focus {
 }
 </style>
 
-@push('scripts')
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+
 <script>
-$(document).ready(function () {
-    $('#adminTable').DataTable({
-        responsive: true,
-        autoWidth: false,
-        dom: '<"row mb-3"' +
-                '<"col-md-6 d-flex align-items-center"l>' +
-                '<"col-md-6 d-flex justify-content-end"f>' +
-             '>rtip',
-        pagingType: "full_numbers",
-        language: {
-            info: "Showing _START_ to _END_ of _TOTAL_ admins",
-            paginate: {
-                previous: "Previous",
-                next: "Next",
-                first: "First",
-                last: "Last"
-            },
-            search: "Search Admins:"
-        },
-        pageLength: 10,
-        order: [[0, 'asc']]
-    });
+$(document).ready(function() {
+  $('#playersTable').DataTable({
+    responsive: true,
+    paging: true,
+    searching: true,
+    ordering: true,
+    info: true,
+    autoWidth: false,
+    lengthMenu: [[10,25,50,-1],[10,25,50,"All"]],
+  });
 });
 </script>
-@endpush
 
 @endsection
