@@ -4,160 +4,56 @@
 
 @section('content')
 
-<style>
-/* Match the dashboard/admin look */
-/* Match the dashboard/admin look */
-body, .content-wrapper {
-  background: linear-gradient(135deg, #0a0f24, #1c223a);
-  color: #fff;
-  font-family: 'Poppins', sans-serif;
-}
-
-/* Reduce the unnecessary top padding */
-.content {
-  padding-top: 40px !important;  /* was 80px — cut in half */
-  padding-bottom: 40px;
-}
-
-/* Header Section - tighter spacing below */
-.content-header {
-  padding-top: 10px;       /* slightly reduced top padding */
-  padding-bottom: 0;        /* no bottom padding */
-  margin-bottom: 0;         /* eliminate space before table */
-  text-align: center;
-}
-
-.content-header h1 {
-  font-weight: 700;
-  color: #facc15;
-  font-size: 1.8rem;
-  text-shadow: 0 0 12px rgba(250, 204, 21, 0.4);
-}
-
-.content-header p {
-  color: #e5e5e5;
-  font-size: 0.95rem;
-  margin-bottom: 2px;       /* small buffer */
-}
-
-/* Card Style - same as admin management */
-.card {
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(250, 204, 21, 0.25);
-  box-shadow: 0 4px 16px rgba(250, 204, 21, 0.25);
-  border-radius: 16px;
-  transition: all 0.3s ease;
-  margin-top: 8px !important; /* tight space below header */
-}
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 0 20px rgba(250, 204, 21, 0.5);
-}
-
-/* Card Header */
-.card-header {
-  background: linear-gradient(90deg, #facc15, #ffea80);
-  color: #1c1c1c;
-  font-weight: 700;
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
-}
-
-/* Table */
-.table-dark {
-  background: transparent;
-}
-.table thead th {
-  color: #000;
-  font-weight: 600;
-  background-color: #facc15;
-}
-.table tbody tr:hover {
-  background: rgba(250, 204, 21, 0.1);
-  transition: 0.3s;
-}
-
-/* Buttons */
-.btn-outline-warning {
-  border: 1px solid #facc15;
-  color: #facc15;
-  transition: 0.3s;
-}
-.btn-outline-warning:hover {
-  background-color: #facc15;
-  color: #1c1c1c;
-  box-shadow: 0 0 10px rgba(250, 204, 21, 0.7);
-}
-.btn-outline-danger {
-  border: 1px solid #e74c3c;
-  color: #e74c3c;
-  transition: 0.3s;
-}
-.btn-outline-danger:hover {
-  background-color: #e74c3c;
-  color: #fff;
-  box-shadow: 0 0 10px rgba(231, 76, 60, 0.6);
-}
-
-/* DataTables UI */
-.dataTables_wrapper .dataTables_filter input {
-  background-color: #0a0f24;
-  border: 1px solid rgba(250, 204, 21, 0.4);
-  color: #fff;
-  border-radius: 6px;
-  padding: 4px 8px;
-}
-.dataTables_wrapper .dataTables_paginate .paginate_button {
-  background-color: transparent;
-  border: none;
-  color: #facc15 !important;
-}
-.dataTables_wrapper .dataTables_paginate .paginate_button.current {
-  background: linear-gradient(90deg, #facc15, #ffea80);
-  color: #000 !important;
-  border-radius: 6px;
-}
-.dataTables_wrapper .dataTables_info {
-  color: #aaa;
-}
-</style>
-
-<div class="content-header">
-  <h1>PLAYER MANAGEMENT</h1>
-  <p>Manage your CodeQuest players efficiently</p>
+<div class="content-header text-center py-3">
+  <h1 class="fw-bold mb-1" 
+      style="font-size: 2rem; color: #7b2d2d; text-shadow: none;">
+      <i class="fas fa-users me-2"></i> PLAYER MANAGEMENT
+  </h1>
+  <p class="text-muted mb-0" style="opacity: 0.9;">Manage your CodeQuest players efficiently</p>
 </div>
 
 <section class="content">
   <div class="container-fluid">
 
-    <div class="card mt-2">
-      <div class="card-header d-flex justify-content-between align-items-center">
-        <span><i class="fas fa-users me-2"></i> List of Players</span>
-      </div>
+    <!-- Add Player Button -->
+    <div class="d-flex justify-content-end mb-3">
+      <button type="button" 
+              class="btn btn-maroon text-white fw-semibold px-3 py-1 rounded-pill"
+              data-bs-toggle="modal" data-bs-target="#playerModal" style="font-size: 0.9rem;">
+        <i class="fas fa-user-plus me-1"></i> Add Player
+      </button>
+    </div>
 
-      <div class="card-body p-3">
+    <!-- Players Table Card -->
+    <div class="card player-card border-0 rounded-4">
+      <div class="card-header fw-bold py-2 rounded-top text-white"
+           style="background: linear-gradient(90deg, #7b2d2d, #a43e3e);">
+        <i class="fas fa-users-cog me-2"></i> List of Players
+      </div>
+      <div class="card-body p-3 bg-white text-dark">
         <div class="table-responsive">
-          <table id="playersTable" class="table table-dark table-hover align-middle mb-0 rounded">
-            <thead>
+          <table id="playersTable" class="table table-bordered table-hover align-middle mb-0">
+            <thead style="background-color: #7b2d2d; color: #fff;">
               <tr>
-                <th>ID</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Actions</th>
+                <th style="width: 10%;">ID</th>
+                <th style="width: 40%;">Email</th>
+                <th style="width: 25%;">Role</th>
+                <th style="width: 25%;">Actions</th>
               </tr>
             </thead>
             <tbody>
               @foreach ($players as $player)
               <tr>
-                <td>{{ $player->id }}</td>
-                <td>{{ $player->email }}</td>
-                <td class="text-capitalize">{{ $player->role }}</td>
-                <td>
-                  <button class="btn btn-sm btn-outline-warning edit-player me-1" data-id="{{ $player->id }}" data-email="{{ $player->email }}">
+                <td class="ps-4">{{ $player->id }}</td>
+                <td class="ps-4">{{ $player->email }}</td>
+                <td class="text-capitalize ps-4">{{ $player->role }}</td>
+                <td class="ps-3">
+                  <button class="btn btn-sm btn-outline-maroon edit-player me-1 d-inline-flex align-items-center justify-content-center" 
+                          data-id="{{ $player->id }}" data-email="{{ $player->email }}">
                     <i class="fas fa-edit"></i>
                   </button>
-                  <button class="btn btn-sm btn-outline-danger delete-player" data-id="{{ $player->id }}">
+                  <button class="btn btn-sm btn-outline-danger delete-player d-inline-flex align-items-center justify-content-center" 
+                          data-id="{{ $player->id }}">
                     <i class="fas fa-trash"></i>
                   </button>
                 </td>
@@ -175,50 +71,169 @@ body, .content-wrapper {
 <!-- Player Modal -->
 <div class="modal fade" id="playerModal" tabindex="-1" aria-labelledby="playerModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content bg-dark text-light border border-warning rounded-3">
-      <div class="modal-header bg-warning text-dark py-2">
+    <div class="modal-content bg-white text-dark border border-maroon rounded-3">
+      <div class="modal-header text-white py-2 rounded-top"
+           style="background: linear-gradient(90deg, #7b2d2d, #a43e3e);">
         <h5 class="modal-title fw-bold mb-0" id="playerModalLabel">Add Player</h5>
-        <button type="button" class="btn-close" data-dismiss="modal"></button>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
       </div>
       <form id="playerForm">
         @csrf
         <div class="modal-body py-3">
-          <div class="form-group mb-2">
-            <label for="email" class="fw-bold text-warning">Email</label>
-            <input type="email" class="form-control bg-dark text-light border-warning" id="email" name="email" required>
+          <div class="form-group mb-3">
+            <label for="email" class="fw-bold text-maroon">Email</label>
+            <input type="email" class="form-control border-maroon rounded-pill"
+                   id="email" name="email" required>
           </div>
           <div class="form-group mb-2">
-            <label for="password" class="fw-bold text-warning">Password</label>
-            <input type="password" class="form-control bg-dark text-light border-warning" id="password" name="password" required>
+            <label for="password" class="fw-bold text-maroon">Password</label>
+            <input type="password" class="form-control border-maroon rounded-pill"
+                   id="password" name="password" required>
           </div>
         </div>
         <div class="modal-footer border-0 py-2">
-          <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-warning text-dark fw-bold btn-sm" id="savePlayer">Save</button>
+          <button type="button" class="btn btn-secondary btn-sm rounded-pill" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-maroon text-white fw-bold btn-sm rounded-pill"
+                  id="savePlayer">Save</button>
         </div>
       </form>
     </div>
   </div>
 </div>
 
-<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
+@push('styles')
+<style>
+/* === Dashboard-Style Maroon Theme for Players Page === */
+body, .content-wrapper {
+  background: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+}
 
+/* Custom Maroon Buttons */
+.btn-maroon {
+  background: linear-gradient(90deg, #7b2d2d, #a43e3e);
+  border: none;
+}
+.btn-maroon:hover {
+  background: linear-gradient(90deg, #a43e3e, #7b2d2d);
+}
+
+/* Outline Buttons */
+.btn-outline-maroon {
+  border: 1px solid #7b2d2d;
+  color: #7b2d2d;
+}
+.btn-outline-maroon:hover {
+  background: #7b2d2d;
+  color: #fff;
+}
+
+/* Card Style */
+.player-card {
+  background: #ffffff;
+  border: 1px solid rgba(123, 45, 45, 0.2);
+  border-radius: 16px;
+}
+
+/* Maroon Utility Colors */
+.text-maroon {
+  color: #7b2d2d !important;
+}
+.border-maroon {
+  border-color: #7b2d2d !important;
+}
+
+/* Input Focus */
+input.form-control:focus {
+  box-shadow: 0 0 8px rgba(123, 45, 45, 0.4);
+  border-color: #7b2d2d;
+}
+
+/* Table Hover Effect */
+.table-hover tbody tr:hover {
+  background-color: rgba(123, 45, 45, 0.1);
+  transition: all 0.2s ease;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #7b2d2d;
+  border-radius: 4px;
+}
+
+/* --- DataTables Maroon Theme --- */
+.dataTables_wrapper .dataTables_filter input {
+  border: 1px solid #7b2d2d;
+  border-radius: 20px;
+  padding: 4px 10px;
+  outline: none;
+}
+.dataTables_wrapper .dataTables_filter input:focus {
+  box-shadow: 0 0 6px rgba(123,45,45,0.4);
+  border-color: #7b2d2d;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  color: #7b2d2d !important;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  padding: 3px 8px;
+  transition: 0.2s;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background: #7b2d2d !important;
+  color: #fff !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+  background: #7b2d2d !important;
+  color: #fff !important;
+  border-radius: 20px;
+}
+
+/* Remove box shadows globally */
+.card, .btn, input, .modal-content {
+  box-shadow: none !important;
+}
+</style>
+@endpush
+
+@push('scripts')
+<!-- ✅ DataTables Dependencies -->
+<link rel="stylesheet" 
+      href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+
+<!-- ✅ DataTable Setup -->
 <script>
-$(document).ready(function() {
-  $('#playersTable').DataTable({
-    responsive: true,
-    paging: true,
-    searching: true,
-    ordering: true,
-    info: true,
-    autoWidth: false,
-    deferRender: true,
-    lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
-  });
+$(document).ready(function () {
+    $('#playersTable').DataTable({
+        responsive: true,
+        autoWidth: false,
+        dom: '<"row mb-3"' +
+                '<"col-md-6 d-flex align-items-center"l>' +
+                '<"col-md-6 d-flex justify-content-end"f>' +
+             '>rtip',
+        pagingType: "full_numbers",
+        language: {
+            info: "Showing _START_ to _END_ of _TOTAL_ players",
+            paginate: {
+                previous: "Previous",
+                next: "Next",
+                first: "First",
+                last: "Last"
+            },
+            search: "Search Players:"
+        },
+        pageLength: 10,
+        order: [[0, 'asc']]
+    });
 });
 </script>
+@endpush
 
 @endsection
