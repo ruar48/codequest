@@ -105,9 +105,9 @@
 <style>
 /* === Dashboard-Style Maroon Theme for Players Page === */
 body, .content-wrapper {
-  background: #ffffff;
+  background: #ffffff;       /* Plain white background */
   font-family: 'Poppins', sans-serif;
-  color: #ffffffff;
+  color: #333333;            /* Dark text color */
 }
 
 /* Custom Maroon Buttons */
