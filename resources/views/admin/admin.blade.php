@@ -173,11 +173,11 @@ $(document).ready(function () {
     $('#adminTable').DataTable({
         responsive: true,
         autoWidth: false,
-        lengthChange: true,
-        info: true,
-        paging: true,
-        pageLength: 10,
-        order: [[0, 'asc']],
+        dom: '<"row mb-3"' +
+                '<"col-md-6 d-flex align-items-center"l>' +
+                '<"col-md-6 d-flex justify-content-end"f>' +
+             '>rtip',
+        pagingType: "full_numbers",
         language: {
             info: "Showing _START_ to _END_ of _TOTAL_ admins",
             paginate: {
@@ -185,8 +185,11 @@ $(document).ready(function () {
                 next: "Next",
                 first: "First",
                 last: "Last"
-            }
-        }
+            },
+            search: "Search Admins:"
+        },
+        pageLength: 10,
+        order: [[0, 'asc']]
     });
 });
 </script>
