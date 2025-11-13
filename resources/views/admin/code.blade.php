@@ -5,10 +5,16 @@
 @section('content')
 
 <style>
-html, body, .wrapper, .content-wrapper {
-  background-color: #ffffff !important;
-  font-family: 'Poppins', sans-serif;
-  color: #333;
+/* Override all possible parent backgrounds */
+html, body, .wrapper, .content-wrapper, .hold-transition, .main-footer {
+    background-color: #ffffff !important;
+    color: #333 !important;
+}
+
+/* Optional: If dark mode class exists */
+body.dark-mode, .dark-mode .wrapper, .dark-mode .content-wrapper {
+    background-color: #ffffff !important;
+    color: #333 !important;
 }
 
 
