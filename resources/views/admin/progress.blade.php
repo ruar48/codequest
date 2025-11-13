@@ -5,199 +5,211 @@
 @section('content')
 
 <style>
-/* === Dashboard Theme === */
+/* === User Progress - White & Maroon Dashboard Theme === */
 body, .content-wrapper {
-    background: linear-gradient(135deg, #0a0f24, #1c223a);
-    font-family: 'Poppins', sans-serif;
-    color: #fff;
+  background: #ffffff !important;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
 }
 
+/* Header */
 .content-header {
-    text-align: center;
-    padding-top: 20px;
-    padding-bottom: 10px;
+  text-align: center;
+  padding: 25px 0 10px 0;
 }
-
 .content-header h1 {
-    font-weight: 700;
-    color: #facc15;
-    font-size: 2rem;
-    text-shadow: 0 0 12px rgba(250, 204, 21, 0.5);
+  color: #7b2d2d;
+  font-weight: 700;
+  font-size: 2rem;
 }
-
 .content-header p {
-    color: #e5e5e5;
-    font-size: 1rem;
+  color: #555;
+  margin-bottom: 0;
+  font-size: 1rem;
 }
 
-/* Card */
+/* Card Styling */
 .card {
-    background: rgba(255,255,255,0.05);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(250, 204, 21, 0.25);
-    border-radius: 16px;
-    margin-top: 12px;
-    box-shadow: 0 4px 16px rgba(250,204,21,0.25);
-    transition: all 0.3s ease;
+  background: #ffffff;
+  border: 1px solid rgba(123, 45, 45, 0.2);
+  border-radius: 16px;
+  box-shadow: none;
+  transition: all 0.3s ease;
+  padding: 15px;
 }
 .card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 0 20px rgba(250, 204, 21, 0.5);
+  transform: translateY(-3px);
 }
-
 .card-header {
-    background: linear-gradient(90deg, #facc15, #ffea80);
-    color: #1c1c1c;
-    font-weight: 700;
-    font-size: 1.2rem;
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
+  background: linear-gradient(90deg, #7b2d2d, #a43e3e);
+  color: #fff;
+  font-weight: 600;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  padding: 14px 20px;
+  margin: -15px -15px 15px -15px;
 }
 
-/* Table */
+/* Table Container */
+.table-responsive {
+  border-radius: 12px;
+  padding: 10px 20px;
+}
+
+/* Table Styling */
 .table {
-    background: transparent;
-    color: #fff;
-    margin-bottom: 0;
-    table-layout: fixed;
-    word-wrap: break-word;
+  background: #fff;
+  color: #333;
+  text-align: center;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 0;
 }
-
 .table thead th {
-    color: #1c1c1c;
-    background-color: #facc15;
-    font-weight: 600;
-    text-align: center;
+  background-color: #7b2d2d;
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
+  padding: 12px;
 }
-
 .table tbody td {
-    vertical-align: middle;
-    text-align: center;
-    overflow-wrap: break-word;
+  vertical-align: middle;
+  padding: 10px;
 }
-
 .table tbody tr:hover {
-    background: rgba(250, 204, 21, 0.1);
-    transition: 0.3s;
+  background: rgba(123, 45, 45, 0.05);
+  transition: 0.3s ease;
 }
 
-/* Badges */
-.badge {
-    font-weight: 600;
-    padding: 0.4em 0.6em;
-    border-radius: 12px;
-}
+/* --- Badges --- */
 .badge-success {
-    background-color: #27ae60 !important;
-    color: #fff;
+  background-color: #27ae60 !important;
+  color: #fff !important;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 4px 8px;
 }
-/* Stars Badge – No background */
 .badge-light {
-    background-color: transparent !important; /* remove background */
-    color: #facc15 !important;               /* golden/yellow stars */
-    font-weight: 600;
-    padding: 0;
-    border-radius: 0;
-    font-size: 1rem;
+  background: transparent !important;
+  color: #7b2d2d !important;
+  font-weight: 600;
+  font-size: 1rem;
 }
 
-/* DataTables controls */
-.dataTables_wrapper .dataTables_filter input {
-    background-color: #0a0f24;
-    border: 1px solid rgba(250, 204, 21, 0.4);
-    color: #fff;
-    border-radius: 6px;
-    padding: 4px 10px;
-    width: 100%;
-    max-width: 200px;
+/* --- Maroon Buttons --- */
+.btn-maroon {
+  background: linear-gradient(90deg, #7b2d2d, #a43e3e);
+  color: #fff;
+  border: none;
+}
+.btn-maroon:hover {
+  background: linear-gradient(90deg, #a43e3e, #7b2d2d);
+  color: #fff;
+}
+.btn-outline-maroon {
+  border: 1px solid #7b2d2d;
+  color: #7b2d2d;
+  background: #ffffff;
+}
+.btn-outline-maroon:hover {
+  background: #7b2d2d;
+  color: #fff;
 }
 
+/* --- DataTables Styling --- */
+.dataTables_wrapper .dataTables_filter input,
 .dataTables_wrapper .dataTables_length select {
-    background-color: #0a0f24;
-    border: 1px solid rgba(250, 204, 21, 0.4);
-    color: #fff;
-    border-radius: 6px;
-    padding: 4px 6px;
+  background-color: #ffffff;
+  border: 1px solid rgba(123, 45, 45, 0.4);
+  color: #333;
+  border-radius: 6px;
+  padding: 6px 10px;
 }
-
-/* Pagination buttons */
-.dataTables_wrapper .dataTables_paginate .paginate_button {
-    background-color: transparent;
-    border: none;
-    color: #facc15 !important;
-    margin: 0 2px;
-    padding: 4px 10px;
-}
-
-.dataTables_wrapper .dataTables_paginate .paginate_button.current {
-    background: linear-gradient(90deg, #facc15, #ffea80);
-    color: #000 !important;
-    border-radius: 6px;
-}
-
-/* Table info */
 .dataTables_wrapper .dataTables_info {
-    color: #aaa;
-    margin-top: 10px;
+  color: #333;
+  margin-top: 15px;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  background: transparent;
+  border: 1px solid #7b2d2d;
+  color: #7b2d2d !important;
+  border-radius: 20px;
+  padding: 4px 10px;
+  margin: 0 3px;
+  transition: all 0.2s ease;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background: #7b2d2d !important;
+  color: #fff !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+  background: #7b2d2d !important;
+  color: #fff !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
+  color: rgba(123, 45, 45, 0.4) !important;
+  border-color: rgba(123, 45, 45, 0.2);
 }
 
-/* Buttons */
-.dt-buttons .btn {
-    border-radius: 6px;
-    font-weight: 600;
-    transition: all 0.3s;
+/* Sidebar Active / Hover Links */
+.nav-link.active,
+.nav-link:hover {
+  background-color: rgba(220, 160, 160, 0.25) !important;
+  border-left: 3px solid #ecbbbbff;
+  color: #ffffff !important;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  box-shadow: 0 6px 12px rgba(220, 160, 160, 0.35);
 }
-.dt-buttons .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 10px rgba(250, 204, 21, 0.8);
+
+/* Responsive Fixes */
+@media (max-width: 768px) {
+  .card { padding: 10px; }
+  .table-responsive { padding: 5px; }
 }
 </style>
 
 <div class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-12">
-                <h1>User Progress</h1>
-                <p>Overview of user levels, stars, and points</p>
-            </div>
-        </div>
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-12">
+        <h1>User Progress</h1>
+        <p>Overview of user levels, stars, and points</p>
+      </div>
     </div>
+  </div>
 </div>
 
 <section class="content">
-    <div class="container-fluid">
-        <div class="card shadow-lg">
-            <div class="card-header">
-                <h3 class="card-title">Progress Overview</h3>
-            </div>
-            <div class="card-body table-responsive p-3">
-                <table class="table table-bordered table-hover text-center" id="progressTable">
-                    <thead>
-                        <tr>
-                            <th>User Email</th>
-                            <th>Level</th>
-                            <th>Stars</th>
-                            <th>Points</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($progress as $entry)
-                        <tr>
-                            <td>{{ $entry->user->email ?? 'N/A' }}</td>
-                            <td>{{ $entry->level_number }}</td>
-                            <td>
-    <span class="badge badge-light">{{ str_repeat('⭐', $entry->stars) }}</span>
-</td>
-                            <td>
-                                <span class="badge badge-success">{{ $entry->points }} pts</span>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title mb-0">Progress Overview</h3>
+      </div>
+      <div class="card-body table-responsive">
+        <table class="table table-bordered table-hover table-striped" id="progressTable">
+          <thead>
+            <tr>
+              <th>User Email</th>
+              <th>Level</th>
+              <th>Stars</th>
+              <th>Points</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach($progress as $entry)
+            <tr>
+              <td>{{ $entry->user->email ?? 'N/A' }}</td>
+              <td>{{ $entry->level_number }}</td>
+              <td><span class="badge badge-light">{{ str_repeat('⭐', $entry->stars) }}</span></td>
+              <td><span class="badge badge-success">{{ $entry->points }} pts</span></td>
+            </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
 </section>
 
 <!-- Include DataTables -->
@@ -207,35 +219,25 @@ body, .content-wrapper {
 <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
+
 <script>
 $(document).ready(function () {
-    $('#progressTable').DataTable({
-        responsive: true,
-        autoWidth: false,
-        dom: '<"row mb-3"' +
-                '<"col-md-4 d-flex align-items-center"l>' +
-                '<"col-md-4 text-center"B>' +
-                '<"col-md-4 d-flex justify-content-end"f>' +
-             '>rtip',
-        buttons: [
-            { extend: 'copy', className: 'btn btn-sm btn-primary me-1' },
-            { extend: 'csv', className: 'btn btn-sm btn-success me-1' },
-            { extend: 'excel', className: 'btn btn-sm btn-warning me-1' },
-            { extend: 'pdf', className: 'btn btn-sm btn-danger me-1' },
-            { extend: 'print', className: 'btn btn-sm btn-primary' }
-        ],
-        pagingType: "full_numbers",
-        language: {
-            info: "Showing _START_ to _END_ of _TOTAL_ entries",
-            paginate: {
-                previous: "Previous",
-                next: "Next",
-                first: "First",
-                last: "Last"
-            },
-            search: "Search Users:"
-        }
-    });
+  $('#progressTable').DataTable({
+    responsive: true,
+    autoWidth: false,
+    dom: '<"row mb-3"' +
+            '<"col-md-4 d-flex align-items-center"l>' +
+            '<"col-md-4 text-center"B>' +
+            '<"col-md-4 d-flex justify-content-end"f>' +
+         '>rtip',
+    buttons: [
+      { extend: 'copy', className: 'btn btn-sm btn-outline-maroon me-1' },
+      { extend: 'csv', className: 'btn btn-sm btn-outline-maroon me-1' },
+      { extend: 'excel', className: 'btn btn-sm btn-outline-maroon me-1' },
+      { extend: 'pdf', className: 'btn btn-sm btn-outline-maroon me-1' },
+      { extend: 'print', className: 'btn btn-sm btn-maroon' }
+    ]
+  });
 });
 </script>
 
