@@ -5,11 +5,12 @@
 @section('content')
 
 <style>
-/* === White-Maroon Dashboard Theme === */
-body, .content-wrapper {
+/* === PURE WHITE THEME === */
+body, .content-wrapper, .content, .card, .table, .dataTables_wrapper, .container-fluid {
   background-color: #ffffff !important;
   font-family: 'Poppins', sans-serif;
   color: #333;
+  box-shadow: none !important;
 }
 
 /* ===== HEADER ===== */
@@ -18,6 +19,7 @@ body, .content-wrapper {
   padding-top: 20px;
   padding-bottom: 10px;
   margin-bottom: 15px;
+  background-color: #ffffff !important;
 }
 .content-header h1 {
   font-weight: 700;
@@ -31,26 +33,16 @@ body, .content-wrapper {
   margin-bottom: 0;
 }
 
-/* ===== CONTENT SECTION ===== */
-.content {
-  padding: 25px 20px;
-}
-
 /* ===== CARD ===== */
 .card {
-  background: #ffffff;
   border: 1px solid rgba(123, 45, 45, 0.25);
   border-radius: 16px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
   transition: all 0.3s ease;
   margin-top: 20px;
-}
-.card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  box-shadow: none !important;
 }
 .card-header {
-  background: linear-gradient(90deg, #7b2d2d, #a43e3e);
+  background: #7b2d2d;
   color: #fff;
   font-weight: 600;
   border-top-left-radius: 16px;
@@ -60,15 +52,15 @@ body, .content-wrapper {
 }
 .card-body {
   padding: 30px !important;
+  background-color: #ffffff !important;
 }
 
 /* ===== TABLE ===== */
 .table {
-  background: #fff;
+  background: #ffffff !important;
   color: #333;
   border-radius: 10px;
   overflow: hidden;
-  width: 100%;
 }
 .table thead th {
   background-color: #7b2d2d;
@@ -119,7 +111,7 @@ body, .content-wrapper {
   margin-bottom: 15px;
 }
 .dataTables_wrapper .dataTables_filter input {
-  background-color: #fff;
+  background-color: #ffffff;
   border: 1px solid #ccc;
   color: #333;
   border-radius: 6px;
@@ -131,7 +123,7 @@ body, .content-wrapper {
   text-align: left;
 }
 .dataTables_wrapper .dataTables_length select {
-  background-color: #fff;
+  background-color: #ffffff;
   border: 1px solid #ccc;
   color: #333;
   border-radius: 6px;
@@ -161,7 +153,7 @@ body, .content-wrapper {
 .dt-buttons .btn {
   border-radius: 6px;
   font-weight: 600;
-  background: #fff;
+  background: #ffffff;
   border: 1px solid #7b2d2d;
   color: #7b2d2d;
   transition: all 0.3s;
@@ -170,7 +162,6 @@ body, .content-wrapper {
 .dt-buttons .btn:hover {
   background: #7b2d2d;
   color: #fff;
-  box-shadow: 0 0 10px rgba(123, 45, 45, 0.3);
 }
 
 /* ===== TABLE INFO TEXT ===== */
@@ -178,15 +169,15 @@ body, .content-wrapper {
   color: #555;
   margin-top: 10px;
 }
-/* Sidebar Active / Hover Links */
+
+/* ===== SIDEBAR ACTIVE ===== */
 .nav-link.active,
 .nav-link:hover {
-  background-color: rgba(220, 160, 160, 0.25) !important; /* light maroon */
-  border-left: 3px solid #ecbbbbff; /* maroon indicator line */
-  color: #ffffff !important; /* keep text white for visibility */
+  background-color: rgba(220, 160, 160, 0.25) !important;
+  border-left: 3px solid #ecbbbbff;
+  color: #ffffff !important;
   font-weight: 600;
   transition: all 0.2s ease;
-  box-shadow: 0 6px 12px rgba(220, 160, 160, 0.35); /* stronger, more visible shadow */
 }
 </style>
 
@@ -203,7 +194,7 @@ body, .content-wrapper {
 
 <section class="content">
   <div class="container-fluid">
-    <div class="card shadow-lg">
+    <div class="card">
       <div class="card-header">
         <h3 class="card-title mb-0">Executed Code Logs</h3>
       </div>
