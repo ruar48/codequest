@@ -143,7 +143,6 @@ h3.section-title {
   transition: all 0.2s ease;
   box-shadow: 0 6px 12px rgba(220, 160, 160, 0.35); /* stronger, more visible shadow */
 }
-
 /* Scrollbar Theme */
 ::-webkit-scrollbar {
   width: 8px;

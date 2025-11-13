@@ -5,175 +5,218 @@
 @section('content')
 
 <style>
-/* === Dashboard / Leaderboards Theme === */
+/* === Dashboard Maroon Theme for Leaderboards === */
 body, .content-wrapper {
-    background: linear-gradient(135deg, #0a0f24, #1c223a);
-    color: #fff;
-    font-family: 'Poppins', sans-serif;
+  background: #ffffff !important;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
 }
+
+/* ===== HEADER ===== */
 .content-header {
-    text-align: center;
-    padding-top: 15px;
-    padding-bottom: 0;
-    margin-bottom: 10px;
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
 }
 .content-header h1 {
-    font-weight: 700;
-    color: #facc15;
-    font-size: 2rem;
-    text-shadow: 0 0 12px rgba(250, 204, 21, 0.5);
+  font-weight: 700;
+  color: #7b2d2d;
+  font-size: 1.9rem;
+  letter-spacing: 0.5px;
 }
 .content-header p {
-    color: #e5e5e5;
-    font-size: 1rem;
-    margin-bottom: 0;
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 0;
 }
-.content {
-    padding-top: 40px !important;
-    padding-bottom: 40px;
-}
+
+/* ===== CARD ===== */
 .card {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(250, 204, 21, 0.25);
-    box-shadow: 0 4px 16px rgba(250, 204, 21, 0.25);
-    border-radius: 16px;
-    margin-top: 12px !important;
-    transition: all 0.3s ease;
+  background: #ffffff;
+  border: 1px solid rgba(123, 45, 45, 0.25);
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  margin-top: 12px;
 }
 .card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 0 20px rgba(250, 204, 21, 0.5);
+  transform: translateY(-2px);
 }
 .card-header {
-    background: linear-gradient(90deg, #facc15, #ffea80);
-    color: #1c1c1c;
-    font-weight: 700;
-    font-size: 1.2rem;
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
+  background: linear-gradient(90deg, #7b2d2d, #a43e3e);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  padding: 12px 15px;
 }
+
+/* ===== TABLE ===== */
 .table {
-    background: transparent;
-    color: #fff;
-    margin-bottom: 0;
+  background: #fff;
+  color: #333;
+  border-radius: 12px;
+  overflow: hidden;
 }
 .table thead th {
-    color: #1c1c1c;
-    background-color: #facc15;
-    font-weight: 600;
-    text-align: center;
+  background-color: #7b2d2d;
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
+  border: none;
 }
 .table tbody td {
-    vertical-align: middle;
-    text-align: center;
+  text-align: center;
+  vertical-align: middle;
 }
 .table tbody tr:hover {
-    background: rgba(250, 204, 21, 0.1);
-    transition: 0.3s;
+  background-color: rgba(123, 45, 45, 0.08);
+  transition: 0.25s ease;
 }
+
 /* Highlight top 3 players */
-.table tbody tr:nth-child(1) td { background: rgba(250,204,21,0.25); font-weight: 700; }
-.table tbody tr:nth-child(2) td { background: rgba(250,204,21,0.15); font-weight: 600; }
-.table tbody tr:nth-child(3) td { background: rgba(250,204,21,0.1); font-weight: 500; }
-/* DataTables styling */
+.table tbody tr:nth-child(1) td {
+  background: rgba(123, 45, 45, 0.2);
+  font-weight: 700;
+  color: #7b2d2d;
+}
+.table tbody tr:nth-child(2) td {
+  background: rgba(123, 45, 45, 0.12);
+  font-weight: 600;
+  color: #7b2d2d;
+}
+.table tbody tr:nth-child(3) td {
+  background: rgba(123, 45, 45, 0.08);
+  font-weight: 500;
+  color: #7b2d2d;
+}
+
+/* ===== DATATABLES CONTROLS ===== */
 .dataTables_wrapper .dataTables_filter input,
 .dataTables_wrapper .dataTables_length select {
-    background-color: #0a0f24;
-    border: 1px solid rgba(250, 204, 21, 0.4);
-    color: #fff;
-    border-radius: 6px;
-    padding: 4px 8px;
+  background-color: #fff;
+  border: 1px solid #7b2d2d;
+  color: #333;
+  border-radius: 6px;
+  padding: 4px 8px;
+}
+.dataTables_wrapper .dataTables_filter label,
+.dataTables_wrapper .dataTables_length label {
+  color: #333;
+  font-weight: 500;
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button {
-    background-color: transparent;
-    border: none;
-    color: #facc15 !important;
+  color: #7b2d2d !important;
+  border: 1px solid #7b2d2d;
+  border-radius: 20px;
+  padding: 3px 8px;
+  margin: 0 2px;
+  transition: all 0.2s ease;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background: #7b2d2d !important;
+  color: #fff !important;
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button.current {
-    background: linear-gradient(90deg, #facc15, #ffea80);
-    color: #000 !important;
-    border-radius: 6px;
+  background: #7b2d2d !important;
+  color: #fff !important;
+  border: 1px solid #7b2d2d;
 }
 .dataTables_wrapper .dataTables_info {
-    color: #ffffffff;
-    margin-top: 10px;
+  color: #555;
+  margin-top: 10px;
 }
-.btn-primary {
-    background-color: #facc15;
-    color: #1c1c1c;
-    border: none;
-    border-radius: 6px;
-    font-weight: 600;
-    transition: all 0.3s;
+
+/* ===== BUTTONS ===== */
+.btn-maroon {
+  background: linear-gradient(90deg, #7b2d2d, #a43e3e);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
 }
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 10px rgba(250, 204, 21, 0.8);
+.btn-maroon:hover {
+  background: linear-gradient(90deg, #a43e3e, #7b2d2d);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(123, 45, 45, 0.3);
+}
+.btn-outline-maroon {
+  border: 1px solid #7b2d2d;
+  color: #7b2d2d;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+.btn-outline-maroon:hover {
+  background: #7b2d2d;
+  color: #fff;
 }
 </style>
 
 <div class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-12">
-                <h1>Leaderboards</h1>
-                <p>Top players based on points and stars</p>
-            </div>
-        </div>
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-12">
+        <h1>Leaderboards</h1>
+        <p>Top players based on points and stars</p>
+      </div>
     </div>
+  </div>
 </div>
 
 <section class="content">
-    <div class="container-fluid">
-        <div class="card shadow-lg">
-            <div class="card-header">
-                <h3 class="card-title">Top Players</h3>
-            </div>
-            <div class="card-body table-responsive p-0">
-                <table class="table table-bordered table-hover table-striped" id="LeaderBoardsTable">
-                    <thead>
-                        <tr>
-                            <th>Rank</th>
-                            <th>Name</th>
-                            <th>Points</th>
-                            <th>Stars</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($leaderboardData as $index => $player)
-                        <tr>
-                            <td>{{ $index + 1 }}</td>
-                            <td>{{ $player->full_name }}</td>
-                            <td>{{ $player->total_points }}</td>
-                            <td>{{ $player->total_stars }}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
+  <div class="container-fluid">
+    <div class="card shadow-sm">
+      <div class="card-header">
+        <h3 class="card-title mb-0"><i class="fas fa-trophy me-2"></i> Top Players</h3>
+      </div>
+      <div class="card-body table-responsive p-0">
+        <table class="table table-bordered table-hover table-striped" id="LeaderBoardsTable">
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Name</th>
+              <th>Points</th>
+              <th>Stars</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach ($leaderboardData as $index => $player)
+            <tr>
+              <td>{{ $index + 1 }}</td>
+              <td>{{ $player->full_name }}</td>
+              <td>{{ $player->total_points }}</td>
+              <td>{{ $player->total_stars }}</td>
+            </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
 </section>
 
+<!-- ===== DATATABLES ===== -->
 <script>
 $(document).ready(function () {
-    $('#LeaderBoardsTable').DataTable({
-        responsive: true,
-        autoWidth: false,
-        dom: '<"row mb-3"' +
-                '<"col-md-4 d-flex align-items-center"l>' +    // Show entries
-                '<"col-md-4 text-center"B>' +                   // Export buttons
-                '<"col-md-4 d-flex justify-content-end"f>' +    // Search box
-             '>rtip',
-        buttons: [
-            { extend: 'copy', className: 'btn btn-sm btn-secondary me-1' },
-            { extend: 'csv', className: 'btn btn-sm btn-info me-1' },
-            { extend: 'excel', className: 'btn btn-sm btn-success me-1' },
-            { extend: 'pdf', className: 'btn btn-sm btn-danger me-1' },
-            { extend: 'print', className: 'btn btn-sm btn-primary' }
-        ]
-    });
+  $('#LeaderBoardsTable').DataTable({
+    responsive: true,
+    autoWidth: false,
+    dom: '<"row mb-3"' +
+            '<"col-md-4 d-flex align-items-center"l>' +
+            '<"col-md-4 text-center"B>' +
+            '<"col-md-4 d-flex justify-content-end"f>' +
+         '>rtip',
+    buttons: [
+      { extend: 'copy', className: 'btn btn-sm btn-outline-maroon me-1' },
+      { extend: 'csv', className: 'btn btn-sm btn-outline-maroon me-1' },
+      { extend: 'excel', className: 'btn btn-sm btn-outline-maroon me-1' },
+      { extend: 'pdf', className: 'btn btn-sm btn-outline-maroon me-1' },
+      { extend: 'print', className: 'btn btn-sm btn-maroon' }
+    ]
+  });
 });
 </script>
 
