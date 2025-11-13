@@ -6,7 +6,7 @@
 
 <style>
 /* === FORCE PURE WHITE BACKGROUND === */
-html, body, .wrapper, .main-sidebar, .content-wrapper, .content, .card, .container-fluid {
+html, body, .wrapper, .content-wrapper, .content, .card, .container-fluid {
   background: #ffffff !important;
   background-color: #ffffff !important;
   box-shadow: none !important;
