@@ -20,13 +20,13 @@ body, .content-wrapper {
 /* === Header === */
 .content-header {
   text-align: center;
-  margin-bottom: 5px; /* very tight spacing */
+  margin-bottom: 3px; /* very tight spacing */
 }
 .content-header h1 {
   font-weight: 700;
   color: #7b2d2d;
   text-shadow: 0 0 6px rgba(123, 45, 45, 0.4);
-  margin-bottom: 5px; /* very tight spacing below title */
+  margin-bottom: 3px; /* very tight spacing below title */
 }
 
 /* === Stat Boxes (Same look as Dashboard) === */
@@ -36,7 +36,7 @@ body, .content-wrapper {
   border: 1px solid rgba(123, 45, 45, 0.3);
   box-shadow: 0 4px 10px rgba(123, 45, 45, 0.15);
   transition: all 0.3s ease;
-  margin-top: 5px; /* very tight spacing */
+  margin-top: 3px; /* very tight spacing */
   margin-bottom: 20px;
   padding: 20px 25px;
   text-align: left;
