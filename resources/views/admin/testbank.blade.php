@@ -134,6 +134,17 @@ body, .content-wrapper {
   transition: all 0.2s ease;
   box-shadow: 0 6px 12px rgba(220, 160, 160, 0.35); /* stronger, more visible shadow */
 }
+/* Scrollbar Theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f3f3f3;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #7b2d2d;
+  border-radius: 4px;
+}
 /* ===== PAGINATION ===== */
 .dataTables_wrapper .dataTables_paginate .paginate_button {
   color: #7b2d2d !important;
