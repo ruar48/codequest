@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Leaderboards')
+@section('title', 'PHP & MySQL Code Logs')
 
 @section('content')
 
 <style>
-/* === Dashboard Maroon Theme (White Base) === */
+/* === White-Maroon Dashboard Theme === */
 body, .content-wrapper {
-  background: #ffffff !important;
+  background-color: #ffffff !important;
   font-family: 'Poppins', sans-serif;
   color: #333;
 }
@@ -15,9 +15,9 @@ body, .content-wrapper {
 /* ===== HEADER ===== */
 .content-header {
   text-align: center;
-  padding-top: 15px;
-  padding-bottom: 5px;
-  margin-bottom: 20px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
 }
 .content-header h1 {
   font-weight: 700;
@@ -31,29 +31,9 @@ body, .content-wrapper {
   margin-bottom: 0;
 }
 
-/* ===== BUTTONS ===== */
-.btn-maroon {
-  background: linear-gradient(90deg, #7b2d2d, #a43e3e);
-  color: #fff;
-  font-weight: 600;
-  border: none;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-}
-.btn-maroon:hover {
-  background: linear-gradient(90deg, #a43e3e, #7b2d2d);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(123, 45, 45, 0.3);
-}
-
-.btn-outline-maroon {
-  border: 1px solid #7b2d2d;
-  color: #7b2d2d;
-  transition: all 0.3s ease;
-}
-.btn-outline-maroon:hover {
-  background-color: #7b2d2d;
-  color: #fff;
+/* ===== CONTENT SECTION ===== */
+.content {
+  padding: 25px 20px;
 }
 
 /* ===== CARD ===== */
@@ -63,10 +43,11 @@ body, .content-wrapper {
   border-radius: 16px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.05);
   transition: all 0.3s ease;
-  padding: 20px; /* Added padding inside the card for breathing space */
+  margin-top: 20px;
 }
 .card:hover {
   transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
 }
 .card-header {
   background: linear-gradient(90deg, #7b2d2d, #a43e3e);
@@ -74,138 +55,203 @@ body, .content-wrapper {
   font-weight: 600;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
+  padding: 14px 20px;
+}
+.card-body {
+  padding: 30px !important;
 }
 
 /* ===== TABLE ===== */
 .table {
   background: #fff;
   color: #333;
-  border-radius: 12px;
+  border-radius: 10px;
   overflow: hidden;
-  margin-top: 15px;
+  width: 100%;
 }
 .table thead th {
   background-color: #7b2d2d;
   color: #fff;
   font-weight: 600;
-  border: none;
-  text-align: center;
-}
-.table tbody td {
-  vertical-align: middle;
   text-align: center;
   padding: 12px;
+  border: none;
+}
+.table tbody td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 10px 14px;
+  border-color: #eee;
 }
 .table-hover tbody tr:hover {
-  background-color: rgba(123, 45, 45, 0.08);
+  background: rgba(123, 45, 45, 0.05);
   transition: 0.25s ease;
 }
 
-/* ===== FORM SPACING ===== */
-form {
-  padding: 20px;
-}
-.form-control, textarea, select {
-  background-color: #fff;
-  color: #333;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  padding: 10px 12px;
-}
-.form-control:focus {
-  border-color: #7b2d2d;
-  box-shadow: 0 0 6px rgba(123, 45, 45, 0.3);
+/* ===== CODE & OUTPUT BOXES ===== */
+.code-box, .output-box {
+  background: #f9f9f9;
+  color: #222;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-family: monospace;
+  font-size: 13px;
+  max-width: 350px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  border: 1px solid #ddd;
 }
 
 /* ===== BADGES ===== */
-.badge-success { background-color: #2ecc71; }
-.badge-warning { background-color: #f1c40f; color: #1c1c1c; }
-.badge-danger  { background-color: #e74c3c; }
-
-/* ===== MODAL ===== */
-.modal-content {
-  background: #ffffff;
-  border-radius: 14px;
-  border: 1px solid rgba(123, 45, 45, 0.2);
+.badge-success {
+  background-color: #2ecc71 !important;
+  color: #fff !important;
 }
-.modal-header {
-  background: linear-gradient(90deg, #7b2d2d, #a43e3e);
-  color: #fff;
-  border-bottom: none;
-  border-top-left-radius: 14px;
-  border-top-right-radius: 14px;
+.badge-danger {
+  background-color: #e74c3c !important;
+  color: #fff !important;
 }
 
-/* ===== SIDEBAR ACTIVE INDICATOR ===== */
-.nav-link.active,
-.nav-link:hover {
-  background-color: rgba(220, 160, 160, 0.15) !important; /* transparent maroon */
-  border-left: 3px solid #7b2d2d; /* maroon indicator line */
-  color: #7b2d2d !important;
-  font-weight: 600;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 6px rgba(220, 160, 160, 0.25);
+/* ===== DATATABLE CONTROLS ===== */
+.dataTables_wrapper .dataTables_filter {
+  text-align: right;
+  margin-bottom: 15px;
+}
+.dataTables_wrapper .dataTables_filter input {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  color: #333;
+  border-radius: 6px;
+  padding: 6px 10px;
+  width: 100%;
+  max-width: 220px;
+}
+.dataTables_wrapper .dataTables_length {
+  text-align: left;
+}
+.dataTables_wrapper .dataTables_length select {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  color: #333;
+  border-radius: 6px;
+  padding: 6px;
 }
 
-/* ===== DATATABLE PAGINATION ===== */
+/* ===== PAGINATION ===== */
 .dataTables_wrapper .dataTables_paginate .paginate_button {
+  background: transparent;
+  border: 1px solid transparent;
   color: #7b2d2d !important;
-  border: 1px solid #7b2d2d;
-  border-radius: 20px;
-  padding: 3px 8px;
   margin: 0 2px;
+  padding: 6px 10px;
+  border-radius: 8px;
   transition: all 0.2s ease;
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-  background: #7b2d2d !important;
+  background-color: #7b2d2d !important;
   color: #fff !important;
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button.current {
-  background: #7b2d2d !important;
+  background-color: #7b2d2d !important;
   color: #fff !important;
+}
+
+/* ===== EXPORT BUTTONS ===== */
+.dt-buttons .btn {
+  border-radius: 6px;
+  font-weight: 600;
+  background: #fff;
   border: 1px solid #7b2d2d;
+  color: #7b2d2d;
+  transition: all 0.3s;
+  padding: 6px 10px;
+}
+.dt-buttons .btn:hover {
+  background: #7b2d2d;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(123, 45, 45, 0.3);
+}
+
+/* ===== TABLE INFO TEXT ===== */
+.dataTables_wrapper .dataTables_info {
+  color: #555;
+  margin-top: 10px;
+}
+
+/* ===== SIDEBAR ACTIVE LINK ===== */
+.nav-link.active,
+.nav-link:hover {
+  background-color: rgba(220, 160, 160, 0.15) !important;
+  border-left: 3px solid #7b2d2d;
+  color: #7b2d2d !important;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(220, 160, 160, 0.25);
 }
 </style>
 
 <div class="content-header">
-  <h1 class="fw-bold">Leaderboards</h1>
-  <p>Overview of player rankings and scores</p>
-</div>
-
-<div class="card shadow-sm">
-  <div class="card-body">
-    <table id="LeaderBoardsTable" class="table table-bordered table-hover">
-      <thead>
-        <tr>
-          <th>Rank</th>
-          <th>Player Name</th>
-          <th>Score</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>John Doe</td>
-          <td>980</td>
-          <td><span class="badge badge-success">Active</span></td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Jane Smith</td>
-          <td>870</td>
-          <td><span class="badge badge-warning">Pending</span></td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-12">
+        <h1>PHP & MySQL Code Logs</h1>
+        <p>Executed code logs with output and status</p>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- ===== DATATABLE SCRIPT ===== -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="card shadow-lg">
+      <div class="card-header">
+        <h3 class="card-title mb-0">Executed Code Logs</h3>
+      </div>
+      <div class="card-body table-responsive">
+        <table class="table table-bordered table-hover text-center" id="logsTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>User Email</th>
+              <th>Code</th>
+              <th>Output</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach($logs as $log)
+            <tr>
+              <td>{{ $log->id }}</td>
+              <td>{{ $log->user->email ?? 'N/A' }}</td>
+              <td><pre class="code-box">{{ $log->code }}</pre></td>
+              <td><pre class="output-box">{{ $log->output }}</pre></td>
+              <td>
+                <span class="badge {{ $log->is_error ? 'badge-danger' : 'badge-success' }}">
+                  {{ $log->is_error ? 'Error' : 'Success' }}
+                </span>
+              </td>
+            </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DataTables Dependencies -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
+
+<!-- DataTables Initialization -->
 <script>
 $(document).ready(function () {
-  $('#LeaderBoardsTable').DataTable({
+  $('#logsTable').DataTable({
     responsive: true,
     autoWidth: false,
     dom: '<"row mb-3"' +
@@ -214,12 +260,24 @@ $(document).ready(function () {
             '<"col-md-4 d-flex justify-content-end"f>' +
          '>rtip',
     buttons: [
-      { extend: 'copy', className: 'btn btn-sm btn-outline-maroon me-1' },
-      { extend: 'csv', className: 'btn btn-sm btn-outline-maroon me-1' },
-      { extend: 'excel', className: 'btn btn-sm btn-outline-maroon me-1' },
-      { extend: 'pdf', className: 'btn btn-sm btn-outline-maroon me-1' },
-      { extend: 'print', className: 'btn btn-sm btn-maroon' }
-    ]
+      { extend: 'copy', className: 'btn btn-sm me-1' },
+      { extend: 'csv', className: 'btn btn-sm me-1' },
+      { extend: 'excel', className: 'btn btn-sm me-1' },
+      { extend: 'pdf', className: 'btn btn-sm me-1' },
+      { extend: 'print', className: 'btn btn-sm' }
+    ],
+    order: [[0, 'desc']],
+    pagingType: "full_numbers",
+    language: {
+      info: "Showing _START_ to _END_ of _TOTAL_ logs",
+      paginate: {
+        previous: "Previous",
+        next: "Next",
+        first: "First",
+        last: "Last"
+      },
+      search: "Search Logs:"
+    }
   });
 });
 </script>
