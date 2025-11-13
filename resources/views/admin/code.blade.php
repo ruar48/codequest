@@ -5,28 +5,27 @@
 @section('content')
 
 <style>
-/* === Dashboard / Code Logs Theme === */
+/* === Dashboard / Code Logs Light Theme === */
 body, .content-wrapper {
-    background: linear-gradient(135deg, #0a0f24, #1c223a);
-    color: #fff;
+    background-color: #ffffff !important;
+    color: #1c1c1c;
     font-family: 'Poppins', sans-serif;
 }
 
 .content-header {
     text-align: center;
-    padding-top: 20px;
-    padding-bottom: 10px;
+    padding-top: 25px;
+    padding-bottom: 15px;
 }
 
 .content-header h1 {
     font-weight: 700;
-    color: #facc15;
+    color: #7b2d2d;
     font-size: 2rem;
-    text-shadow: 0 0 12px rgba(250, 204, 21, 0.5);
 }
 
 .content-header p {
-    color: #e5e5e5;
+    color: #555;
     font-size: 1rem;
     margin-bottom: 0;
 }
@@ -36,63 +35,68 @@ body, .content-wrapper {
     padding-bottom: 40px;
 }
 
-/* Card styling */
+/* Card Styling */
 .card {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(250, 204, 21, 0.25);
-    box-shadow: 0 4px 16px rgba(250, 204, 21, 0.25);
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     border-radius: 16px;
-    margin-top: 12px !important;
+    margin-top: 16px !important;
     transition: all 0.3s ease;
+    padding: 10px 15px;
 }
 
 .card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 0 20px rgba(250, 204, 21, 0.5);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
 }
 
 .card-header {
-    background: linear-gradient(90deg, #facc15, #ffea80);
-    color: #1c1c1c;
-    font-weight: 700;
+    background: #7b2d2d;
+    color: #fff;
+    font-weight: 600;
     font-size: 1.2rem;
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
+    padding: 12px 20px;
 }
 
-/* Table styling */
+/* Table Styling */
 .table {
-    background: transparent;
-    color: #fff;
+    background: #ffffff;
+    color: #333;
     margin-bottom: 0;
     table-layout: fixed;
+    border-radius: 10px;
+    overflow: hidden;
     word-wrap: break-word;
 }
 
 .table thead th {
-    color: #1c1c1c;
-    background-color: #facc15;
+    color: #fff;
+    background-color: #7b2d2d;
     font-weight: 600;
     text-align: center;
+    vertical-align: middle;
 }
 
 .table tbody td {
     vertical-align: middle;
     text-align: center;
     overflow-wrap: break-word;
+    padding: 10px 12px;
 }
 
 .table tbody tr:hover {
-    background: rgba(250, 204, 21, 0.1);
+    background: rgba(123, 45, 45, 0.05);
     transition: 0.3s;
 }
 
 /* Code & Output boxes */
 .code-box, .output-box {
-    background: rgba(255, 255, 255, 0.08);
-    color: #fff;
-    padding: 6px 8px;
+    background: #f8f8f8;
+    color: #222;
+    padding: 6px 10px;
     border-radius: 8px;
     font-family: monospace;
     font-size: 13px;
@@ -100,28 +104,31 @@ body, .content-wrapper {
     overflow-x: auto;
     white-space: pre-wrap;
     word-wrap: break-word;
+    border: 1px solid #ddd;
 }
 
 /* Status badges */
 .badge-success {
-    background-color: #27ae60 !important;
+    background-color: #28a745 !important;
+    color: #fff !important;
 }
 .badge-danger {
-    background-color: #e74c3c !important;
+    background-color: #dc3545 !important;
+    color: #fff !important;
 }
 
-/* DataTables controls styling */
+/* DataTables Controls */
 .dataTables_wrapper .dataTables_filter {
     text-align: right;
     margin-bottom: 10px;
 }
 
 .dataTables_wrapper .dataTables_filter input {
-    background-color: #0a0f24;
-    border: 1px solid rgba(250, 204, 21, 0.4);
-    color: #fff;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    color: #333;
     border-radius: 6px;
-    padding: 4px 10px;
+    padding: 6px 10px;
     width: 100%;
     max-width: 200px;
 }
@@ -131,31 +138,31 @@ body, .content-wrapper {
 }
 
 .dataTables_wrapper .dataTables_length select {
-    background-color: #0a0f24;
-    border: 1px solid rgba(250, 204, 21, 0.4);
-    color: #fff;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    color: #333;
     border-radius: 6px;
     padding: 4px 6px;
 }
 
-/* Pagination buttons */
+/* Pagination */
 .dataTables_wrapper .dataTables_paginate .paginate_button {
     background-color: transparent;
     border: none;
-    color: #facc15 !important;
+    color: #7b2d2d !important;
     margin: 0 2px;
     padding: 4px 10px;
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.current {
-    background: linear-gradient(90deg, #facc15, #ffea80);
-    color: #000 !important;
+    background-color: #7b2d2d;
+    color: #fff !important;
     border-radius: 6px;
 }
 
-/* Table info */
+/* Info */
 .dataTables_wrapper .dataTables_info {
-    color: #aaa;
+    color: #555;
     margin-top: 10px;
 }
 
@@ -163,12 +170,21 @@ body, .content-wrapper {
 .dt-buttons .btn {
     border-radius: 6px;
     font-weight: 600;
+    background: #fff;
+    border: 1px solid #7b2d2d;
+    color: #7b2d2d;
     transition: all 0.3s;
 }
 
 .dt-buttons .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 10px rgba(250, 204, 21, 0.8);
+    background: #7b2d2d;
+    color: #fff;
+    box-shadow: 0 0 10px rgba(123,45,45,0.3);
+}
+
+/* Extra spacing for card body */
+.card-body {
+    padding: 25px 30px !important;
 }
 </style>
 
@@ -189,7 +205,7 @@ body, .content-wrapper {
             <div class="card-header">
                 <h3 class="card-title">Executed Code Logs</h3>
             </div>
-            <div class="card-body table-responsive p-3">
+            <div class="card-body table-responsive">
                 <table class="table table-bordered table-hover text-center" id="logsTable">
                     <thead>
                         <tr>
@@ -239,11 +255,11 @@ $(document).ready(function () {
                 '<"col-md-4 d-flex justify-content-end"f>' +
              '>rtip',
         buttons: [
-            { extend: 'copy', className: 'btn btn-sm btn-secondary me-1' },
-            { extend: 'csv', className: 'btn btn-sm btn-info me-1' },
-            { extend: 'excel', className: 'btn btn-sm btn-success me-1' },
-            { extend: 'pdf', className: 'btn btn-sm btn-danger me-1' },
-            { extend: 'print', className: 'btn btn-sm btn-primary' }
+            { extend: 'copy', className: 'btn btn-sm me-1' },
+            { extend: 'csv', className: 'btn btn-sm me-1' },
+            { extend: 'excel', className: 'btn btn-sm me-1' },
+            { extend: 'pdf', className: 'btn btn-sm me-1' },
+            { extend: 'print', className: 'btn btn-sm' }
         ],
         order: [[0, 'desc']],
         pagingType: "full_numbers",
