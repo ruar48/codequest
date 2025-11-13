@@ -3,8 +3,9 @@
 @section('title', 'User Progress Report')
 
 @section('content')
+
 <style>
-/* === TesBank Dashboard Theme === */
+/* === PHP & SQL Page Theme === */
 body, .content-wrapper {
     background: linear-gradient(135deg, #0a0f24, #1c223a);
     color: #fff;
@@ -13,9 +14,9 @@ body, .content-wrapper {
 
 /* Content Header */
 .content-header {
-    text-align: center;
     padding-top: 30px;
-    padding-bottom: 15px;
+    padding-bottom: 10px;
+    text-align: center;
 }
 .content-header h1 {
     font-weight: 700;
@@ -25,7 +26,7 @@ body, .content-wrapper {
 }
 .content-header p {
     color: #ccc;
-    font-size: 0.95rem;
+    margin-bottom: 0;
 }
 
 /* Card */
@@ -36,7 +37,6 @@ body, .content-wrapper {
     box-shadow: 0 4px 16px rgba(250,204,21,0.25);
     backdrop-filter: blur(8px);
     transition: all 0.3s ease;
-    margin-bottom: 25px;
 }
 .card:hover {
     transform: translateY(-3px);
@@ -49,10 +49,9 @@ body, .content-wrapper {
     background: linear-gradient(90deg, #facc15, #ffea80);
     color: #1c1c1c;
     text-align: center;
-    padding: 12px 0;
 }
 .card-body {
-    padding: 15px;
+    padding: 20px;
 }
 
 /* Table */
@@ -64,7 +63,7 @@ body, .content-wrapper {
 }
 .table thead th {
     color: #1c1c1c;
-    background: linear-gradient(90deg, #facc15, #ffea80);
+    background-color: #facc15;
     font-weight: 600;
     text-align: center;
 }
@@ -81,9 +80,8 @@ body, .content-wrapper {
 /* Badges */
 .badge {
     font-weight: 600;
-    padding: 0.35em 0.7em;
+    padding: 0.4em 0.6em;
     border-radius: 12px;
-    font-size: 0.85rem;
 }
 .badge-success {
     background-color: #27ae60 !important;
@@ -100,7 +98,7 @@ body, .content-wrapper {
     border: 1px solid rgba(250, 204, 21, 0.4);
     color: #fff;
     border-radius: 6px;
-    padding: 5px 12px;
+    padding: 4px 10px;
     width: 100%;
     max-width: 250px;
 }
@@ -109,7 +107,7 @@ body, .content-wrapper {
     border: 1px solid rgba(250, 204, 21, 0.4);
     color: #fff;
     border-radius: 6px;
-    padding: 4px 8px;
+    padding: 4px 6px;
 }
 
 /* Pagination Buttons */
@@ -119,36 +117,23 @@ body, .content-wrapper {
     color: #facc15 !important;
     margin: 0 2px;
     padding: 4px 10px;
-    border-radius: 6px;
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button.current {
     background: linear-gradient(90deg, #facc15, #ffea80);
-    color: #1c1c1c !important;
-    font-weight: 600;
+    color: #000 !important;
+    border-radius: 6px;
 }
 
 /* Table Info */
 .dataTables_wrapper .dataTables_info {
-    color: #ccc;
+    color: #aaa;
     margin-top: 10px;
-}
-
-/* Scrollbar */
-::-webkit-scrollbar {
-    width: 8px;
-}
-::-webkit-scrollbar-thumb {
-    background-color: #facc15;
-    border-radius: 4px;
-}
-::-webkit-scrollbar-track {
-    background: #0a0f24;
 }
 </style>
 
 <div class="content-header">
     <div class="container-fluid">
-        <h1>User Progress Report</h1>
+        <h1><i class="fas fa-tasks"></i> User Progress Report</h1>
         <p>Detailed overview of user test performance</p>
     </div>
 </div>
