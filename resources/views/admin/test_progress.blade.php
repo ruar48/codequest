@@ -3,9 +3,8 @@
 @section('title', 'User Progress Report')
 
 @section('content')
-
 <style>
-/* === Dashboard/Admin Theme === */
+/* === TesBank Dashboard Theme === */
 body, .content-wrapper {
     background: linear-gradient(135deg, #0a0f24, #1c223a);
     color: #fff;
@@ -14,14 +13,19 @@ body, .content-wrapper {
 
 /* Content Header */
 .content-header {
-    padding-top: 30px;
-    padding-bottom: 20px;
     text-align: center;
+    padding-top: 30px;
+    padding-bottom: 15px;
 }
 .content-header h1 {
     font-weight: 700;
     color: #facc15;
     text-shadow: 0 0 12px rgba(250,204,21,0.5);
+    margin-bottom: 5px;
+}
+.content-header p {
+    color: #ccc;
+    font-size: 0.95rem;
 }
 
 /* Card */
@@ -32,6 +36,7 @@ body, .content-wrapper {
     box-shadow: 0 4px 16px rgba(250,204,21,0.25);
     backdrop-filter: blur(8px);
     transition: all 0.3s ease;
+    margin-bottom: 25px;
 }
 .card:hover {
     transform: translateY(-3px);
@@ -43,6 +48,11 @@ body, .content-wrapper {
     font-weight: 700;
     background: linear-gradient(90deg, #facc15, #ffea80);
     color: #1c1c1c;
+    text-align: center;
+    padding: 12px 0;
+}
+.card-body {
+    padding: 15px;
 }
 
 /* Table */
@@ -54,7 +64,7 @@ body, .content-wrapper {
 }
 .table thead th {
     color: #1c1c1c;
-    background-color: #facc15;
+    background: linear-gradient(90deg, #facc15, #ffea80);
     font-weight: 600;
     text-align: center;
 }
@@ -71,8 +81,9 @@ body, .content-wrapper {
 /* Badges */
 .badge {
     font-weight: 600;
-    padding: 0.4em 0.6em;
+    padding: 0.35em 0.7em;
     border-radius: 12px;
+    font-size: 0.85rem;
 }
 .badge-success {
     background-color: #27ae60 !important;
@@ -89,7 +100,7 @@ body, .content-wrapper {
     border: 1px solid rgba(250, 204, 21, 0.4);
     color: #fff;
     border-radius: 6px;
-    padding: 4px 10px;
+    padding: 5px 12px;
     width: 100%;
     max-width: 250px;
 }
@@ -98,7 +109,7 @@ body, .content-wrapper {
     border: 1px solid rgba(250, 204, 21, 0.4);
     color: #fff;
     border-radius: 6px;
-    padding: 4px 6px;
+    padding: 4px 8px;
 }
 
 /* Pagination Buttons */
@@ -108,17 +119,30 @@ body, .content-wrapper {
     color: #facc15 !important;
     margin: 0 2px;
     padding: 4px 10px;
+    border-radius: 6px;
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button.current {
     background: linear-gradient(90deg, #facc15, #ffea80);
-    color: #000 !important;
-    border-radius: 6px;
+    color: #1c1c1c !important;
+    font-weight: 600;
 }
 
 /* Table Info */
 .dataTables_wrapper .dataTables_info {
-    color: #aaa;
+    color: #ccc;
     margin-top: 10px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #facc15;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-track {
+    background: #0a0f24;
 }
 </style>
 
@@ -133,7 +157,7 @@ body, .content-wrapper {
     <div class="container-fluid">
         <div class="card shadow-lg">
             <div class="card-header">
-                <h3 class="card-title">Test Performance Overview</h3>
+                <h3 class="card-title"><i class="fas fa-chart-line"></i> Test Performance Overview</h3>
             </div>
             <div class="card-body table-responsive p-3">
                 <table class="table table-bordered table-hover" id="progressTable">
