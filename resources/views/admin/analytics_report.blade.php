@@ -13,20 +13,20 @@ body, .content-wrapper {
 
 /* Reduce space around main content */
 .content {
-  padding-top: 30px !important;
-  padding-bottom: 40px;
+  padding-top: 20px !important;
+  padding-bottom: 30px;
 }
 
 /* === Header === */
 .content-header {
   text-align: center;
-  margin-bottom: 10px; /* reduced from 25px */
+  margin-bottom: 5px; /* very tight spacing */
 }
 .content-header h1 {
   font-weight: 700;
   color: #7b2d2d;
   text-shadow: 0 0 6px rgba(123, 45, 45, 0.4);
-  margin-bottom: 10px; /* reduced space below heading */
+  margin-bottom: 5px; /* very tight spacing below title */
 }
 
 /* === Stat Boxes (Same look as Dashboard) === */
@@ -36,8 +36,8 @@ body, .content-wrapper {
   border: 1px solid rgba(123, 45, 45, 0.3);
   box-shadow: 0 4px 10px rgba(123, 45, 45, 0.15);
   transition: all 0.3s ease;
-  margin-top: 10px; /* reduced from 25px */
-  margin-bottom: 20px; /* slightly reduced for balance */
+  margin-top: 5px; /* very tight spacing */
+  margin-bottom: 20px;
   padding: 20px 25px;
   text-align: left;
   display: flex;
