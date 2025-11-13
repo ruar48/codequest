@@ -5,7 +5,7 @@
 @section('content')
 
 <style>
-/* === PHP & MySQL / Dashboard Maroon & White Theme === */
+/* === Maroon & White Dashboard Theme === */
 html, body, .wrapper, .content-wrapper {
     background: #ffffff !important;
     font-family: 'Poppins', sans-serif;
@@ -84,20 +84,6 @@ html, body, .wrapper, .content-wrapper {
     transition: 0.3s ease;
 }
 
-/* Code / Answer Box */
-.code-box {
-    background: #f9f9f9;
-    color: #222;
-    padding: 6px 10px;
-    border-radius: 6px;
-    font-family: monospace;
-    font-size: 13px;
-    max-width: 300px;
-    overflow-x: auto;
-    white-space: pre-wrap;
-    border: 1px solid #ddd;
-}
-
 /* Badges */
 .badge-success {
     background-color: #2ecc71 !important;
@@ -143,7 +129,7 @@ html, body, .wrapper, .content-wrapper {
     border-color: rgba(123, 45, 45, 0.2);
 }
 
-/* Responsive */
+/* Responsive Fixes */
 @media (max-width: 768px) {
     .card { padding: 10px; }
     .table-responsive { padding: 5px; }
@@ -159,36 +145,6 @@ html, body, .wrapper, .content-wrapper {
 
 <section class="content">
     <div class="container-fluid">
-
-        <!-- Optional: Stat Cards -->
-        <div class="row justify-content-center mb-4">
-            <div class="col-lg-3 col-md-6 col-12">
-                <div class="card text-center">
-                    <div class="card-body">
-                        <h3>{{ $totalUsers }}</h3>
-                        <p>Total Users</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-12">
-                <div class="card text-center">
-                    <div class="card-body">
-                        <h3>{{ number_format($averagePoints, 2) }}</h3>
-                        <p>Avg Points</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-12">
-                <div class="card text-center">
-                    <div class="card-body">
-                        <h3>{{ number_format($averageStars, 2) }}</h3>
-                        <p>Avg Stars</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Main Table -->
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title mb-0">Test Performance Overview</h3>
@@ -212,11 +168,13 @@ html, body, .wrapper, .content-wrapper {
                             <td>{{ $entry->user->email ?? 'N/A' }}</td>
                             <td>{{ $entry->user->full_name ?? 'N/A' }}</td>
                             <td>{{ $entry->question->question ?? 'N/A' }}</td>
-                            <td><pre class="code-box">{{ Str::limit($entry->answer, 50) }}</pre></td>
+                            <td><code>{{ Str::limit($entry->answer, 50) }}</code></td>
                             <td>
-                                <span class="badge {{ $entry->is_correct ? 'badge-success' : 'badge-danger' }}">
-                                    {{ $entry->is_correct ? '✅ Correct' : '❌ Incorrect' }}
-                                </span>
+                                @if($entry->is_correct)
+                                    <span class="badge badge-success">✅ Correct</span>
+                                @else
+                                    <span class="badge badge-danger">❌ Incorrect</span>
+                                @endif
                             </td>
                             <td><span class="badge badge-success">{{ $entry->points }} pts</span></td>
                             <td>{{ $entry->created_at->format('Y-m-d H:i') }}</td>
@@ -226,14 +184,15 @@ html, body, .wrapper, .content-wrapper {
                 </table>
             </div>
         </div>
-
     </div>
 </section>
 
-<!-- DataTables -->
+<!-- DataTables Dependencies -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
+<!-- DataTables Initialization -->
 <script>
 $(document).ready(function () {
     $('#progressTable').DataTable({
