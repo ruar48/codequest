@@ -5,62 +5,68 @@
 @section('content')
 
 <style>
-/* === FORCE PURE WHITE BACKGROUND === */
-html, body, .wrapper, .content-wrapper, .content, .card, .container-fluid {
+/* === PHP & MySQL Code Logs - Maroon & White Dashboard Theme === */
+html, body, .wrapper, .content-wrapper {
   background: #ffffff !important;
-  background-color: #ffffff !important;
-  box-shadow: none !important;
-  color: #333 !important;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
 }
 
-/* ===== HEADER ===== */
+/* Header */
 .content-header {
   text-align: center;
-  padding-top: 20px;
-  padding-bottom: 10px;
-  margin-bottom: 15px;
-  background-color: #ffffff !important;
+  padding: 25px 0 10px 0;
 }
 .content-header h1 {
-  font-weight: 700;
   color: #7b2d2d;
-  font-size: 1.9rem;
-  letter-spacing: 0.5px;
+  font-weight: 700;
+  font-size: 2rem;
 }
 .content-header p {
-  color: #666;
-  font-size: 0.95rem;
+  color: #555;
   margin-bottom: 0;
+  font-size: 1rem;
 }
 
-/* ===== CARD ===== */
+/* Card Styling */
 .card {
-  border: 1px solid rgba(123, 45, 45, 0.25);
+  background: #ffffff;
+  border: 1px solid rgba(123, 45, 45, 0.2);
   border-radius: 16px;
+  box-shadow: none;
   transition: all 0.3s ease;
-  margin-top: 20px;
-  box-shadow: none !important;
+  padding: 15px;
+}
+.card:hover {
+  transform: translateY(-3px);
 }
 .card-header {
-  background: #7b2d2d;
+  background: linear-gradient(90deg, #7b2d2d, #a43e3e);
   color: #fff;
   font-weight: 600;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
-  font-size: 1.1rem;
   padding: 14px 20px;
+  margin: -15px -15px 15px -15px;
 }
 .card-body {
-  padding: 30px !important;
-  background-color: #ffffff !important;
+  background: #ffffff;
 }
 
-/* ===== TABLE ===== */
+/* Table Container */
+.table-responsive {
+  border-radius: 12px;
+  padding: 10px 20px;
+}
+
+/* Table Styling */
 .table {
-  background: #ffffff !important;
+  background: #fff;
   color: #333;
+  text-align: center;
   border-radius: 10px;
   overflow: hidden;
+  margin-bottom: 0;
 }
 .table thead th {
   background-color: #7b2d2d;
@@ -68,20 +74,17 @@ html, body, .wrapper, .content-wrapper, .content, .card, .container-fluid {
   font-weight: 600;
   text-align: center;
   padding: 12px;
-  border: none;
 }
 .table tbody td {
-  text-align: center;
   vertical-align: middle;
-  padding: 10px 14px;
-  border-color: #eee;
+  padding: 10px;
 }
-.table-hover tbody tr:hover {
+.table tbody tr:hover {
   background: rgba(123, 45, 45, 0.05);
-  transition: 0.25s ease;
+  transition: 0.3s ease;
 }
 
-/* ===== CODE & OUTPUT BOXES ===== */
+/* Code & Output Boxes */
 .code-box, .output-box {
   background: #f9f9f9;
   color: #222;
@@ -95,7 +98,7 @@ html, body, .wrapper, .content-wrapper, .content, .card, .container-fluid {
   border: 1px solid #ddd;
 }
 
-/* ===== BADGES ===== */
+/* Badges */
 .badge-success {
   background-color: #2ecc71 !important;
   color: #fff !important;
@@ -105,72 +108,27 @@ html, body, .wrapper, .content-wrapper, .content, .card, .container-fluid {
   color: #fff !important;
 }
 
-/* ===== DATATABLE CONTROLS ===== */
-.dataTables_wrapper .dataTables_filter {
-  text-align: right;
-  margin-bottom: 15px;
+/* --- Maroon Buttons --- */
+.btn-maroon {
+  background: linear-gradient(90deg, #7b2d2d, #a43e3e);
+  color: #fff;
+  border: none;
 }
-.dataTables_wrapper .dataTables_filter input {
-  background-color: #ffffff;
-  border: 1px solid #ccc;
-  color: #333;
-  border-radius: 6px;
-  padding: 6px 10px;
-  width: 100%;
-  max-width: 220px;
+.btn-maroon:hover {
+  background: linear-gradient(90deg, #a43e3e, #7b2d2d);
+  color: #fff;
 }
-.dataTables_wrapper .dataTables_length {
-  text-align: left;
-}
-.dataTables_wrapper .dataTables_length select {
-  background-color: #ffffff;
-  border: 1px solid #ccc;
-  color: #333;
-  border-radius: 6px;
-  padding: 6px;
-}
-
-/* ===== PAGINATION ===== */
-.dataTables_wrapper .dataTables_paginate .paginate_button {
-  background: transparent;
-  border: 1px solid transparent;
-  color: #7b2d2d !important;
-  margin: 0 2px;
-  padding: 6px 10px;
-  border-radius: 8px;
-  transition: all 0.2s ease;
-}
-.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-  background-color: #7b2d2d !important;
-  color: #fff !important;
-}
-.dataTables_wrapper .dataTables_paginate .paginate_button.current {
-  background-color: #7b2d2d !important;
-  color: #fff !important;
-}
-
-/* ===== EXPORT BUTTONS ===== */
-.dt-buttons .btn {
-  border-radius: 6px;
-  font-weight: 600;
-  background: #ffffff;
+.btn-outline-maroon {
   border: 1px solid #7b2d2d;
   color: #7b2d2d;
-  transition: all 0.3s;
-  padding: 6px 10px;
+  background: #ffffff;
 }
-.dt-buttons .btn:hover {
+.btn-outline-maroon:hover {
   background: #7b2d2d;
   color: #fff;
 }
 
-/* ===== TABLE INFO TEXT ===== */
-.dataTables_wrapper .dataTables_info {
-  color: #555;
-  margin-top: 10px;
-}
-
-/* ===== SIDEBAR ACTIVE ===== */
+/* Sidebar Active / Hover Links */
 .nav-link.active,
 .nav-link:hover {
   background-color: rgba(220, 160, 160, 0.25) !important;
@@ -178,6 +136,48 @@ html, body, .wrapper, .content-wrapper, .content, .card, .container-fluid {
   color: #ffffff !important;
   font-weight: 600;
   transition: all 0.2s ease;
+  box-shadow: 0 6px 12px rgba(220, 160, 160, 0.35);
+}
+
+/* --- DataTables Styling --- */
+.dataTables_wrapper .dataTables_filter input,
+.dataTables_wrapper .dataTables_length select {
+  background-color: #ffffff;
+  border: 1px solid rgba(123, 45, 45, 0.4);
+  color: #333;
+  border-radius: 6px;
+  padding: 6px 10px;
+}
+.dataTables_wrapper .dataTables_info {
+  color: #333;
+  margin-top: 15px;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  background: transparent;
+  border: 1px solid #7b2d2d;
+  color: #7b2d2d !important;
+  border-radius: 20px;
+  padding: 4px 10px;
+  margin: 0 3px;
+  transition: all 0.2s ease;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background: #7b2d2d !important;
+  color: #fff !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+  background: #7b2d2d !important;
+  color: #fff !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
+  color: rgba(123, 45, 45, 0.4) !important;
+  border-color: rgba(123, 45, 45, 0.2);
+}
+
+/* Responsive Fixes */
+@media (max-width: 768px) {
+  .card { padding: 10px; }
+  .table-responsive { padding: 5px; }
 }
 </style>
 
@@ -199,7 +199,7 @@ html, body, .wrapper, .content-wrapper, .content, .card, .container-fluid {
         <h3 class="card-title mb-0">Executed Code Logs</h3>
       </div>
       <div class="card-body table-responsive">
-        <table class="table table-bordered table-hover text-center" id="logsTable">
+        <table class="table table-bordered table-hover" id="logsTable">
           <thead>
             <tr>
               <th>ID</th>
@@ -250,11 +250,11 @@ $(document).ready(function () {
             '<"col-md-4 d-flex justify-content-end"f>' +
          '>rtip',
     buttons: [
-      { extend: 'copy', className: 'btn btn-sm me-1' },
-      { extend: 'csv', className: 'btn btn-sm me-1' },
-      { extend: 'excel', className: 'btn btn-sm me-1' },
-      { extend: 'pdf', className: 'btn btn-sm me-1' },
-      { extend: 'print', className: 'btn btn-sm' }
+      { extend: 'copy', className: 'btn btn-sm btn-outline-maroon me-1' },
+      { extend: 'csv', className: 'btn btn-sm btn-outline-maroon me-1' },
+      { extend: 'excel', className: 'btn btn-sm btn-outline-maroon me-1' },
+      { extend: 'pdf', className: 'btn btn-sm btn-outline-maroon me-1' },
+      { extend: 'print', className: 'btn btn-sm btn-maroon' }
     ],
     order: [[0, 'desc']],
     pagingType: "full_numbers",
