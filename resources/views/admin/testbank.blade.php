@@ -124,26 +124,21 @@ body, .content-wrapper {
   border-color: #7b2d2d;
   box-shadow: 0 0 6px rgba(123, 45, 45, 0.3);
 }
-/* Sidebar Active / Hover Links */
+
+/* === Sidebar Active / Hover Links (Dashboard Style) === */
+.nav-link {
+  color: #dcdcdc !important;
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
+}
+
 .nav-link.active,
 .nav-link:hover {
-  background-color: rgba(220, 160, 160, 0.25) !important; /* light maroon */
-  border-left: 3px solid #ecbbbbff; /* maroon indicator line */
-  color: #ffffff !important; /* keep text white for visibility */
+  background-color: rgba(123, 45, 45, 0.15) !important; /* soft maroon highlight */
+  border-left: 3px solid #7b2d2d !important; /* solid maroon indicator */
+  color: #ffffff !important;
   font-weight: 600;
-  transition: all 0.2s ease;
-  box-shadow: 0 6px 12px rgba(220, 160, 160, 0.35); /* stronger, more visible shadow */
-}
-/* Scrollbar Theme */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #f3f3f3;
-}
-::-webkit-scrollbar-thumb {
-  background-color: #7b2d2d;
-  border-radius: 4px;
+  box-shadow: inset 3px 0 0 #7b2d2d;
 }
 /* ===== PAGINATION ===== */
 .dataTables_wrapper .dataTables_paginate .paginate_button {
