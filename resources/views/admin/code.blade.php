@@ -5,12 +5,12 @@
 @section('content')
 
 <style>
-/* === White-Maroon Dashboard Theme === */
-body, .content-wrapper {
+html, body, .wrapper, .content-wrapper {
   background-color: #ffffff !important;
   font-family: 'Poppins', sans-serif;
   color: #333;
 }
+
 
 /* ===== HEADER ===== */
 .content-header {
@@ -178,16 +178,15 @@ body, .content-wrapper {
   color: #555;
   margin-top: 10px;
 }
-
-/* ===== SIDEBAR ACTIVE LINK ===== */
+/* Sidebar Active / Hover Links */
 .nav-link.active,
 .nav-link:hover {
-  background-color: rgba(220, 160, 160, 0.15) !important;
-  border-left: 3px solid #7b2d2d;
-  color: #7b2d2d !important;
+  background-color: rgba(220, 160, 160, 0.25) !important; /* light maroon */
+  border-left: 3px solid #ecbbbbff; /* maroon indicator line */
+  color: #ffffff !important; /* keep text white for visibility */
   font-weight: 600;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 6px rgba(220, 160, 160, 0.25);
+  transition: all 0.2s ease;
+  box-shadow: 0 6px 12px rgba(220, 160, 160, 0.35); /* stronger, more visible shadow */
 }
 </style>
 
