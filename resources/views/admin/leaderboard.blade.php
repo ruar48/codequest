@@ -5,59 +5,54 @@
 @section('content')
 
 <style>
-/* === Dashboard Maroon Theme for Leaderboards === */
+/* === Leaderboards Page - Maroon & White Dashboard Theme === */
 body, .content-wrapper {
-  background: #ffffff !important;
+  background: #ffffff;
   font-family: 'Poppins', sans-serif;
   color: #333;
 }
 
-/* ===== HEADER ===== */
+/* Header */
 .content-header {
   text-align: center;
-  padding-top: 15px;
-  padding-bottom: 5px;
-  margin-bottom: 20px;
+  padding: 20px 0 5px 0;
 }
 .content-header h1 {
-  font-weight: 700;
   color: #7b2d2d;
-  font-size: 1.9rem;
-  letter-spacing: 0.5px;
+  font-weight: 700;
+  font-size: 2rem;
 }
 .content-header p {
-  color: #666;
-  font-size: 0.95rem;
+  color: #555;
   margin-bottom: 0;
+  font-size: 1rem;
 }
 
-/* ===== CARD ===== */
+/* Card Styling */
 .card {
   background: #ffffff;
-  border: 1px solid rgba(123, 45, 45, 0.25);
+  border: 1px solid rgba(123, 45, 45, 0.2);
   border-radius: 16px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  box-shadow: none;
   transition: all 0.3s ease;
-  margin-top: 12px;
 }
 .card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 .card-header {
   background: linear-gradient(90deg, #7b2d2d, #a43e3e);
   color: #fff;
   font-weight: 600;
-  font-size: 1.1rem;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
-  padding: 12px 15px;
 }
 
-/* ===== TABLE ===== */
+/* Table Styling */
 .table {
   background: #fff;
   color: #333;
-  border-radius: 12px;
+  text-align: center;
+  border-radius: 10px;
   overflow: hidden;
 }
 .table thead th {
@@ -65,51 +60,57 @@ body, .content-wrapper {
   color: #fff;
   font-weight: 600;
   text-align: center;
-  border: none;
 }
 .table tbody td {
-  text-align: center;
   vertical-align: middle;
 }
 .table tbody tr:hover {
-  background-color: rgba(123, 45, 45, 0.08);
-  transition: 0.25s ease;
+  background: rgba(123, 45, 45, 0.05);
+  transition: 0.3s ease;
 }
 
-/* Highlight top 3 players */
-.table tbody tr:nth-child(1) td {
-  background: rgba(123, 45, 45, 0.2);
-  font-weight: 700;
-  color: #7b2d2d;
+/* Top 3 highlights */
+.table tbody tr:nth-child(1) td { background: rgba(123, 45, 45, 0.15); font-weight: 700; }
+.table tbody tr:nth-child(2) td { background: rgba(123, 45, 45, 0.1); font-weight: 600; }
+.table tbody tr:nth-child(3) td { background: rgba(123, 45, 45, 0.08); font-weight: 500; }
+
+/* --- Maroon Buttons --- */
+.btn-maroon {
+  background: linear-gradient(90deg, #7b2d2d, #a43e3e);
+  color: #fff;
+  border: none;
 }
-.table tbody tr:nth-child(2) td {
-  background: rgba(123, 45, 45, 0.12);
-  font-weight: 600;
-  color: #7b2d2d;
+.btn-maroon:hover {
+  background: linear-gradient(90deg, #a43e3e, #7b2d2d);
+  color: #fff;
 }
-.table tbody tr:nth-child(3) td {
-  background: rgba(123, 45, 45, 0.08);
-  font-weight: 500;
+.btn-outline-maroon {
+  border: 1px solid #7b2d2d;
   color: #7b2d2d;
+  background: #ffffff;
+}
+.btn-outline-maroon:hover {
+  background: #7b2d2d;
+  color: #fff;
 }
 
-/* ===== DATATABLES CONTROLS ===== */
+/* --- DataTables Styling --- */
 .dataTables_wrapper .dataTables_filter input,
 .dataTables_wrapper .dataTables_length select {
-  background-color: #fff;
-  border: 1px solid #7b2d2d;
+  background-color: #ffffff;
+  border: 1px solid rgba(123, 45, 45, 0.4);
   color: #333;
   border-radius: 6px;
   padding: 4px 8px;
 }
-.dataTables_wrapper .dataTables_filter label,
-.dataTables_wrapper .dataTables_length label {
+.dataTables_wrapper .dataTables_info {
   color: #333;
-  font-weight: 500;
+  margin-top: 10px;
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button {
-  color: #7b2d2d !important;
+  background: transparent;
   border: 1px solid #7b2d2d;
+  color: #7b2d2d !important;
   border-radius: 20px;
   padding: 3px 8px;
   margin: 0 2px;
@@ -122,36 +123,15 @@ body, .content-wrapper {
 .dataTables_wrapper .dataTables_paginate .paginate_button.current {
   background: #7b2d2d !important;
   color: #fff !important;
-  border: 1px solid #7b2d2d;
 }
-.dataTables_wrapper .dataTables_info {
-  color: #555;
-  margin-top: 10px;
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
+  color: rgba(123, 45, 45, 0.4) !important;
+  border-color: rgba(123, 45, 45, 0.2);
 }
 
-/* ===== BUTTONS ===== */
-.btn-maroon {
-  background: linear-gradient(90deg, #7b2d2d, #a43e3e);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-.btn-maroon:hover {
-  background: linear-gradient(90deg, #a43e3e, #7b2d2d);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(123, 45, 45, 0.3);
-}
-.btn-outline-maroon {
-  border: 1px solid #7b2d2d;
-  color: #7b2d2d;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-}
-.btn-outline-maroon:hover {
-  background: #7b2d2d;
-  color: #fff;
+/* --- Responsive Container --- */
+.table-responsive {
+  border-radius: 16px;
 }
 </style>
 
@@ -168,9 +148,9 @@ body, .content-wrapper {
 
 <section class="content">
   <div class="container-fluid">
-    <div class="card shadow-sm">
+    <div class="card">
       <div class="card-header">
-        <h3 class="card-title mb-0"><i class="fas fa-trophy me-2"></i> Top Players</h3>
+        <h3 class="card-title mb-0">Top Players</h3>
       </div>
       <div class="card-body table-responsive p-0">
         <table class="table table-bordered table-hover table-striped" id="LeaderBoardsTable">
@@ -198,7 +178,6 @@ body, .content-wrapper {
   </div>
 </section>
 
-<!-- ===== DATATABLES ===== -->
 <script>
 $(document).ready(function () {
   $('#LeaderBoardsTable').DataTable({
