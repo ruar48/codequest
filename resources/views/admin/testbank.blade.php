@@ -124,21 +124,15 @@ body, .content-wrapper {
   border-color: #7b2d2d;
   box-shadow: 0 0 6px rgba(123, 45, 45, 0.3);
 }
-
-/* === Sidebar Active / Hover Links (Dashboard Style) === */
-.nav-link {
-  color: #dcdcdc !important;
-  transition: all 0.3s ease;
-  border-left: 3px solid transparent;
-}
-
+/* Sidebar Active / Hover Links */
 .nav-link.active,
 .nav-link:hover {
-  background-color: rgba(123, 45, 45, 0.15) !important; /* soft maroon highlight */
-  border-left: 3px solid #7b2d2d !important; /* solid maroon indicator */
-  color: #ffffff !important;
+  background-color: rgba(220, 160, 160, 0.25) !important; /* light maroon */
+  border-left: 3px solid #ecbbbbff; /* maroon indicator line */
+  color: #ffffff !important; /* keep text white for visibility */
   font-weight: 600;
-  box-shadow: inset 3px 0 0 #7b2d2d;
+  transition: all 0.2s ease;
+  box-shadow: 0 6px 12px rgba(220, 160, 160, 0.35); /* stronger, more visible shadow */
 }
 /* ===== PAGINATION ===== */
 .dataTables_wrapper .dataTables_paginate .paginate_button {
