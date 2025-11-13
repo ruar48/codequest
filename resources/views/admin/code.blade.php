@@ -5,18 +5,12 @@
 @section('content')
 
 <style>
-/* Override all possible parent backgrounds */
-html, body, .wrapper, .content-wrapper, .hold-transition, .main-footer {
-    background-color: #ffffff !important;
-    color: #333 !important;
+/* === White-Maroon Dashboard Theme === */
+body, .content-wrapper {
+  background-color: #ffffff !important;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
 }
-
-/* Optional: If dark mode class exists */
-body.dark-mode, .dark-mode .wrapper, .dark-mode .content-wrapper {
-    background-color: #ffffff !important;
-    color: #333 !important;
-}
-
 
 /* ===== HEADER ===== */
 .content-header {
