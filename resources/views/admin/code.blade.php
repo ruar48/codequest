@@ -8,7 +8,7 @@
 /* === Dashboard / Code Logs Light Theme === */
 body, .content-wrapper {
     background-color: #ffffff !important;
-    color: #1c1c1c;
+    color: #7b2d2d;
     font-family: 'Poppins', sans-serif;
 }
 
