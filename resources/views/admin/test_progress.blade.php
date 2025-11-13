@@ -5,204 +5,234 @@
 @section('content')
 
 <style>
-/* === PHP & SQL Page Theme === */
-body, .content-wrapper {
-    background: linear-gradient(135deg, #0a0f24, #1c223a);
-    color: #fff;
-    font-family: 'Poppins', sans-serif;
+/* === Maroon & White Dashboard Theme === */
+html, body, .wrapper, .content-wrapper {
+  background: #ffffff !important;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
 }
 
-/* Content Header */
+/* Header */
 .content-header {
-    padding-top: 30px;
-    padding-bottom: 10px;
-    text-align: center;
+  text-align: center;
+  padding: 25px 0 10px 0;
 }
 .content-header h1 {
-    font-weight: 700;
-    color: #facc15;
-    text-shadow: 0 0 12px rgba(250,204,21,0.5);
-    margin-bottom: 5px;
+  color: #7b2d2d;
+  font-weight: 700;
+  font-size: 2rem;
 }
 .content-header p {
-    color: #ccc;
-    margin-bottom: 0;
+  color: #555;
+  margin-bottom: 0;
+  font-size: 1rem;
 }
 
-/* Card */
+/* Card Styling */
 .card {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(250,204,21,0.25);
-    border-radius: 16px;
-    box-shadow: 0 4px 16px rgba(250,204,21,0.25);
-    backdrop-filter: blur(8px);
-    transition: all 0.3s ease;
+  background: #ffffff;
+  border: 1px solid rgba(123, 45, 45, 0.2);
+  border-radius: 16px;
+  box-shadow: none;
+  transition: all 0.3s ease;
+  padding: 15px;
 }
 .card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 0 20px rgba(250,204,21,0.5);
+  transform: translateY(-3px);
 }
 .card-header {
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
-    font-weight: 700;
-    background: linear-gradient(90deg, #facc15, #ffea80);
-    color: #1c1c1c;
-    text-align: center;
+  background: linear-gradient(90deg, #7b2d2d, #a43e3e);
+  color: #fff;
+  font-weight: 600;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  padding: 14px 20px;
+  margin: -15px -15px 15px -15px;
 }
 .card-body {
-    padding: 20px;
+  background: #ffffff;
 }
 
-/* Table */
+/* Table Container */
+.table-responsive {
+  border-radius: 12px;
+  padding: 10px 20px;
+}
+
+/* Table Styling */
 .table {
-    background: transparent;
-    color: #fff;
-    table-layout: fixed;
-    word-wrap: break-word;
+  background: #fff;
+  color: #333;
+  text-align: center;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 0;
 }
 .table thead th {
-    color: #1c1c1c;
-    background-color: #facc15;
-    font-weight: 600;
-    text-align: center;
+  background-color: #7b2d2d;
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
+  padding: 12px;
 }
 .table tbody td {
-    vertical-align: middle;
-    text-align: center;
-    overflow-wrap: break-word;
+  vertical-align: middle;
+  padding: 10px;
 }
 .table tbody tr:hover {
-    background: rgba(250, 204, 21, 0.1);
-    transition: 0.3s;
+  background: rgba(123, 45, 45, 0.05);
+  transition: 0.3s ease;
 }
 
 /* Badges */
-.badge {
-    font-weight: 600;
-    padding: 0.4em 0.6em;
-    border-radius: 12px;
-}
 .badge-success {
-    background-color: #27ae60 !important;
-    color: #fff;
+  background-color: #2ecc71 !important;
+  color: #fff !important;
 }
 .badge-danger {
-    background-color: #dc3545 !important;
-    color: #fff;
+  background-color: #e74c3c !important;
+  color: #fff !important;
 }
 
 /* DataTables Controls */
-.dataTables_wrapper .dataTables_filter input {
-    background-color: #0a0f24;
-    border: 1px solid rgba(250, 204, 21, 0.4);
-    color: #fff;
-    border-radius: 6px;
-    padding: 4px 10px;
-    width: 100%;
-    max-width: 250px;
-}
+.dataTables_wrapper .dataTables_filter input,
 .dataTables_wrapper .dataTables_length select {
-    background-color: #0a0f24;
-    border: 1px solid rgba(250, 204, 21, 0.4);
-    color: #fff;
-    border-radius: 6px;
-    padding: 4px 6px;
+  background-color: #ffffff;
+  border: 1px solid rgba(123, 45, 45, 0.4);
+  color: #333;
+  border-radius: 6px;
+  padding: 6px 10px;
 }
-
-/* Pagination Buttons */
+.dataTables_wrapper .dataTables_info {
+  color: #333;
+  margin-top: 15px;
+}
 .dataTables_wrapper .dataTables_paginate .paginate_button {
-    background-color: transparent;
-    border: none;
-    color: #facc15 !important;
-    margin: 0 2px;
-    padding: 4px 10px;
+  background: transparent;
+  border: 1px solid #7b2d2d;
+  color: #7b2d2d !important;
+  border-radius: 20px;
+  padding: 4px 10px;
+  margin: 0 3px;
+  transition: all 0.2s ease;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background: #7b2d2d !important;
+  color: #fff !important;
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button.current {
-    background: linear-gradient(90deg, #facc15, #ffea80);
-    color: #000 !important;
-    border-radius: 6px;
+  background: #7b2d2d !important;
+  color: #fff !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
+  color: rgba(123, 45, 45, 0.4) !important;
+  border-color: rgba(123, 45, 45, 0.2);
 }
 
-/* Table Info */
-.dataTables_wrapper .dataTables_info {
-    color: #aaa;
-    margin-top: 10px;
+/* Responsive Fixes */
+@media (max-width: 768px) {
+  .card { padding: 10px; }
+  .table-responsive { padding: 5px; }
 }
 </style>
 
 <div class="content-header">
-    <div class="container-fluid">
-        <h1><i class="fas fa-tasks"></i> User Progress Report</h1>
-        <p>Detailed overview of user test performance</p>
-    </div>
+  <div class="container-fluid">
+    <h1>User Progress Report</h1>
+    <p>Detailed overview of user test performance</p>
+  </div>
 </div>
 
 <section class="content">
-    <div class="container-fluid">
-        <div class="card shadow-lg">
-            <div class="card-header">
-                <h3 class="card-title"><i class="fas fa-chart-line"></i> Test Performance Overview</h3>
-            </div>
-            <div class="card-body table-responsive p-3">
-                <table class="table table-bordered table-hover" id="progressTable">
-                    <thead>
-                        <tr>
-                            <th>User Email</th>
-                            <th>Full Name</th>
-                            <th>Question</th>
-                            <th>Answer</th>
-                            <th>Correct</th>
-                            <th>Points Earned</th>
-                            <th>Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($testPerformances as $entry)
-                        <tr>
-                            <td>{{ $entry->user->email ?? 'N/A' }}</td>
-                            <td>{{ $entry->user->full_name ?? 'N/A' }}</td>
-                            <td>{{ $entry->question->question ?? 'N/A' }}</td>
-                            <td><code>{{ Str::limit($entry->answer, 50) }}</code></td>
-                            <td>
-                                @if($entry->is_correct)
-                                    <span class="badge badge-success">✅ Correct</span>
-                                @else
-                                    <span class="badge badge-danger">❌ Incorrect</span>
-                                @endif
-                            </td>
-                            <td><span class="badge badge-success">{{ $entry->points }} pts</span></td>
-                            <td>{{ $entry->created_at->format('Y-m-d H:i') }}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+  <div class="container-fluid">
+
+    <!-- Optional: Stat Boxes (Total Users, Avg Points, Avg Stars) -->
+    <div class="row justify-content-center mb-4">
+      <div class="col-lg-3 col-md-6 col-12">
+        <div class="card text-center">
+          <div class="card-body">
+            <h3>{{ $totalUsers }}</h3>
+            <p>Total Users</p>
+          </div>
         </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-12">
+        <div class="card text-center">
+          <div class="card-body">
+            <h3>{{ number_format($averagePoints, 2) }}</h3>
+            <p>Avg Points</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-12">
+        <div class="card text-center">
+          <div class="card-body">
+            <h3>{{ number_format($averageStars, 2) }}</h3>
+            <p>Avg Stars</p>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!-- Main Table -->
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title mb-0">Test Performance Overview</h3>
+      </div>
+      <div class="card-body table-responsive">
+        <table class="table table-bordered table-hover" id="progressTable">
+          <thead>
+            <tr>
+              <th>User Email</th>
+              <th>Full Name</th>
+              <th>Question</th>
+              <th>Answer</th>
+              <th>Correct</th>
+              <th>Points Earned</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach($testPerformances as $entry)
+            <tr>
+              <td>{{ $entry->user->email ?? 'N/A' }}</td>
+              <td>{{ $entry->user->full_name ?? 'N/A' }}</td>
+              <td>{{ $entry->question->question ?? 'N/A' }}</td>
+              <td><code>{{ Str::limit($entry->answer, 50) }}</code></td>
+              <td>
+                <span class="badge {{ $entry->is_correct ? 'badge-success' : 'badge-danger' }}">
+                  {{ $entry->is_correct ? '✅ Correct' : '❌ Incorrect' }}
+                </span>
+              </td>
+              <td><span class="badge badge-success">{{ $entry->points }} pts</span></td>
+              <td>{{ $entry->created_at->format('Y-m-d H:i') }}</td>
+            </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
 </section>
 
-<!-- Include DataTables -->
+<!-- DataTables Dependencies -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
 <script>
 $(document).ready(function () {
-    $('#progressTable').DataTable({
-        responsive: true,
-        autoWidth: false,
-        pagingType: "full_numbers",
-        language: {
-            info: "Showing _START_ to _END_ of _TOTAL_ entries",
-            paginate: {
-                previous: "Previous",
-                next: "Next",
-                first: "First",
-                last: "Last"
-            },
-            search: "Search Users:"
-        }
-    });
+  $('#progressTable').DataTable({
+    responsive: true,
+    autoWidth: false,
+    pagingType: "full_numbers",
+    language: {
+      info: "Showing _START_ to _END_ of _TOTAL_ entries",
+      paginate: { previous: "Previous", next: "Next", first: "First", last: "Last" },
+      search: "Search Users:"
+    }
+  });
 });
 </script>
 
