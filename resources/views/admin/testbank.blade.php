@@ -5,128 +5,148 @@
 @section('content')
 
 <style>
-/* === Match Dashboard Style === */
+/* === Dashboard Maroon Theme (White Base) === */
 body, .content-wrapper {
-  background-color: #ffffff !important;
-  color: #333;
+  background: #ffffff !important;
   font-family: 'Poppins', sans-serif;
+  color: #333;
 }
 
-/* Header */
+/* ===== HEADER ===== */
 .content-header {
   text-align: center;
   padding-top: 15px;
-  padding-bottom: 0;
-  margin-bottom: 15px;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
 }
 .content-header h1 {
   font-weight: 700;
-  color: #6b0f1a;
-  font-size: 1.8rem;
+  color: #7b2d2d;
+  font-size: 1.9rem;
+  letter-spacing: 0.5px;
 }
 .content-header p {
-  color: #6b6b6b;
+  color: #666;
   font-size: 0.95rem;
   margin-bottom: 0;
 }
 
-/* Add Question Button */
-.btn-primary {
-  background-color: #6b0f1a;
+/* ===== BUTTONS ===== */
+.btn-maroon {
+  background: linear-gradient(90deg, #7b2d2d, #a43e3e);
   color: #fff;
   font-weight: 600;
   border: none;
   border-radius: 8px;
   transition: all 0.3s ease;
 }
-.btn-primary:hover {
-  background-color: #8b1d26;
+.btn-maroon:hover {
+  background: linear-gradient(90deg, #a43e3e, #7b2d2d);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(123, 45, 45, 0.3);
+}
+
+.btn-outline-maroon {
+  border: 1px solid #7b2d2d;
+  color: #7b2d2d;
+  transition: all 0.3s ease;
+}
+.btn-outline-maroon:hover {
+  background-color: #7b2d2d;
+  color: #fff;
+}
+
+/* ===== CARD ===== */
+.card {
+  background: #ffffff;
+  border: 1px solid rgba(123, 45, 45, 0.25);
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+.card:hover {
   transform: translateY(-2px);
 }
-
-/* Card Styling */
-.card {
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  box-shadow: none;
-  margin-top: 8px;
-}
 .card-header {
-  background: #fff;
-  border-bottom: 2px solid #6b0f1a;
-  color: #6b0f1a;
-  font-weight: 700;
-  font-size: 1.1rem;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-  padding: 12px 15px;
+  background: linear-gradient(90deg, #7b2d2d, #a43e3e);
+  color: #fff;
+  font-weight: 600;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  font-size: 1.05rem;
 }
 
-/* Table */
+/* ===== TABLE ===== */
 .table {
-  background-color: #ffffff;
+  background: #fff;
   color: #333;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
 }
 .table thead th {
-  background-color: #6b0f1a;
+  background-color: #7b2d2d;
   color: #fff;
   font-weight: 600;
   border: none;
+  text-align: center;
 }
-.table tbody tr:hover {
-  background-color: rgba(107, 15, 26, 0.05);
-  transition: 0.3s;
+.table tbody td {
+  vertical-align: middle;
 }
-.badge-success { background-color: #27ae60; }
+.table-hover tbody tr:hover {
+  background-color: rgba(123, 45, 45, 0.08);
+  transition: 0.25s ease;
+}
+.badge-success { background-color: #2ecc71; }
 .badge-warning { background-color: #f1c40f; color: #1c1c1c; }
 .badge-danger  { background-color: #e74c3c; }
 
-/* Action Buttons */
-.btn-outline-warning {
-  color: #d97706;
-  border: 1px solid #d97706;
-}
-.btn-outline-warning:hover {
-  background-color: #d97706;
-  color: white;
-}
-.btn-outline-danger {
-  color: #b91c1c;
-  border: 1px solid #b91c1c;
-}
-.btn-outline-danger:hover {
-  background-color: #b91c1c;
-  color: white;
-}
-
-/* Modal */
+/* ===== MODAL ===== */
 .modal-content {
-  background-color: #fff;
-  color: #333;
-  border-radius: 12px;
-  border: 1px solid #ddd;
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid rgba(123, 45, 45, 0.2);
 }
 .modal-header {
-  background-color: #6b0f1a;
+  background: linear-gradient(90deg, #7b2d2d, #a43e3e);
   color: #fff;
   border-bottom: none;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
 }
 .form-control, textarea, select {
   background-color: #fff;
   color: #333;
   border: 1px solid #ccc;
+  border-radius: 6px;
 }
 .form-control:focus {
-  border-color: #6b0f1a;
-  box-shadow: 0 0 5px rgba(107, 15, 26, 0.4);
+  border-color: #7b2d2d;
+  box-shadow: 0 0 6px rgba(123, 45, 45, 0.3);
+}
+
+/* ===== PAGINATION ===== */
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  color: #7b2d2d !important;
+  border: 1px solid #7b2d2d;
+  border-radius: 20px;
+  padding: 3px 8px;
+  margin: 0 2px;
+  transition: all 0.2s ease;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background: #7b2d2d !important;
+  color: #fff !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+  background: #7b2d2d !important;
+  color: #fff !important;
+  border: 1px solid #7b2d2d;
 }
 </style>
 
 <div class="content-header">
-  <h1>Test Bank</h1>
+  <h1>Test Bank Questions</h1>
   <p>Manage and organize your CodeQuest test questions efficiently</p>
 </div>
 
@@ -134,8 +154,8 @@ body, .content-wrapper {
   <div class="container-fluid">
 
     <!-- Add Question Button -->
-    <div class="d-flex justify-content-end mb-2">
-      <button type="button" class="btn btn-primary fw-semibold px-3 py-1" 
+    <div class="d-flex justify-content-end mb-3">
+      <button type="button" class="btn btn-maroon fw-semibold px-3 py-2" 
               data-bs-toggle="modal" data-bs-target="#questionModal">
         <i class="fas fa-plus me-1"></i> Add Question
       </button>
@@ -148,7 +168,7 @@ body, .content-wrapper {
       </div>
       <div class="card-body p-3">
         <div class="table-responsive">
-          <table id="questionTable" class="table table-hover align-middle mb-0 rounded">
+          <table id="questionTable" class="table table-hover align-middle mb-0">
             <thead>
               <tr>
                 <th>ID</th>
@@ -162,20 +182,20 @@ body, .content-wrapper {
             <tbody>
               @foreach ($questions as $question)
               <tr data-id="{{ $question->id }}">
-                <td>{{ $question->id }}</td>
+                <td class="text-center">{{ $question->id }}</td>
                 <td>{{ $question->question }}</td>
                 <td>{{ $question->output }}</td>
-                <td>
+                <td class="text-center">
                   <span class="badge badge-{{ $question->level == 'easy' ? 'success' : ($question->level == 'intermediate' ? 'warning' : 'danger') }}">
                     {{ ucfirst($question->level) }}
                   </span>
                 </td>
                 <td>{{ $question->tips }}</td>
-                <td>
-                  <button class="btn btn-sm btn-outline-warning edit-question me-1" data-id="{{ $question->id }}">
+                <td class="text-center">
+                  <button class="btn btn-sm btn-outline-maroon edit-question me-1" data-id="{{ $question->id }}">
                     <i class="fas fa-edit"></i>
                   </button>
-                  <button class="btn btn-sm btn-outline-danger delete-question" data-id="{{ $question->id }}">
+                  <button class="btn btn-sm btn-outline-maroon delete-question" data-id="{{ $question->id }}">
                     <i class="fas fa-trash"></i>
                   </button>
                 </td>
@@ -223,8 +243,8 @@ body, .content-wrapper {
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Save Question</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-maroon">Save Question</button>
+          <button type="button" class="btn btn-outline-maroon" data-bs-dismiss="modal">Cancel</button>
         </div>
       </div>
     </form>
