@@ -4,157 +4,86 @@
 
 @section('content')
 <style>
-/* === General Theme === */
+/* === White-Maroon Dashboard Theme === */
 body, .content-wrapper {
-  background: linear-gradient(135deg, #0a0f24, #1c223a);
-  color: #fff;
+  background-color: #ffffff !important;
+  color: #1c1c1c;
   font-family: 'Poppins', sans-serif;
 }
+
 .content {
-  padding-top: 15px !important; /* reduced top padding */
+  padding-top: 20px !important;
   padding-bottom: 20px;
 }
 
 /* === Header === */
 .content-header {
-  padding-top: 10px;
-  padding-bottom: 0;
   text-align: center;
-  margin-bottom: 5px; /* tighter spacing below title */
+  margin-bottom: 10px;
 }
 .content-header h1 {
   font-weight: 700;
-  color: #facc15;
-  text-shadow: 0 0 12px rgba(250, 204, 21, 0.4);
-  margin-bottom: 5px;
-}
-
-.leaderboard-container {
-  text-align: center;
-  color: #fff;
-  background: radial-gradient(circle at top left, #0b0d1a, #020312);
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 0 25px rgba(255, 215, 0, 0.15);
-}
-
-.leaderboard-title {
-  color: #ffda44;
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 15px; /* smaller gap from boxes */
-  text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
-}
-
-.leaderboard-cards {
-  display: flex;
-  justify-content: center;
-  gap: 40px; /* increased spacing between boxes */
-  flex-wrap: wrap; /* helps responsiveness */
-}
-
-.leaderboard-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 215, 0, 0.4);
-  border-radius: 15px;
-  padding: 30px 40px; /* more breathing room inside */
-  width: 240px;
-  text-align: center;
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.08);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.leaderboard-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
-}
-
-.leaderboard-card .icon {
-  font-size: 3rem;
-  color: #ffda44;
-  margin-top: 12px;
-  margin-bottom: 25px; /* larger space between icon and text */
-  display: block;
-}
-
-.leaderboard-card .value {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #ffda44;
-  margin-bottom: 8px;
-}
-
-.leaderboard-card .label {
-  font-size: 1rem;
-  color: #ddd;
+  color: #7b2d2d;
+  text-shadow: 0 0 4px rgba(123, 45, 45, 0.2);
 }
 
 /* === Stat Boxes === */
 .small-box {
-  position: relative;
+  background: #fff;
+  border: 1px solid #c2a5a5;
   border-radius: 16px;
-  background: rgba(255,255,255,0.04);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(250,204,21,0.25);
-  box-shadow: 0 4px 16px rgba(250,204,21,0.25);
-  transition: all 0.3s ease;
-  margin-top: 5px; /* reduced spacing between boxes */
-  margin-bottom: 10px;
+  box-shadow: 0 4px 12px rgba(123, 45, 45, 0.15);
   text-align: center;
   padding: 25px 20px;
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
 }
 .small-box:hover {
   transform: translateY(-3px);
-  box-shadow: 0 0 18px rgba(250,204,21,0.4);
+  box-shadow: 0 6px 20px rgba(123, 45, 45, 0.25);
 }
 .small-box .inner h3 {
-  color: #facc15;
+  color: #7b2d2d;
   font-weight: 700;
   font-size: 1.9rem;
   margin-bottom: 5px;
 }
 .small-box .inner p {
-  color: #ffffff;
+  color: #333;
   font-weight: 500;
   margin-bottom: 10px;
 }
-.small-box .icon {
-  margin-top: 10px;
-}
 .small-box .icon i {
-  color: #facc15;
-  font-size: 25px; /* smaller for balance */
+  color: #7b2d2d;
+  font-size: 28px;
   margin-top: 5px;
-  margin-left: 5px; /* adds breathing space between icon and text */
 }
 
 /* === Cards for Charts === */
 .card {
   border-radius: 16px;
-  background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(250,204,21,0.25);
-  box-shadow: 0 4px 16px rgba(250,204,21,0.15);
+  background: #ffffff;
+  border: 1px solid #c2a5a5;
+  box-shadow: 0 4px 10px rgba(123, 45, 45, 0.1);
   transition: all 0.3s ease;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 .card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 16px rgba(250,204,21,0.35);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(123, 45, 45, 0.25);
 }
 .card-header {
   font-weight: 700;
   font-size: 1.1rem;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(90deg, #7b2d2d, #a85151);
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
-  color: #1c1c1c;
-  text-align: center;
-  background: linear-gradient(90deg, #facc15, #ffea80);
-  box-shadow: inset 0 -2px 5px rgba(0,0,0,0.1);
+  padding: 10px 0;
 }
 .card-body {
   padding: 15px;
-  background: rgba(255,255,255,0.02);
 }
 
 /* === Charts === */
@@ -165,20 +94,17 @@ canvas {
 
 /* === Sidebar Active Link === */
 .nav-link.active, .nav-link:hover {
-  background-color: rgba(250, 204, 21, 0.15);
-  border-left: 3px solid #facc15;
-  color: #facc15 !important;
+  background-color: rgba(123, 45, 45, 0.1);
+  border-left: 3px solid #7b2d2d;
+  color: #7b2d2d !important;
 }
 
 /* === Scrollbar === */
 ::-webkit-scrollbar {
   width: 8px;
 }
-::-webkit-scrollbar-track {
-  background: #111827;
-}
 ::-webkit-scrollbar-thumb {
-  background-color: #facc15;
+  background-color: #7b2d2d;
   border-radius: 4px;
 }
 </style>
@@ -261,7 +187,7 @@ canvas {
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-    const chartTextColor = "#1f2937";
+    const chartTextColor = "#1c1c1c";
 
     // Leaderboard Chart
     new Chart(document.getElementById('leaderboardChart'), {
@@ -269,11 +195,18 @@ document.addEventListener("DOMContentLoaded", function () {
         data: {
             labels: @json($leaderboardData->pluck('username')),
             datasets: [
-                { label: 'Total Points', data: @json($leaderboardData->pluck('total_points')), backgroundColor: 'rgba(250,204,21,0.7)', borderColor: '#facc15', borderWidth: 1 },
-                { label: 'Total Stars', data: @json($leaderboardData->pluck('total_stars')), backgroundColor: 'rgba(255, 255, 255, 0.3)', borderColor: '#ffea80', borderWidth: 1 }
+                { label: 'Total Points', data: @json($leaderboardData->pluck('total_points')), backgroundColor: 'rgba(123, 45, 45, 0.7)', borderColor: '#7b2d2d', borderWidth: 1 },
+                { label: 'Total Stars', data: @json($leaderboardData->pluck('total_stars')), backgroundColor: 'rgba(200,150,150,0.4)', borderColor: '#a85151', borderWidth: 1 }
             ]
         },
-        options: { responsive: true, plugins: { legend: { labels: { color: chartTextColor } } }, scales: { x: { ticks: { color: chartTextColor, font: { weight: 'bold' } } }, y: { ticks: { color: chartTextColor, beginAtZero: true } } } }
+        options: { 
+            responsive: true, 
+            plugins: { legend: { labels: { color: chartTextColor } } }, 
+            scales: { 
+                x: { ticks: { color: chartTextColor, font: { weight: 'bold' } } }, 
+                y: { ticks: { color: chartTextColor, beginAtZero: true } } 
+            } 
+        }
     });
 
     // Level Performance Chart
@@ -282,11 +215,18 @@ document.addEventListener("DOMContentLoaded", function () {
         data: {
             labels: @json($levelPerformance->pluck('level_number')),
             datasets: [
-                { label: 'Avg Stars', data: @json($levelPerformance->pluck('avg_stars')), borderColor: '#facc15', backgroundColor: 'rgba(250,204,21,0.2)', fill: true, tension: 0.4 },
-                { label: 'Avg Points', data: @json($levelPerformance->pluck('avg_points')), borderColor: '#ffea80', backgroundColor: 'rgba(255,255,255,0.15)', fill: true, tension: 0.4 }
+                { label: 'Avg Stars', data: @json($levelPerformance->pluck('avg_stars')), borderColor: '#7b2d2d', backgroundColor: 'rgba(123,45,45,0.15)', fill: true, tension: 0.4 },
+                { label: 'Avg Points', data: @json($levelPerformance->pluck('avg_points')), borderColor: '#a85151', backgroundColor: 'rgba(168,81,81,0.1)', fill: true, tension: 0.4 }
             ]
         },
-        options: { responsive: true, plugins: { legend: { labels: { color: chartTextColor } } }, scales: { x: { ticks: { color: chartTextColor } }, y: { ticks: { color: chartTextColor, beginAtZero: true } } } }
+        options: { 
+            responsive: true, 
+            plugins: { legend: { labels: { color: chartTextColor } } }, 
+            scales: { 
+                x: { ticks: { color: chartTextColor } }, 
+                y: { ticks: { color: chartTextColor, beginAtZero: true } } 
+            } 
+        }
     });
 
     // PHP Execution Chart
@@ -294,7 +234,12 @@ document.addEventListener("DOMContentLoaded", function () {
         type: 'pie',
         data: {
             labels: ['Successful', 'Failed'],
-            datasets: [{ data: [{{ $phpExecutions->successful }}, {{ $phpExecutions->errors }}], backgroundColor: ['#27ae60', '#e74c3c'], borderColor: ['rgba(250,204,21,0.3)', 'rgba(255,255,255,0.1)'], borderWidth: 1 }]
+            datasets: [{
+                data: [{{ $phpExecutions->successful }}, {{ $phpExecutions->errors }}],
+                backgroundColor: ['#7b2d2d', '#c2a5a5'],
+                borderColor: ['#fff', '#fff'],
+                borderWidth: 1
+            }]
         },
         options: { plugins: { legend: { labels: { color: chartTextColor } } } }
     });
