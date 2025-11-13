@@ -5,10 +5,10 @@
 @section('content')
 
 <style>
-/* === Dashboard / Code Logs Light Theme === */
+/* === Clean White Dashboard Theme === */
 body, .content-wrapper {
     background-color: #ffffff !important;
-    color: #7b2d2d;
+    color: #1c1c1c;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -30,46 +30,45 @@ body, .content-wrapper {
     margin-bottom: 0;
 }
 
+/* Proper spacing for content */
 .content {
-    padding-top: 30px !important;
-    padding-bottom: 40px;
+    padding: 40px 20px;
 }
 
 /* Card Styling */
 .card {
     background: #ffffff;
-    border: 1px solid #e5e5e5;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
     border-radius: 16px;
-    margin-top: 16px !important;
+    margin-top: 20px !important;
     transition: all 0.3s ease;
-    padding: 10px 15px;
+    padding: 10px 20px;
 }
 
 .card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
 }
 
 .card-header {
-    background: #7b2d2d;
+    background: linear-gradient(90deg, #7b2d2d, #a14b4b);
     color: #fff;
     font-weight: 600;
     font-size: 1.2rem;
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
-    padding: 12px 20px;
+    padding: 14px 20px;
 }
 
 /* Table Styling */
 .table {
     background: #ffffff;
     color: #333;
-    margin-bottom: 0;
-    table-layout: fixed;
     border-radius: 10px;
     overflow: hidden;
     word-wrap: break-word;
+    width: 100%;
 }
 
 .table thead th {
@@ -78,13 +77,14 @@ body, .content-wrapper {
     font-weight: 600;
     text-align: center;
     vertical-align: middle;
+    padding: 12px;
 }
 
 .table tbody td {
     vertical-align: middle;
     text-align: center;
-    overflow-wrap: break-word;
-    padding: 10px 12px;
+    padding: 10px 14px;
+    border-color: #eee;
 }
 
 .table tbody tr:hover {
@@ -92,9 +92,9 @@ body, .content-wrapper {
     transition: 0.3s;
 }
 
-/* Code & Output boxes */
+/* Code & Output Boxes */
 .code-box, .output-box {
-    background: #f8f8f8;
+    background: #f9f9f9;
     color: #222;
     padding: 6px 10px;
     border-radius: 8px;
@@ -107,7 +107,7 @@ body, .content-wrapper {
     border: 1px solid #ddd;
 }
 
-/* Status badges */
+/* Status Badges */
 .badge-success {
     background-color: #28a745 !important;
     color: #fff !important;
@@ -120,7 +120,7 @@ body, .content-wrapper {
 /* DataTables Controls */
 .dataTables_wrapper .dataTables_filter {
     text-align: right;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .dataTables_wrapper .dataTables_filter input {
@@ -130,7 +130,7 @@ body, .content-wrapper {
     border-radius: 6px;
     padding: 6px 10px;
     width: 100%;
-    max-width: 200px;
+    max-width: 220px;
 }
 
 .dataTables_wrapper .dataTables_length {
@@ -142,35 +142,35 @@ body, .content-wrapper {
     border: 1px solid #ccc;
     color: #333;
     border-radius: 6px;
-    padding: 4px 6px;
+    padding: 6px;
 }
 
-/* Pagination */
+/* Pagination Buttons */
 .dataTables_wrapper .dataTables_paginate .paginate_button {
     background-color: transparent;
     border: none;
     color: #7b2d2d !important;
     margin: 0 2px;
-    padding: 4px 10px;
+    padding: 6px 10px;
+    border-radius: 6px;
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.current {
     background-color: #7b2d2d;
     color: #fff !important;
-    border-radius: 6px;
 }
 
-/* Info */
+/* Table Info */
 .dataTables_wrapper .dataTables_info {
     color: #555;
     margin-top: 10px;
 }
 
-/* Buttons */
+/* Export Buttons */
 .dt-buttons .btn {
     border-radius: 6px;
     font-weight: 600;
-    background: #fff;
+    background: #ffffff;
     border: 1px solid #7b2d2d;
     color: #7b2d2d;
     transition: all 0.3s;
@@ -179,10 +179,10 @@ body, .content-wrapper {
 .dt-buttons .btn:hover {
     background: #7b2d2d;
     color: #fff;
-    box-shadow: 0 0 10px rgba(123,45,45,0.3);
+    box-shadow: 0 0 10px rgba(123, 45, 45, 0.3);
 }
 
-/* Extra spacing for card body */
+/* Card Body Spacing */
 .card-body {
     padding: 25px 30px !important;
 }
