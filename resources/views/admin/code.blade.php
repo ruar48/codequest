@@ -5,12 +5,12 @@
 @section('content')
 
 <style>
-/* === PURE WHITE THEME === */
-body, .content-wrapper, .content, .card, .table, .dataTables_wrapper, .container-fluid {
+/* === FORCE PURE WHITE BACKGROUND === */
+html, body, .wrapper, .main-sidebar, .content-wrapper, .content, .card, .container-fluid {
+  background: #ffffff !important;
   background-color: #ffffff !important;
-  font-family: 'Poppins', sans-serif;
-  color: #333;
   box-shadow: none !important;
+  color: #333 !important;
 }
 
 /* ===== HEADER ===== */
