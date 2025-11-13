@@ -15,7 +15,7 @@ body, .content-wrapper {
 /* Header */
 .content-header {
   text-align: center;
-  padding: 20px 0 5px 0;
+  padding: 25px 0 10px 0;
 }
 .content-header h1 {
   color: #7b2d2d;
@@ -35,6 +35,7 @@ body, .content-wrapper {
   border-radius: 16px;
   box-shadow: none;
   transition: all 0.3s ease;
+  padding: 15px; /* Added inner padding */
 }
 .card:hover {
   transform: translateY(-3px);
@@ -45,6 +46,14 @@ body, .content-wrapper {
   font-weight: 600;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
+  padding: 14px 20px;
+  margin: -15px -15px 15px -15px; /* keep header full width inside padded card */
+}
+
+/* Table Container */
+.table-responsive {
+  border-radius: 12px;
+  padding: 10px 20px; /* Added more space inside the form/table container */
 }
 
 /* Table Styling */
@@ -54,15 +63,18 @@ body, .content-wrapper {
   text-align: center;
   border-radius: 10px;
   overflow: hidden;
+  margin-bottom: 0;
 }
 .table thead th {
   background-color: #7b2d2d;
   color: #fff;
   font-weight: 600;
   text-align: center;
+  padding: 12px;
 }
 .table tbody td {
   vertical-align: middle;
+  padding: 10px;
 }
 .table tbody tr:hover {
   background: rgba(123, 45, 45, 0.05);
@@ -101,19 +113,19 @@ body, .content-wrapper {
   border: 1px solid rgba(123, 45, 45, 0.4);
   color: #333;
   border-radius: 6px;
-  padding: 4px 8px;
+  padding: 6px 10px;
 }
 .dataTables_wrapper .dataTables_info {
   color: #333;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button {
   background: transparent;
   border: 1px solid #7b2d2d;
   color: #7b2d2d !important;
   border-radius: 20px;
-  padding: 3px 8px;
-  margin: 0 2px;
+  padding: 4px 10px;
+  margin: 0 3px;
   transition: all 0.2s ease;
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
@@ -129,9 +141,10 @@ body, .content-wrapper {
   border-color: rgba(123, 45, 45, 0.2);
 }
 
-/* --- Responsive Container --- */
-.table-responsive {
-  border-radius: 16px;
+/* Responsive Fixes */
+@media (max-width: 768px) {
+  .card { padding: 10px; }
+  .table-responsive { padding: 5px; }
 }
 </style>
 
@@ -152,7 +165,7 @@ body, .content-wrapper {
       <div class="card-header">
         <h3 class="card-title mb-0">Top Players</h3>
       </div>
-      <div class="card-body table-responsive p-0">
+      <div class="card-body table-responsive">
         <table class="table table-bordered table-hover table-striped" id="LeaderBoardsTable">
           <thead>
             <tr>
