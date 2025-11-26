@@ -17,8 +17,7 @@
   <div class="container-fluid">
 
     <div class="d-flex justify-content-end mb-3">
-      <button id="openAddModal"
-              class="btn btn-maroon text-white fw-semibold rounded-pill px-3">
+      <button id="openAddModal" class="btn btn-maroon text-white fw-semibold rounded-pill px-3">
         <i class="fas fa-user-plus me-1"></i> Add Admin
       </button>
     </div>
@@ -69,10 +68,13 @@
       <div class="modal-header text-white"
            style="background: linear-gradient(90deg, #7b2d2d, #a43e3e);">
         <h5 class="modal-title fw-bold" id="adminModalLabel">Add Admin</h5>
+
         <!-- Minimize button -->
         <button type="button" class="btn btn-sm btn-light me-2" id="minimizeModal" title="Minimize">
           <i class="fas fa-minus"></i>
         </button>
+
+        <!-- Close button -->
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
 
@@ -108,6 +110,7 @@
     </div>
   </div>
 </div>
+
 {{-- ====================== STYLES (your original CSS) ====================== --}}
 <style>
 /* --- Dashboard-Style Maroon Theme --- */
@@ -149,9 +152,23 @@ input.form-control:focus {
   box-shadow: 0 0 8px rgba(123, 45, 45, 0.4);
   border-color: #7b2d2d;
 }
+/* --- Minimized Modal --- */
+#adminModal.minimized .modal-dialog {
+  transform: translateY(80vh);
+  width: 300px;
+  transition: all 0.3s ease;
+}
+#adminModal.minimized .modal-content {
+  height: 50px;
+  overflow: hidden;
+}
+#adminModal.minimized .modal-body,
+#adminModal.minimized .modal-footer {
+  display: none;
+}
 </style>
 
-<!-- Single Load Only -->
+<!-- JS Dependencies -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
@@ -166,7 +183,6 @@ $(document).ready(function () {
     });
 
     let adminModal = new bootstrap.Modal(document.getElementById('adminModal'));
-
     $('#adminTable').DataTable();
 
     // Open Add Modal
@@ -177,7 +193,6 @@ $(document).ready(function () {
         $('#password').val('');
         $('#role').val('admin');
         $('#_method').val('POST');
-
         adminModal.show();
         $('#adminModal').removeClass('minimized');
     });
@@ -185,14 +200,12 @@ $(document).ready(function () {
     // Open Edit Modal
     $(document).on('click', '.edit-admin', function () {
         let row = $(this).closest('tr');
-
         $('#adminModalLabel').text('Edit Admin');
         $('#admin_id').val(row.data('id'));
         $('#email').val(row.data('email'));
         $('#role').val(row.data('role'));
         $('#password').val('');
         $('#_method').val('PUT');
-
         adminModal.show();
         $('#adminModal').removeClass('minimized');
     });
@@ -212,9 +225,7 @@ $(document).ready(function () {
                 password: $('#password').val(),
                 role: $('#role').val()
             },
-            success: function() {
-                location.reload();
-            },
+            success: function() { location.reload(); },
             error: function(xhr) {
                 console.log(xhr.responseText);
                 alert("Error saving admin.");
@@ -225,7 +236,6 @@ $(document).ready(function () {
     // Delete Admin
     $(document).on('click', '.delete-admin', function () {
         if (!confirm("Delete this admin?")) return;
-
         let id = $(this).data('id');
         $.ajax({
             url: "/admin/delete/" + id,
@@ -236,12 +246,10 @@ $(document).ready(function () {
         });
     });
 
-    // Minimize Modal
+    // Minimize / Restore Modal
     $('#minimizeModal').click(function () {
         $('#adminModal').toggleClass('minimized');
     });
-
-    // Restore modal on header click
     $('#adminModal .modal-header').click(function () {
         if ($('#adminModal').hasClass('minimized')) {
             $('#adminModal').removeClass('minimized');
