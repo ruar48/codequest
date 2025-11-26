@@ -68,14 +68,6 @@
       <div class="modal-header text-white"
            style="background: linear-gradient(90deg, #7b2d2d, #a43e3e); position: relative;">
         <h5 class="modal-title fw-bold" id="adminModalLabel">Add Admin</h5>
-
-        <!-- Minimize button on right side -->
-        <button type="button" id="minimizeModal" title="Minimize/Restore" 
-                style="position: absolute; right: 45px; top: 50%; transform: translateY(-50%); 
-                       background: transparent; border: none; color: #fff; font-size: 1.1rem;">
-          <i class="fas fa-minus"></i>
-        </button>
-
         <!-- Close button -->
         <button type="button" class="btn-close" data-bs-dismiss="modal" 
                 style="right: 10px; position: absolute;"></button>
@@ -154,24 +146,6 @@ input.form-control:focus {
   box-shadow: 0 0 8px rgba(123, 45, 45, 0.4);
   border-color: #7b2d2d;
 }
-
-/* --- Minimized Modal --- */
-#adminModal.minimized {
-  z-index: 1100 !important;
-}
-#adminModal.minimized .modal-dialog {
-  transform: translateY(80vh);
-  width: 300px;
-  transition: all 0.3s ease;
-}
-#adminModal.minimized .modal-content {
-  height: 50px;
-  overflow: hidden;
-}
-#adminModal.minimized .modal-body,
-#adminModal.minimized .modal-footer {
-  display: none;
-}
 </style>
 
 <!-- JS Dependencies -->
@@ -200,7 +174,6 @@ $(document).ready(function () {
         $('#role').val('admin');
         $('#_method').val('POST');
         adminModal.show();
-        $('#adminModal').removeClass('minimized');
     });
 
     // Open Edit Modal
@@ -213,7 +186,6 @@ $(document).ready(function () {
         $('#password').val('');
         $('#_method').val('PUT');
         adminModal.show();
-        $('#adminModal').removeClass('minimized');
     });
 
     // Save Admin
@@ -250,19 +222,6 @@ $(document).ready(function () {
             success: function() { location.reload(); },
             error: function(xhr) { console.log(xhr.responseText); alert("Error deleting admin."); }
         });
-    });
-
-    // Minimize / Restore Modal
-    $('#minimizeModal').click(function (e) {
-        e.stopPropagation();
-        $('#adminModal').toggleClass('minimized');
-    });
-
-    $('#adminModal .modal-header').click(function (e) {
-        if ($(e.target).is('#minimizeModal, .btn-close')) return;
-        if ($('#adminModal').hasClass('minimized')) {
-            $('#adminModal').removeClass('minimized');
-        }
     });
 
 });
