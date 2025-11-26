@@ -289,27 +289,30 @@ $(document).ready(function() {
     });
 
     // EDIT QUESTION
-    $('.edit-question').on('click', function() {
-        const id = $(this).data('id');
+$('.edit-question').on('click', function() {
+    const id = $(this).data('id');
 
-        $.get(`/testbank/${id}/edit`, function(data) {
-            $('#questionModal .modal-title').text('Edit Question');
-            $('#questionForm').attr('action', `/testbank/${id}`);
-            
-            // Add hidden _method input for PUT
-            if ($('#questionForm input[name="_method"]').length === 0) {
-                $('#questionForm').append('<input type="hidden" name="_method" value="PUT">');
-            }
+    $.get(`/testbank/${id}/edit`, function(data) {
+        $('#questionModal .modal-title').text('Edit Question');
+        $('#questionForm').attr('action', `/testbank/${id}`);
+        
+        // Add hidden _method input for PUT if not exists
+        if ($('#questionForm input[name="_method"]').length === 0) {
+            $('#questionForm').append('<input type="hidden" name="_method" value="PUT">');
+        }
 
-            $('#question').val(data.question);
-            $('#output').val(data.output);
-            $('#level').val(data.level);
-            $('#tips').val(data.tips);
+        // Fill form fields
+        $('#question').val(data.question);
+        $('#output').val(data.output);
+        $('#level').val(data.level);
+        $('#tips').val(data.tips);
 
-            const modal = new bootstrap.Modal(document.getElementById('questionModal'));
-            modal.show();
-        });
+        // Use existing modal instance to ensure Cancel works
+        const modalEl = document.getElementById('questionModal');
+        const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+        modal.show();
     });
+});
 
 });
 </script>
