@@ -271,78 +271,73 @@ body, .content-wrapper {
 <script>
 $(document).ready(function() {
 
-    // Initialize DataTable
     $('#questionTable').DataTable();
 
     const questionModalEl = document.getElementById('questionModal');
-    const questionModal = new bootstrap.Modal(questionModalEl);
+    const questionModal = bootstrap.Modal.getOrCreateInstance(questionModalEl);
 
-    // Add Question button
+    // ADD QUESTION
     $('#addQuestionBtn').click(function() {
         $('#questionForm')[0].reset();
         $('#questionForm').attr('action', "{{ route('testbank.store') }}");
-        $('#questionForm').find('input[name="_method"]').remove(); // Remove PUT if exists
+        $('#questionForm').find('input[name="_method"]').remove(); // remove PUT
         $('#questionModal .modal-title').text('Add Question');
         questionModal.show();
     });
 
-    // Edit Question button
+    // EDIT QUESTION
     $(document).on('click', '.edit-question', function() {
-    const row = $(this).closest('tr');
-    const id = row.data('id');
-    const question = row.find('td:eq(1)').text().trim();
-    const output = row.find('td:eq(2)').text().trim();
-    const level = row.find('td:eq(3) span').text().trim().toLowerCase();
-    const tips = row.find('td:eq(4)').text().trim();
+        const row = $(this).closest('tr');
+        const id = row.data('id');
+        const question = row.find('td:eq(1)').text().trim();
+        const output = row.find('td:eq(2)').text().trim();
+        const level = row.find('td:eq(3) span').text().trim().toLowerCase();
+        const tips = row.find('td:eq(4)').text().trim();
 
-    // Fill the inputs
-    $('#questionId').val(id); // hidden input
-    $('#question').val(question);
-    $('#output').val(output);
-    $('#level').val(level);
-    $('#tips').val(tips);
+        // Fill form
+        $('#questionId').val(id);
+        $('#question').val(question);
+        $('#output').val(output);
+        $('#level').val(level);
+        $('#tips').val(tips);
 
-    // Update form action and method for PUT
-    $('#questionForm').attr('action', `/testbank/${id}`);
-    if ($('#questionForm').find('input[name="_method"]').length === 0) {
-        $('#questionForm').append('<input type="hidden" name="_method" value="PUT">');
-    } else {
-        $('#questionForm').find('input[name="_method"]').val('PUT');
-    }
-
-    // Update modal title
-    $('#questionModal .modal-title').text('Edit Question');
-
-    // Show modal
-    const questionModalEl = document.getElementById('questionModal');
-    const questionModal = new bootstrap.Modal(questionModalEl);
-    questionModal.show();
-});
-
-    // Delete Question button
-    $(document).on('click', '.delete-question', function() {
-    const id = $(this).data('id');
-    if(!confirm('Are you sure you want to delete this question?')) return;
-
-    $.ajax({
-        url: `/testbank/${id}`,
-        type: 'POST', // Laravel requires POST with _method DELETE
-        data: {
-            _token: $('meta[name="csrf-token"]').attr('content'),
-            _method: 'DELETE'
-        },
-        success: function() {
-            alert('Question deleted successfully!');
-            location.reload();
-        },
-        error: function(xhr){
-            console.error(xhr.responseText);
-            alert('Error deleting question. Check Laravel logs for details.');
+        // Update action + PUT method
+        $('#questionForm').attr('action', `/testbank/${id}`);
+        if ($('#questionForm').find('input[name="_method"]').length === 0) {
+            $('#questionForm').append('<input type="hidden" name="_method" value="PUT">');
+        } else {
+            $('#questionForm').find('input[name="_method"]').val('PUT');
         }
+
+        $('#questionModal .modal-title').text('Edit Question');
+        questionModal.show();
     });
-});
+
+    // DELETE QUESTION
+    $(document).on('click', '.delete-question', function() {
+        const id = $(this).data('id');
+        if(!confirm('Are you sure you want to delete this question?')) return;
+
+        $.ajax({
+            url: `/testbank/${id}`,
+            type: 'POST', // Laravel expects POST with _method DELETE
+            data: {
+                _token: $('meta[name="csrf-token"]').attr('content'),
+                _method: 'DELETE'
+            },
+            success: function() {
+                alert('Question deleted successfully!');
+                location.reload();
+            },
+            error: function(xhr){
+                console.error(xhr.responseText);
+                alert('Error deleting question. Check Laravel logs.');
+            }
+        });
+    });
 
 });
+
 </script>
 
 
