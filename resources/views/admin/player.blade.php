@@ -110,12 +110,12 @@ body, .content-wrapper {
 /* Sidebar Active / Hover Links */
 .nav-link.active,
 .nav-link:hover {
-  background-color: rgba(220, 160, 160, 0.25) !important;
-  border-left: 3px solid #ecbbbbff;
-  color: #ffffff !important;
+  background-color: rgba(220, 160, 160, 0.25) !important; /* light maroon */
+  border-left: 3px solid #ecbbbbff; /* maroon indicator line */
+  color: #ffffff !important; /* keep text white for visibility */
   font-weight: 600;
   transition: all 0.2s ease;
-  box-shadow: 0 6px 12px rgba(220, 160, 160, 0.35);
+  box-shadow: 0 6px 12px rgba(220, 160, 160, 0.35); /* stronger, more visible shadow */
 }
 /* DataTables */
 .dataTables_wrapper .dataTables_filter input {
@@ -145,7 +145,7 @@ body, .content-wrapper {
   <div class="container-fluid">
 
     <div class="d-flex justify-content-end mb-3">
-      <button type="button" class="btn btn-maroon" id="openAddPlayer">
+      <button type="button" class="btn btn-maroon" data-bs-toggle="modal" data-bs-target="#playerModal">
         <i class="fas fa-user-plus me-1"></i> Add Player
       </button>
     </div>
@@ -242,12 +242,11 @@ $(document).ready(function() {
 
     let playerModal = new bootstrap.Modal(document.getElementById('playerModal'));
 
-    // Open Add Player Modal
-    $('#openAddPlayer').click(function() {
+    // Add Player Modal
+    $('.btn-maroon[data-bs-target="#playerModal"]').click(function() {
         $('#playerModalLabel').text('Add Player');
         $('#playerForm')[0].reset();
         $('#savePlayer').data('id', '');
-        playerModal.show();
     });
 
     // Edit Player Modal
