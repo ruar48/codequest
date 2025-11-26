@@ -288,39 +288,27 @@ $(document).ready(function() {
         }
     });
 
-    /const modalEl = document.getElementById('questionModal');
-    const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
-
     // EDIT QUESTION
     $('.edit-question').on('click', function() {
         const id = $(this).data('id');
+
         $.get(`/testbank/${id}/edit`, function(data) {
-            // Change modal to Edit state
             $('#questionModal .modal-title').text('Edit Question');
             $('#questionForm').attr('action', `/testbank/${id}`);
             
-            // Add hidden _method input for PUT if not exists
+            // Add hidden _method input for PUT
             if ($('#questionForm input[name="_method"]').length === 0) {
                 $('#questionForm').append('<input type="hidden" name="_method" value="PUT">');
             }
 
-            // Fill form fields
             $('#question').val(data.question);
             $('#output').val(data.output);
             $('#level').val(data.level);
             $('#tips').val(data.tips);
 
-            // Show modal
+            const modal = new bootstrap.Modal(document.getElementById('questionModal'));
             modal.show();
         });
-    });
-
-    // Reset form to Add state **only when modal closed**
-    $('#questionModal').on('hidden.bs.modal', function () {
-        $('#questionForm')[0].reset();
-        $('#questionForm').attr('action', '{{ route("testbank.store") }}');
-        $('#questionForm input[name="_method"]').remove();
-        $('#questionModal .modal-title').text('Add Question');
     });
 
 });
