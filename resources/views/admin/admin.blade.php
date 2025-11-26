@@ -69,8 +69,7 @@
            style="background: linear-gradient(90deg, #7b2d2d, #a43e3e); position: relative;">
         <h5 class="modal-title fw-bold" id="adminModalLabel">Add Admin</h5>
         <!-- Close button -->
-        <button type="button" class="btn-close" data-bs-dismiss="modal" 
-                style="right: 10px; position: absolute;"></button>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
       <form id="adminForm">
