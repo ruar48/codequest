@@ -221,6 +221,9 @@ body, .content-wrapper {
 <!-- DataTables & jQuery -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Include Bootstrap Bundle JS (includes Popper) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
 
@@ -240,7 +243,9 @@ $(document).ready(function() {
         });
     }
 
-    let playerModal = new bootstrap.Modal(document.getElementById('playerModal'));
+    // Bootstrap Modal instance
+    let playerModalEl = document.getElementById('playerModal');
+    let playerModal = new bootstrap.Modal(playerModalEl);
 
     // Add Player Modal
     $('.btn-maroon[data-bs-target="#playerModal"]').click(function() {
@@ -276,8 +281,14 @@ $(document).ready(function() {
                 email: $('#email').val(),
                 password: $('#password').val()
             },
-            success: function() { location.reload(); },
-            error: function(xhr) { console.log(xhr.responseText); alert('Error saving player.'); }
+            success: function() { 
+                playerModal.hide(); // Hide modal after success
+                location.reload(); 
+            },
+            error: function(xhr) { 
+                console.log(xhr.responseText); 
+                alert('Error saving player.'); 
+            }
         });
     });
 
