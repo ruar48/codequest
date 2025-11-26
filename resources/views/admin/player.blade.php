@@ -232,6 +232,79 @@ $(document).ready(function() {
     lengthMenu: [[10,25,50,-1],[10,25,50,"All"]],
   });
 });
+$(document).ready(function() {
+
+    // Initialize DataTable
+    $('#playersTable').DataTable({
+        responsive: true,
+        paging: true,
+        searching: true,
+        ordering: true,
+        info: true,
+        autoWidth: false,
+        lengthMenu: [[10,25,50,-1],[10,25,50,"All"]],
+    });
+
+    // Bootstrap modal instance
+    let playerModal = new bootstrap.Modal(document.getElementById('playerModal'));
+
+    // Open Add Player Modal
+    $('.btn-maroon[data-bs-target="#playerModal"]').click(function() {
+        $('#playerModalLabel').text('Add Player');
+        $('#playerForm')[0].reset();
+        $('#savePlayer').data('id', ''); // no ID for new player
+        playerModal.show();
+    });
+
+    // Open Edit Player Modal
+    $(document).on('click', '.edit-player', function() {
+        let row = $(this).closest('tr');
+        let id = $(this).data('id');
+        let email = row.find('td:nth-child(2)').text();
+        let role = row.find('td:nth-child(3)').text();
+
+        $('#playerModalLabel').text('Edit Player');
+        $('#email').val(email);
+        $('#password').val('');
+        $('#savePlayer').data('id', id); // store player ID
+        playerModal.show();
+    });
+
+    // Save Player (Add or Edit)
+    $('#savePlayer').click(function() {
+        let id = $(this).data('id');
+        let url = id ? `/players/${id}` : "{{ route('players.store') }}";
+        let method = id ? 'PUT' : 'POST';
+
+        $.ajax({
+            url: url,
+            type: method,
+            data: {
+                _token: $('meta[name="csrf-token"]').attr('content'),
+                email: $('#email').val(),
+                password: $('#password').val(),
+            },
+            success: function() { location.reload(); },
+            error: function(xhr) { console.log(xhr.responseText); alert('Error saving player.'); }
+        });
+    });
+
+    // Delete Player
+    $(document).on('click', '.delete-player', function() {
+        if (!confirm('Are you sure you want to delete this player?')) return;
+        let id = $(this).data('id');
+
+        $.ajax({
+            url: `/players/${id}`,
+            type: 'DELETE',
+            data: { _token: $('meta[name="csrf-token"]').attr('content') },
+            success: function() { location.reload(); },
+            error: function(xhr) { console.log(xhr.responseText); alert('Error deleting player.'); }
+        });
+    });
+
+});
+
 </script>
 
 @endsection
