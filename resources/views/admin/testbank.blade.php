@@ -4,6 +4,8 @@
 
 @section('content')
 
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
 <style>
 /* === Dashboard Maroon Theme (White Base) === */
 body, .content-wrapper {
@@ -313,25 +315,26 @@ $(document).ready(function() {
 
     // Delete Question button
     $(document).on('click', '.delete-question', function() {
-        const id = $(this).data('id');
-        if(!confirm('Are you sure you want to delete this question?')) return;
+    const id = $(this).data('id');
+    if(!confirm('Are you sure you want to delete this question?')) return;
 
-        $.ajax({
-            url: `/testbank/${id}`,
-            type: 'POST', // Laravel DELETE via POST + _method
-            data: {
-                _token: $('meta[name="csrf-token"]').attr('content'),
-                _method: 'DELETE'
-            },
-            success: function() {
-                location.reload();
-            },
-            error: function(xhr){
-                console.log(xhr.responseText);
-                alert('Error deleting question. Make sure route exists.');
-            }
-        });
+    $.ajax({
+        url: `/testbank/${id}`,
+        type: 'POST', // Laravel requires POST with _method DELETE
+        data: {
+            _token: $('meta[name="csrf-token"]').attr('content'),
+            _method: 'DELETE'
+        },
+        success: function() {
+            alert('Question deleted successfully!');
+            location.reload();
+        },
+        error: function(xhr){
+            console.error(xhr.responseText);
+            alert('Error deleting question. Check Laravel logs for details.');
+        }
     });
+});
 
 });
 </script>
