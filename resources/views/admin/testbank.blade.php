@@ -11,6 +11,7 @@ body, .content-wrapper {
   font-family: 'Poppins', sans-serif;
   color: #333;
 }
+
 /* ===== HEADER ===== */
 .content-header {
   text-align: center;
@@ -29,6 +30,7 @@ body, .content-wrapper {
   font-size: 0.95rem;
   margin-bottom: 0;
 }
+
 /* ===== BUTTONS ===== */
 .btn-maroon {
   background: linear-gradient(90deg, #7b2d2d, #a43e3e);
@@ -43,6 +45,7 @@ body, .content-wrapper {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(123, 45, 45, 0.3);
 }
+
 .btn-outline-maroon {
   border: 1px solid #7b2d2d;
   color: #7b2d2d;
@@ -52,6 +55,7 @@ body, .content-wrapper {
   background-color: #7b2d2d;
   color: #fff;
 }
+
 /* ===== CARD ===== */
 .card {
   background: #ffffff;
@@ -71,6 +75,7 @@ body, .content-wrapper {
   border-top-right-radius: 16px;
   font-size: 1.05rem;
 }
+
 /* ===== TABLE ===== */
 .table {
   background: #fff;
@@ -95,6 +100,7 @@ body, .content-wrapper {
 .badge-success { background-color: #2ecc71; }
 .badge-warning { background-color: #f1c40f; color: #1c1c1c; }
 .badge-danger  { background-color: #e74c3c; }
+
 /* ===== MODAL ===== */
 .modal-content {
   background: #ffffff;
@@ -121,12 +127,12 @@ body, .content-wrapper {
 /* Sidebar Active / Hover Links */
 .nav-link.active,
 .nav-link:hover {
-  background-color: rgba(220, 160, 160, 0.25) !important; 
-  border-left: 3px solid #ecbbbbff; 
-  color: #ffffff !important; 
+  background-color: rgba(220, 160, 160, 0.25) !important; /* light maroon */
+  border-left: 3px solid #ecbbbbff; /* maroon indicator line */
+  color: #ffffff !important; /* keep text white for visibility */
   font-weight: 600;
   transition: all 0.2s ease;
-  box-shadow: 0 6px 12px rgba(220, 160, 160, 0.35); 
+  box-shadow: 0 6px 12px rgba(220, 160, 160, 0.35); /* stronger, more visible shadow */
 }
 /* ===== PAGINATION ===== */
 .dataTables_wrapper .dataTables_paginate .paginate_button {
@@ -158,7 +164,8 @@ body, .content-wrapper {
 
     <!-- Add Question Button -->
     <div class="d-flex justify-content-end mb-3">
-      <button type="button" class="btn btn-maroon fw-semibold px-3 py-2" id="addQuestionBtn">
+      <button type="button" class="btn btn-maroon fw-semibold px-3 py-2" 
+              data-bs-toggle="modal" data-bs-target="#questionModal">
         <i class="fas fa-plus me-1"></i> Add Question
       </button>
     </div>
@@ -194,12 +201,7 @@ body, .content-wrapper {
                 </td>
                 <td>{{ $question->tips }}</td>
                 <td class="text-center">
-                  <button class="btn btn-sm btn-outline-maroon edit-question me-1" 
-                          data-id="{{ $question->id }}"
-                          data-question="{{ $question->question }}" 
-                          data-output="{{ $question->output }}"
-                          data-level="{{ $question->level }}"
-                          data-tips="{{ $question->tips }}">
+                  <button class="btn btn-sm btn-outline-maroon edit-question me-1" data-id="{{ $question->id }}">
                     <i class="fas fa-edit"></i>
                   </button>
                   <button class="btn btn-sm btn-outline-maroon delete-question" data-id="{{ $question->id }}">
@@ -217,10 +219,10 @@ body, .content-wrapper {
   </div>
 </section>
 
-<!-- Question Modal -->
+<!-- Add Question Modal -->
 <div class="modal fade" id="questionModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-lg">
-    <form id="questionForm">
+    <form id="questionForm" action="{{ route('testbank.store') }}" method="POST">
       @csrf
       <div class="modal-content">
         <div class="modal-header">
@@ -228,7 +230,6 @@ body, .content-wrapper {
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <input type="hidden" id="questionId" name="id">
           <div class="mb-3">
             <label for="question" class="form-label">Question</label>
             <textarea class="form-control" id="question" name="question" rows="3" required></textarea>
@@ -251,7 +252,7 @@ body, .content-wrapper {
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-maroon" id="saveQuestionBtn">Save Question</button>
+          <button type="submit" class="btn btn-maroon">Save Question</button>
           <button type="button" class="btn btn-outline-maroon" data-bs-dismiss="modal">Cancel</button>
         </div>
       </div>
@@ -259,89 +260,7 @@ body, .content-wrapper {
   </div>
 </div>
 
-<!-- Bootstrap & jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Bootstrap 5 JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
-
-<script>
-$(document).ready(function() {
-
-    // Initialize DataTable
-    $('#questionTable').DataTable({
-        responsive: true,
-        paging: true,
-        ordering: true,
-        info: true
-    });
-
-    const questionModal = new bootstrap.Modal($('#questionModal')[0]);
-
-    // Add Question button
-    $('#addQuestionBtn').click(function() {
-        $('#questionForm')[0].reset();
-        $('#questionId').val('');
-        $('#questionModal .modal-title').text('Add Question');
-        questionModal.show();
-    });
-
-    // Edit Question button
-    $(document).on('click', '.edit-question', function() {
-        const btn = $(this);
-        $('#questionId').val(btn.data('id'));
-        $('#question').val(btn.data('question'));
-        $('#output').val(btn.data('output'));
-        $('#level').val(btn.data('level'));
-        $('#tips').val(btn.data('tips'));
-        $('#questionModal .modal-title').text('Edit Question');
-        questionModal.show();
-    });
-
-    // Save Question (Add/Edit)
-    $('#questionForm').submit(function(e) {
-        e.preventDefault();
-        const id = $('#questionId').val();
-        const url = id ? `/testbank/${id}` : "{{ route('testbank.store') }}";
-        const method = id ? 'POST' : 'POST'; // Always POST with _method override
-        const data = $(this).serialize();
-        if(id) data += '&_method=PUT';
-        $.ajax({
-            url: url,
-            type: method,
-            data: data,
-            success: function() {
-                location.reload();
-            },
-            error: function(xhr) {
-                console.log(xhr.responseText);
-                alert('Error saving question.');
-            }
-        });
-    });
-
-    // Delete Question
-    $(document).on('click', '.delete-question', function() {
-        const id = $(this).data('id');
-        if (!confirm('Are you sure you want to delete this question?')) return;
-        $.ajax({
-            url: `/testbank/${id}`,
-            type: 'POST', // POST with _method override
-            data: { 
-                _token: $('meta[name="csrf-token"]').attr('content'),
-                _method: 'DELETE'
-            },
-            success: function() {
-                location.reload();
-            },
-            error: function(xhr) {
-                console.log(xhr.responseText);
-                alert('Error deleting question.');
-            }
-        });
-    });
-
-});
-</script>
 
 @endsection
