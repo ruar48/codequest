@@ -166,8 +166,7 @@ body, .content-wrapper {
 
     <!-- Add Question Button -->
     <div class="d-flex justify-content-end mb-3">
-      <button type="button" class="btn btn-maroon fw-semibold px-3 py-2" 
-              data-bs-toggle="modal" data-bs-target="#questionModal">
+      <button type="button" id="addQuestionBtn" class="btn btn-maroon fw-semibold px-3 py-2">
         <i class="fas fa-plus me-1"></i> Add Question
       </button>
     </div>
@@ -203,10 +202,10 @@ body, .content-wrapper {
                 </td>
                 <td>{{ $question->tips }}</td>
                 <td class="text-center">
-                  <button class="btn btn-sm btn-outline-maroon edit-question me-1" data-id="{{ $question->id }}">
+                  <button class="btn btn-sm btn-outline-maroon edit-question me-1">
                     <i class="fas fa-edit"></i>
                   </button>
-                  <button class="btn btn-sm btn-outline-maroon delete-question" data-id="{{ $question->id }}">
+                  <button class="btn btn-sm btn-outline-maroon delete-question">
                     <i class="fas fa-trash"></i>
                   </button>
                 </td>
@@ -221,11 +220,12 @@ body, .content-wrapper {
   </div>
 </section>
 
-<!-- Add Question Modal -->
+<!-- Add/Edit Question Modal -->
 <div class="modal fade" id="questionModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <form id="questionForm" action="{{ route('testbank.store') }}" method="POST">
       @csrf
+      <input type="hidden" id="questionId" name="id">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Add Question</h5>
@@ -262,7 +262,7 @@ body, .content-wrapper {
   </div>
 </div>
 
-<!-- Bootstrap 5 JS -->
+<!-- Bootstrap 5 + jQuery + DataTables -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
@@ -271,17 +271,20 @@ body, .content-wrapper {
 <script>
 $(document).ready(function() {
 
+    // Initialize DataTable
     $('#questionTable').DataTable();
 
+    // Bootstrap Modal instance
     const questionModalEl = document.getElementById('questionModal');
-    const questionModal = bootstrap.Modal.getOrCreateInstance(questionModalEl);
+    const questionModal = new bootstrap.Modal(questionModalEl);
 
     // ADD QUESTION
     $('#addQuestionBtn').click(function() {
         $('#questionForm')[0].reset();
         $('#questionForm').attr('action', "{{ route('testbank.store') }}");
-        $('#questionForm').find('input[name="_method"]').remove(); // remove PUT
+        $('#questionForm').find('input[name="_method"]').remove();
         $('#questionModal .modal-title').text('Add Question');
+        $('#questionId').val('');
         questionModal.show();
     });
 
@@ -294,14 +297,12 @@ $(document).ready(function() {
         const level = row.find('td:eq(3) span').text().trim().toLowerCase();
         const tips = row.find('td:eq(4)').text().trim();
 
-        // Fill form
         $('#questionId').val(id);
         $('#question').val(question);
         $('#output').val(output);
         $('#level').val(level);
         $('#tips').val(tips);
 
-        // Update action + PUT method
         $('#questionForm').attr('action', `/testbank/${id}`);
         if ($('#questionForm').find('input[name="_method"]').length === 0) {
             $('#questionForm').append('<input type="hidden" name="_method" value="PUT">');
@@ -315,19 +316,19 @@ $(document).ready(function() {
 
     // DELETE QUESTION
     $(document).on('click', '.delete-question', function() {
-        const id = $(this).data('id');
+        const row = $(this).closest('tr');
+        const id = row.data('id');
         if(!confirm('Are you sure you want to delete this question?')) return;
 
         $.ajax({
             url: `/testbank/${id}`,
-            type: 'POST', // Laravel expects POST with _method DELETE
+            type: 'POST',
             data: {
                 _token: $('meta[name="csrf-token"]').attr('content'),
                 _method: 'DELETE'
             },
             success: function() {
-                alert('Question deleted successfully!');
-                location.reload();
+                row.remove(); // remove row without page reload
             },
             error: function(xhr){
                 console.error(xhr.responseText);
@@ -337,8 +338,6 @@ $(document).ready(function() {
     });
 
 });
-
 </script>
-
 
 @endsection
