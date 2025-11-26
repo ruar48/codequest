@@ -142,3 +142,18 @@ Route::get('/', function () {
         ]);
     });
 
+    Route::controller(PlayerController::class)->group(function () {
+
+    Route::get('/player', 'index')->name('player.index');
+
+    // Add player
+    Route::post('/player/store', 'store')->name('players.store');
+
+    // Update player
+    Route::put('/player/update/{id}', 'update')->name('players.update');
+
+    // Delete player
+    Route::delete('/player/delete/{id}', 'destroy')->name('players.destroy');
+
+});
+
