@@ -127,12 +127,12 @@ body, .content-wrapper {
 /* Sidebar Active / Hover Links */
 .nav-link.active,
 .nav-link:hover {
-  background-color: rgba(220, 160, 160, 0.25) !important; /* light maroon */
-  border-left: 3px solid #ecbbbbff; /* maroon indicator line */
-  color: #ffffff !important; /* keep text white for visibility */
+  background-color: rgba(220, 160, 160, 0.25) !important;
+  border-left: 3px solid #ecbbbbff;
+  color: #ffffff !important;
   font-weight: 600;
   transition: all 0.2s ease;
-  box-shadow: 0 6px 12px rgba(220, 160, 160, 0.35); /* stronger, more visible shadow */
+  box-shadow: 0 6px 12px rgba(220, 160, 160, 0.35);
 }
 /* ===== PAGINATION ===== */
 .dataTables_wrapper .dataTables_paginate .paginate_button {
@@ -219,7 +219,7 @@ body, .content-wrapper {
   </div>
 </section>
 
-<!-- Add Question Modal -->
+<!-- Add/Edit Question Modal -->
 <div class="modal fade" id="questionModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <form id="questionForm" action="{{ route('testbank.store') }}" method="POST">
@@ -260,28 +260,34 @@ body, .content-wrapper {
   </div>
 </div>
 
-<!-- Bootstrap 5 JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script>
 $(document).ready(function() {
 
-    // DELETE QUESTION
-    $('.delete-question').on('click', function() {
-        const id = $(this).data('id');
+    const modalEl = document.getElementById('questionModal');
+    const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
 
+    // Reset form on modal close
+    $('#questionModal').on('hidden.bs.modal', function () {
+        $('#questionForm')[0].reset();
+        $('#questionForm').attr('action', '{{ route("testbank.store") }}');
+        $('#questionForm input[name="_method"]').remove();
+        $('#questionModal .modal-title').text('Add Question');
+    });
+
+    // DELETE QUESTION
+    $(document).on('click', '.delete-question', function() {
+        const id = $(this).data('id');
         if (confirm('Are you sure you want to delete this question?')) {
             $.ajax({
                 url: `/testbank/${id}`,
                 type: 'DELETE',
-                data: {
-                    _token: '{{ csrf_token() }}'
+                data: {_token: '{{ csrf_token() }}'},
+                success: function() {
+                    $(`tr[data-id="${id}"]`).remove();
                 },
-                success: function(response) {
-                    alert('Question deleted successfully!');
-                    $(`tr[data-id="${id}"]`).remove(); // remove row from table
-                },
-                error: function(xhr) {
+                error: function() {
                     alert('Failed to delete question!');
                 }
             });
@@ -289,14 +295,13 @@ $(document).ready(function() {
     });
 
     // EDIT QUESTION
-    $('.edit-question').on('click', function() {
+    $(document).on('click', '.edit-question', function() {
         const id = $(this).data('id');
-
         $.get(`/testbank/${id}/edit`, function(data) {
             $('#questionModal .modal-title').text('Edit Question');
             $('#questionForm').attr('action', `/testbank/${id}`);
-            
-            // Add hidden _method input for PUT
+
+            // Add hidden _method input for PUT if not exists
             if ($('#questionForm input[name="_method"]').length === 0) {
                 $('#questionForm').append('<input type="hidden" name="_method" value="PUT">');
             }
@@ -306,7 +311,6 @@ $(document).ready(function() {
             $('#level').val(data.level);
             $('#tips').val(data.tips);
 
-            const modal = new bootstrap.Modal(document.getElementById('questionModal'));
             modal.show();
         });
     });
