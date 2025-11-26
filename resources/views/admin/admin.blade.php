@@ -65,10 +65,14 @@
 <div class="modal fade" id="adminModal" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content border-maroon">
-      
+
       <div class="modal-header text-white"
            style="background: linear-gradient(90deg, #7b2d2d, #a43e3e);">
         <h5 class="modal-title fw-bold" id="adminModalLabel">Add Admin</h5>
+        <!-- Minimize button -->
+        <button type="button" class="btn btn-sm btn-light me-2" id="minimizeModal" title="Minimize">
+          <i class="fas fa-minus"></i>
+        </button>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
 
@@ -104,7 +108,6 @@
     </div>
   </div>
 </div>
-
 {{-- ====================== STYLES (your original CSS) ====================== --}}
 <style>
 /* --- Dashboard-Style Maroon Theme --- */
@@ -147,10 +150,10 @@ input.form-control:focus {
   border-color: #7b2d2d;
 }
 </style>
+
 <!-- Single Load Only -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
@@ -161,6 +164,8 @@ $(document).ready(function () {
     $.ajaxSetup({
         headers: { "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content") }
     });
+
+    let adminModal = new bootstrap.Modal(document.getElementById('adminModal'));
 
     $('#adminTable').DataTable();
 
@@ -173,7 +178,8 @@ $(document).ready(function () {
         $('#role').val('admin');
         $('#_method').val('POST');
 
-        new bootstrap.Modal(document.getElementById('adminModal')).show();
+        adminModal.show();
+        $('#adminModal').removeClass('minimized');
     });
 
     // Open Edit Modal
@@ -187,28 +193,32 @@ $(document).ready(function () {
         $('#password').val('');
         $('#_method').val('PUT');
 
-        new bootstrap.Modal(document.getElementById('adminModal')).show();
+        adminModal.show();
+        $('#adminModal').removeClass('minimized');
     });
 
     // Save Admin
     $('#saveAdmin').click(function () {
         let id = $('#admin_id').val();
         let method = $('#_method').val();
+        let url = (method === "POST") ? "{{ route('admins.store') }}" : "/admin/update/" + id;
 
-        let url = (method === "POST")
-            ? "{{ route('admins.store') }}"
-            : "/admin/update/" + id;
-
-        $.post(url, {
-            _method: method,
-            email: $('#email').val(),
-            password: $('#password').val(),
-            role: $('#role').val()
-        })
-        .done(() => location.reload())
-        .fail(err => {
-            console.log(err.responseText);
-            alert("Error saving admin.");
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: {
+                _method: method,
+                email: $('#email').val(),
+                password: $('#password').val(),
+                role: $('#role').val()
+            },
+            success: function() {
+                location.reload();
+            },
+            error: function(xhr) {
+                console.log(xhr.responseText);
+                alert("Error saving admin.");
+            }
         });
     });
 
@@ -217,15 +227,28 @@ $(document).ready(function () {
         if (!confirm("Delete this admin?")) return;
 
         let id = $(this).data('id');
+        $.ajax({
+            url: "/admin/delete/" + id,
+            type: "POST",
+            data: { _method: "DELETE" },
+            success: function() { location.reload(); },
+            error: function(xhr) { console.log(xhr.responseText); alert("Error deleting admin."); }
+        });
+    });
 
-        $.post("/admin/delete/" + id, { _method: "DELETE" })
-            .done(() => location.reload())
-            .fail(err => {
-                console.log(err.responseText);
-                alert("Error deleting admin.");
-            });
+    // Minimize Modal
+    $('#minimizeModal').click(function () {
+        $('#adminModal').toggleClass('minimized');
+    });
+
+    // Restore modal on header click
+    $('#adminModal .modal-header').click(function () {
+        if ($('#adminModal').hasClass('minimized')) {
+            $('#adminModal').removeClass('minimized');
+        }
     });
 
 });
 </script>
+
 @endsection
