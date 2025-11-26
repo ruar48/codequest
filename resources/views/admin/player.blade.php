@@ -230,48 +230,48 @@ body, .content-wrapper {
 <script>
 $(document).ready(function() {
 
-    // Initialize DataTable once
-    if (!$.fn.DataTable.isDataTable('#playersTable')) {
-        $('#playersTable').DataTable({
-            responsive: true,
-            paging: true,
-            searching: true,
-            ordering: true,
-            info: true,
-            autoWidth: false,
-            lengthMenu: [[10,25,50,-1],[10,25,50,"All"]],
-        });
-    }
+    // Initialize DataTable
+    $('#playersTable').DataTable({
+        responsive: true,
+        paging: true,
+        searching: true,
+        ordering: true,
+        info: true,
+        autoWidth: false,
+        lengthMenu: [[10,25,50,-1],[10,25,50,"All"]],
+    });
 
-    // Bootstrap Modal instance
-    let playerModalEl = document.getElementById('playerModal');
-    let playerModal = new bootstrap.Modal(playerModalEl);
+    // Bootstrap Modal instance (single)
+    const playerModalEl = document.getElementById('playerModal');
+    const playerModal = new bootstrap.Modal(playerModalEl);
 
-    // Add Player Modal
+    // Add Player button
     $('.btn-maroon[data-bs-target="#playerModal"]').click(function() {
         $('#playerModalLabel').text('Add Player');
         $('#playerForm')[0].reset();
         $('#savePlayer').data('id', '');
     });
 
-    // Edit Player Modal
+    // Edit Player button
     $(document).on('click', '.edit-player', function() {
-        let row = $(this).closest('tr');
-        let id = $(this).data('id');
-        let email = row.find('td:nth-child(2)').text();
+        const row = $(this).closest('tr');
+        const id = $(this).data('id');
+        const email = row.find('td:nth-child(2)').text();
 
         $('#playerModalLabel').text('Edit Player');
         $('#email').val(email);
         $('#password').val('');
         $('#savePlayer').data('id', id);
+
+        // Show modal
         playerModal.show();
     });
 
-    // Save Player (Add or Edit)
+    // Save Player
     $('#savePlayer').click(function() {
-        let id = $(this).data('id');
-        let url = id ? `/players/${id}` : "{{ route('players.store') }}";
-        let method = id ? 'PUT' : 'POST';
+        const id = $(this).data('id');
+        const url = id ? `/players/${id}` : "{{ route('players.store') }}";
+        const method = id ? 'PUT' : 'POST';
 
         $.ajax({
             url: url,
@@ -281,13 +281,13 @@ $(document).ready(function() {
                 email: $('#email').val(),
                 password: $('#password').val()
             },
-            success: function() { 
-                playerModal.hide(); // Hide modal after success
-                location.reload(); 
+            success: function() {
+                playerModal.hide(); // hide modal after save
+                location.reload();
             },
-            error: function(xhr) { 
-                console.log(xhr.responseText); 
-                alert('Error saving player.'); 
+            error: function(xhr) {
+                console.log(xhr.responseText);
+                alert('Error saving player.');
             }
         });
     });
@@ -295,7 +295,7 @@ $(document).ready(function() {
     // Delete Player
     $(document).on('click', '.delete-player', function() {
         if (!confirm('Are you sure you want to delete this player?')) return;
-        let id = $(this).data('id');
+        const id = $(this).data('id');
 
         $.ajax({
             url: `/players/${id}`,
@@ -307,6 +307,7 @@ $(document).ready(function() {
     });
 
 });
+
 </script>
 
 @endsection
