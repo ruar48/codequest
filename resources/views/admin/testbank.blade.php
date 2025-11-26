@@ -197,8 +197,9 @@ body, .content-wrapper {
                 </td>
                 <td>{{ $question->tips }}</td>
                 <td class="text-center">
-                  <button class="btn btn-sm btn-outline-maroon edit-question me-1" data-id="{{ $question->id }}"
-                          data-question="{{ $question->question }}" 
+                  <button class="btn btn-sm btn-outline-maroon edit-question me-1" 
+                          data-id="{{ $question->id }}"
+                          data-question="{{ $question->question }}"
                           data-output="{{ $question->output }}"
                           data-level="{{ $question->level }}"
                           data-tips="{{ $question->tips }}">
@@ -226,7 +227,7 @@ body, .content-wrapper {
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Add Question</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <input type="hidden" id="questionId" name="id">
@@ -252,7 +253,7 @@ body, .content-wrapper {
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-maroon" id="saveQuestionBtn">Save Question</button>
+          <button type="submit" class="btn btn-maroon">Save Question</button>
           <button type="button" class="btn btn-outline-maroon" data-bs-dismiss="modal">Cancel</button>
         </div>
       </div>
@@ -260,7 +261,7 @@ body, .content-wrapper {
   </div>
 </div>
 
-<!-- Bootstrap & jQuery -->
+<!-- Scripts -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
@@ -269,11 +270,13 @@ body, .content-wrapper {
 <script>
 $(document).ready(function() {
     // Initialize DataTable
-    $('#questionTable').DataTable({ responsive: true, paging: true, ordering: true, info: true });
+    $('#questionTable').DataTable();
 
-    const questionModal = new bootstrap.Modal(document.getElementById('questionModal'));
+    // Use correct Bootstrap 5 Modal instance
+    const questionModalEl = document.getElementById('questionModal');
+    const questionModal = new bootstrap.Modal(questionModalEl);
 
-    // Add Question
+    // Add Question button
     $('#addQuestionBtn').click(function() {
         $('#questionForm')[0].reset();
         $('#questionId').val('');
@@ -281,7 +284,7 @@ $(document).ready(function() {
         questionModal.show();
     });
 
-    // Edit Question
+    // Edit Question button
     $(document).on('click', '.edit-question', function() {
         const btn = $(this);
         $('#questionId').val(btn.data('id'));
@@ -312,7 +315,7 @@ $(document).ready(function() {
     // Delete Question
     $(document).on('click', '.delete-question', function() {
         const id = $(this).data('id');
-        if (!confirm('Are you sure you want to delete this question?')) return;
+        if(!confirm('Are you sure you want to delete this question?')) return;
 
         $.ajax({
             url: `/testbank/${id}`,
