@@ -288,41 +288,28 @@ $(document).ready(function() {
         }
     });
 
-// EDIT QUESTION
-$(document).on('click', '.edit-question', function() {
-    const id = $(this).data('id');
+    // EDIT QUESTION
+    $('.edit-question').on('click', function() {
+        const id = $(this).data('id');
 
-    $.get(`/testbank/${id}/edit`, function(data) {
-        const modalEl = document.getElementById('questionModal');
-        const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+        $.get(`/testbank/${id}/edit`, function(data) {
+            $('#questionModal .modal-title').text('Edit Question');
+            $('#questionForm').attr('action', `/testbank/${id}`);
+            
+            // Add hidden _method input for PUT
+            if ($('#questionForm input[name="_method"]').length === 0) {
+                $('#questionForm').append('<input type="hidden" name="_method" value="PUT">');
+            }
 
-        // Reset form first (clears previous data and errors)
-        $('#questionForm')[0].reset();
+            $('#question').val(data.question);
+            $('#output').val(data.output);
+            $('#level').val(data.level);
+            $('#tips').val(data.tips);
 
-        // Update modal title and form action
-        $('#questionModal .modal-title').text('Edit Question');
-        $('#questionForm').attr('action', `/testbank/${id}`);
-
-        // Add or update hidden _method input for PUT
-        let methodInput = $('#questionForm input[name="_method"]');
-        if (methodInput.length === 0) {
-            $('#questionForm').append('<input type="hidden" name="_method" value="PUT">');
-        } else {
-            methodInput.val('PUT');
-        }
-
-        // Fill form fields
-        $('#question').val(data.question);
-        $('#output').val(data.output);
-        $('#level').val(data.level);
-        $('#tips').val(data.tips);
-
-        // Show the modal
-        modal.show();
-    }).fail(function() {
-        alert('Failed to load question for editing.');
+            const modal = new bootstrap.Modal(document.getElementById('questionModal'));
+            modal.show();
+        });
     });
-});
 
 });
 </script>
