@@ -70,7 +70,7 @@
         <h5 class="modal-title fw-bold" id="adminModalLabel">Add Admin</h5>
 
         <!-- Minimize button on right side -->
-        <button type="button" id="minimizeModal" title="Minimize" 
+        <button type="button" id="minimizeModal" title="Minimize/Restore" 
                 style="position: absolute; right: 45px; top: 50%; transform: translateY(-50%); 
                        background: transparent; border: none; color: #fff; font-size: 1.1rem;">
           <i class="fas fa-minus"></i>
@@ -116,7 +116,6 @@
 
 {{-- ====================== STYLES ====================== --}}
 <style>
-/* --- Dashboard Maroon Theme --- */
 body, .content-wrapper {
   background: #ffffff;
   font-family: 'Poppins', sans-serif;
@@ -157,6 +156,9 @@ input.form-control:focus {
 }
 
 /* --- Minimized Modal --- */
+#adminModal.minimized {
+  z-index: 1100 !important;
+}
 #adminModal.minimized .modal-dialog {
   transform: translateY(80vh);
   width: 300px;
@@ -251,10 +253,13 @@ $(document).ready(function () {
     });
 
     // Minimize / Restore Modal
-    $('#minimizeModal').click(function () {
+    $('#minimizeModal').click(function (e) {
+        e.stopPropagation();
         $('#adminModal').toggleClass('minimized');
     });
-    $('#adminModal .modal-header').click(function () {
+
+    $('#adminModal .modal-header').click(function (e) {
+        if ($(e.target).is('#minimizeModal, .btn-close')) return;
         if ($('#adminModal').hasClass('minimized')) {
             $('#adminModal').removeClass('minimized');
         }
