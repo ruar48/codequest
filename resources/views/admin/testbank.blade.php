@@ -164,8 +164,7 @@ body, .content-wrapper {
 
     <!-- Add Question Button -->
     <div class="d-flex justify-content-end mb-3">
-      <button type="button" class="btn btn-maroon fw-semibold px-3 py-2" 
-              data-bs-toggle="modal" data-bs-target="#questionModal">
+      <button type="button" class="btn btn-maroon fw-semibold px-3 py-2" id="addQuestionBtn">
         <i class="fas fa-plus me-1"></i> Add Question
       </button>
     </div>
@@ -201,7 +200,11 @@ body, .content-wrapper {
                 </td>
                 <td>{{ $question->tips }}</td>
                 <td class="text-center">
-                  <button class="btn btn-sm btn-outline-maroon edit-question me-1" data-id="{{ $question->id }}">
+                  <button class="btn btn-sm btn-outline-maroon edit-question me-1" data-id="{{ $question->id }}"
+                          data-question="{{ $question->question }}" 
+                          data-output="{{ $question->output }}"
+                          data-level="{{ $question->level }}"
+                          data-tips="{{ $question->tips }}">
                     <i class="fas fa-edit"></i>
                   </button>
                   <button class="btn btn-sm btn-outline-maroon delete-question" data-id="{{ $question->id }}">
@@ -219,17 +222,18 @@ body, .content-wrapper {
   </div>
 </section>
 
-<!-- Add Question Modal -->
+<!-- Question Modal -->
 <div class="modal fade" id="questionModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-lg">
-    <form id="questionForm" action="{{ route('testbank.store') }}" method="POST">
+    <form id="questionForm">
       @csrf
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Add Question</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
+          <input type="hidden" id="questionId" name="id">
           <div class="mb-3">
             <label for="question" class="form-label">Question</label>
             <textarea class="form-control" id="question" name="question" rows="3" required></textarea>
@@ -252,7 +256,7 @@ body, .content-wrapper {
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-maroon">Save Question</button>
+          <button type="submit" class="btn btn-maroon" id="saveQuestionBtn">Save Question</button>
           <button type="button" class="btn btn-outline-maroon" data-bs-dismiss="modal">Cancel</button>
         </div>
       </div>
@@ -260,7 +264,84 @@ body, .content-wrapper {
   </div>
 </div>
 
-<!-- Bootstrap 5 JS -->
+<!-- Bootstrap & jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+
+<script>
+$(document).ready(function() {
+
+    // Initialize DataTable
+    $('#questionTable').DataTable({
+        responsive: true,
+        paging: true,
+        ordering: true,
+        info: true
+    });
+
+    const questionModal = new bootstrap.Modal($('#questionModal')[0]);
+
+    // Add Question button
+    $('#addQuestionBtn').click(function() {
+        $('#questionForm')[0].reset();
+        $('#questionId').val('');
+        $('#questionModal .modal-title').text('Add Question');
+        questionModal.show();
+    });
+
+    // Edit Question button
+    $(document).on('click', '.edit-question', function() {
+        const btn = $(this);
+        $('#questionId').val(btn.data('id'));
+        $('#question').val(btn.data('question'));
+        $('#output').val(btn.data('output'));
+        $('#level').val(btn.data('level'));
+        $('#tips').val(btn.data('tips'));
+        $('#questionModal .modal-title').text('Edit Question');
+        questionModal.show();
+    });
+
+    // Save Question (Add/Edit)
+    $('#questionForm').submit(function(e) {
+        e.preventDefault();
+        const id = $('#questionId').val();
+        const url = id ? `/testbank/${id}` : "{{ route('testbank.store') }}";
+        const method = id ? 'PUT' : 'POST';
+        $.ajax({
+            url: url,
+            type: method,
+            data: $(this).serialize(),
+            success: function() {
+                location.reload();
+            },
+            error: function(xhr) {
+                console.log(xhr.responseText);
+                alert('Error saving question.');
+            }
+        });
+    });
+
+    // Delete Question
+    $(document).on('click', '.delete-question', function() {
+        const id = $(this).data('id');
+        if (!confirm('Are you sure you want to delete this question?')) return;
+        $.ajax({
+            url: `/testbank/${id}`,
+            type: 'DELETE',
+            data: { _token: $('meta[name="csrf-token"]').attr('content') },
+            success: function() {
+                location.reload();
+            },
+            error: function(xhr) {
+                console.log(xhr.responseText);
+                alert('Error deleting question.');
+            }
+        });
+    });
+
+});
+</script>
 
 @endsection
