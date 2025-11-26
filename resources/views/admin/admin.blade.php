@@ -4,6 +4,8 @@
 
 @section('content')
 
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
 <div class="content-header text-center py-3">
   <h1 class="fw-bold mb-1" 
       style="font-size: 2rem; color: #7b2d2d; text-shadow: 0 0 6px rgba(123,45,45,0.4);">
@@ -19,7 +21,9 @@
     <div class="d-flex justify-content-end mb-3">
       <button type="button" 
               class="btn btn-maroon text-white fw-semibold px-3 py-1 rounded-pill"
-              data-toggle="modal" data-target="#adminModal" style="font-size: 0.9rem;">
+              data-bs-toggle="modal" data-bs-target="#adminModal"
+              id="openAddModal"
+              style="font-size: 0.9rem;">
         <i class="fas fa-user-plus me-1"></i> Add Admin
       </button>
     </div>
@@ -66,48 +70,65 @@
   </div>
 </section>
 
-<!-- Add Admin Modal -->
-<div class="modal fade" id="adminModal" tabindex="-1" aria-labelledby="adminModalLabel" aria-hidden="true">
+
+<!-- Add/Edit Admin Modal -->
+<div class="modal fade" id="adminModal" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content bg-white text-dark border border-maroon rounded-3">
       <div class="modal-header text-white py-2 rounded-top"
-           style="background: linear-gradient(90deg, #7b2d2d, #a43e3e);">
-        <h5 class="modal-title fw-bold mb-0" id="adminModalLabel">Add Admin</h5>
-        <button type="button" class="btn-close" data-dismiss="modal"></button>
+        style="background: linear-gradient(90deg, #7b2d2d, #a43e3e);">
+        <h5 class="modal-title fw-bold" id="adminModalLabel">Add Admin</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
+
       <form id="adminForm">
         @csrf
-        <div class="modal-body py-3">
+        <input type="hidden" id="admin_id">
+        <input type="hidden" id="_method" value="POST">
+
+        <div class="modal-body">
+
           <div class="form-group mb-3">
-            <label for="email" class="fw-bold text-maroon">Email</label>
-            <input type="email" class="form-control border-maroon rounded-pill"
-                   id="email" name="email" required>
+            <label class="fw-bold text-maroon">Email</label>
+            <input type="email" id="email" class="form-control border-maroon rounded-pill" required>
           </div>
-          <div class="form-group mb-2">
-            <label for="password" class="fw-bold text-maroon">Password</label>
-            <input type="password" class="form-control border-maroon rounded-pill"
-                   id="password" name="password" required>
+
+          <div class="form-group mb-3">
+            <label class="fw-bold text-maroon">Password</label>
+            <input type="password" id="password" class="form-control border-maroon rounded-pill">
+            <small class="text-muted">Leave blank when editing if you do not want to change it.</small>
           </div>
+
+          <div class="form-group mb-3">
+            <label class="fw-bold text-maroon">Role</label>
+            <select id="role" class="form-control border-maroon rounded-pill">
+              <option value="admin">Admin</option>
+              <option value="superadmin">Superadmin</option>
+            </select>
+          </div>
+
         </div>
-        <div class="modal-footer border-0 py-2">
-          <button type="button" class="btn btn-secondary btn-sm rounded-pill" data-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-maroon text-white fw-bold btn-sm rounded-pill"
-                  id="saveAdmin">Save</button>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-maroon text-white fw-bold rounded-pill" id="saveAdmin">Save</button>
         </div>
+
       </form>
     </div>
   </div>
 </div>
 
+
+{{-- ====================== STYLES (your original CSS) ====================== --}}
 <style>
-/* --- Dashboard-Style Maroon Theme for Admins Page --- */
+/* --- Dashboard-Style Maroon Theme --- */
 body, .content-wrapper {
   background: #ffffff;
   font-family: 'Poppins', sans-serif;
   color: #333;
 }
 
-/* Custom Maroon Buttons */
 .btn-maroon {
   background: linear-gradient(90deg, #7b2d2d, #a43e3e);
   border: none;
@@ -116,7 +137,6 @@ body, .content-wrapper {
   background: linear-gradient(90deg, #a43e3e, #7b2d2d);
 }
 
-/* Outline Buttons */
 .btn-outline-maroon {
   border: 1px solid #7b2d2d;
   color: #7b2d2d;
@@ -126,103 +146,114 @@ body, .content-wrapper {
   color: #fff;
 }
 
-/* Card Style */
 .admin-card {
   background: #ffffff;
   border: 1px solid rgba(123, 45, 45, 0.2);
   border-radius: 16px;
-  transition: all 0.3s ease;
+  transition: 0.3s ease;
 }
-.admin-card:hover {
-  transform: translateY(-2px);
-}
+.admin-card:hover { transform: translateY(-2px); }
 
-/* Maroon Utility Colors */
-.text-maroon {
-  color: #7b2d2d !important;
-}
-.border-maroon {
-  border-color: #7b2d2d !important;
-}
+.text-maroon { color: #7b2d2d !important; }
+.border-maroon { border-color: #7b2d2d !important; }
 
-/* Input Focus */
 input.form-control:focus {
   box-shadow: 0 0 8px rgba(123, 45, 45, 0.4);
   border-color: #7b2d2d;
 }
-
-/* Table Hover Effect */
-.table-hover tbody tr:hover {
-  background-color: rgba(123, 45, 45, 0.1);
-  transition: all 0.2s ease;
-}
-
-/* Sidebar Active / Hover Links */
-.nav-link.active,
-.nav-link:hover {
-  background-color: rgba(220, 160, 160, 0.25) !important; /* light maroon */
-  border-left: 3px solid #ecbbbbff; /* maroon indicator line */
-  color: #ffffff !important; /* keep text white for visibility */
-  font-weight: 600;
-  transition: all 0.2s ease;
-  box-shadow: 0 6px 12px rgba(220, 160, 160, 0.35); /* stronger, more visible shadow */
-}
-
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-thumb {
-  background-color: #7b2d2d;
-  border-radius: 4px;
-}
-
-/* --- DataTables Maroon Theme: Pagination Buttons --- */
-.dataTables_wrapper .dataTables_paginate .paginate_button {
-  color: #7b2d2d !important;       /* Text color */
-  border: 1px solid #7b2d2d;       /* Border color */
-  border-radius: 20px;
-  padding: 3px 8px;
-  margin: 0 2px;
-  background: transparent;          /* Default background */
-  transition: all 0.2s ease;
-}
-
-.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-  background: #7b2d2d !important;  /* Hover background */
-  color: #fff !important;          /* Hover text color */
-}
-
-.dataTables_wrapper .dataTables_paginate .paginate_button.current {
-  background: #7b2d2d !important;  /* Active page background */
-  color: #fff !important;          /* Active page text color */
-  border: 1px solid #7b2d2d;       /* Active page border */
-}
-
-.dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
-  color: rgba(123, 45, 45, 0.4) !important; /* Disabled color */
-  border-color: rgba(123, 45, 45, 0.2);
-  cursor: not-allowed;
-  background: transparent;
-}
 </style>
 
-<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+
+{{-- ====================== JS / AJAX ====================== --}}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
 
 <script>
 $(document).ready(function() {
-  $('#playersTable').DataTable({
-    responsive: true,
-    paging: true,
-    searching: true,
-    ordering: true,
-    info: true,
-    autoWidth: false,
-    lengthMenu: [[10,25,50,-1],[10,25,50,"All"]],
+
+  let adminTable = $('#adminTable').DataTable();
+
+  // Open CREATE modal
+  $('#openAddModal').on('click', function() {
+    $('#adminModalLabel').text('Add Admin');
+    $('#admin_id').val('');
+    $('#email').val('');
+    $('#password').val('');
+    $('#role').val('admin');
+    $('#_method').val('POST');
   });
+
+  // Open EDIT modal
+  $(document).on('click', '.edit-admin', function() {
+    let row = $(this).closest('tr');
+    let id = row.data('id');
+    let email = row.data('email');
+    let role = row.data('role');
+
+    $('#adminModalLabel').text('Edit Admin');
+    $('#admin_id').val(id);
+    $('#email').val(email);
+    $('#password').val('');
+    $('#role').val(role);
+    $('#_method').val('PUT');
+
+    let modal = new bootstrap.Modal(document.getElementById('adminModal'));
+    modal.show();
+  });
+
+  // SAVE (Create or Update)
+  $('#saveAdmin').on('click', function() {
+    let id = $('#admin_id').val();
+    let method = $('#_method').val();
+
+    let url =
+      method === 'POST'
+      ? "{{ route('admins.store') }}"
+      : "/admin/update/" + id;
+
+    $.ajax({
+      url: url,
+      type: "POST",
+      data: {
+        _method: method,
+        email: $('#email').val(),
+        password: $('#password').val(),
+        role: $('#role').val(),
+      },
+      success: function(res) {
+        location.reload();
+      },
+      error: function(err) {
+        alert("Error saving admin.");
+        console.log(err.responseText);
+      }
+    });
+  });
+
+  // DELETE
+  $(document).on('click', '.delete-admin', function() {
+    if (!confirm("Are you sure you want to delete this admin?")) return;
+
+    let id = $(this).data('id');
+
+    $.ajax({
+      url: "/admin/delete/" + id,
+      type: "POST",
+      data: { _method: 'DELETE' },
+      success: function(res) {
+        location.reload();
+      },
+      error: function(err) {
+        alert("Error deleting admin.");
+        console.log(err.responseText);
+      }
+    });
+  });
+
 });
 </script>
 
