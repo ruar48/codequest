@@ -308,12 +308,16 @@ $(document).ready(function() {
         e.preventDefault();
         const id = $('#questionId').val();
         const url = id ? `/testbank/${id}` : "{{ route('testbank.store') }}";
-        const method = id ? 'PUT' : 'POST';
+        let data = $(this).serialize();
+        let type = 'POST';
+        if (id) data += '&_method=PUT'; // Laravel method override
+
         $.ajax({
             url: url,
-            type: method,
-            data: $(this).serialize(),
+            type: type,
+            data: data,
             success: function() {
+                questionModal.hide(); // Close modal
                 location.reload();
             },
             error: function(xhr) {
@@ -329,8 +333,8 @@ $(document).ready(function() {
         if (!confirm('Are you sure you want to delete this question?')) return;
         $.ajax({
             url: `/testbank/${id}`,
-            type: 'DELETE',
-            data: { _token: $('meta[name="csrf-token"]').attr('content') },
+            type: 'POST',
+            data: { _token: $('meta[name="csrf-token"]').attr('content'), _method: 'DELETE' },
             success: function() {
                 location.reload();
             },
