@@ -144,19 +144,12 @@ body, .content-wrapper {
 <section class="content">
   <div class="container-fluid">
 
-    <!-- Sidebar Minimize Button -->
-    <div class="d-flex justify-content-start mb-3">
-      <button id="sidebarToggle" class="btn btn-outline-maroon btn-sm me-2">
-        <i class="fas fa-angle-left"></i> Minimize Sidebar
-      </button>
-
-      <!-- Add Player Button -->
+    <div class="d-flex justify-content-end mb-3">
       <button type="button" class="btn btn-maroon" id="openAddPlayer">
         <i class="fas fa-user-plus me-1"></i> Add Player
       </button>
     </div>
 
-    <!-- Players Table -->
     <div class="card">
       <div class="card-header"><i class="fas fa-users me-2"></i> List of Players</div>
       <div class="card-body p-3">
@@ -225,7 +218,7 @@ body, .content-wrapper {
   </div>
 </div>
 
-<!-- Scripts -->
+<!-- DataTables & jQuery -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
@@ -234,7 +227,7 @@ body, .content-wrapper {
 <script>
 $(document).ready(function() {
 
-    // ===== DataTable Initialization =====
+    // Initialize DataTable once
     if (!$.fn.DataTable.isDataTable('#playersTable')) {
         $('#playersTable').DataTable({
             responsive: true,
@@ -247,9 +240,9 @@ $(document).ready(function() {
         });
     }
 
-    // ===== Bootstrap Modal =====
     let playerModal = new bootstrap.Modal(document.getElementById('playerModal'));
 
+    // Open Add Player Modal
     $('#openAddPlayer').click(function() {
         $('#playerModalLabel').text('Add Player');
         $('#playerForm')[0].reset();
@@ -257,6 +250,7 @@ $(document).ready(function() {
         playerModal.show();
     });
 
+    // Edit Player Modal
     $(document).on('click', '.edit-player', function() {
         let row = $(this).closest('tr');
         let id = $(this).data('id');
@@ -269,7 +263,7 @@ $(document).ready(function() {
         playerModal.show();
     });
 
-    // ===== Save Player =====
+    // Save Player (Add or Edit)
     $('#savePlayer').click(function() {
         let id = $(this).data('id');
         let url = id ? `/players/${id}` : "{{ route('players.store') }}";
@@ -288,7 +282,7 @@ $(document).ready(function() {
         });
     });
 
-    // ===== Delete Player =====
+    // Delete Player
     $(document).on('click', '.delete-player', function() {
         if (!confirm('Are you sure you want to delete this player?')) return;
         let id = $(this).data('id');
@@ -300,16 +294,6 @@ $(document).ready(function() {
             success: function() { location.reload(); },
             error: function(xhr) { console.log(xhr.responseText); alert('Error deleting player.'); }
         });
-    });
-
-    // ===== Sidebar Minimize Button =====
-    const sidebar = $('#sidebar');
-    const contentWrapper = $('#content-wrapper');
-
-    $('#sidebarToggle').click(function() {
-        sidebar.toggleClass('minimized');
-        contentWrapper.toggleClass('collapsed');
-        $(this).find('i').toggleClass('fa-angle-left fa-angle-right');
     });
 
 });
