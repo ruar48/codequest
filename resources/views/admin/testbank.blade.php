@@ -288,30 +288,36 @@ $(document).ready(function() {
 
     // Edit Question button
     $(document).on('click', '.edit-question', function() {
-        const row = $(this).closest('tr');
-        const id = row.data('id');
-        const question = row.find('td:eq(1)').text().trim();
-        const output = row.find('td:eq(2)').text().trim();
-        const level = row.find('td:eq(3) span').text().trim().toLowerCase();
-        const tips = row.find('td:eq(4)').text().trim();
+    const row = $(this).closest('tr');
+    const id = row.data('id');
+    const question = row.find('td:eq(1)').text().trim();
+    const output = row.find('td:eq(2)').text().trim();
+    const level = row.find('td:eq(3) span').text().trim().toLowerCase();
+    const tips = row.find('td:eq(4)').text().trim();
 
-        $('#question').val(question);
-        $('#output').val(output);
-        $('#level').val(level);
-        $('#tips').val(tips);
+    // Fill the inputs
+    $('#questionId').val(id); // hidden input
+    $('#question').val(question);
+    $('#output').val(output);
+    $('#level').val(level);
+    $('#tips').val(tips);
 
-        // Set form action to update route
-        $('#questionForm').attr('action', `/testbank/${id}`);
-        // Add hidden _method input for PUT
-        if($('#questionForm').find('input[name="_method"]').length === 0){
-            $('#questionForm').append('<input type="hidden" name="_method" value="PUT">');
-        } else {
-            $('#questionForm').find('input[name="_method"]').val('PUT');
-        }
+    // Update form action and method for PUT
+    $('#questionForm').attr('action', `/testbank/${id}`);
+    if ($('#questionForm').find('input[name="_method"]').length === 0) {
+        $('#questionForm').append('<input type="hidden" name="_method" value="PUT">');
+    } else {
+        $('#questionForm').find('input[name="_method"]').val('PUT');
+    }
 
-        $('#questionModal .modal-title').text('Edit Question');
-        questionModal.show();
-    });
+    // Update modal title
+    $('#questionModal .modal-title').text('Edit Question');
+
+    // Show modal
+    const questionModalEl = document.getElementById('questionModal');
+    const questionModal = new bootstrap.Modal(questionModalEl);
+    questionModal.show();
+});
 
     // Delete Question button
     $(document).on('click', '.delete-question', function() {
