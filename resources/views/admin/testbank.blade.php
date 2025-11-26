@@ -161,15 +161,12 @@ body, .content-wrapper {
 
 <section class="content">
   <div class="container-fluid">
-
-    <!-- Add Question Button -->
     <div class="d-flex justify-content-end mb-3">
       <button type="button" class="btn btn-maroon fw-semibold px-3 py-2" id="addQuestionBtn">
         <i class="fas fa-plus me-1"></i> Add Question
       </button>
     </div>
 
-    <!-- Questions Table -->
     <div class="card">
       <div class="card-header d-flex justify-content-between align-items-center">
         <span><i class="fas fa-database me-2"></i> List of Questions</span>
@@ -218,7 +215,6 @@ body, .content-wrapper {
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -272,18 +268,12 @@ body, .content-wrapper {
 
 <script>
 $(document).ready(function() {
-
     // Initialize DataTable
-    $('#questionTable').DataTable({
-        responsive: true,
-        paging: true,
-        ordering: true,
-        info: true
-    });
+    $('#questionTable').DataTable({ responsive: true, paging: true, ordering: true, info: true });
 
-    const questionModal = new bootstrap.Modal($('#questionModal')[0]);
+    const questionModal = new bootstrap.Modal(document.getElementById('questionModal'));
 
-    // Add Question button
+    // Add Question
     $('#addQuestionBtn').click(function() {
         $('#questionForm')[0].reset();
         $('#questionId').val('');
@@ -291,7 +281,7 @@ $(document).ready(function() {
         questionModal.show();
     });
 
-    // Edit Question button
+    // Edit Question
     $(document).on('click', '.edit-question', function() {
         const btn = $(this);
         $('#questionId').val(btn.data('id'));
@@ -308,22 +298,14 @@ $(document).ready(function() {
         e.preventDefault();
         const id = $('#questionId').val();
         const url = id ? `/testbank/${id}` : "{{ route('testbank.store') }}";
-        let data = $(this).serialize();
-        let type = 'POST';
-        if (id) data += '&_method=PUT'; // Laravel method override
+        const data = $(this).serialize() + (id ? '&_method=PUT' : '');
 
         $.ajax({
             url: url,
-            type: type,
+            type: 'POST',
             data: data,
-            success: function() {
-                questionModal.hide(); // Close modal
-                location.reload();
-            },
-            error: function(xhr) {
-                console.log(xhr.responseText);
-                alert('Error saving question.');
-            }
+            success: function() { questionModal.hide(); location.reload(); },
+            error: function(xhr) { console.error(xhr.responseText); alert('Error saving question.'); }
         });
     });
 
@@ -331,20 +313,15 @@ $(document).ready(function() {
     $(document).on('click', '.delete-question', function() {
         const id = $(this).data('id');
         if (!confirm('Are you sure you want to delete this question?')) return;
+
         $.ajax({
             url: `/testbank/${id}`,
             type: 'POST',
             data: { _token: $('meta[name="csrf-token"]').attr('content'), _method: 'DELETE' },
-            success: function() {
-                location.reload();
-            },
-            error: function(xhr) {
-                console.log(xhr.responseText);
-                alert('Error deleting question.');
-            }
+            success: function() { location.reload(); },
+            error: function(xhr) { console.error(xhr.responseText); alert('Error deleting question.'); }
         });
     });
-
 });
 </script>
 
