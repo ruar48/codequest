@@ -262,5 +262,56 @@ body, .content-wrapper {
 
 <!-- Bootstrap 5 JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script>
+$(document).ready(function() {
+
+    // DELETE QUESTION
+    $('.delete-question').on('click', function() {
+        const id = $(this).data('id');
+
+        if (confirm('Are you sure you want to delete this question?')) {
+            $.ajax({
+                url: `/testbank/${id}`,
+                type: 'DELETE',
+                data: {
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    alert('Question deleted successfully!');
+                    $(`tr[data-id="${id}"]`).remove(); // remove row from table
+                },
+                error: function(xhr) {
+                    alert('Failed to delete question!');
+                }
+            });
+        }
+    });
+
+    // EDIT QUESTION
+    $('.edit-question').on('click', function() {
+        const id = $(this).data('id');
+
+        $.get(`/testbank/${id}/edit`, function(data) {
+            $('#questionModal .modal-title').text('Edit Question');
+            $('#questionForm').attr('action', `/testbank/${id}`);
+            
+            // Add hidden _method input for PUT
+            if ($('#questionForm input[name="_method"]').length === 0) {
+                $('#questionForm').append('<input type="hidden" name="_method" value="PUT">');
+            }
+
+            $('#question').val(data.question);
+            $('#output').val(data.output);
+            $('#level').val(data.level);
+            $('#tips').val(data.tips);
+
+            const modal = new bootstrap.Modal(document.getElementById('questionModal'));
+            modal.show();
+        });
+    });
+
+});
+</script>
 
 @endsection
