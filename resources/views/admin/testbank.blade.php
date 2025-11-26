@@ -288,7 +288,7 @@ $(document).ready(function() {
         }
     });
 
-    // EDIT QUESTION using event delegation
+// EDIT QUESTION using event delegation
 $(document).on('click', '.edit-question', function() {
     const id = $(this).data('id');
 
@@ -310,7 +310,7 @@ $(document).on('click', '.edit-question', function() {
         $('#level').val(data.level);
         $('#tips').val(data.tips);
 
-        // Show the modal (use existing instance to keep Cancel working)
+        // Show the modal without creating a new instance
         const modalEl = document.getElementById('questionModal');
         const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
         modal.show();
