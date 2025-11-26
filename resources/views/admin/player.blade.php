@@ -107,16 +107,18 @@ body, .content-wrapper {
   background-color: #a43e3e;
   color: #fff;
 }
+
 /* Sidebar Active / Hover Links */
 .nav-link.active,
 .nav-link:hover {
-  background-color: rgba(220, 160, 160, 0.25) !important; /* light maroon */
-  border-left: 3px solid #ecbbbbff; /* maroon indicator line */
-  color: #ffffff !important; /* keep text white for visibility */
+  background-color: rgba(220, 160, 160, 0.25) !important; 
+  border-left: 3px solid #ecbbbbff; 
+  color: #ffffff !important; 
   font-weight: 600;
   transition: all 0.2s ease;
-  box-shadow: 0 6px 12px rgba(220, 160, 160, 0.35); /* stronger, more visible shadow */
+  box-shadow: 0 6px 12px rgba(220, 160, 160, 0.35); 
 }
+
 /* DataTables */
 .dataTables_wrapper .dataTables_filter input {
   border: 1px solid #7b2d2d;
@@ -145,7 +147,7 @@ body, .content-wrapper {
   <div class="container-fluid">
 
     <div class="d-flex justify-content-end mb-3">
-      <button type="button" class="btn btn-maroon" data-bs-toggle="modal" data-bs-target="#playerModal">
+      <button type="button" class="btn btn-maroon" id="addPlayerBtn">
         <i class="fas fa-user-plus me-1"></i> Add Player
       </button>
     </div>
@@ -194,7 +196,7 @@ body, .content-wrapper {
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title fw-bold" id="playerModalLabel">Add Player</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        <button type="button" class="btn-close" id="closePlayerModal"></button>
       </div>
       <form id="playerForm">
         @csrf
@@ -210,7 +212,7 @@ body, .content-wrapper {
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-secondary btn-sm" id="cancelPlayerModal">Cancel</button>
           <button type="button" class="btn btn-maroon btn-sm" id="savePlayer">Save</button>
         </div>
       </form>
@@ -221,9 +223,7 @@ body, .content-wrapper {
 <!-- DataTables & jQuery -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- Include Bootstrap Bundle JS (includes Popper) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
 
@@ -241,18 +241,24 @@ $(document).ready(function() {
         lengthMenu: [[10,25,50,-1],[10,25,50,"All"]],
     });
 
-    // Bootstrap Modal instance (single)
+    // Single modal instance
     const playerModalEl = document.getElementById('playerModal');
-    const playerModal = new bootstrap.Modal(playerModalEl);
+    const playerModal = new bootstrap.Modal(playerModalEl, { backdrop: 'static', keyboard: true });
 
-    // Add Player button
-    $('.btn-maroon[data-bs-target="#playerModal"]').click(function() {
+    // Explicit Cancel/Close handlers (fix for Edit modal)
+    $('#cancelPlayerModal, #closePlayerModal').click(function() {
+        playerModal.hide();
+    });
+
+    // Add Player
+    $('#addPlayerBtn').click(function() {
         $('#playerModalLabel').text('Add Player');
         $('#playerForm')[0].reset();
         $('#savePlayer').data('id', '');
+        playerModal.show();
     });
 
-    // Edit Player button
+    // Edit Player
     $(document).on('click', '.edit-player', function() {
         const row = $(this).closest('tr');
         const id = $(this).data('id');
@@ -262,8 +268,6 @@ $(document).ready(function() {
         $('#email').val(email);
         $('#password').val('');
         $('#savePlayer').data('id', id);
-
-        // Show modal
         playerModal.show();
     });
 
@@ -282,7 +286,7 @@ $(document).ready(function() {
                 password: $('#password').val()
             },
             success: function() {
-                playerModal.hide(); // hide modal after save
+                playerModal.hide();
                 location.reload();
             },
             error: function(xhr) {
@@ -307,7 +311,6 @@ $(document).ready(function() {
     });
 
 });
-
 </script>
 
 @endsection
