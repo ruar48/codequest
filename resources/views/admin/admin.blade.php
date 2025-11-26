@@ -69,7 +69,7 @@
            style="background: linear-gradient(90deg, #7b2d2d, #a43e3e); position: relative;">
         <h5 class="modal-title fw-bold" id="adminModalLabel">Add Admin</h5>
         <!-- Close button -->
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+<button type="button" class="btn-close btn-close-white" aria-label="Close" id="closeAdminModal"></button>
       </div>
 
       <form id="adminForm">
@@ -162,30 +162,35 @@ $(document).ready(function () {
     });
 
     let adminModal = new bootstrap.Modal(document.getElementById('adminModal'));
-    $('#adminTable').DataTable();
 
-    // Open Add Modal
-    $('#openAddModal').click(function () {
-        $('#adminModalLabel').text('Add Admin');
-        $('#admin_id').val('');
-        $('#email').val('');
-        $('#password').val('');
-        $('#role').val('admin');
-        $('#_method').val('POST');
-        adminModal.show();
-    });
+// Open Add Modal
+$('#openAddModal').click(function () {
+    $('#adminModalLabel').text('Add Admin');
+    $('#admin_id').val('');
+    $('#email').val('');
+    $('#password').val('');
+    $('#role').val('admin');
+    $('#_method').val('POST');
+    adminModal.show();
+});
 
-    // Open Edit Modal
-    $(document).on('click', '.edit-admin', function () {
-        let row = $(this).closest('tr');
-        $('#adminModalLabel').text('Edit Admin');
-        $('#admin_id').val(row.data('id'));
-        $('#email').val(row.data('email'));
-        $('#role').val(row.data('role'));
-        $('#password').val('');
-        $('#_method').val('PUT');
-        adminModal.show();
-    });
+// Close Modal
+document.getElementById('closeAdminModal').addEventListener('click', function () {
+    adminModal.hide();
+});
+
+// Open Edit Modal
+$(document).on('click', '.edit-admin', function () {
+    let row = $(this).closest('tr');
+    $('#adminModalLabel').text('Edit Admin');
+    $('#admin_id').val(row.data('id'));
+    $('#email').val(row.data('email'));
+    $('#role').val(row.data('role'));
+    $('#password').val('');
+    $('#_method').val('PUT');
+    adminModal.show();
+});
+
 
     // Save Admin
     $('#saveAdmin').click(function () {
