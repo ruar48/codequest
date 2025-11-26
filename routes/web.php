@@ -142,18 +142,13 @@ Route::get('/', function () {
         ]);
     });
 
+    Route::middleware(['admin'])->group(function () {
+
     Route::controller(PlayerController::class)->group(function () {
-
-    Route::get('/player', 'index')->name('player.index');
-
-    // Add player
-    Route::post('/player/store', 'store')->name('players.store');
-
-    // Update player
-    Route::put('/player/update/{id}', 'update')->name('players.update');
-
-    // Delete player
-    Route::delete('/player/delete/{id}', 'destroy')->name('players.destroy');
+        Route::get('/players', 'index')->name('players.index');
+        Route::post('/players', 'store')->name('players.store');
+        Route::put('/players/{id}', 'update')->name('players.update');
+        Route::delete('/players/{id}', 'destroy')->name('players.destroy');
+    });
 
 });
-

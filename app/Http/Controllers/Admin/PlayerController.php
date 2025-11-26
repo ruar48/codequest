@@ -5,17 +5,16 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class PlayerController extends Controller
 {
-    // List all players
     public function index()
     {
         $players = User::where('role', 'player')->get();
         return view('admin.player', compact('players'));
     }
 
-    // Add a new player
     public function store(Request $request)
     {
         $request->validate([
@@ -25,39 +24,36 @@ class PlayerController extends Controller
 
         User::create([
             'email' => $request->email,
-            'password' => bcrypt($request->password),
+            'password' => Hash::make($request->password),
             'role' => 'player',
         ]);
 
-        return response()->json(['message' => 'Player added successfully']);
+        return response()->json(['success' => true]);
     }
 
-    // Update existing player
     public function update(Request $request, $id)
     {
         $player = User::findOrFail($id);
 
         $request->validate([
-            'email' => 'required|email|unique:users,email,' . $player->id,
+            'email' => 'required|email|unique:users,email,'.$player->id,
+            'password' => 'nullable|min:6',
         ]);
 
         $player->email = $request->email;
-
-        if ($request->filled('password')) {
-            $player->password = bcrypt($request->password);
+        if ($request->password) {
+            $player->password = Hash::make($request->password);
         }
-
         $player->save();
 
-        return response()->json(['message' => 'Player updated successfully']);
+        return response()->json(['success' => true]);
     }
 
-    // Delete player
     public function destroy($id)
     {
         $player = User::findOrFail($id);
         $player->delete();
 
-        return response()->json(['message' => 'Player deleted successfully']);
+        return response()->json(['success' => true]);
     }
 }

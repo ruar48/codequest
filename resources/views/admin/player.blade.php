@@ -4,6 +4,8 @@
 
 @section('content')
 
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
 <style>
 body, .content-wrapper {
   background: #fff;
@@ -163,7 +165,7 @@ body, .content-wrapper {
             </thead>
             <tbody>
               @foreach ($players as $player)
-              <tr>
+              <tr data-id="{{ $player->id }}">
                 <td>{{ $player->id }}</td>
                 <td>{{ $player->email }}</td>
                 <td class="text-capitalize">{{ $player->role }}</td>
@@ -203,7 +205,8 @@ body, .content-wrapper {
           </div>
           <div class="mb-2">
             <label for="password" class="fw-bold">Password</label>
-            <input type="password" class="form-control" id="password" name="password" required>
+            <input type="password" class="form-control" id="password" name="password">
+            <small class="text-muted">Leave blank to keep existing password (for edit).</small>
           </div>
         </div>
         <div class="modal-footer">
@@ -215,6 +218,7 @@ body, .content-wrapper {
   </div>
 </div>
 
+<!-- DataTables & jQuery -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
@@ -222,51 +226,39 @@ body, .content-wrapper {
 
 <script>
 $(document).ready(function() {
-  $('#playersTable').DataTable({
-    responsive: true,
-    paging: true,
-    searching: true,
-    ordering: true,
-    info: true,
-    autoWidth: false,
-    lengthMenu: [[10,25,50,-1],[10,25,50,"All"]],
-  });
-});
-$(document).ready(function() {
 
-    // Initialize DataTable
-    $('#playersTable').DataTable({
-        responsive: true,
-        paging: true,
-        searching: true,
-        ordering: true,
-        info: true,
-        autoWidth: false,
-        lengthMenu: [[10,25,50,-1],[10,25,50,"All"]],
-    });
+    // Initialize DataTable once
+    if (!$.fn.DataTable.isDataTable('#playersTable')) {
+        $('#playersTable').DataTable({
+            responsive: true,
+            paging: true,
+            searching: true,
+            ordering: true,
+            info: true,
+            autoWidth: false,
+            lengthMenu: [[10,25,50,-1],[10,25,50,"All"]],
+        });
+    }
 
-    // Bootstrap modal instance
     let playerModal = new bootstrap.Modal(document.getElementById('playerModal'));
 
-    // Open Add Player Modal
+    // Add Player Modal
     $('.btn-maroon[data-bs-target="#playerModal"]').click(function() {
         $('#playerModalLabel').text('Add Player');
         $('#playerForm')[0].reset();
-        $('#savePlayer').data('id', ''); // no ID for new player
-        playerModal.show();
+        $('#savePlayer').data('id', '');
     });
 
-    // Open Edit Player Modal
+    // Edit Player Modal
     $(document).on('click', '.edit-player', function() {
         let row = $(this).closest('tr');
         let id = $(this).data('id');
         let email = row.find('td:nth-child(2)').text();
-        let role = row.find('td:nth-child(3)').text();
 
         $('#playerModalLabel').text('Edit Player');
         $('#email').val(email);
         $('#password').val('');
-        $('#savePlayer').data('id', id); // store player ID
+        $('#savePlayer').data('id', id);
         playerModal.show();
     });
 
@@ -282,7 +274,7 @@ $(document).ready(function() {
             data: {
                 _token: $('meta[name="csrf-token"]').attr('content'),
                 email: $('#email').val(),
-                password: $('#password').val(),
+                password: $('#password').val()
             },
             success: function() { location.reload(); },
             error: function(xhr) { console.log(xhr.responseText); alert('Error saving player.'); }
@@ -304,7 +296,6 @@ $(document).ready(function() {
     });
 
 });
-
 </script>
 
 @endsection
