@@ -161,12 +161,15 @@ body, .content-wrapper {
 
 <section class="content">
   <div class="container-fluid">
+
+    <!-- Add Question Button -->
     <div class="d-flex justify-content-end mb-3">
       <button type="button" class="btn btn-maroon fw-semibold px-3 py-2" id="addQuestionBtn">
         <i class="fas fa-plus me-1"></i> Add Question
       </button>
     </div>
 
+    <!-- Questions Table -->
     <div class="card">
       <div class="card-header d-flex justify-content-between align-items-center">
         <span><i class="fas fa-database me-2"></i> List of Questions</span>
@@ -197,9 +200,8 @@ body, .content-wrapper {
                 </td>
                 <td>{{ $question->tips }}</td>
                 <td class="text-center">
-                  <button class="btn btn-sm btn-outline-maroon edit-question me-1" 
-                          data-id="{{ $question->id }}"
-                          data-question="{{ $question->question }}"
+                  <button class="btn btn-sm btn-outline-maroon edit-question me-1" data-id="{{ $question->id }}"
+                          data-question="{{ $question->question }}" 
                           data-output="{{ $question->output }}"
                           data-level="{{ $question->level }}"
                           data-tips="{{ $question->tips }}">
@@ -216,6 +218,7 @@ body, .content-wrapper {
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -227,7 +230,7 @@ body, .content-wrapper {
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Add Question</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
           <input type="hidden" id="questionId" name="id">
@@ -253,7 +256,7 @@ body, .content-wrapper {
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-maroon">Save Question</button>
+          <button type="submit" class="btn btn-maroon" id="saveQuestionBtn">Save Question</button>
           <button type="button" class="btn btn-outline-maroon" data-bs-dismiss="modal">Cancel</button>
         </div>
       </div>
@@ -261,7 +264,7 @@ body, .content-wrapper {
   </div>
 </div>
 
-<!-- Scripts -->
+<!-- Bootstrap & jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
@@ -269,12 +272,16 @@ body, .content-wrapper {
 
 <script>
 $(document).ready(function() {
-    // Initialize DataTable
-    $('#questionTable').DataTable();
 
-    // Use correct Bootstrap 5 Modal instance
-    const questionModalEl = document.getElementById('questionModal');
-    const questionModal = new bootstrap.Modal(questionModalEl);
+    // Initialize DataTable
+    $('#questionTable').DataTable({
+        responsive: true,
+        paging: true,
+        ordering: true,
+        info: true
+    });
+
+    const questionModal = new bootstrap.Modal($('#questionModal')[0]);
 
     // Add Question button
     $('#addQuestionBtn').click(function() {
@@ -301,30 +308,39 @@ $(document).ready(function() {
         e.preventDefault();
         const id = $('#questionId').val();
         const url = id ? `/testbank/${id}` : "{{ route('testbank.store') }}";
-        const data = $(this).serialize() + (id ? '&_method=PUT' : '');
-
+        const method = id ? 'PUT' : 'POST';
         $.ajax({
             url: url,
-            type: 'POST',
-            data: data,
-            success: function() { questionModal.hide(); location.reload(); },
-            error: function(xhr) { console.error(xhr.responseText); alert('Error saving question.'); }
+            type: method,
+            data: $(this).serialize(),
+            success: function() {
+                location.reload();
+            },
+            error: function(xhr) {
+                console.log(xhr.responseText);
+                alert('Error saving question.');
+            }
         });
     });
 
     // Delete Question
     $(document).on('click', '.delete-question', function() {
         const id = $(this).data('id');
-        if(!confirm('Are you sure you want to delete this question?')) return;
-
+        if (!confirm('Are you sure you want to delete this question?')) return;
         $.ajax({
             url: `/testbank/${id}`,
-            type: 'POST',
-            data: { _token: $('meta[name="csrf-token"]').attr('content'), _method: 'DELETE' },
-            success: function() { location.reload(); },
-            error: function(xhr) { console.error(xhr.responseText); alert('Error deleting question.'); }
+            type: 'DELETE',
+            data: { _token: $('meta[name="csrf-token"]').attr('content') },
+            success: function() {
+                location.reload();
+            },
+            error: function(xhr) {
+                console.log(xhr.responseText);
+                alert('Error deleting question.');
+            }
         });
     });
+
 });
 </script>
 
