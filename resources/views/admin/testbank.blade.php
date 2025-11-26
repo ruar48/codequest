@@ -288,17 +288,20 @@ $(document).ready(function() {
         }
     });
 
-    // EDIT QUESTION
-$('.edit-question').on('click', function() {
+    // EDIT QUESTION using event delegation
+$(document).on('click', '.edit-question', function() {
     const id = $(this).data('id');
 
     $.get(`/testbank/${id}/edit`, function(data) {
         $('#questionModal .modal-title').text('Edit Question');
         $('#questionForm').attr('action', `/testbank/${id}`);
         
-        // Add hidden _method input for PUT if not exists
-        if ($('#questionForm input[name="_method"]').length === 0) {
+        // Add or update hidden _method input for PUT
+        let methodInput = $('#questionForm input[name="_method"]');
+        if (methodInput.length === 0) {
             $('#questionForm').append('<input type="hidden" name="_method" value="PUT">');
+        } else {
+            methodInput.val('PUT');
         }
 
         // Fill form fields
@@ -307,7 +310,7 @@ $('.edit-question').on('click', function() {
         $('#level').val(data.level);
         $('#tips').val(data.tips);
 
-        // Use existing modal instance to ensure Cancel works
+        // Show the modal (use existing instance to keep Cancel working)
         const modalEl = document.getElementById('questionModal');
         const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
         modal.show();
