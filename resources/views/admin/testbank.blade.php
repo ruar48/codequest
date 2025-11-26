@@ -288,14 +288,15 @@ $(document).ready(function() {
         }
     });
 
-// EDIT QUESTION using event delegation
+// EDIT QUESTION
 $(document).on('click', '.edit-question', function() {
     const id = $(this).data('id');
 
     $.get(`/testbank/${id}/edit`, function(data) {
+        // Update modal title and form action
         $('#questionModal .modal-title').text('Edit Question');
         $('#questionForm').attr('action', `/testbank/${id}`);
-        
+
         // Add or update hidden _method input for PUT
         let methodInput = $('#questionForm input[name="_method"]');
         if (methodInput.length === 0) {
@@ -310,13 +311,14 @@ $(document).on('click', '.edit-question', function() {
         $('#level').val(data.level);
         $('#tips').val(data.tips);
 
-        // Show the modal without creating a new instance
+        // Show modal safely
         const modalEl = document.getElementById('questionModal');
         const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
         modal.show();
+    }).fail(function() {
+        alert('Failed to load question for editing.');
     });
 });
-
 });
 </script>
 
