@@ -153,7 +153,6 @@ body, .content-wrapper {
   border: 1px solid #7b2d2d;
 }
 </style>
-
 <div class="content-header">
   <h1>Test Bank Questions</h1>
   <p>Manage and organize your CodeQuest test questions efficiently</p>
@@ -200,8 +199,9 @@ body, .content-wrapper {
                 </td>
                 <td>{{ $question->tips }}</td>
                 <td class="text-center">
-                  <button class="btn btn-sm btn-outline-maroon edit-question me-1" data-id="{{ $question->id }}"
-                          data-question="{{ $question->question }}" 
+                  <button class="btn btn-sm btn-outline-maroon edit-question me-1"
+                          data-id="{{ $question->id }}"
+                          data-question="{{ $question->question }}"
                           data-output="{{ $question->output }}"
                           data-level="{{ $question->level }}"
                           data-tips="{{ $question->tips }}">
@@ -231,6 +231,7 @@ body, .content-wrapper {
         <div class="modal-header">
           <h5 class="modal-title">Add Question</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          <button type="button" class="btn btn-outline-light btn-sm ms-2" id="minimizeModal">_</button>
         </div>
         <div class="modal-body">
           <input type="hidden" id="questionId" name="id">
@@ -264,35 +265,32 @@ body, .content-wrapper {
   </div>
 </div>
 
-<!-- Bootstrap & jQuery -->
+<!-- Scripts -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
 
 <script>
-$(document).ready(function() {
+$(document).ready(function(){
 
     // Initialize DataTable
     $('#questionTable').DataTable({
-        responsive: true,
-        paging: true,
-        ordering: true,
-        info: true
+        responsive:true, paging:true, ordering:true, info:true
     });
 
     const questionModal = new bootstrap.Modal($('#questionModal')[0]);
 
-    // Add Question button
-    $('#addQuestionBtn').click(function() {
+    // Add Question
+    $('#addQuestionBtn').click(function(){
         $('#questionForm')[0].reset();
         $('#questionId').val('');
         $('#questionModal .modal-title').text('Add Question');
         questionModal.show();
     });
 
-    // Edit Question button
-    $(document).on('click', '.edit-question', function() {
+    // Edit Question
+    $(document).on('click','.edit-question',function(){
         const btn = $(this);
         $('#questionId').val(btn.data('id'));
         $('#question').val(btn.data('question'));
@@ -303,41 +301,39 @@ $(document).ready(function() {
         questionModal.show();
     });
 
-    // Save Question (Add/Edit)
-    $('#questionForm').submit(function(e) {
+    // Minimize Modal
+    $('#minimizeModal').click(function(){
+        $('.modal-body, .modal-footer').slideToggle();
+    });
+
+    // Save Question
+    $('#questionForm').submit(function(e){
         e.preventDefault();
         const id = $('#questionId').val();
         const url = id ? `/testbank/${id}` : "{{ route('testbank.store') }}";
-        const method = id ? 'PUT' : 'POST';
+        const method = id ? 'POST' : 'POST'; // Laravel requires POST with _method PUT for updates
+        const data = $(this).serialize();
+        if(id) data += '&_method=PUT';
+
         $.ajax({
-            url: url,
-            type: method,
-            data: $(this).serialize(),
-            success: function() {
-                location.reload();
-            },
-            error: function(xhr) {
-                console.log(xhr.responseText);
-                alert('Error saving question.');
-            }
+            url:url,
+            type:'POST',
+            data: data,
+            success:function(){ questionModal.hide(); location.reload(); },
+            error:function(xhr){ console.log(xhr.responseText); alert('Error saving question.'); }
         });
     });
 
     // Delete Question
-    $(document).on('click', '.delete-question', function() {
+    $(document).on('click','.delete-question',function(){
         const id = $(this).data('id');
-        if (!confirm('Are you sure you want to delete this question?')) return;
+        if(!confirm('Are you sure you want to delete this question?')) return;
         $.ajax({
-            url: `/testbank/${id}`,
-            type: 'DELETE',
-            data: { _token: $('meta[name="csrf-token"]').attr('content') },
-            success: function() {
-                location.reload();
-            },
-            error: function(xhr) {
-                console.log(xhr.responseText);
-                alert('Error deleting question.');
-            }
+            url:`/testbank/${id}`,
+            type:'POST',
+            data:{ _token:$('meta[name="csrf-token"]').attr('content'), _method:'DELETE' },
+            success:function(){ location.reload(); },
+            error:function(xhr){ console.log(xhr.responseText); alert('Error deleting question.'); }
         });
     });
 
