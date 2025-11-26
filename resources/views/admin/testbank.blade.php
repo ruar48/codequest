@@ -293,6 +293,12 @@ $(document).on('click', '.edit-question', function() {
     const id = $(this).data('id');
 
     $.get(`/testbank/${id}/edit`, function(data) {
+        const modalEl = document.getElementById('questionModal');
+        const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+
+        // Reset form first (clears previous data and errors)
+        $('#questionForm')[0].reset();
+
         // Update modal title and form action
         $('#questionModal .modal-title').text('Edit Question');
         $('#questionForm').attr('action', `/testbank/${id}`);
@@ -311,14 +317,13 @@ $(document).on('click', '.edit-question', function() {
         $('#level').val(data.level);
         $('#tips').val(data.tips);
 
-        // Show modal safely
-        const modalEl = document.getElementById('questionModal');
-        const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+        // Show the modal
         modal.show();
     }).fail(function() {
         alert('Failed to load question for editing.');
     });
 });
+
 });
 </script>
 
